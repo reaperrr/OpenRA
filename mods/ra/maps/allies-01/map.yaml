@@ -18,7 +18,9 @@ Bounds: 8,8,32,38
 
 UseAsShellmap: False
 
-Type: Mission
+Type: Campaign
+
+Difficulties: Easy, Normal
 
 Players:
 	PlayerReference@Neutral:
@@ -37,15 +39,16 @@ Players:
 		LockRace: True
 		Race: allies
 		LockColor: True
-		ColorRamp: 153,240,130,10
+		ColorRamp: 161,134,200,30
 		LockSpawn: True
 		LockTeam: True
 		Allies: Creeps
 		Enemies: Soviets
+		Required: True
 	PlayerReference@Soviets:
 		Name: Soviets
 		Race: soviet
-		ColorRamp: 0,255,128,10
+		ColorRamp: 3,255,127,28
 		Enemies: Allies,Creeps
 
 Actors:
@@ -287,7 +290,7 @@ Actors:
 	InsertionLZ: waypoint
 		Location: 22,10
 		Owner: Neutral
-	Lab: stek
+	Lab: stek.autotargetignore
 		Location: 20,24
 		Owner: Soviets
 	Actor24: e2
@@ -338,6 +341,9 @@ Actors:
 	Actor29: kenn
 		Location: 23,28
 		Owner: Soviets
+	Actor1000: camera.large
+		Location: 1,1
+		Owner: Soviets
 
 Smudges:
 
@@ -357,16 +363,41 @@ Rules:
 			Range: 0
 	E7:
 		AutoTarget:
-			InitialStance: ReturnFire
+			InitialStance: Defend
 		Passenger:
 			Weight: 0
 	EINSTEIN:
 		Passenger:
 			Weight: 0
-	JEEP:
-		Cargo:
-			MaxWeight: 0
-			PipCount: 0
+	STEK.AutoTargetIgnore:
+		Inherits: STEK
+		RenderBuilding:
+			Image: STEK
+		Tooltip:
+			Icon: STEK
+		AutoTargetIgnore:
+	^Vehicle:
+		GivesBounty:
+			Percentage: 0
+	^Tank:
+		GivesBounty:
+			Percentage: 0
+	^Infantry:
+		GivesBounty:
+			Percentage: 0
+	^Ship:
+		GivesBounty:
+			Percentage: 0
+	^Plane:
+		GivesBounty:
+			Percentage: 0
+	^Building:
+		GivesBounty:
+			Percentage: 0
+	CAMERA.Large:
+		Inherits: CAMERA
+		RevealsShroud:
+			Range: 1000
 
 Sequences:
 

@@ -15,14 +15,22 @@ using OpenRA.Graphics;
 
 namespace OpenRA.Mods.RA
 {
+	[Desc("Creates a single color palette without any base palette file.")]
 	class PaletteFromRGBAInfo : ITraitInfo
 	{
+		[Desc("internal palette name")]
 		public readonly string Name = null;
+		[Desc("If defined, load the palette only for this tileset.")]
 		public readonly string Tileset = null;
+		[Desc("red color component")]
 		public readonly int R = 0;
+		[Desc("green color component")]
 		public readonly int G = 0;
+		[Desc("blue color component")]
 		public readonly int B = 0;
+		[Desc("alpha channel (transparency)")]
 		public readonly int A = 255;
+		public readonly bool AllowModifiers = true;
 
 		public object Create(ActorInitializer init) { return new PaletteFromRGBA(init.world, this); }
 	}
@@ -37,28 +45,14 @@ namespace OpenRA.Mods.RA
 			this.info = info;
 		}
 
-		public void InitPalette( WorldRenderer wr )
+		public void InitPalette(WorldRenderer wr)
 		{
-			if (info.Tileset == null || info.Tileset.ToLowerInvariant() == world.Map.Tileset.ToLowerInvariant())
-			{
-				// TODO: This shouldn't rely on a base palette
-				var pal = wr.GetPalette("terrain");
-				wr.AddPalette(info.Name, new Palette(pal, new SingleColorRemap(Color.FromArgb(info.A, info.R, info.G, info.B))));
-			}
-		}
-	}
+			// Enable palette only for a specific tileset
+			if (info.Tileset != null && info.Tileset.ToLowerInvariant() != world.Map.Tileset.ToLowerInvariant())
+				return;
 
-	class SingleColorRemap : IPaletteRemap
-	{
-		Color c;
-		public SingleColorRemap(Color c)
-		{
-			this.c = c;
-		}
-
-		public Color GetRemappedColor(Color original, int index)
-		{
-			return original.A > 0 ? c : original;
+			var c = (uint)((info.A << 24) | (info.R << 16) | (info.G << 8) | info.B);
+			wr.AddPalette(info.Name, new Palette(Exts.MakeArray(256, i => (i == 0) ? 0 : c)), info.AllowModifiers);
 		}
 	}
 }

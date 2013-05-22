@@ -34,12 +34,26 @@ namespace OpenRA.Network
 		void StartSavingReplay(byte[] initialContent)
 		{
 			var filename = chooseFilename();
-			var replayPath = Path.Combine(Platform.SupportDir, "Replays");
+			var replaysDirectory = Path.Combine(Platform.SupportDir, "Replays");
 
-			if (!Directory.Exists(replayPath))
-				Directory.CreateDirectory(replayPath);
+			if (!Directory.Exists(replaysDirectory))
+				Directory.CreateDirectory(replaysDirectory);
 
-			var file = File.Create(Path.Combine(replayPath, filename));
+			FileStream file = null;
+			var id = -1;
+			while (file == null)
+			{
+				var fullFilename = Path.Combine(replaysDirectory, id < 0
+					? "{0}.rep".F(filename)
+					: "{0}-{1}.rep".F(filename, id));
+				id++;
+				try
+				{
+					file = File.Create(fullFilename);
+				}
+				catch (IOException) { }
+			}
+
 			file.Write(initialContent);
 			this.writer = new BinaryWriter(file);
 		}

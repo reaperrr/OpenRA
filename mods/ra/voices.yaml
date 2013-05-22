@@ -18,14 +18,6 @@ VehicleVoice:
 		Select: vehic1,yessir1,report1,await1
 		Move: ackno,affirm1
 
-ShipVoice:
-	Variants:
-		soviet: .r00,.r02
-		allies: .v00,.v02
-	Voices:
-		Select: vehic1,yessir1,report1,await1
-		Move: ackno,affirm1
-
 EngineerVoice:
 	Voices:
 		Select: eengin1,eyessir1
@@ -37,6 +29,13 @@ MedicVoice:
 		Select: mrespon1,myessir1
 		Move: maffirm1,mmovout1
 		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman6,dedman7,dedman8,dedman10
+		
+MechanicVoice:
+	Voices:
+		Select: mhuh1,mhowdy1,myes1,mrise1
+		Move: mboss1,mhear1
+		Attack: mhotdig1,mwrench1
+		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman6,dedman7,dedman8,dedman10
 
 TanyaVoice:
 	Voices:
@@ -47,9 +46,9 @@ TanyaVoice:
 
 DogVoice:
 	Voices:
-		Select: dogy1
+		Select: dogw3px
 		Move: dogy1
-		Attack: dogg5p,dogw3px
+		Attack: dogg5p
 		Die: dogw5,dogw6,dogw7
 
 SpyVoice:
@@ -88,11 +87,4 @@ ShokVoice:
 		Select: jchrge1,jjuice1,jjump1,jpower1
 		Move: jdance1,jyes1
 		Attack: jburn1,jcrisp1,jshock1,jlight1
-		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman6,dedman7,dedman8,dedman10
-
-VolkovVoice:
-	Voices:
-		Select: iromsec,iromsee
-		Move: irommoc,irommoe,irommod
-		Attack: iromata,iromatb,iromatc,iromatd,iromate
 		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman6,dedman7,dedman8,dedman10

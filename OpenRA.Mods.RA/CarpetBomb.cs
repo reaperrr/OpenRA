@@ -1,4 +1,4 @@
-﻿#region Copyright & License Information
+#region Copyright & License Information
 /*
  * Copyright 2007-2011 The OpenRA Developers (see AUTHORS)
  * This file is part of OpenRA, which is free software. It is made
@@ -8,6 +8,7 @@
  */
 #endregion
 
+using System.Linq;
 using OpenRA.GameRules;
 using OpenRA.Traits;
 
@@ -20,10 +21,10 @@ namespace OpenRA.Mods.RA
 		public readonly int Range = 3;
 	}
 
-	class CarpetBomb : ITick			// todo: maybe integrate this better with the normal weapons system?
+	class CarpetBomb : ITick, ISync			// TODO: maybe integrate this better with the normal weapons system?
 	{
-		CPos Target;
-		int dropDelay;
+		[Sync] CPos Target;
+		[Sync] int dropDelay;
 
 		public void SetTarget(CPos targetCell) { Target = targetCell; }
 
@@ -56,8 +57,8 @@ namespace OpenRA.Mods.RA
 
 				self.World.Add(args.weapon.Projectile.Create(args));
 
-				if (!string.IsNullOrEmpty(args.weapon.Report))
-					Sound.Play(args.weapon.Report + ".aud", self.CenterLocation);
+				if (args.weapon.Report != null && args.weapon.Report.Any())
+					Sound.Play(args.weapon.Report.Random(self.World.SharedRandom) + ".aud", self.CenterLocation);
 			}
 		}
 	}

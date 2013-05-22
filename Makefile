@@ -1,18 +1,30 @@
 CSC         = gmcs
-CSFLAGS     = -nologo -warn:4 -debug:+ -debug:full -optimize- -codepage:utf8 -unsafe
+CSFLAGS     = -nologo -warn:4 -debug:full -optimize- -codepage:utf8 -unsafe -warnaserror
 DEFINE      = DEBUG;TRACE
-COMMON_LIBS	= System.dll System.Core.dll System.Drawing.dll System.Xml.dll thirdparty/ICSharpCode.SharpZipLib.dll
-PHONY		= core tools package all mods clean distclean
+COMMON_LIBS = System.dll System.Core.dll System.Drawing.dll System.Xml.dll thirdparty/ICSharpCode.SharpZipLib.dll thirdparty/FuzzyLogicLibrary.dll thirdparty/Mono.Nat.dll
+PHONY       = core tools package all mods clean distclean dependencies version
+VERSION     = $(shell git name-rev --name-only --tags --no-undefined HEAD 2>/dev/null || echo git-`git rev-parse --short HEAD`)
 
 .SUFFIXES:
 core: game renderers mods utility tsbuild
 tools: editor ralint tsbuild
-package: core editor
+package: dependencies core editor docs version
 mods: mod_ra mod_cnc mod_d2k
-all: core tools
-clean: 
+all: dependencies core tools
+clean:
 	@-rm -f *.exe *.dll *.mdb mods/**/*.dll mods/**/*.mdb *.resources
 distclean: clean
+dependencies:
+	@ cp -r thirdparty/*.dl* .
+	@ cp -r thirdparty/Tao/* .
+version: mods/ra/mod.yaml mods/cnc/mod.yaml mods/d2k/mod.yaml
+	@for i in $? ; do \
+		awk '{sub("Version:.*$$","Version: $(VERSION)"); print $0}' $${i} > $${i}.tmp && \
+		mv -f $${i}.tmp $${i} ; \
+	done
+default: dependencies core
+
+.DEFAULT_GOAL := default
 
 #
 # Core binaries
@@ -29,7 +41,7 @@ game_TARGET			= OpenRA.Game.exe
 game_KIND			= winexe
 game_DEPS			= $(fileformats_TARGET) 
 game_LIBS			= $(COMMON_LIBS) System.Windows.Forms.dll $(game_DEPS) \
-						thirdparty/Tao/Tao.OpenAl.dll thirdparty/Tao/Tao.FreeType.dll
+					thirdparty/Tao/Tao.OpenAl.dll thirdparty/SharpFont.dll
 game_FLAGS			= -win32icon:OpenRA.Game/OpenRA.ico
 PROGRAMS 			+= game
 game: $(game_TARGET)
@@ -81,8 +93,8 @@ STD_MOD_DEPS	= $(STD_MOD_LIBS) $(ralint_TARGET)
 mod_ra_SRCS			:= $(shell find OpenRA.Mods.RA/ -iname '*.cs')
 mod_ra_TARGET			= mods/ra/OpenRA.Mods.RA.dll
 mod_ra_KIND			= library
-mod_ra_DEPS			= $(STD_MOD_DEPS)
-mod_ra_LIBS			= $(COMMON_LIBS) $(STD_MOD_LIBS)
+mod_ra_DEPS			= $(STD_MOD_DEPS) $(utility_TARGET)
+mod_ra_LIBS			= $(COMMON_LIBS) $(STD_MOD_LIBS) $(utility_TARGET)
 mod_ra_EXTRA_CMDS		= mono --debug RALint.exe ra
 PROGRAMS 			+= mod_ra
 mod_ra: $(mod_ra_TARGET)
@@ -204,6 +216,10 @@ INSTALL = install
 INSTALL_PROGRAM = $(INSTALL)
 CORE = fileformats rcg rgl rsdl rnull game editor utility tsbuild
 
+# Documentation (d2k depends on all mod libraries)
+docs:
+	@mono --debug OpenRA.Utility.exe --docs d2k > DOCUMENTATION.md
+
 install: all
 	@-echo "Installing OpenRA to $(INSTALL_DIR)"
 	@$(INSTALL_PROGRAM) -d $(INSTALL_DIR)
@@ -245,18 +261,31 @@ install: all
 	@cp *.ttf $(INSTALL_DIR)
 	@cp thirdparty/Tao/* $(INSTALL_DIR)
 	@$(INSTALL_PROGRAM) thirdparty/ICSharpCode.SharpZipLib.dll $(INSTALL_DIR)
+	@$(INSTALL_PROGRAM) thirdparty/FuzzyLogicLibrary.dll $(INSTALL_DIR)
+	@$(INSTALL_PROGRAM) thirdparty/SharpFont.dll $(INSTALL_DIR)
+	@cp thirdparty/SharpFont.dll.config $(INSTALL_DIR)
+	@$(INSTALL_PROGRAM) thirdparty/Mono.Nat.dll $(INSTALL_DIR)
 
-	@echo "#!/bin/sh" > openra
-	@echo "cd "$(datadir)"/openra" >> openra
-	@echo "exec mono "$(datadir)"/openra/OpenRA.Game.exe \"$$""@\"" >> openra
+	@echo "#!/bin/sh" 				>  openra
+	@echo 'BINDIR=$$(dirname $$(readlink -f $$0))'	>> openra
+	@echo 'ROOTDIR="$${BINDIR%'"$(bindir)"'}"' 	>> openra
+	@echo 'DATADIR="$${ROOTDIR}/'"$(datadir)"'"'	>> openra
+	@echo 'cd "$${DATADIR}/openra"' 		>> openra
+	@echo 'exec mono OpenRA.Game.exe "$$@"' 	>> openra
 
-	@echo "#!/bin/sh" > openra-editor
-	@echo "cd "$(datadir)"/openra" >> openra-editor
-	@echo "exec mono "$(datadir)"/openra/OpenRA.Editor.exe \"$$""@\"" >> openra-editor
+	@echo "#!/bin/sh" 				>  openra-editor
+	@echo 'BINDIR=$$(dirname $$(readlink -f $$0))'	>> openra-editor
+	@echo 'ROOTDIR="$${BINDIR%'"$(bindir)"'}"' 	>> openra-editor
+	@echo 'DATADIR="$${ROOTDIR}/'"$(datadir)"'"'	>> openra-editor
+	@echo 'cd "$${DATADIR}/openra"'			>> openra-editor
+	@echo 'exec mono OpenRA.Editor.exe "$$@"'	>> openra-editor
 
 	@$(INSTALL_PROGRAM) -d $(BIN_INSTALL_DIR)
 	@$(INSTALL_PROGRAM) -m +rx openra $(BIN_INSTALL_DIR)
 	@$(INSTALL_PROGRAM) -m +rx openra-editor $(BIN_INSTALL_DIR)
+
+	@-rm openra
+	@-rm openra-editor
 
 uninstall:
 	@-rm -r $(INSTALL_DIR)

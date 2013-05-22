@@ -1,4 +1,4 @@
-﻿#region Copyright & License Information
+#region Copyright & License Information
 /*
  * Copyright 2007-2011 The OpenRA Developers (see AUTHORS)
  * This file is part of OpenRA, which is free software. It is made
@@ -9,6 +9,7 @@
 #endregion
 
 using System.Collections.Generic;
+using OpenRA.FileFormats;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.RA
@@ -16,8 +17,10 @@ namespace OpenRA.Mods.RA
 	public class LimitedAmmoInfo : ITraitInfo
 	{
 		public readonly int Ammo = 0;
+		[Desc("Defaults to value in Ammo.")]
 		public readonly int PipCount = 0;
-		public readonly int ReloadTicks = 25 * 2; // This is measured in ticks
+		[Desc("Time to reload measured in ticks.")]
+		public readonly int ReloadTicks = 25 * 2;
 
 		public object Create(ActorInitializer init) { return new LimitedAmmo(this); }
 	}
@@ -41,10 +44,16 @@ namespace OpenRA.Mods.RA
 			++ammo;
 			return true;
 		}
+		public bool TakeAmmo()
+		{
+			if (ammo <= 0) return false;
+			--ammo;
+			return true;
+		}
 
 		public int ReloadTimePerAmmo() { return Info.ReloadTicks; }
 
-		public void Attacking(Actor self, Target target) { --ammo; }
+		public void Attacking(Actor self, Target target) { TakeAmmo(); }
 
 		public IEnumerable<PipType> GetPips(Actor self)
 		{

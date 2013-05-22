@@ -15,10 +15,16 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.RA
 {
+	public enum ShroudPaletteType { Shroud, Fog, Combined };
+
+	[Desc("Adds the hard-coded shroud palette to the game")]
 	class ShroudPaletteInfo : ITraitInfo
 	{
+		[Desc("Internal palette name")]
 		public readonly string Name = "shroud";
-		public readonly bool IsFog = false;
+
+		[Desc("Palette type")]
+		public readonly ShroudPaletteType Type = ShroudPaletteType.Combined;
 
 		public object Create(ActorInitializer init) { return new ShroudPalette(this); }
 	}
@@ -27,38 +33,41 @@ namespace OpenRA.Mods.RA
 	{
 		readonly ShroudPaletteInfo info;
 
-		public ShroudPalette( ShroudPaletteInfo info ) { this.info = info; }
+		public ShroudPalette(ShroudPaletteInfo info) { this.info = info; }
 
-		public void InitPalette( WorldRenderer wr )
+		public void InitPalette(WorldRenderer wr)
 		{
-			var pal = wr.GetPalette( "terrain" );
-			wr.AddPalette( info.Name, new Palette( pal, new ShroudPaletteRemap( info.IsFog ) ) );
-		}
-	}
+			var c = info.Type == ShroudPaletteType.Shroud ? Shroud :
+					info.Type == ShroudPaletteType.Fog ? Fog : Combined;
 
-	class ShroudPaletteRemap : IPaletteRemap
-	{
-		bool isFog;
-
-		public ShroudPaletteRemap(bool isFog) { this.isFog = isFog; }
-		public Color GetRemappedColor(Color original, int index)
-		{
-			if (isFog)
-				return new[] {
-					Color.Transparent, Color.Green,
-					Color.Blue, Color.Yellow,
-					Color.FromArgb(128,0,0,0),
-					Color.FromArgb(128,0,0,0),
-					Color.FromArgb(128,0,0,0),
-					Color.FromArgb(64,0,0,0)}[index % 8];
-			else
-				return new[] {
-					Color.Transparent, Color.Green,
-					Color.Blue, Color.Yellow,
-					Color.Black,
-					Color.FromArgb(128,0,0,0),
-					Color.Transparent,
-					Color.Transparent}[index % 8];
+			wr.AddPalette(info.Name, new Palette(Exts.MakeArray(256, i => (uint)c[i % 8].ToArgb())), false);
 		}
+
+		static Color[] Shroud = new[] {
+			Color.Transparent, Color.Green,
+			Color.Blue, Color.Yellow,
+			Color.Black,
+			Color.FromArgb(128,0,0,0),
+			Color.Transparent,
+			Color.Transparent
+		};
+
+		static Color[] Fog = new[] {
+			Color.Transparent, Color.Green,
+			Color.Blue, Color.Yellow,
+			Color.FromArgb(128,0,0,0),
+			Color.FromArgb(128,0,0,0),
+			Color.FromArgb(128,0,0,0),
+			Color.FromArgb(64,0,0,0)
+		};
+
+		static Color[] Combined = new[] {
+			Color.Transparent, Color.Green,
+			Color.Blue, Color.Yellow,
+			Color.Black,
+			Color.FromArgb(192,0,0,0),
+			Color.FromArgb(128,0,0,0),
+			Color.FromArgb(64,0,0,0)
+		};
 	}
 }

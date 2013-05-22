@@ -19,53 +19,6 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.RA.Air
 {
-	public class DebugAircraftFacingInfo : ITraitInfo, Requires<AircraftInfo>
-	{
-		public object Create(ActorInitializer init) { return new DebugAircraftFacing(init.self); }
-	}
-
-	public class DebugAircraftFacing : ISync
-	{
-		readonly Aircraft a;
-		public DebugAircraftFacing(Actor self){ a = self.Trait<Aircraft>(); }
-		[Sync] public int foo { get { return a.Facing; } }
-	}
-
-	public class DebugAircraftSubPxXInfo : ITraitInfo, Requires<AircraftInfo>
-	{
-		public object Create(ActorInitializer init) { return new DebugAircraftSubPxX(init.self); }
-	}
-
-	public class DebugAircraftSubPxX : ISync
-	{
-		readonly Aircraft a;
-		public DebugAircraftSubPxX(Actor self){ a = self.Trait<Aircraft>(); }
-		[Sync] public int foo { get { return a.SubPxPosition.Y; } }
-	}
-
-	public class DebugAircraftSubPxYInfo : ITraitInfo, Requires<AircraftInfo>
-	{
-		public object Create(ActorInitializer init) { return new DebugAircraftSubPxY(init.self); }
-	}
-
-	public class DebugAircraftSubPxY : ISync
-	{
-		readonly Aircraft a;
-		public DebugAircraftSubPxY(Actor self){ a = self.Trait<Aircraft>(); }
-		[Sync] public int foo { get { return a.SubPxPosition.Y; } }
-	}
-
-	public class DebugAircraftAltitudeInfo : ITraitInfo, Requires<AircraftInfo>
-	{
-		public object Create(ActorInitializer init) { return new DebugAircraftAltitude(init.self); }
-	}
-
-	public class DebugAircraftAltitude : ISync
-	{
-		readonly Aircraft a;
-		public DebugAircraftAltitude(Actor self){ a = self.Trait<Aircraft>(); }
-		[Sync] public int foo { get { return a.Altitude; } }
-	}
 
 	public class AircraftInfo : ITraitInfo, IFacingInfo, UsesInit<AltitudeInit>, UsesInit<LocationInit>, UsesInit<FacingInit>
 	{
@@ -80,6 +33,7 @@ namespace OpenRA.Mods.RA.Air
 		public readonly string[] LandableTerrainTypes = { };
 
 		public virtual object Create( ActorInitializer init ) { return new Aircraft( init , this ); }
+		public int GetInitialFacing() { return InitialFacing; }
 	}
 
 	public class Aircraft : IMove, IFacing, IOccupySpace, ISync, INotifyKilled, IIssueOrder, IOrderVoice
@@ -102,18 +56,15 @@ namespace OpenRA.Mods.RA.Air
 
 
 		protected readonly Actor self;
-		[Sync]
-		public int Facing { get; set; }
-		[Sync]
-		public int Altitude { get; set; }
-		[Sync]
-		public PSubPos SubPxPosition;
+		[Sync] public int Facing { get; set; }
+		[Sync] public int Altitude { get; set; }
+		[Sync] public PSubPos SubPxPosition;
 		public PPos PxPosition { get { return SubPxPosition.ToPPos(); } }
 		public CPos TopLeft { get { return PxPosition.ToCPos(); } }
 
 		readonly AircraftInfo Info;
 
-		public Aircraft( ActorInitializer init , AircraftInfo info)
+		public Aircraft(ActorInitializer init , AircraftInfo info)
 		{
 			this.self = init.self;
 			if( init.Contains<LocationInit>() )
@@ -148,8 +99,6 @@ namespace OpenRA.Mods.RA.Air
 		}
 
 		public int ROT { get { return Info.ROT; } }
-
-		public int InitialFacing { get { return Info.InitialFacing; } }
 
 		public void SetPosition(Actor self, CPos cell)
 		{

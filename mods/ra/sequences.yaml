@@ -50,6 +50,8 @@ fact:
 	damaged-build:
 		Start: 27
 		Length: 25
+	dead: factdead
+		Start: 0
 
 proc:
 	idle:
@@ -59,14 +61,16 @@ proc:
 	make: procmake
 		Start: 0
 		Length: *
+	dead: procdead
+		Start: 0
 
 silo:
-	idle:
+	idle: silo2
 		Start: 0
-		Length: 5
-	damaged-idle:
-		Start: 5
-		Length: 5
+		Length: 9
+	damaged-idle: silo2
+		Start: 9
+		Length: 9
 	make: silomake
 		Start: 0
 		Length: *
@@ -79,6 +83,8 @@ powr:
 	make: powrmake
 		Start: 0
 		Length: *
+	dead: powrdead
+		Start: 0
 
 apwr:
 	idle:
@@ -88,6 +94,8 @@ apwr:
 	make: apwrmake
 		Start: 0
 		Length: *
+	dead: apwrdead
+		Start: 0
 
 barr:
 	idle:
@@ -158,9 +166,9 @@ weap:
 	make: weapmake
 		Start: 0
 		Length: *
-	build-top: weap2
+	build-top: weap3
 		Start: 0
-		Length: 4
+		Length: 10
 	damaged-build-top: weap2
 		Start: 4
 		Length: 4
@@ -564,6 +572,9 @@ mgg:
 	spinner:
 		Start: 32
 		Length: 8
+	spinner-idle:
+		Start: 32
+		Length: 1
 
 ss:
 	idle:
@@ -584,6 +595,7 @@ e1:
 		Start: 16
 		Length: 6
 		Facings: 8
+		Tick: 100
 	shoot:
 		Start: 64
 		Length: 8
@@ -596,6 +608,7 @@ e1:
 		Start: 144
 		Length: 4
 		Facings: 8
+		Tick: 100
 	standup-0:
 		Start: 176
 		Length: 2
@@ -646,6 +659,7 @@ sniper:
 		Start: 16
 		Length: 6
 		Facings: 8
+		Tick: 100
 	shoot:
 		Start: 64
 		Length: 16
@@ -661,6 +675,7 @@ sniper:
 		Start: 208
 		Length: 4
 		Facings: 8
+		Tick: 100
 	standup:
 		Start: 240
 		Length: 2
@@ -723,6 +738,7 @@ e3:
 		Start: 16
 		Length: 6
 		Facings: 8
+		Tick: 120
 	shoot:
 		Start: 64
 		Length: 8
@@ -756,7 +772,7 @@ e3:
 	die-crushed: corpse1
 		Start: 0
 		Length: 6
-		Tick: 1600		
+		Tick: 1600
 	prone-stand:
 		Start: 144
 		Length: 4
@@ -765,6 +781,7 @@ e3:
 		Start: 144
 		Length: 4
 		Facings: 8
+		Tick: 120
 	prone-shoot:
 		Start: 192
 		Length: 10
@@ -781,6 +798,7 @@ e6:
 		Start: 16
 		Length: 6
 		Facings: 8
+		Tick: 100
 	idle1:
 		Start: 121
 		Length: 8
@@ -810,7 +828,7 @@ e6:
 	die-crushed: corpse1
 		Start: 0
 		Length: 6
-		Tick: 1600		
+		Tick: 1600
 	prone-stand:
 		Start: 82
 		Length: 4
@@ -819,6 +837,7 @@ e6:
 		Start: 82
 		Length: 4
 		Facings: 8
+		Tick: 100
 
 ca:
 	idle:
@@ -852,6 +871,7 @@ medi:
 		Start: 8
 		Length: 6
 		Facings: 8
+		Tick: 100
 	heal:
 		Start: 56
 		Length: 58
@@ -888,7 +908,7 @@ medi:
 	die-crushed: corpse1
 		Start: 0
 		Length: 6
-		Tick: 1600		
+		Tick: 1600
 	prone-stand:
 		Start: 130
 		Length: 4
@@ -897,6 +917,63 @@ medi:
 		Start: 130
 		Length: 4
 		Facings: 8
+		Tick: 100
+		
+mech:
+	stand:
+		Start: 0
+		Facings: 8
+	run:
+		Start: 8
+		Length: 6
+		Facings: 8
+		Tick: 100
+	heal:
+		Start: 56
+		Length: 58
+	standup:
+		Start: 114
+		Length: 2
+		Facings: 8
+	idle1:
+		Start: 163
+		Length: 14
+		Tick: 120
+	idle2:
+		Start: 178
+		Length: 14
+		Tick: 120
+	die1:
+		Start: 193
+		Length: 7
+	die2:
+		Start: 201
+		Length: 8
+	die3:
+		Start: 209
+		Length: 8
+	die4:
+		Start: 217
+		Length: 12
+	die5:
+		Start: 229
+		Length: 18
+	die6: electro
+		Start: 0
+		Length: *
+	die-crushed: corpse1
+		Start: 0
+		Length: 6
+		Tick: 1600
+	prone-stand:
+		Start: 130
+		Length: 4
+		Facings: 8
+	prone-run:
+		Start: 130
+		Length: 4
+		Facings: 8
+		Tick: 100
 
 explosion:
 	piff: piff
@@ -924,6 +1001,9 @@ explosion:
 		Start: 0
 		Length: *
 	self_destruct: art-exp1
+		Start: 0
+		Length: *
+	artillery_explosion: art-exp1
 		Start: 0
 		Length: *
 	building: fball1
@@ -1074,128 +1154,182 @@ smoke_m:
 tc04:
 	idle:
 		Start: 0
-	burn:
+	damaged-idle:
 		Start: 1
-		Length: 9
+	dead:
+		Start: 2
+		Length: 8
+		Tick: 80
 
 tc05:
 	idle:
 		Start: 0
-	burn:
+	damaged-idle:
 		Start: 1
-		Length: 9
+	dead:
+		Start: 2
+		Length: 8
+		Tick: 80
 
 tc03:
 	idle:
 		Start: 0
-	burn:
+	damaged-idle:
 		Start: 1
-		Length: 9
+	dead:
+		Start: 2
+		Length: 8
+		Tick: 80
 
 tc02:
 	idle:
 		Start: 0
-	burn:
+	damaged-idle:
 		Start: 1
-		Length: 9
+	dead:
+		Start: 2
+		Length: 8
+		Tick: 80
 
 tc01:
 	idle:
 		Start: 0
-	burn:
+	damaged-idle:
 		Start: 1
-		Length: 9
+	dead:
+		Start: 2
+		Length: 8
+		Tick: 80
 
 t17:
 	idle:
 		Start: 0
-	burn:
+	damaged-idle:
 		Start: 1
-		Length: 9
+	dead:
+		Start: 2
+		Length: 8
+		Tick: 80
 
 t16:
 	idle:
 		Start: 0
-	burn:
+	damaged-idle:
 		Start: 1
-		Length: 9
+	dead:
+		Start: 2
+		Length: 8
+		Tick: 80
 
 t15:
 	idle:
 		Start: 0
-	burn:
+	damaged-idle:
 		Start: 1
-		Length: 9
+	dead:
+		Start: 2
+		Length: 8
+		Tick: 80
 
 t14:
 	idle:
 		Start: 0
-	burn:
+	damaged-idle:
 		Start: 1
-		Length: 9
+	dead:
+		Start: 2
+		Length: 8
+		Tick: 80
 
 t13:
 	idle:
 		Start: 0
-	burn:
+	damaged-idle:
 		Start: 1
-		Length: 9
+	dead:
+		Start: 2
+		Length: 8
+		Tick: 80
 
 t12:
 	idle:
 		Start: 0
-	burn:
+	damaged-idle:
 		Start: 1
-		Length: 9
+	dead:
+		Start: 2
+		Length: 8
+		Tick: 80
 
 t11:
 	idle:
 		Start: 0
-	burn:
+	damaged-idle:
 		Start: 1
-		Length: 9
+	dead:
+		Start: 2
+		Length: 8
+		Tick: 80
 
 t10:
 	idle:
 		Start: 0
-	burn:
+	damaged-idle:
 		Start: 1
-		Length: 9
+	dead:
+		Start: 2
+		Length: 8
+		Tick: 80
 
 t08:
 	idle:
 		Start: 0
-	burn:
+	damaged-idle:
 		Start: 1
-		Length: 9
+	dead:
+		Start: 2
+		Length: 8
+		Tick: 80
 
 t07:
 	idle:
 		Start: 0
-	burn:
+	damaged-idle:
 		Start: 1
-		Length: 9
+	dead:
+		Start: 2
+		Length: 8
+		Tick: 80
 
 t06:
 	idle:
 		Start: 0
-	burn:
+	damaged-idle:
 		Start: 1
-		Length: 9
+	dead:
+		Start: 2
+		Length: 8
+		Tick: 80
 
 t05:
 	idle:
 		Start: 0
-	burn:
+	damaged-idle:
 		Start: 1
-		Length: 9
+	dead:
+		Start: 2
+		Length: 8
+		Tick: 80
 
 t03:
 	idle:
 		Start: 0
-	burn:
+	damaged-idle:
 		Start: 1
-		Length: 9
+	dead:
+		Start: 2
+		Length: 8
+		Tick: 80
 
 ice01:
 	idle:
@@ -1225,16 +1359,22 @@ ice05:
 t02:
 	idle:
 		Start: 0
-	burn:
+	damaged-idle:
 		Start: 1
-		Length: 9
+	dead:
+		Start: 2
+		Length: 8
+		Tick: 80
 
 t01:
 	idle:
 		Start: 0
-	burn:
+	damaged-idle:
 		Start: 1
-		Length: 9
+	dead:
+		Start: 2
+		Length: 8
+		Tick: 80
 
 mine:
 	idle:
@@ -1263,6 +1403,7 @@ e2:
 		Start: 16
 		Length: 6
 		Facings: 8
+		Tick: 80
 	shoot:
 		Start: 64
 		Length: 20
@@ -1305,6 +1446,7 @@ e2:
 		Start: 240
 		Length: 4
 		Facings: 8
+		Tick: 80
 	prone-shoot:
 		Start: 288
 		Length: 12
@@ -1323,6 +1465,7 @@ dog:
 		Start: 8
 		Length: 6
 		Facings: 8
+		Tick: 80
 	idle1:
 		Start: 216
 		Length: 7
@@ -1352,7 +1495,7 @@ dog:
 	die-crushed: corpse1
 		Start: 0
 		Length: 6
-		Tick: 1600		
+		Tick: 1600
 	shoot: dogbullt
 		Start: 0
 		Length: 4
@@ -1374,6 +1517,7 @@ spy:
 		Start: 16
 		Length: 6
 		Facings: 8
+		Tick: 100
 	shoot:
 		Start: 64
 		Length: 8
@@ -1407,7 +1551,7 @@ spy:
 	die-crushed: corpse1
 		Start: 0
 		Length: 6
-		Tick: 1600		
+		Tick: 1600
 	prone-stand:
 		Start: 144
 		Length: 4
@@ -1416,9 +1560,42 @@ spy:
 		Start: 144
 		Length: 4
 		Facings: 8
+		Tick: 100
 	prone-shoot:
 		Start: 192
 		Length: 8
+		Facings: 8
+
+thf:
+	stand:
+		Start: 0
+		Facings: 8
+	run:
+		Start: 8
+		Length: 6
+		Facings: 8
+		Tick: 100
+	die1:
+		Start: 139
+		Length: 8
+	die2:
+		Start: 147
+		Length: 8
+	die3:
+		Start: 155
+		Length: 8
+	die4:
+		Start: 163
+		Length: 12
+	die5:
+		Start: 175
+		Length: 18
+	die6: electro
+		Start: 0
+		Length: *
+	crawl:
+		Start: 72
+		Length: 4
 		Facings: 8
 
 litning:
@@ -1437,6 +1614,7 @@ e7:
 		Start: 8
 		Length: 6
 		Facings: 8
+		Tick: 80
 	shoot:
 		Start: 56
 		Length: 7
@@ -1470,7 +1648,7 @@ e7:
 	die-crushed: corpse1
 		Start: 0
 		Length: 6
-		Tick: 1600		
+		Tick: 1600
 	prone-stand:
 		Start: 128
 		Length: 4
@@ -1479,6 +1657,7 @@ e7:
 		Start: 128
 		Length: 4
 		Facings: 8
+		Tick: 80
 	prone-shoot:
 		Start: 176
 		Length: 7
@@ -1495,6 +1674,7 @@ e4:
 		Start: 16
 		Length: 6
 		Facings: 8
+		Tick: 120
 	shoot:
 		Start: 64
 		Length: 16
@@ -1528,7 +1708,7 @@ e4:
 	die-crushed: corpse1
 		Start: 0
 		Length: 6
-		Tick: 1600		
+		Tick: 1600
 	prone-stand:
 		Start: 208
 		Length: 4
@@ -1537,6 +1717,7 @@ e4:
 		Start: 208
 		Length: 4
 		Facings: 8
+		Tick: 120
 	prone-shoot:
 		Start: 256
 		Length: 16
@@ -1687,6 +1868,9 @@ miss:
 		Start: 0
 	damaged-idle:
 		Start: 2
+	make: missmake
+		Start: 0
+		Length: *
 
 minp:
 	idle:
@@ -1949,11 +2133,12 @@ c1:
 	die-crushed: corpse1
 		Start: 0
 		Length: 6
-		Tick: 1600		
+		Tick: 1600
 	run:
 		Start: 56
 		Length: 6
 		Facings: 8
+		Tick: 80
 
 c2:
 	stand:
@@ -1992,11 +2177,56 @@ c2:
 	die-crushed: corpse1
 		Start: 0
 		Length: 6
-		Tick: 1600		
+		Tick: 1600
 	run:
 		Start: 56
 		Length: 6
 		Facings: 8
+		Tick: 80
+		
+c3:
+	stand:
+		Start: 0
+		Facings: 8
+	panic-stand:
+		Start: 8
+		Length: 6
+		Facings: 8
+	panic-run:
+		Start: 8
+		Length: 6
+		Facings: 8
+	shoot:
+		Start: 120
+		Length: 4
+		Facings: 8
+	die1:
+		Start: 152
+		Length: 8
+	die2:
+		Start: 160
+		Length: 8
+	die3:
+		Start: 168
+		Length: 12
+	die4:
+		Start: 180
+		Length: 18
+	die5:
+		Start: 160
+		Length: 8
+	die6: electro
+		Start: 0
+		Length: *
+	die-crushed: corpse1
+		Start: 0
+		Length: 6
+		Tick: 1600
+	run:
+		Start: 56
+		Length: 6
+		Facings: 8
+		Tick: 80
 
 einstein:
 	stand:
@@ -2014,6 +2244,7 @@ einstein:
 		Start: 56
 		Length: 6
 		Facings: 8
+		Tick: 80
 	die1:
 		Start: 115
 		Length: 8
@@ -2035,7 +2266,143 @@ einstein:
 	die-crushed: corpse1
 		Start: 0
 		Length: 6
-		Tick: 1600		
+		Tick: 1600
+		
+delphi:
+	stand:
+		Start: 0
+		Facings: 8
+	panic-run:
+		Start: 8
+		Length: 6
+		Facings: 8
+	panic-stand:
+		Start: 8
+		Length: 6
+		Facings: 8
+	run:
+		Start: 56
+		Length: 6
+		Facings: 8
+		Tick: 80
+	die1:
+		Start: 115
+		Length: 8
+	die2:
+		Start: 123
+		Length: 8
+	die3:
+		Start: 135
+		Length: 12
+	die4:
+		Start: 147
+		Length: 17
+	die5:
+		Start: 123
+		Length: 8
+	die6: electro
+		Start: 0
+		Length: *
+	die-crushed: corpse1
+		Start: 0
+		Length: 6
+		Tick: 1600
+
+chan:
+	stand:
+		Start: 0
+		Facings: 8
+	panic-run:
+		Start: 8
+		Length: 6
+		Facings: 8
+	panic-stand:
+		Start: 8
+		Length: 6
+		Facings: 8
+	run:
+		Start: 56
+		Length: 6
+		Facings: 8
+		Tick: 80
+	die1:
+		Start: 115
+		Length: 8
+	die2:
+		Start: 123
+		Length: 8
+	die3:
+		Start: 135
+		Length: 12
+	die4:
+		Start: 147
+		Length: 17
+	die5:
+		Start: 123
+		Length: 8
+	die6: electro
+		Start: 0
+		Length: *
+	die-crushed: corpse1
+		Start: 0
+		Length: 6
+		Tick: 1600
+
+gnrl:
+	stand:
+		Start: 0
+		Facings: 8
+	run:
+		Start: 8
+		Length: 5
+		Facings: 8
+		Tick: 80
+	shoot:
+		Start: 56
+		Length: 4
+		Facings: 8
+	prone-stand:
+		Start: 88
+		Length: 2
+		Facings: 8
+	prone-run:
+		Start: 104
+		Length: 4
+		Facings: 8
+	standup-0:
+		Start: 136
+		Length: 2
+		Facings: 8
+	prone-shoot:
+		Start: 152
+		Length: 4
+		Facings: 8
+	idle1:
+		Start: 184
+		Length: 26
+		Tick: 120
+	die1:
+		Start: 210
+		Length: 8
+	die2:
+		Start: 218
+		Length: 8
+	die3:
+		Start: 226
+		Length: 8
+	die4:
+		Start: 234
+		Length: 12
+	die5:
+		Start: 246
+		Length: 18
+	die6: electro
+		Start: 0
+		Length: *
+	die-crushed: corpse1
+		Start: 0
+		Length: 6
+		Tick: 1600
 
 parabomb:
 	open:
@@ -2106,6 +2473,7 @@ shok:
 		Start: 16
 		Length: 6
 		Facings: 8
+		Tick: 120
 	shoot:
 		Start: 64
 		Length: 16
@@ -2121,6 +2489,7 @@ shok:
 		Start: 208
 		Length: 4
 		Facings: 8
+		Tick: 120
 	standup:
 		Start: 240
 		Length: 2
@@ -2232,67 +2601,28 @@ gpsdot:
 		Start: 5
 
 overlay:
-	build-valid:
+	build-valid-desert:
+		Start: 0
+	build-valid-interior:
+		Start: 0
+	build-valid-snow:
+		Start: 2
+	build-valid-temperat:
 		Start: 0
 	build-invalid:
 		Start: 1
 	target-select:
 		Start: 2
-	target-valid:
+	target-valid-desert:
+		Start: 0
+	target-valid-interior:
+		Start: 0
+	target-valid-snow:
+		Start: 2
+	target-valid-temperat:
 		Start: 0
 	target-invalid:
 		Start: 1
-
-e8:
-	stand:
-		Start: 0
-		Facings: 8	
-	run:
-		Start: 8
-		Length: 5
-		Facings: 8
-	shoot:
-		Start: 56
-		Length: 4
-		Facings: 8
-	prone-stand:
-		Start: 88
-		Length: 2
-		Facings: 8
-	prone-run:
-		Start: 104
-		Length: 4
-		Facings: 8
-	standup-0:
-		Start: 136
-		Length: 2
-		Facings: 8
-	prone-shoot:
-		Start: 152
-		Length: 4
-		Facings: 8
-	idle1:
-		Start: 184
-		Length: 26
-		Tick: 120
-	die1:
-		Start: 210
-		Length: 8
-	die2:
-		Start: 218
-		Length: 8
-	die3:
-		Start: 226
-		Length: 8
-	die4:
-		Start: 234
-		Length: 12
-	die5:
-		Start: 246
-		Length: 18
-	die6: electro
-		Start: 0
-		Length: *
 
 dtrk:
 	idle:
@@ -2303,3 +2633,166 @@ ctnk:
 	idle:
 		Start: 0
 		Facings: 32
+
+#Desert Terrain Expansion 
+rock1:
+	idle:
+		Start: 0
+
+rock2:
+	idle:
+		Start: 0
+
+rock3:
+	idle:
+		Start: 0
+
+rock4:
+	idle:
+		Start: 0
+
+rock5:
+	idle:
+		Start: 0
+
+rock6:
+	idle:
+		Start: 0
+
+rock7:
+	idle:
+		Start: 0
+
+t04:
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 1
+	dead:
+		Start: 2
+		Length: 8
+		Tick: 80
+
+v20:
+	idle:
+		Start: 0
+		Length: 3
+		Tick: 120
+	damaged-idle:
+		Start: 3
+		Length: 3
+		Tick: 120
+
+v21:
+	idle:
+		Start: 0
+		Length: 3
+		Tick: 120
+	damaged-idle:
+		Start: 3
+		Length: 3
+		Tick: 120
+
+v22:
+	idle:
+		Start: 0
+		Length: 3
+		Tick: 120
+	damaged-idle:
+		Start: 3
+		Length: 3
+		Tick: 120
+
+v23:
+	idle:
+		Start: 0
+		Length: 3
+		Tick: 120
+	damaged-idle:
+		Start: 3
+		Length: 3
+		Tick: 120
+
+v24:
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 1
+
+v25:
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 1
+
+v26:
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 1
+
+v27:
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 1
+
+v28:
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 1
+
+v29:
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 1
+
+v30:
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 2
+
+v31:
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 1
+
+v32:
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 1
+
+v33:
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 1
+
+v34:
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 1
+
+v35:
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 1
+
+v36:
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 1
+
+v37:
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 1

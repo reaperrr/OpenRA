@@ -22,15 +22,17 @@ namespace OpenRA.Graphics
 		public const int MaxPalettes = 256;
 		int allocated = 0;
 
-		ITexture texture;
+		public ITexture Texture { get; private set; }
 		Dictionary<string, Palette> palettes;
 		Dictionary<string, int> indices;
+		Dictionary<string, bool> allowsMods;
 
 		public HardwarePalette()
 		{
 			palettes = new Dictionary<string, Palette>();
 			indices = new Dictionary<string, int>();
-			texture = Game.Renderer.Device.CreateTexture();
+			allowsMods = new Dictionary<string, bool>();
+			Texture = Game.Renderer.Device.CreateTexture();
 		}
 
 		public Palette GetPalette(string name)
@@ -49,22 +51,24 @@ namespace OpenRA.Graphics
 			return ret;
 		}
 
-		public void AddPalette(string name, Palette p)
+		public void AddPalette(string name, Palette p, bool allowModifiers)
 		{
 			if (palettes.ContainsKey(name))
 				throw new InvalidOperationException("Palette {0} has already been defined".F(name));
 
 			palettes.Add(name, p);
 			indices.Add(name, allocated++);
+			allowsMods.Add(name, allowModifiers);
 		}
 
 		uint[,] data = new uint[MaxPalettes, 256];
-		public void Update(IEnumerable<IPaletteModifier> paletteMods)
+		public void ApplyModifiers(IEnumerable<IPaletteModifier> paletteMods)
 		{
 			var copy = palettes.ToDictionary(p => p.Key, p => new Palette(p.Value));
+			var modifiable = copy.Where(p => allowsMods[p.Key]).ToDictionary(p => p.Key, p => p.Value);
 
 			foreach (var mod in paletteMods)
-				mod.AdjustPalette(copy);
+				mod.AdjustPalette(modifiable);
 
 			foreach (var pal in copy)
 			{
@@ -74,9 +78,12 @@ namespace OpenRA.Graphics
 					data[j,i] = c[i];
 			}
 
-			// Doesn't work
-			texture.SetData(data);
-			Game.Renderer.PaletteTexture = texture;
+			Texture.SetData(data);
+		}
+
+		public void Initialize()
+		{
+			ApplyModifiers(new IPaletteModifier[] {});
 		}
 	}
 }

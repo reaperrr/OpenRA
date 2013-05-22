@@ -8,14 +8,17 @@
  */
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using OpenRA.FileFormats;
 using OpenRA.Mods.RA.Activities;
 using OpenRA.Mods.RA.Air;
 using OpenRA.Mods.RA.Buildings;
+using OpenRA.Mods.RA.Move;
+using OpenRA.Network;
 using OpenRA.Traits;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
 
 namespace OpenRA.Mods.RA.Missions
 {
@@ -106,30 +109,6 @@ namespace OpenRA.Mods.RA.Missions
 			return units.Any() && units.All(a => a.Owner == player);
 		}
 
-		public static Actor ClosestPlayerUnit(World world, Player player, PPos location, int range)
-		{
-			return ClosestPlayerUnits(world, player, location, range).FirstOrDefault();
-		}
-
-		public static IEnumerable<Actor> ClosestPlayerUnits(World world, Player player, PPos location, int range)
-		{
-			return world.FindAliveCombatantActorsInCircle(location, range)
-				.Where(a => a.Owner == player && a.HasTrait<IMove>())
-				.OrderBy(a => (location - a.CenterLocation).LengthSquared);
-		}
-
-		public static Actor ClosestPlayerBuilding(World world, Player player, PPos location, int range)
-		{
-			return ClosestPlayerBuildings(world, player, location, range).FirstOrDefault();
-		}
-
-		public static IEnumerable<Actor> ClosestPlayerBuildings(World world, Player player, PPos location, int range)
-		{
-			return world.FindAliveCombatantActorsInCircle(location, range)
-				.Where(a => a.Owner == player && a.HasTrait<Building>() && !a.HasTrait<Wall>())
-				.OrderBy(a => (location - a.CenterLocation).LengthSquared);
-		}
-
 		public static IEnumerable<ProductionQueue> FindQueues(World world, Player player, string category)
 		{
 			return world.ActorsWithTrait<ProductionQueue>()
@@ -137,9 +116,134 @@ namespace OpenRA.Mods.RA.Missions
 				.Select(a => a.Trait);
 		}
 
+		public static void StartProduction(World world, Player player, string category, string item)
+		{
+			var queue = FindQueues(world, player, category).FirstOrDefault(q => q.CurrentItem() == null);
+			if (queue != null)
+				queue.ResolveOrder(queue.self, Order.StartProduction(queue.self, item, 1));
+		}
+
 		public static Actor UnitContaining(this World world, Actor actor)
 		{
 			return world.Actors.FirstOrDefault(a => a.HasTrait<Cargo>() && a.Trait<Cargo>().Passengers.Contains(actor));
+		}
+
+		public static void PlayMissionMusic()
+		{
+			if (!Rules.InstalledMusic.Any()) return;
+			Game.ConnectionStateChanged += StopMusic;
+			PlayMusic();
+		}
+
+		static void PlayMusic()
+		{
+			var track = Rules.InstalledMusic.Random(Game.CosmeticRandom);
+			Sound.PlayMusicThen(track.Value, PlayMusic);
+		}
+
+		static void StopMusic(OrderManager orderManager)
+		{
+			if (!orderManager.GameStarted)
+			{
+				Sound.StopMusic();
+				Game.ConnectionStateChanged -= StopMusic;
+			}
+		}
+
+		public static void CoopMissionAccomplished(World world, string text, params Player[] players)
+		{
+			if (players.First().WinState != WinState.Undefined)
+				return;
+
+			foreach (var player in players)
+				player.WinState = WinState.Won;
+
+			if (text != null)
+				Game.AddChatLine(Color.Blue, "Mission accomplished", text);
+
+			Sound.Play("misnwon1.aud");
+		}
+
+		public static void CoopMissionFailed(World world, string text, params Player[] players)
+		{
+			if (players.First().WinState != WinState.Undefined)
+				return;
+
+			foreach (var player in players)
+			{
+				player.WinState = WinState.Lost;
+				foreach (var actor in world.Actors.Where(a => a.IsInWorld && a.Owner == player && !a.IsDead()))
+				{
+					actor.Kill(actor);
+				}
+			}
+			
+			if (text != null)
+				Game.AddChatLine(Color.Red, "Mission failed", text);
+
+			Sound.Play("misnlst1.aud");
+		}
+
+		public static Actor CreateActor(this World world, bool addToWorld, string name, Player owner, CPos? location, int? facing)
+		{
+			var td = new TypeDictionary { new OwnerInit(owner) };
+			if (location.HasValue)
+				td.Add(new LocationInit(location.Value));
+			if (facing.HasValue)
+				td.Add(new FacingInit(facing.Value));
+			return world.CreateActor(addToWorld, name, td);
+		}
+
+		public static Actor CreateActor(this World world, string name, Player owner, CPos? location, int? facing)
+		{
+			return CreateActor(world, true, name, owner, location, facing);
+		}
+
+		public static void CapOre(Player player)
+		{
+			var res = player.PlayerActor.Trait<PlayerResources>();
+			if (res.Ore > res.OreCapacity * 0.8)
+				res.Ore = (int)(res.OreCapacity * 0.8);
+		}
+
+		public static void AttackNearestLandActor(bool queued, Actor self, Player enemyPlayer)
+		{
+			var enemies = self.World.Actors.Where(u => u.AppearsHostileTo(self) && u.Owner == enemyPlayer
+					&& ((u.HasTrait<Building>() && !u.HasTrait<Wall>()) || (u.HasTrait<Mobile>() && !u.HasTrait<Aircraft>())) && u.IsInWorld && !u.IsDead());
+
+			var enemy = enemies.OrderBy(u => (self.CenterLocation - u.CenterLocation).LengthSquared).FirstOrDefault();
+			if (enemy != null)
+				self.QueueActivity(queued, new AttackMove.AttackMoveActivity(self, new Attack(Target.FromActor(enemy), 3)));
+		}
+	}
+
+	class TransformedAction : INotifyTransformed
+	{
+		Action<Actor> a;
+
+		public TransformedAction(Action<Actor> a)
+		{
+			this.a = a;
+		}
+
+		public void OnTransformed(Actor toActor)
+		{
+			a(toActor);
+		}
+	}
+
+	class InfiltrateAction : IAcceptInfiltrator
+	{
+		Action<Actor> a;
+
+		public InfiltrateAction(Action<Actor> a)
+		{
+			this.a = a;
+		}
+
+		public void OnInfiltrate(Actor self, Actor spy)
+		{
+			a(spy);
 		}
 	}
 }

@@ -76,12 +76,12 @@ namespace OpenRA.Mods.RA
 			var mins = CPos.Min(start, end);
 			var maxs = CPos.Max(start, end);
 
-			/* todo: proper endcaps, if anyone cares (which won't happen unless depth is large) */
+			/* TODO: proper endcaps, if anyone cares (which won't happen unless depth is large) */
 
 			var p = end - start;
 			var q = new float2(p.Y, -p.X);
 			q = (start != end) ? (1 / q.Length) * q : new float2(1, 0);
-			var c = -float2.Dot(q, start.ToFloat2());
+			var c = -float2.Dot(q, start.ToInt2());
 
 			/* return all points such that |ax + by + c| < depth */
 
@@ -100,7 +100,7 @@ namespace OpenRA.Mods.RA
 
 			public IEnumerable<Order> Order(World world, CPos xy, MouseInput mi)
 			{
-				if (mi.Button == MouseButton.Left)
+				if (mi.Button == Game.mouseButtonPreference.Cancel)
 				{
 					world.CancelInputMode();
 					yield break;
@@ -111,7 +111,7 @@ namespace OpenRA.Mods.RA
 						? a.Info.Traits.Get<SelectableInfo>().Priority : int.MinValue)
 					.FirstOrDefault();
 
-				if( mi.Button == MouseButton.Right && underCursor == null )
+				if (mi.Button == Game.mouseButtonPreference.Action && underCursor == null)
 				{
 					minelayer.World.CancelInputMode();
 					yield return new Order("PlaceMinefield", minelayer, false) { TargetLocation = xy };
@@ -140,7 +140,7 @@ namespace OpenRA.Mods.RA
 
 			public void RenderBeforeWorld(WorldRenderer wr, World world) { }
 
-			public string GetCursor(World world, CPos xy, MouseInput mi) { lastMousePos = xy; return "ability"; }	/* todo */
+			public string GetCursor(World world, CPos xy, MouseInput mi) { lastMousePos = xy; return "ability"; }	/* TODO */
 		}
 
 		public void RenderAfterWorld(WorldRenderer wr)
@@ -170,7 +170,7 @@ namespace OpenRA.Mods.RA
 				cursor = "ability";
 				IsQueued = forceQueued;
 
-				return ( actorsAtLocation.Count == 0 && forceAttack );
+				return (actorsAtLocation.Count == 0 && forceAttack);
 			}
 			public bool IsQueued { get; protected set; }
 		}

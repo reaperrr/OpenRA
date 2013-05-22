@@ -15,48 +15,39 @@ namespace OpenRA.Mods.RA.Missions
 {
 	public class CountdownTimerWidget : Widget
 	{
-		public CountdownTimer Timer { get; set; }
-		public string Format { get; set; }
-		public float2 Position { get; set; }
+		public CountdownTimer Timer;
+		public string Format;
 
-		public CountdownTimerWidget(CountdownTimer timer, string format, float2 position)
+		public CountdownTimerWidget(CountdownTimer timer, string format)
 		{
 			Timer = timer;
 			Format = format;
-			Position = position;
 		}
 
 		public override void Draw()
 		{
-			if (!IsVisible())
-			{
-				return;
-			}
+			if (!IsVisible()) return;
+
 			var font = Game.Renderer.Fonts["Bold"];
 			var text = Format.F(WidgetUtils.FormatTime(Timer.TicksLeft));
-			font.DrawTextWithContrast(text, Position, Timer.TicksLeft <= 25 * 10 && Game.LocalTick % 50 < 25 ? Color.Red : Color.White, Color.Black, 1);
+			var pos = new float2(Game.viewport.Width * 0.5f - font.Measure(text).X / 2, Game.viewport.Height * 0.1f);
+			font.DrawTextWithContrast(text, pos, Timer.TicksLeft <= 25 * 10 && Game.LocalTick % 50 < 25 ? Color.Red : Color.White, Color.Black, 1);
 		}
 	}
 
 	public class InfoWidget : Widget
 	{
-		public string Text { get; set; }
-		public float2 Position { get; set; }
+		public string Text;
 
-		public InfoWidget(string text, float2 position)
-		{
-			Text = text;
-			Position = position;
-		}
+		public InfoWidget(string text) { Text = text; }
 
 		public override void Draw()
 		{
-			if (!IsVisible())
-			{
-				return;
-			}
+			if (!IsVisible()) return;
+
 			var font = Game.Renderer.Fonts["Bold"];
-			font.DrawTextWithContrast(Text, Position, Color.White, Color.Black, 1);
+			var pos = new float2(Game.viewport.Width * 0.5f - font.Measure(Text).X / 2, Game.viewport.Height * 0.1f);
+			font.DrawTextWithContrast(Text, pos, Color.White, Color.Black, 1);
 		}
 	}
 }

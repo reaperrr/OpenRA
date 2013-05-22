@@ -36,6 +36,9 @@ namespace OpenRA.Mods.Cnc.Widgets
 		public readonly string TooltipContainer;
 		public readonly string TooltipTemplate = "PRODUCTION_TOOLTIP";
 
+		public readonly string ReadyText = "";
+		public readonly string HoldText = "";
+
 		public string TooltipActor { get; private set; }
 		public readonly World world;
 
@@ -54,8 +57,8 @@ namespace OpenRA.Mods.Cnc.Widgets
 		Animation cantBuild, clock;
 		Rectangle eventBounds = Rectangle.Empty;
 		readonly WorldRenderer worldRenderer;
-		readonly SpriteFont overlayFont;
-		readonly float2 holdOffset, readyOffset, timeOffset, queuedOffset;
+		SpriteFont overlayFont;
+		float2 holdOffset, readyOffset, timeOffset, queuedOffset;
 
 		[ObjectCreator.UseCtor]
 		public ProductionPaletteWidget(World world, WorldRenderer worldRenderer)
@@ -75,12 +78,6 @@ namespace OpenRA.Mods.Cnc.Widgets
 					u => u.Name,
 					u => Game.modData.SpriteLoader.LoadAllSprites(
 						u.Traits.Get<TooltipInfo>().Icon ?? (u.Name + "icon"))[0]);
-
-			overlayFont = Game.Renderer.Fonts["TinyBold"];
-			holdOffset = new float2(32,24) - overlayFont.Measure("On Hold") / 2;
-			readyOffset = new float2(32,24) - overlayFont.Measure("Ready") / 2;
-			timeOffset = new float2(32,24) - overlayFont.Measure(WidgetUtils.FormatTime(0)) / 2;
-			queuedOffset = new float2(4,2);
 		}
 
 		public override void Tick()
@@ -107,26 +104,21 @@ namespace OpenRA.Mods.Cnc.Widgets
 
 		public override bool HandleMouseInput(MouseInput mi)
 		{
-			if (mi.Event == MouseInputEvent.Move)
-			{
-				var hover = Icons.Where(i => i.Key.Contains(mi.Location))
-					.Select(i => i.Value).FirstOrDefault();
-
-				TooltipActor = hover != null ? hover.Name : null;
-				return false;
-			}
-
-			if (mi.Event != MouseInputEvent.Down)
-				return false;
-
-			var clicked = Icons.Where(i => i.Key.Contains(mi.Location))
+			var icon = Icons.Where(i => i.Key.Contains(mi.Location))
 				.Select(i => i.Value).FirstOrDefault();
 
-			if (clicked == null)
+			if (mi.Event == MouseInputEvent.Move)
+				TooltipActor = icon != null ? icon.Name : null;
+
+			if (icon == null)
+				return false;
+
+			// Eat mouse-up events
+			if (mi.Event != MouseInputEvent.Down)
 				return true;
 
-			var actor = Rules.Info[clicked.Name];
-			var first = clicked.Queued.FirstOrDefault();
+			var actor = Rules.Info[icon.Name];
+			var first = icon.Queued.FirstOrDefault();
 
 			if (mi.Button == MouseButton.Left)
 			{
@@ -134,20 +126,20 @@ namespace OpenRA.Mods.Cnc.Widgets
 				if (first != null && first.Done && actor.Traits.Contains<BuildingInfo>())
 				{
 					Sound.Play(TabClick);
-					world.OrderGenerator = new PlaceBuildingOrderGenerator(CurrentQueue.self, clicked.Name);
+					world.OrderGenerator = new PlaceBuildingOrderGenerator(CurrentQueue.self, icon.Name);
 				}
 				// Resume a paused item
 				else if (first != null && first.Paused)
 				{
 					Sound.Play(TabClick);
-					world.IssueOrder(Order.PauseProduction(CurrentQueue.self, clicked.Name, false));
+					world.IssueOrder(Order.PauseProduction(CurrentQueue.self, icon.Name, false));
 				}
 				// Queue a new item
-				else if (CurrentQueue.BuildableItems().Any(a => a.Name == clicked.Name))
+				else if (CurrentQueue.BuildableItems().Any(a => a.Name == icon.Name))
 				{
 					Sound.Play(TabClick);
 					Sound.PlayNotification(world.LocalPlayer, "Speech", CurrentQueue.Info.QueuedAudio, world.LocalPlayer.Country.Race);
-					world.IssueOrder(Order.StartProduction(CurrentQueue.self, clicked.Name,
+					world.IssueOrder(Order.StartProduction(CurrentQueue.self, icon.Name,
 						Game.GetModifierKeys().HasModifier(Modifiers.Shift) ? 5 : 1));
 				}
 				else
@@ -165,13 +157,13 @@ namespace OpenRA.Mods.Cnc.Widgets
 					if (first.Paused || first.Done || first.TotalCost == first.RemainingCost)
 					{
 						Sound.PlayNotification(world.LocalPlayer, "Speech", CurrentQueue.Info.CancelledAudio, world.LocalPlayer.Country.Race);
-						world.IssueOrder(Order.CancelProduction(CurrentQueue.self, clicked.Name,
+						world.IssueOrder(Order.CancelProduction(CurrentQueue.self, icon.Name,
 							Game.GetModifierKeys().HasModifier(Modifiers.Shift) ? 5 : 1));
 					}
 					else
 					{
 						Sound.PlayNotification(world.LocalPlayer, "Speech", CurrentQueue.Info.OnHoldAudio, world.LocalPlayer.Country.Race);
-						world.IssueOrder(Order.PauseProduction(CurrentQueue.self, clicked.Name, true));
+						world.IssueOrder(Order.PauseProduction(CurrentQueue.self, icon.Name, true));
 					}
 				}
 				else
@@ -210,6 +202,12 @@ namespace OpenRA.Mods.Cnc.Widgets
 
 		public override void Draw()
 		{
+			overlayFont = Game.Renderer.Fonts["TinyBold"];
+			timeOffset = new float2(32,24) - overlayFont.Measure(WidgetUtils.FormatTime(0)) / 2;
+			queuedOffset = new float2(4,2);
+			holdOffset = new float2(32,24) - overlayFont.Measure(HoldText) / 2;
+			readyOffset = new float2(32,24) - overlayFont.Measure(ReadyText) / 2;
+
 			if (CurrentQueue == null)
 				return;
 
@@ -247,11 +245,11 @@ namespace OpenRA.Mods.Cnc.Widgets
 					var first = icon.Queued[0];
 					var waiting = first != CurrentQueue.CurrentItem() && !first.Done;
 					if (first.Done)
-						overlayFont.DrawTextWithContrast("Ready",
+						overlayFont.DrawTextWithContrast(ReadyText,
 														 icon.Pos + readyOffset,
 														 Color.White, Color.Black, 1);
 					else if (first.Paused)
-						overlayFont.DrawTextWithContrast("On Hold",
+						overlayFont.DrawTextWithContrast(HoldText,
 														 icon.Pos + holdOffset,
 														 Color.White, Color.Black, 1);
 					else if (!waiting)
@@ -265,6 +263,14 @@ namespace OpenRA.Mods.Cnc.Widgets
 														 Color.White, Color.Black, 1);
 				}
 			}
+		}
+
+		public override string GetCursor(int2 pos)
+		{
+			var icon = Icons.Where(i => i.Key.Contains(pos))
+				.Select(i => i.Value).FirstOrDefault();
+
+			return icon != null ? base.GetCursor(pos) : null;
 		}
 	}
 }

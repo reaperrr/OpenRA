@@ -8,6 +8,7 @@ Folders:
 	.
 	./mods/ra
 	./mods/ra/bits
+	./mods/ra/bits/desert
 	./mods/ra/uibits
 	~^/Content/ra
 
@@ -27,6 +28,10 @@ Packages:
 	~scores.mix
 	~movies1.mix
 	~movies2.mix
+
+PackageContents:
+	mods/ra/mix/conquer.yaml
+	mods/ra/mix/hires.yaml
 
 Rules:
 	mods/ra/rules/defaults.yaml
@@ -54,9 +59,15 @@ Assemblies:
 ChromeLayout:
 	mods/ra/chrome/gameinit.yaml
 	mods/ra/chrome/ingame.yaml
+	mods/ra/chrome/ingame-chat.yaml
+	mods/ra/chrome/ingame-fmvplayer.yaml
+	mods/ra/chrome/ingame-menu.yaml
+	mods/ra/chrome/ingame-objectives.yaml
+	mods/ra/chrome/ingame-observerstats.yaml
 	mods/ra/chrome/mainmenu.yaml
 	mods/ra/chrome/settings.yaml
 	mods/ra/chrome/lobby.yaml
+	mods/ra/chrome/color-picker.yaml
 	mods/ra/chrome/map-chooser.yaml
 	mods/ra/chrome/create-server.yaml
 	mods/ra/chrome/serverbrowser.yaml
@@ -64,7 +75,10 @@ ChromeLayout:
 	mods/ra/chrome/dropdowns.yaml
 	mods/ra/chrome/modchooser.yaml
 	mods/ra/chrome/cheats.yaml
-	mods/ra/chrome/objectives.yaml
+	mods/ra/chrome/musicplayer.yaml
+	mods/ra/chrome/tooltips.yaml
+	mods/ra/chrome/assetbrowser.yaml
+	mods/ra/chrome/convertassets.yaml
 
 Weapons:
 	mods/ra/weapons.yaml
@@ -79,6 +93,7 @@ TileSets:
 	mods/ra/tilesets/snow.yaml
 	mods/ra/tilesets/interior.yaml
 	mods/ra/tilesets/temperat.yaml
+	mods/ra/tilesets/desert.yaml
 
 Music:
 	mods/ra/music.yaml
@@ -90,12 +105,14 @@ Movies:
 	mods/ra/movies2.yaml
 
 LoadScreen: RALoadScreen
+	LoadScreenImage: mods/ra/uibits/loadscreen.png
 	InstallerMenuWidget: INSTALL_PANEL
 	TestFile: redalert.mix
 	PackageURL: http://open-ra.org/get-dependency.php?file=ra-packages
 
 ServerTraits:
 	LobbyCommands
+	PlayerPinger
 	MasterServerPinger
 
 ChromeMetrics:

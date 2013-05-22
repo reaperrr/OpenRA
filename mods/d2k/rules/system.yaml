@@ -2,56 +2,91 @@ Player:
 	TechTree:
 	ClassicProductionQueue@Building:
 		Type: Building
-		BuildSpeed: .4
 		LowPowerSlowdown: 3
 		QueuedAudio: Building
 		ReadyAudio: BuildingReady
-		BlockedAudio: NoRoom
-	ClassicProductionQueue@Defense:
-		Type: Defense
-		BuildSpeed: .4
-		LowPowerSlowdown: 3
-		QueuedAudio: Building
-		ReadyAudio: BuildingReady
-		BlockedAudio: NoRoom
-	ClassicProductionQueue@Vehicle:
-		Type: Vehicle
-		BuildSpeed: .4
-		LowPowerSlowdown: 3
 		BlockedAudio: NoRoom
 	ClassicProductionQueue@Infantry:
 		Type: Infantry
-		BuildSpeed: .4
+		LowPowerSlowdown: 2
+		BlockedAudio: NoRoom
+	ClassicProductionQueue@Vehicle:
+		Type: Vehicle
 		LowPowerSlowdown: 3
+		QueuedAudio: Building
+		BlockedAudio: NoRoom
+	ClassicProductionQueue@Armor:
+		Type: Armor
+		LowPowerSlowdown: 3
+		QueuedAudio: Building
 		BlockedAudio: NoRoom
 	ClassicProductionQueue@Starport:
 		Type: Starport
-		BuildSpeed: .4
-		LowPowerSlowdown: 3
+		BuildSpeedModifier: .2
+		LowPowerSlowdown: 1
 		BlockedAudio: NoRoom
 		QueuedAudio: OrderPlaced
 		ReadyAudio:
 	ClassicProductionQueue@Aircraft:
 		Type: Aircraft
-		BuildSpeed: .4
 		LowPowerSlowdown: 3
+		QueuedAudio: Building
 		BlockedAudio: NoRoom
 	PlaceBuilding:
 	SupportPowerManager:
 	ConquestVictoryConditions:
 	PowerManager:
+		AdviceInterval: 650
 	AllyRepair:
 	PlayerResources:
 		InitialCash: 5000
+		AdviceInterval: 650
 	ActorGroupProxy:
 	DeveloperMode:
 	HackyAI@Omnius:
 		Name:Omnius
+		UnitQueues: Infantry, Vehicle, Armor, Starport
 		RallypointTestBuilding: conyarda
+		BuildingCommonNames:
+			ConstructionYard: conyarda,conyardh,conyardo
+			Refinery: refa,refh,refo
+			Power: pwra,pwrh,pwro
+			VehiclesFactory: lighta,lighth,lighto,heavya,heavyh,heavyo
+			Silo: siloa, siloh, siloo
+		UnitsCommonNames:
+			Mcv: mcva,mcvh,mcvo
+		BuildingLimits:
+			refa: 4
+			refh: 4
+			refo: 4
+			barra: 1
+			barrh: 1
+			barro: 1
+			lighta: 1
+			lighth: 1
+			lighto: 1
+			heavya: 1
+			heavyh: 1
+			heavyo: 1
+			researcha: 1
+			researchh: 1
+			researcho: 1
+			repaira: 1
+			repairh: 1
+			repairo: 1
+			radara: 1
+			radaro: 1
+			radarh: 1
+			hightecha: 1
+			hightechh: 1
+			hightecho: 1
+			palacea: 1
+			palaceh: 1
+			palaceo: 1
 		BuildingFractions:
-			refa: 25.1%
-			refh: 25.1%
-			refo: 25.1%
+			refa: 20.1%
+			refh: 20.1%
+			refo: 20.1%
 			barra: 0.1%
 			barrh: 0.1%
 			barro: 0.1%
@@ -61,50 +96,194 @@ Player:
 			heavya: 0.1%
 			heavyh: 0.1%
 			heavyo: 0.1%
-			researcha: 0.1%
-			researchh: 0.1%
-			researcho: 0.1%
-			repaira: 0.1%
-			repairh: 0.1%
-			repairo: 0.1%
 			radara: 0.1%
 			radaro: 0.1%
 			radarh: 0.1%
-			powra: 35%
-			powrh: 35%
-			powro: 35%
+			hightecha: 0.1%
+			hightechh: 0.1%
+			hightecho: 0.1%
+			starporta: 0.1%
+			starporth: 0.1%
+			starporto: 0.1%
+			research: 0.1%
+			guntower: 7%
+			rockettower: 7%
+			powra: 30%
+			powrh: 30%
+			powro: 30%
 		UnitsToBuild:
-			rifle: 30%
-			bazooka: 30%
-			trike: 30%
-			raider: 30%
-			quad: 40%
-			siege: 15%
-			combata: 70%
-			combath: 70%
-			combato: 70%
-			sonic: 25%
-			devast: 25%
-			deviator: 25%
+			rifle: 6%
+			bazooka: 5%
+			medic: 1%
+			fremen: 0.5%
+			sardaukar: 1.5%
+			harvester: 0.1%
+			trikea.starport: 5%
+			#trikeh.starport: 5%
+			#trikeo.starport: 5%
+			quad.starport: 7.5%
+			siegetank.starport: 5%
+			missiletank.starport: 7.5%
+			combata.starport: 15%
+			combath.starport: 15%
+			combato.starport: 15%
+			sonictank: 10%
+			devast: 10%
+			deviatortank: 7.5%
+			trikea: 10%
+			#trikeh: 10%
+			trikeo: 10%
+			quad: 15%
+			siegetank: 10%
+			missiletank: 15%
+			combata: 100%
+			combath: 100%
+			combato: 100%
+		SquadSize: 8
+	HackyAI@Vidius:
+		Name:Vidious
+		UnitQueues: Infantry, Vehicle, Armor, Starport
+		RallypointTestBuilding: conyarda
+		BuildingFractions:
+			refa: 20.1%
+			refh: 20.1%
+			refo: 20.1%
+			barra: 0.1%
+			barrh: 0.1%
+			barro: 0.1%
+			lighta: 0.1%
+			lighth: 0.1%
+			lighto: 0.1%
+			heavya: 0.1%
+			heavyh: 0.1%
+			heavyo: 0.1%
+			radara: 0.1%
+			radaro: 0.1%
+			radarh: 0.1%
+			hightecha: 0.1%
+			hightechh: 0.1%
+			hightecho: 0.1%
+			starporta: 0.1%
+			starporth: 0.1%
+			starporto: 0.1%
+			palacea: 0.1%
+			palaceh: 0.1%
+			palaceo: 0.1%
+			guntower: 5%
+			rockettower: 10%
+			powra: 32%
+			powrh: 32%
+			powro: 32%
+		UnitsToBuild:
+			rifle: 2%
+			bazooka: 2%
+			medic: 0.5%
+			fremen: 0.25%
+			sardaukar: 1%
+			harvester: 0.1%
+			trikea.starport: 7.5%
+			#trikeh.starport: 7.5%
+			#trikeo.starport: 7.5%
+			quad.starport: 12.5%
+			siegetank.starport: 5%
+			missiletank.starport: 7.5%
+			combata.starport: 15%
+			combath.starport: 15%
+			combato.starport: 15%
+			sonictank: 10%
+			devast: 10%
+			deviatortank: 7.5%
+			trikea: 15%
+			#trikeh: 15%
+			trikeo: 15%
+			quad: 25%
+			siegetank: 10%
+			missiletank: 15%
+			combata: 100%
+			combath: 100%
+			combato: 100%
+		SquadSize: 6
+	HackyAI@Gladius:
+		Name:Gladius
+		UnitQueues: Infantry, Vehicle, Armor, Starport
+		RallypointTestBuilding: conyarda
+		BuildingFractions:
+			refa: 20.1%
+			refh: 20.1%
+			refo: 20.1%
+			barra: 0.1%
+			barrh: 0.1%
+			barro: 0.1%
+			lighta: 0.1%
+			lighth: 0.1%
+			lighto: 0.1%
+			heavya: 0.1%
+			heavyh: 0.1%
+			heavyo: 0.1%
+			radara: 0.1%
+			radaro: 0.1%
+			radarh: 0.1%
+			hightecha: 0.1%
+			hightechh: 0.1%
+			hightecho: 0.1%
+			research: 0.1%
+			palacea: 0.1%
+			palaceh: 0.1%
+			palaceo: 0.1%
+			guntower: 10%
+			rockettower: 5%
+			powra: 30%
+			powrh: 30%
+			powro: 30%
+		UnitsToBuild:
+			rifle: 15%
+			bazooka: 13%
+			medic: 2%
+			fremen: 1%
+			sardaukar: 3%
+			harvester: 0.1%
+			trikea.starport: 5%
+			#trikeh.starport: 5%
+			#trikeo.starport: 5%
+			quad.starport: 7.5%
+			siegetank.starport: 5%
+			missiletank.starport: 7.5%
+			combata.starport: 15%
+			combath.starport: 15%
+			combato.starport: 15%
+			sonictank: 10%
+			devast: 10%
+			deviatortank: 7.5%
+			trikea: 10%
+			#trikeh: 10%
+			trikeo: 10%
+			quad: 15%
+			siegetank: 10%
+			missiletank: 15%
+			combata: 100%
+			combath: 100%
+			combato: 100%
 		SquadSize: 10
 	PlayerColorPalette:
 		BasePalette: d2k
 		RemapIndex: 255, 254, 253, 252, 251, 250, 249, 248, 247, 246, 245, 244, 243, 242, 241, 240
 	BaseAttackNotifier:
+	Shroud:
+		Shroud: false
 	HarvesterAttackNotifier:
+	PlayerStatistics:
 
 World:
-	OpenWidgetAtGameStart:
+	LoadWidgetAtGameStart:
 		Widget: INGAME_ROOT
-		ObserverWidget: OBSERVER_ROOT
 	ScreenShaker:
 	NukePaletteEffect:
 	BuildingInfluence:
 	ChooseBuildTabOnSelect:
 	CrateSpawner:
-		Minimum: 1
-		Maximum: 3
-		SpawnInterval: 120
+		Minimum: 0
+		Maximum: 2
+		SpawnInterval: 60
 		WaterChance: 0
 		ValidGround: Sand, Dune, Rock
 	PaletteFromCurrentTileset:
@@ -118,10 +297,16 @@ World:
 		Name: chrome
 		Filename: d2k.pal
 		ShadowIndex: 3
+		AllowModifiers: false
 	PaletteFromFile@effect:
 		Name: effect
 		Filename: temperat.pal
 		ShadowIndex: 4
+	PaletteFromFile@colorpicker:
+		Name: colorpicker
+		Filename: d2k.pal
+		ShadowIndex: 4
+		AllowModifiers: false
 	PaletteFromRGBA@shadow:
 		Name: shadow
 		R: 0
@@ -152,11 +337,11 @@ World:
 		G: 0
 		B: 0
 		A: 180
-	ColorPickerPaletteModifier:
 	ShroudPalette@shroud:
+		Type: Shroud
 	ShroudPalette@fog:
-		IsFog: yes
 		Name: fog
+		Type: Fog
 	Country@Atreides:
 		Name: Atreides
 		Race: atreides
@@ -171,24 +356,26 @@ World:
 		BibWidths: 3, 2
 	ResourceLayer:
 	ResourceClaimLayer:
-	ResourceType@spice:
+	ResourceType@Spice:
 		ResourceType: 1
 		Palette: d2k
 		TerrainType: Spice
 		SpriteNames: spice1
-		ValuePerUnit: 35
+		ValuePerUnit: 25
 		Name: Spice
-		PipColor: Green
+		PipColor: green
 		AllowedTerrainTypes: Sand
 		AllowUnderActors: false
-	SmudgeLayer@rock:
-		Type:RockCrater
-		Types:rockcrater1,rockcrater2
-		Depths:15,15
-	SmudgeLayer@sand:
-		Type:SandCrater
-		Types:sandcrater1,sandcrater2
-		Depths:15,15
+	SmudgeLayer@Rock:
+		Type: RockCrater
+		Types: rockcrater1, rockcrater2
+		Depths: 15, 15
+		SmokePercentage: 0
+	SmudgeLayer@Sand:
+		Type: SandCrater
+		Types: sandcrater1, sandcrater2
+		Depths: 15, 15
+		SmokePercentage: 0
 	SpawnMapActors:
 	CreateMPPlayers:
 	MPStartLocations:
@@ -203,9 +390,9 @@ World:
 		Faction: ordos
 	SpatialBins:
 		BinSize: 4
-	Shroud:
 	PathFinder:
 	ValidateOrder:
+	DebugPauseState:
 
 CRATE:
 	Tooltip:
@@ -213,99 +400,82 @@ CRATE:
 	Crate:
 		Lifetime: 120
 		TerrainTypes: Sand, Dune, Rock
-	GiveCashCrateAction:
+	GiveCashCrateAction@1:
+		Amount: 750
+		SelectionShares: 25
+		UseCashTick: yes
+	GiveCashCrateAction@2:
 		Amount: 1000
 		SelectionShares: 50
 		UseCashTick: yes
-	LevelUpCrateAction:
+	GiveCashCrateAction@3:
+		Amount: 1500
+		SelectionShares: 25
+		UseCashTick: yes
+	GiveUnitCrateAction@TrikeA:
+		SelectionShares: 20
+		Unit: trikea
+	GiveUnitCrateAction@TrikeO:
+		SelectionShares: 15
+		Unit: trikeo
+	GiveUnitCrateAction@Quad:
 		SelectionShares: 40
-	ExplodeCrateAction@boom:
-		Weapon: CrateExplosion
+		Unit: quad
+	GiveUnitCrateAction@CombatA:
+		SelectionShares: 10
+		Unit: combata
+	GiveUnitCrateAction@CombatH:
+		SelectionShares: 10
+		Unit: combath
+	GiveUnitCrateAction@CombatO:
+		SelectionShares: 10
+		Unit: combato
+	GiveUnitCrateAction@SiegeTank:
+		SelectionShares: 10
+		Unit: siegetank
+	GiveUnitCrateAction@MissileTank:
+		SelectionShares: 10
+		Unit: missiletank
+	GiveUnitCrateAction@StealthTrike:
+		SelectionShares: 7
+		Unit: stealthtrike
+	GiveUnitCrateAction@Fremen:
 		SelectionShares: 5
-	ExplodeCrateAction@nuke:
-		Weapon: CrateNuke
+		Unit: fremen
+	GiveUnitCrateAction@Sardaukar:
+		SelectionShares: 8
+		Unit: sardaukar
+	GiveUnitCrateAction@Saboteur:
+		SelectionShares: 3
+		Unit: saboteur
+	GiveUnitCrateAction@SonicTank:
 		SelectionShares: 5
-	HideMapCrateAction:
-		SelectionShares: 5
-		Effect: hide-map
-	RevealMapCrateAction:
-		SelectionShares: 1
-		Effect: reveal-map
-	GiveMcvCrateAction@Atreides:
+		Unit: sonictank
+	GiveUnitCrateAction@Devast:
 		SelectionShares: 2
+		Unit: devast
+	GiveUnitCrateAction@DeviatorTank:
+		SelectionShares: 5
+		Unit: deviatortank
+	GiveMcvCrateAction@Atreides:
+		SelectionShares: 0
 		NoBaseSelectionShares: 9001
 		Unit: mcva
 	GiveMcvCrateAction@Harkonnen:
-		SelectionShares: 2
+		SelectionShares: 0
 		NoBaseSelectionShares: 9001
 		Unit: mcvh
 	GiveMcvCrateAction@Ordos:
-		SelectionShares: 2
+		SelectionShares: 0
 		NoBaseSelectionShares: 9001
 		Unit: mcvo
-	GiveUnitCrateAction@TrikeA:
-		SelectionShares: 7
-		Unit: trikea
-	GiveUnitCrateAction@TrikeH:
-		SelectionShares: 7
-		Unit: trikeh
-	GiveUnitCrateAction@QuadA:
-		SelectionShares: 6
-		Unit: quada
-	GiveUnitCrateAction@QuadH:
-		SelectionShares: 6
-		Unit: quadh
-	GiveUnitCrateAction@QuadO:
-		SelectionShares: 6
-		Unit: quado
-	GiveUnitCrateAction@Raider:
-		SelectionShares: 6
-		Unit: raider
-	GiveUnitCrateAction@SiegeTankA:
-		SelectionShares: 6
-		Unit: siegetanka
-	GiveUnitCrateAction@SiegeTankH:
-		SelectionShares: 6
-		Unit: siegetankh
-	GiveUnitCrateAction@SiegeTankO:
-		SelectionShares: 6
-		Unit: siegetanko
-	GiveUnitCrateAction@MissileTankA:
-		SelectionShares: 6
-		Unit: missiletanka
-	GiveUnitCrateAction@MissileTankH:
-		SelectionShares: 6
-		Unit: missiletankh
-	GiveUnitCrateAction@MissileTankO:
-		SelectionShares: 6
-		Unit: missiletanko
-	GiveUnitCrateAction@CombatA:
-		SelectionShares: 5
-		Unit: combata
-	GiveUnitCrateAction@CombatH:
-		SelectionShares: 5
-		Unit: combath
-	GiveUnitCrateAction@CombatO:
-		SelectionShares: 5
-		Unit: combato
-	GiveUnitCrateAction@Fremen:
-		SelectionShares: 4
-		Unit: fremen
-	GiveUnitCrateAction@Sardaukar:
-		SelectionShares: 4
-		Unit: sardaukar
-	GiveUnitCrateAction@Saboteur:
-		SelectionShares: 4
-		Unit: saboteur
-	GiveUnitCrateAction@SonicTank:
-		SelectionShares: 3
-		Unit: sonictank
-	GiveUnitCrateAction@Devast:
-		SelectionShares: 3
-		Unit: devast
-	GiveUnitCrateAction@deviatortank:
-		SelectionShares: 3
-		Unit: deviatortank
+	CloakCrateAction:
+		SelectionShares: 15
+		InitialDelay: 15
+		CloakDelay: 90
+		CloakSound: appear1.aud
+		UncloakSound: appear1.aud
+		Effect: cloak
 	RenderSimple:
 	BelowUnits:
 	ProximityCaptor:
@@ -335,6 +505,7 @@ SPICEBLOOM:
 		Name: Spice Bloom
 	SeedsResource:
 		ResourceType: Spice
+		Interval: 75
 	RadarColorFromTerrain:
 		Terrain: Spice
 
@@ -346,7 +517,7 @@ SPICEBLOOM:
 #	Tooltip:
 #		Name: Sandworm
 #		Description: Attracted by vibrations in the sand. Will eat units whole and has a large appetite.
-#		Icon: wormjaw
+#		Icon: black
 #	Health:
 #		HP: 10000
 #		Radius: 3
@@ -364,8 +535,9 @@ SPICEBLOOM:
 #	AttackMove:
 #		JustMove: true
 #	AttackWander:
+#	Armament:
+#		Weapon: WormJaw
 #	AttackLeap:
-#		PrimaryWeapon: WormJaw
 #		CanAttackGround: no
 #	RenderInfantry:
 #	BelowUnits:

@@ -18,9 +18,11 @@ namespace OpenRA.Traits
 		public object Create(ActorInitializer init) { return new CreatesShroud(this); }
 	}
 
-	public class CreatesShroud : ITick
+	public class CreatesShroud : ITick, ISync
 	{
 		CreatesShroudInfo Info;
+		[Sync] CPos previousLocation;
+		Shroud.ActorVisibility v;
 
 		public CreatesShroud(CreatesShroudInfo info)
 		{
@@ -29,8 +31,29 @@ namespace OpenRA.Traits
 
 		public void Tick(Actor self)
 		{
-			if (!self.IsDisabled())
-				self.World.WorldActor.Trait<Shroud>().HideActor(self, Info.Range);
+	    	// TODO: don't tick all the time.
+			if (self.Owner == null)
+				return;
+
+			var shrouds = self.World.ActorsWithTrait<Shroud>().Select(s => s.Actor.Owner.Shroud);
+			if (previousLocation != self.Location && v != null)
+			{
+				previousLocation = self.Location;
+
+				foreach (var shroud in shrouds)
+					shroud.UnhideActor(self, v, Info.Range);
+			}
+
+			if (!self.TraitsImplementing<IDisable>().Any(d => d.Disabled))
+				foreach (var shroud in shrouds)
+					shroud.HideActor(self, Info.Range);
+			else
+				foreach (var shroud in shrouds)
+					shroud.UnhideActor(self, v, Info.Range);
+
+			v = new Shroud.ActorVisibility {
+				vis = Shroud.GetVisOrigins(self).ToArray()
+			};
 		}
 	}
 }

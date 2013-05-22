@@ -42,11 +42,13 @@
     <WarningLevel>4</WarningLevel>
     <CustomCommands>
       <CustomCommands>
+        <Command type="AfterBuild" command="cp ../thirdparty/FuzzyLogicLibrary.dll ../" workingdir="${ProjectDir}" />
         <Command type="AfterBuild" command="cp ${TargetFile} ../mods/ra" workingdir="${ProjectDir}" />
         <Command type="AfterBuild" command="mono RALint.exe ra" workingdir="${ProjectDir}/../" />
       </CustomCommands>
     </CustomCommands>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -56,8 +58,12 @@
     <WarningLevel>4</WarningLevel>
     <OutputPath>bin\Release\</OutputPath>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FuzzyLogicLibrary">
+      <HintPath>..\thirdparty\FuzzyLogicLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -69,6 +75,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AI\AttackOrFleeFuzzy.cs" />
     <Compile Include="AI\BaseBuilder.cs" />
     <Compile Include="AI\HackyAI.cs" />
     <Compile Include="AcceptsSupplies.cs" />
@@ -120,6 +127,8 @@
     <Compile Include="Air\ReturnOnIdle.cs" />
     <Compile Include="Air\ReturnToBase.cs" />
     <Compile Include="Air\TargetableAircraft.cs" />
+    <Compile Include="AI\RushFuzzy.cs" />
+    <Compile Include="AI\StateMachine.cs" />
     <Compile Include="AnnounceOnBuild.cs" />
     <Compile Include="AnnounceOnKill.cs" />
     <Compile Include="AppearsOnRadar.cs" />
@@ -148,6 +157,7 @@
     <Compile Include="Buildings\CanPowerDown.cs" />
     <Compile Include="Buildings\CustomSellValue.cs" />
     <Compile Include="Buildings\CustomBuildTimeValue.cs" />
+    <Compile Include="Buildings\DeadBuildingState.cs" />
     <Compile Include="Buildings\FootprintUtils.cs" />
     <Compile Include="Buildings\LineBuild.cs" />
     <Compile Include="Buildings\PowerManager.cs" />
@@ -169,7 +179,6 @@
     <Compile Include="ChronoshiftPaletteEffect.cs" />
     <Compile Include="Chronoshiftable.cs" />
     <Compile Include="Cloak.cs" />
-    <Compile Include="ColorPickerPaletteModifier.cs" />
     <Compile Include="Combat.cs" />
     <Compile Include="ConquestVictoryConditions.cs" />
     <Compile Include="ContainsCrate.cs" />
@@ -220,13 +229,14 @@
     <Compile Include="GainsExperience.cs" />
     <Compile Include="GivesBounty.cs" />
     <Compile Include="GivesExperience.cs" />
+    <Compile Include="Guard.cs" />
     <Compile Include="Harvester.cs" />
     <Compile Include="HarvesterHuskModifier.cs" />
     <Compile Include="Husk.cs" />
     <Compile Include="InfiltrateForSupportPower.cs" />
-    <Compile Include="InvisibleToEnemy.cs" />
     <Compile Include="Invulnerable.cs" />
     <Compile Include="IronCurtainable.cs" />
+    <Compile Include="JamsMissiles.cs" />
     <Compile Include="LeavesHusk.cs" />
     <Compile Include="LightPaletteRotator.cs" />
     <Compile Include="LimitedAmmo.cs" />
@@ -235,17 +245,22 @@
     <Compile Include="Lint\CheckSyncAnnotations.cs" />
     <Compile Include="Lint\CheckTraitPrerequisites.cs" />
     <Compile Include="Lint\LintBuildablePrerequisites.cs" />
+    <Compile Include="Missions\DesertShellmapScript.cs" />
     <Compile Include="MPStartLocations.cs" />
     <Compile Include="Mine.cs" />
     <Compile Include="Minelayer.cs" />
     <Compile Include="Missions\Allies01Script.cs" />
     <Compile Include="Missions\Allies02Script.cs" />
     <Compile Include="Missions\Allies03Script.cs" />
+    <Compile Include="Missions\Allies04Script.cs" />
     <Compile Include="Missions\CountdownTimer.cs" />
     <Compile Include="Missions\DefaultShellmapScript.cs" />
     <Compile Include="Missions\MissionUtils.cs" />
     <Compile Include="Missions\MissionWidgets.cs" />
+    <Compile Include="Missions\MonsterTankMadnessScript.cs" />
     <Compile Include="Missions\Objective.cs" />
+    <Compile Include="Missions\Soviet01ClassicScript.cs" />
+    <Compile Include="Missions\Survival01Script.cs" />
     <Compile Include="Modifiers\FrozenUnderFog.cs" />
     <Compile Include="Modifiers\HiddenUnderFog.cs" />
     <Compile Include="Move\Drag.cs" />
@@ -255,7 +270,7 @@
     <Compile Include="Move\PathSearch.cs" />
     <Compile Include="NukePaletteEffect.cs" />
     <Compile Include="NullLoadScreen.cs" />
-    <Compile Include="OpenWidgetAtGameStart.cs" />
+    <Compile Include="LoadWidgetAtGameStart.cs" />
     <Compile Include="Orders\DeployOrderTargeter.cs" />
     <Compile Include="Orders\EnterBuildingOrderTargeter.cs" />
     <Compile Include="Orders\PlaceBuildingOrderGenerator.cs" />
@@ -263,18 +278,21 @@
     <Compile Include="Orders\RepairOrderGenerator.cs" />
     <Compile Include="Orders\UnitOrderTargeter.cs" />
     <Compile Include="OreRefinery.cs" />
+    <Compile Include="PlayerPaletteFromCurrentTileset.cs" />
     <Compile Include="PaletteFromCurrentTileset.cs" />
     <Compile Include="PaletteFromFile.cs" />
     <Compile Include="PaletteFromRGBA.cs" />
     <Compile Include="ParaDrop.cs" />
     <Compile Include="ParachuteAttachment.cs" />
     <Compile Include="Passenger.cs" />
+    <Compile Include="Player\PlayerStatistics.cs" />
     <Compile Include="Player\ActorGroupProxy.cs" />
     <Compile Include="Player\AllyRepair.cs" />
     <Compile Include="Player\ClassicProductionQueue.cs" />
     <Compile Include="Player\PlaceBuilding.cs" />
     <Compile Include="Player\ProductionQueue.cs" />
     <Compile Include="Player\TechTree.cs" />
+    <Compile Include="PlayerExts.cs" />
     <Compile Include="PrimaryBuilding.cs" />
     <Compile Include="Production.cs" />
     <Compile Include="ProductionBar.cs" />
@@ -287,12 +305,12 @@
     <Compile Include="RallyPoint.cs" />
     <Compile Include="Reloads.cs" />
     <Compile Include="RenderDetectionCircle.cs" />
+    <Compile Include="RenderJammerCircle.cs" />
     <Compile Include="RenderRangeCircle.cs" />
     <Compile Include="Render\RenderBuilding.cs" />
     <Compile Include="Render\RenderBuildingCharge.cs" />
     <Compile Include="Render\RenderBuildingSilo.cs" />
     <Compile Include="Render\RenderBuildingTurreted.cs" />
-    <Compile Include="Render\RenderBuildingSeparateTurret.cs" />
     <Compile Include="Render\RenderBuildingWall.cs" />
     <Compile Include="Render\RenderBuildingWarFactory.cs" />
     <Compile Include="Render\RenderEditorOnly.cs" />
@@ -303,8 +321,6 @@
     <Compile Include="Render\RenderSpy.cs" />
     <Compile Include="Render\RenderUnit.cs" />
     <Compile Include="Render\RenderUnitReload.cs" />
-    <Compile Include="Render\RenderUnitSpinner.cs" />
-    <Compile Include="Render\RenderUnitTurreted.cs" />
     <Compile Include="Render\WithBuildingExplosion.cs" />
     <Compile Include="Render\WithMuzzleFlash.cs" />
     <Compile Include="Render\WithRotor.cs" />
@@ -354,22 +370,24 @@
     <Compile Include="Turreted.cs" />
     <Compile Include="Valued.cs" />
     <Compile Include="WaterPaletteRotation.cs" />
-    <Compile Include="Weapon.cs" />
     <Compile Include="Widgets\BuildPaletteWidget.cs" />
+    <Compile Include="Widgets\LogicTickerWidget.cs" />
+    <Compile Include="Widgets\Logic\IngameMenuLogic.cs" />
     <Compile Include="Widgets\Logic\ModBrowserLogic.cs" />
     <Compile Include="Widgets\Logic\ColorPickerLogic.cs" />
     <Compile Include="Widgets\Logic\ConnectionLogic.cs" />
     <Compile Include="Widgets\Logic\DiplomacyLogic.cs" />
     <Compile Include="Widgets\Logic\DirectConnectLogic.cs" />
     <Compile Include="Widgets\Logic\DownloadPackagesLogic.cs" />
+    <Compile Include="Widgets\Logic\IngameChatLogic.cs" />
     <Compile Include="Widgets\Logic\IngameChromeLogic.cs" />
-    <Compile Include="Widgets\Logic\IngameObserverChromeLogic.cs" />
     <Compile Include="Widgets\Logic\LobbyLogic.cs" />
     <Compile Include="Widgets\Logic\LobbyUtils.cs" />
     <Compile Include="Widgets\Logic\MainMenuButtonsLogic.cs" />
     <Compile Include="Widgets\Logic\MapChooserLogic.cs" />
     <Compile Include="Widgets\Logic\MissionObjectivesLogic.cs" />
     <Compile Include="Widgets\Logic\MusicPlayerLogic.cs" />
+    <Compile Include="Widgets\Logic\ObserverStatsLogic.cs" />
     <Compile Include="Widgets\Logic\OrderButtonsChromeLogic.cs" />
     <Compile Include="Widgets\Logic\PerfDebugLogic.cs" />
     <Compile Include="Widgets\Logic\RAInstallFromCDLogic.cs" />
@@ -379,6 +397,8 @@
     <Compile Include="Widgets\Logic\ServerCreationLogic.cs" />
     <Compile Include="Widgets\Logic\SettingsMenuLogic.cs" />
     <Compile Include="Widgets\MoneyBinWidget.cs" />
+    <Compile Include="Widgets\ObserverProductionIconsWidget.cs" />
+    <Compile Include="Widgets\ObserverSupportPowerIconsWidget.cs" />
     <Compile Include="Widgets\OrderButtonWidget.cs" />
     <Compile Include="Widgets\PowerBinWidget.cs" />
     <Compile Include="Widgets\RadarBinWidget.cs" />
@@ -388,6 +408,7 @@
     <Compile Include="Widgets\WorldCommandWidget.cs" />
     <Compile Include="Widgets\WorldTooltipWidget.cs" />
     <Compile Include="World\ChooseBuildTabOnSelect.cs" />
+    <Compile Include="World\DebugOverlay.cs" />
     <Compile Include="World\ResourceClaim.cs" />
     <Compile Include="World\ResourceClaimLayer.cs" />
     <Compile Include="World\PlayMusicOnMapLoad.cs" />
@@ -399,6 +420,25 @@
     <Compile Include="RenderShroudCircle.cs" />
     <Compile Include="Widgets\Logic\CheatsLogic.cs" />
     <Compile Include="CloakPaletteEffect.cs" />
+    <Compile Include="Widgets\ColorPreviewManagerWidget.cs" />
+    <Compile Include="Infiltrates.cs" />
+    <Compile Include="Armament.cs" />
+    <Compile Include="DebugMuzzlePositions.cs" />
+    <Compile Include="Buildings\BaseProvider.cs" />
+    <Compile Include="Render\WithSpinner.cs" />
+    <Compile Include="Widgets\Logic\ObserverShroudSelectorLogic.cs" />
+    <Compile Include="RepairsBridges.cs" />
+    <Compile Include="Activities\RepairBridge.cs" />
+    <Compile Include="BridgeHut.cs" />
+    <Compile Include="Lint\CheckSequences.cs" />
+    <Compile Include="ServerTraits\PlayerPinger.cs" />
+    <Compile Include="Widgets\Logic\SpawnSelectorTooltipLogic.cs" />
+    <Compile Include="Widgets\Logic\ClientTooltipLogic.cs" />
+    <Compile Include="Widgets\ColorMixerWidget.cs" />
+    <Compile Include="Widgets\HueSliderWidget.cs" />
+    <Compile Include="Render\WithTurret.cs" />
+    <Compile Include="Widgets\Logic\AssetBrowserLogic.cs" />
+    <Compile Include="Widgets\Logic\ConvertGameFilesLogic.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OpenRA.FileFormats\OpenRA.FileFormats.csproj">
@@ -410,6 +450,10 @@
       <Project>{0DFB103F-2962-400F-8C6D-E2C28CCBA633}</Project>
       <Name>OpenRA.Game</Name>
       <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRA.Utility\OpenRA.Utility.csproj">
+      <Project>{F33337BE-CB69-4B24-850F-07D23E408DDF}</Project>
+      <Name>OpenRA.Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -440,6 +484,8 @@
   <PropertyGroup>
     <PostBuildEvent>mkdir "$(SolutionDir)mods/ra/"
 copy "$(TargetPath)" "$(SolutionDir)mods/ra/"
+cd "$(SolutionDir)thirdparty/"
+copy "FuzzyLogicLibrary.dll" "$(SolutionDir)"
 cd "$(SolutionDir)"</PostBuildEvent>
   </PropertyGroup>
 </Project>

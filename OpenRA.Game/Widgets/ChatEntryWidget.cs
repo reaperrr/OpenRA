@@ -45,11 +45,6 @@ namespace OpenRA.Widgets
 
 		public override Rectangle EventBounds { get { return Rectangle.Empty; } }
 
-		public override bool LoseFocus(MouseInput mi)
-		{
-			return composing ? false : base.LoseFocus(mi);
-		}
-
 		public override bool HandleKeyPress(KeyInput e)
 		{
 			if (e.Event == KeyInputEvent.Up) return false;
@@ -84,7 +79,14 @@ namespace OpenRA.Widgets
 
 			if (composing)
 			{
-				if (e.KeyName == "backspace")
+				if (e.KeyName == "escape")
+				{
+					composing = false;
+					content = "";
+					LoseFocus();
+					return true;
+				}
+				else if (e.KeyName == "backspace")
 				{
 					if (content.Length > 0)
 						content = content.Remove(content.Length - 1);

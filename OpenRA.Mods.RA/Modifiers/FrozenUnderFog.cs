@@ -10,6 +10,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using OpenRA.Graphics;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.RA
@@ -18,15 +19,15 @@ namespace OpenRA.Mods.RA
 
 	class FrozenUnderFog : IRenderModifier, IVisibilityModifier
 	{
-		public bool IsVisible(Actor self)
+		public bool IsVisible(Actor self, Player byPlayer)
 		{
-			return Shroud.GetVisOrigins(self).Any(o => self.World.LocalShroud.IsVisible(o));
+			return byPlayer == null || Shroud.GetVisOrigins(self).Any(o => byPlayer.Shroud.IsVisible(o));
 		}
 
 		Renderable[] cache = { };
-		public IEnumerable<Renderable> ModifyRender(Actor self, IEnumerable<Renderable> r)
+		public IEnumerable<Renderable> ModifyRender(Actor self, WorldRenderer wr, IEnumerable<Renderable> r)
 		{
-			if (IsVisible(self))
+			if (IsVisible(self, self.World.RenderPlayer))
 				cache = r.ToArray();
 			return cache;
 		}

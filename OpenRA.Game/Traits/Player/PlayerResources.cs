@@ -23,42 +23,6 @@ namespace OpenRA.Traits
 		public object Create(ActorInitializer init) { return new PlayerResources(init.self, this); }
 	}
 
-	public class DebugResourceCashInfo : ITraitInfo, Requires<PlayerResourcesInfo>
-	{
-		public object Create(ActorInitializer init) { return new DebugResourceCash(init.self); }
-	}
-
-	public class DebugResourceCash : ISync
-	{
-		readonly PlayerResources pr;
-		public DebugResourceCash(Actor self) { pr = self.Trait<PlayerResources>(); }
-		[Sync] public int foo { get { return pr.Cash; } }
-	}
-
-	public class DebugResourceOreInfo : ITraitInfo, Requires<PlayerResourcesInfo>
-	{
-		public object Create(ActorInitializer init) { return new DebugResourceOre(init.self); }
-	}
-
-	public class DebugResourceOre : ISync
-	{
-		readonly PlayerResources pr;
-		public DebugResourceOre(Actor self) { pr = self.Trait<PlayerResources>(); }
-		[Sync] public int foo { get { return pr.Ore; } }
-	}
-
-	public class DebugResourceOreCapacityInfo : ITraitInfo
-	{
-		public object Create(ActorInitializer init) { return new DebugResourceOreCapacity(init.self); }
-	}
-
-	public class DebugResourceOreCapacity : ISync
-	{
-		readonly PlayerResources pr;
-		public DebugResourceOreCapacity(Actor self) { pr = self.Trait<PlayerResources>(); }
-		[Sync] public int foo { get { return pr.OreCapacity; } }
-	}
-
 	public class PlayerResources : ITick, ISync
 	{
 		readonly Player Owner;
@@ -75,16 +39,17 @@ namespace OpenRA.Traits
 			AdviceInterval = info.AdviceInterval;
 		}
 
-		[Sync]
-		public int Cash;
+		[Sync] public int Cash;
 
-		[Sync]
-		public int Ore;
-		[Sync]
-		public int OreCapacity;
+		[Sync] public int Ore;
+		[Sync] public int OreCapacity;
 
 		public int DisplayCash;
 		public int DisplayOre;
+		public bool AlertSilo;
+
+		public int Earned;
+		public int Spent;
 
 		public bool CanGiveOre(int amount)
 		{
@@ -94,10 +59,13 @@ namespace OpenRA.Traits
 		public void GiveOre(int num)
 		{
 			Ore += num;
+			Earned += num;
 
 			if (Ore > OreCapacity)
 			{
 				nextSiloAdviceTime = 0;
+
+				Earned -= Ore - OreCapacity;
 				Ore = OreCapacity;
 			}
 		}
@@ -106,6 +74,7 @@ namespace OpenRA.Traits
 		{
 			if (Ore < num) return false;
 			Ore -= num;
+			Spent += num;
 
 			return true;
 		}
@@ -113,6 +82,7 @@ namespace OpenRA.Traits
 		public void GiveCash(int num)
 		{
 			Cash += num;
+			Earned += num;
 		}
 
 		public bool TakeCash(int num)
@@ -121,6 +91,7 @@ namespace OpenRA.Traits
 
 			// Spend ore before cash
 			Ore -= num;
+			Spent += num;
 			if (Ore < 0)
 			{
 				Cash += Ore;
@@ -149,8 +120,13 @@ namespace OpenRA.Traits
 
 			if (--nextSiloAdviceTime <= 0)
 			{
-				if (Ore > 0.8*OreCapacity)
+				if (Ore > 0.8 * OreCapacity)
+				{
 					Sound.PlayNotification(Owner, "Speech", "SilosNeeded", Owner.Country.Race);
+					AlertSilo = true;
+				}
+				else
+					AlertSilo = false;
 
 				nextSiloAdviceTime = AdviceInterval;
 			}
@@ -184,7 +160,7 @@ namespace OpenRA.Traits
 			{
 				DisplayOre -= move;
 				playCashTickDown(self);
-                        }
+			}
 		}
 		
 		

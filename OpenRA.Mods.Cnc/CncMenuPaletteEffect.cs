@@ -11,6 +11,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using OpenRA.FileFormats;
+using OpenRA.Graphics;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.Cnc
@@ -22,7 +23,7 @@ namespace OpenRA.Mods.Cnc
 		public object Create(ActorInitializer init) { return new CncMenuPaletteEffect(this); }
 	}
 
-	public class CncMenuPaletteEffect : IPaletteModifier, ITick
+	public class CncMenuPaletteEffect : IPaletteModifier, ITickRender
 	{
 		public enum EffectType { None, Black, Desaturated }
 		public readonly CncMenuPaletteEffectInfo Info;
@@ -40,7 +41,7 @@ namespace OpenRA.Mods.Cnc
 			to = type;
 		}
 
-		public void Tick(Actor self)
+		public void TickRender(WorldRenderer wr, Actor self)
 		{
 			if (remainingFrames > 0)
 				remainingFrames--;
@@ -61,8 +62,6 @@ namespace OpenRA.Mods.Cnc
 			}
 		}
 
-		static Set<string> excludePalettes = new Set<string>("cursor", "chrome", "colorpicker", "shroud", "fog");
-
 		public void AdjustPalette(Dictionary<string,Palette> palettes)
 		{
 			if (to == EffectType.None && remainingFrames == 0)
@@ -70,9 +69,6 @@ namespace OpenRA.Mods.Cnc
 
 			foreach (var pal in palettes)
 			{
-				if (excludePalettes.Contains(pal.Key))
-					continue;
-
 				for (var x = 0; x < 256; x++)
 				{
 					var orig = pal.Value.GetColor(x);

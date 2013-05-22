@@ -1,3 +1,25 @@
+FlametankExplode:
+	Warhead:
+		Damage: 100		
+		Spread: 24		
+		Explosion: big_napalm
+		InfDeath: 5
+		ImpactSound: xplobig6
+
+HeliCrash:
+	Warhead:
+		Damage: 40
+		Spread: 10
+		Explosion: poof
+		InfDeath: 4
+		ImpactSound: xplos
+
+HeliExplode:
+	Warhead:
+		Explosion: small_building
+		InfDeath: 4
+		ImpactSound: xplos
+
 UnitExplode:
 	Warhead:
 		Damage: 500
@@ -7,7 +29,7 @@ UnitExplode:
 			Wood: 75%
 			Light: 60%
 			Heavy: 25%
-		Explosion: 8
+		Explosion: poof
 		InfDeath: 4
 		ImpactSound: xplobig6
 
@@ -20,22 +42,22 @@ UnitExplodeSmall:
 			Wood: 75%
 			Light: 60%
 			Heavy: 25%
-		Explosion: 8
+		Explosion: big_frag
 		InfDeath: 4
-		ImpactSound: xplos
+		ImpactSound: xplobig4
 
 GrenadierExplode:
 	Warhead:
 		Damage: 10
-		Spread: 3
+		Spread: 9
 		Versus:
 			None: 90%
 			Wood: 75%
 			Light: 60%
 			Heavy: 25%
-		Explosion: 8
+		Explosion: poof
 		InfDeath: 3
-		ImpactSound: xplos
+		ImpactSound: xplosml2
 
 Atomic:
 	Warhead@impact:
@@ -46,7 +68,7 @@ Atomic:
 			None: 90%
 			Wood: 60%
 			Light: 60%
-			Heavy: 25%
+			Heavy: 50%
 		Explosion: 6
 		InfDeath: 5
 		ImpactSound: nukexplo
@@ -60,40 +82,36 @@ Atomic:
 			None: 90%
 			Wood: 60%
 			Light: 60%
-			Heavy: 25%
+			Heavy: 50%
 		Delay: 3
 		InfDeath: 5
 		ImpactSound: xplobig4
 
 IonCannon:
+	ValidTargets: Ground, Air
 	Warhead@impact:
-		Damage: 500
-		Spread: 6
+		Damage: 900
+		Spread: 16
 		Ore: true
 		Versus: 
-			None: 90%
-			Wood: 60%
-			Light: 60%
-			Heavy: 25%
+			None: 100%
+			Wood: 100%
+			Light: 100%
+			Heavy: 100%
 		InfDeath: 5
 	Warhead@area:
 		DamageModel: PerCell
-		Damage: 200
+		Damage: 0
 		SmudgeType: Scorch
 		Size: 2,1
 		Ore: true
-		Versus: 
-			None: 90%
-			Wood: 60%
-			Light: 60%
-			Heavy: 25%
 		Delay: 3
 		InfDeath: 5
 
 Sniper:
 	Report: RAMGUN2
 	ROF: 40
-	Range: 7
+	Range: 6
 	Projectile: Bullet
 		Speed: 100
 	Warhead: 
@@ -107,21 +125,21 @@ Sniper:
 		InfDeath: 2
 
 HighV:
-	ROF: 40
-	Range: 5
+	ROF: 30
+	Range: 6
 	Report: GUN8
 	Projectile: Bullet
 		Speed: 100
 	Warhead:
-		Damage: 40
+		Damage: 50
 		Spread: 3
 		Versus: 
 			None: 100%
 			Wood: 50%
-			Light: 50%
+			Light: 100%
 			Heavy: 25%
 		InfDeath: 2
-		Explosion: 1
+		Explosion: piffs
 
 HeliAGGun:
 	ROF: 20
@@ -134,14 +152,14 @@ HeliAGGun:
 		Speed: 100
 	Warhead:
 		Damage: 20
-		Spread: 3
+		Spread: 6
 		Versus: 
 			None: 100%
 			Wood: 50%
 			Light: 50%
 			Heavy: 25%
 		InfDeath: 2
-		Explosion: 1
+		Explosion: piffs
 
 HeliAAGun:
 	ROF: 20
@@ -161,7 +179,7 @@ HeliAAGun:
 			Light: 50%
 			Heavy: 25%
 		InfDeath: 2
-		Explosion: 1
+		Explosion: piffs
 
 Pistol:
 	ROF: 7
@@ -177,7 +195,7 @@ Pistol:
 			Light: 50%
 			Heavy: 25%
 		InfDeath: 2
-		Explosion: 1
+		Explosion: piff
 		Damage: 1
 
 M16:
@@ -193,12 +211,12 @@ M16:
 			Wood: 25%
 			Light: 30%
 			Heavy: 10%
-		Explosion: 1
+		Explosion: piff
 		InfDeath: 2
 		Damage: 15
 
 Rockets:
-	ROF: 60
+	ROF: 50
 	Range: 6
 	Report: BAZOOK1
 	ValidTargets: Ground, Air
@@ -209,30 +227,31 @@ Rockets:
 		Proximity: yes
 		Inaccuracy: 3
 		Image: DRAGON
-		ROT: 10
+		ROT: 15
 		Trail: smokey
 		Speed: 35
-		RangeLimit: 40
+		RangeLimit: 30
 	Warhead:
 		Spread: 3
 		Versus: 
 			None: 50%
-			Wood: 75%
-			Light: 75%
-			Heavy: 50%
+			Wood: 85%
+			Light: 100%
+			Heavy: 100%
+			Concrete: 25%
 		InfDeath: 4
-		Explosion: 4
+		Explosion: small_frag
 		ImpactSound: xplos
 		SmudgeType: Crater
-		Damage: 40
+		Damage: 30
 
 BikeRockets:
-	ROF: 60
-	Range: 7
+	ROF: 50
+	Range: 6
 	Report: BAZOOK1
 	ValidTargets: Ground, Air
 	Burst: 2
-	BurstDelay: 0
+	BurstDelay: 10
 	Projectile: Missile
 		Arm: 0
 		High: yes
@@ -247,21 +266,22 @@ BikeRockets:
 	Warhead:
 		Spread: 3
 		Versus: 
-			None: 50%
-			Wood: 30%
-			Light: 75%
-			Heavy: 30%
+			None: 65%
+			Wood: 50%
+			Light: 100%
+			Heavy: 100%
+			Concrete: 50%
 		InfDeath: 4
-		Explosion: 4
+		Explosion: small_frag
 		ImpactSound: xplos
 		SmudgeType: Crater
-		Damage: 35
+		Damage: 30
 
 OrcaAGMissiles:
-	ROF: 10
-	Burst: 2
+	ROF: 15
+	Burst: 1
 	BurstDelay: 0
-	Range: 5
+	Range: 4
 	Report: BAZOOK1
 	ValidTargets: Ground
 	Projectile: Missile
@@ -272,27 +292,27 @@ OrcaAGMissiles:
 		Inaccuracy: 3
 		Image: DRAGON
 		ROT: 10
-		Trail: smokey
+		Trail: fb4
 		Speed: 25
 		RangeLimit: 30
 	Warhead:
 		Spread: 3
 		Versus: 
 			None: 50%
-			Wood: 75%
-			Light: 75%
+			Wood: 100%
+			Light: 100%
 			Heavy: 50%
 		InfDeath: 4
-		Explosion: 4
+		Explosion: small_frag
 		ImpactSound: xplos
 		SmudgeType: Crater
-		Damage: 20
+		Damage: 25
 
 OrcaAAMissiles:
-	ROF: 10
-	Burst: 2
+	ROF: 15
+	Burst: 1
 	BurstDelay: 0
-	Range: 5
+	Range: 4
 	Report: BAZOOK1
 	ValidTargets: Air
 	Projectile: Missile
@@ -303,25 +323,25 @@ OrcaAAMissiles:
 		Inaccuracy: 3
 		Image: DRAGON
 		ROT: 10
-		Trail: smokey
+		Trail: fb4
 		Speed: 25
 		RangeLimit: 30
 	Warhead:
 		Spread: 3
 		Versus: 
 			None: 50%
-			Wood: 75%
-			Light: 75%
+			Wood: 100%
+			Light: 100%
 			Heavy: 50%
 		InfDeath: 4
-		Explosion: 4
+		Explosion: small_frag
 		ImpactSound: xplos
 		SmudgeType: Crater
-		Damage: 20
+		Damage: 25
 
 Flamethrower:
 	ROF: 50
-	Range: 3
+	Range: 2.5
 	Report: FLAMER2
 	Projectile: Bullet
 		Speed: 100
@@ -329,9 +349,10 @@ Flamethrower:
 		Spread: 8
 		Versus: 
 			None: 90%
-			Wood: 200%
+			Wood: 100%
 			Light: 75%
 			Heavy: 25%
+		Explosion: small_napalm
 		InfDeath: 5
 		ImpactSound: flamer2
 		SmudgeType: Scorch
@@ -344,19 +365,19 @@ BigFlamer:
 	Projectile: Bullet
 		Speed: 20
 	Burst:2
-	BurstDelay:0
+	BurstDelay:25
 	Warhead:
 		Spread: 8
 		Versus: 
-			None: 90%
-			Wood: 200%
-			Light: 75%
+			None: 100%
+			Wood: 100%
+			Light: 50%
 			Heavy: 25%
 		InfDeath: 5
-		Explosion: 3
+		Explosion: med_napalm
 		ImpactSound: flamer2
 		SmudgeType: Scorch
-		Damage: 25
+		Damage: 90
 
 Chemspray:
 	ROF: 70
@@ -373,6 +394,7 @@ Chemspray:
 			Light: 75%
 			Heavy: 50%
 		InfDeath: 6
+		Explosion: chemball
 		SmudgeType: Scorch
 		ImpactSound: xplos
 
@@ -380,7 +402,7 @@ Grenade:
 	ROF: 50
 	Range: 5
 	Projectile: Bullet
-		Speed: 5
+		Speed: 12
 		High: yes
 		Angle: .1
 		Inaccuracy: 5
@@ -393,27 +415,28 @@ Grenade:
 			Light: 75%
 			Heavy: 50%
 		InfDeath: 3
-		Explosion: 5
+		Explosion: small_poof
 		ImpactSound: xplos
 		SmudgeType: Crater
 		Damage: 50
 
 70mm:
-	ROF: 60
+	ROF: 38
 	Range: 4
 	Report: TNKFIRE3
 	Projectile: Bullet
 		Image: 120MM
-		Speed: 40
+		Speed: 60
 	Warhead:
 		Spread: 3
 		Versus: 
 			None: 30%
 			Wood: 75%
-			Light: 75%
+			Light: 100%
 			Heavy: 100%
+			Concrete: 50%
 		InfDeath: 4
-		Explosion: 4
+		Explosion: small_frag
 		ImpactSound: xplos
 		SmudgeType: Crater
 		Damage: 25
@@ -433,13 +456,13 @@ Grenade:
 			Light: 75%
 			Heavy: 100%
 		InfDeath: 4
-		Explosion: 4
+		Explosion: small_frag
 		ImpactSound: xplos
 		SmudgeType: Crater
 		Damage: 30
 
 120mm:
-	ROF: 80
+	ROF: 50
 	Range: 4.75
 	Report: TNKFIRE6
 	Projectile: Bullet
@@ -450,19 +473,21 @@ Grenade:
 		Versus: 
 			None: 30%
 			Wood: 75%
-			Light: 75%
+			Light: 100%
 			Heavy: 100%
+			Concrete: 50%
 		InfDeath: 4
-		Explosion: 4
+		Explosion: small_frag
 		ImpactSound: xplos
 		SmudgeType: Crater
 		Damage: 40
 
 120mmDual:
-	ROF: 80
+	ROF: 60
 	Range: 4.75
 	Report: TNKFIRE6
 	Burst: 2
+	BurstDelay: 5
 	Projectile: Bullet
 		Image: 120MM
 		Speed: 40
@@ -471,33 +496,34 @@ Grenade:
 		Versus: 
 			None: 30%
 			Wood: 75%
-			Light: 75%
+			Light: 100%
 			Heavy: 100%
+			Concrete: 100%
 		InfDeath: 4
-		Explosion: 4
+		Explosion: small_frag
 		ImpactSound: xplos
 		SmudgeType: Crater
 		Damage: 40
 
 TurretGun:
-	ROF: 30
+	ROF: 25
 	Range: 6
 	Report: TNKFIRE6
 	Projectile: Bullet
 		Image: 120MM
-		Speed: 40
+		Speed: 50
 	Warhead:
 		Spread: 3
 		Versus: 
-			None: 30%
-			Wood: 75%
-			Light: 75%
+			None: 25%
+			Wood: 25%
+			Light: 80%
 			Heavy: 100%
 		InfDeath: 4
-		Explosion: 4
+		Explosion: small_frag
 		ImpactSound: xplos
 		SmudgeType: Crater
-		Damage: 60
+		Damage: 50
 
 MammothMissiles:
 	ROF: 100
@@ -517,24 +543,24 @@ MammothMissiles:
 		Speed: 25
 		RangeLimit: 35
 	Warhead:
-		Spread: 3
+		Spread: 6
 		Versus: 
-			None: 30%
+			None: 40%
 			Wood: 75%
 			Light: 75%
 			Heavy: 50%
 		InfDeath: 4
-		Explosion: 4
+		Explosion: small_frag
 		ImpactSound: xplos
 		SmudgeType: Crater
 		Damage: 75
 
 227mm: 
-	ROF: 150
-	Range: 14
+	ROF: 140
+	Range: 12
 	MinRange: 3
 	Burst: 2
-	BurstDelay: 10
+	BurstDelay: 20
 	Report: ROCKET1
 	ValidTargets: Ground
 	Projectile: Bullet
@@ -551,22 +577,22 @@ MammothMissiles:
 	Warhead:
 		Spread: 15
 		Versus: 
-			None: 30%
-			Wood: 50%
+			None: 25%
+			Wood: 30%
 			Light: 100%
 			Heavy: 50%
 		InfDeath: 4
-		Explosion: 4
-		ImpactSound: xplos
+		Explosion: med_frag
+		ImpactSound: xplobig4
 		SmudgeType: Crater
 		Damage: 100
 
 227mm.stnk:
-	ROF: 80
-	Range: 8
+	ROF: 70
+	Range: 7
 	Report: ROCKET1
 	Burst: 2
-	BurstDelay: 0
+	BurstDelay: 10
 	ValidTargets: Ground, Air
 	Projectile: Missile
 		Arm: 0
@@ -577,24 +603,24 @@ MammothMissiles:
 		Image: DRAGON
 		ROT: 10
 		Trail: smokey
-		Speed: 20
+		Speed: 25
 		RangeLimit: 55
 	Warhead:
 		Spread: 3
 		Versus:
-			None: 30%
-			Wood: 75%
-			Light: 75%
-			Heavy: 50%
+			None: 35%
+			Wood: 50%
+			Light: 100%
+			Heavy: 90%
 		InfDeath: 4
-		Explosion: 4
+		Explosion: small_frag
 		ImpactSound: xplos
 		SmudgeType: Crater
-		Damage: 75
+		Damage: 60
 
 ArtilleryShell:
 	ROF: 65
-	Range: 12
+	Range: 11
 	MinRange: 2
 	Report: TNKFIRE2
 	Projectile: Bullet
@@ -609,16 +635,17 @@ ArtilleryShell:
 		Spread: 6
 		Versus: 
 			None: 90%
-			Wood: 75%
+			Wood: 50%
 			Light: 60%
 			Heavy: 25%
 		InfDeath: 3
-		Explosion: 8
+		Explosion: poof
 		SmudgeType: Crater
 		ImpactSound: XPLOSML2
 
 MachineGun:
-	ROF: 30
+	ROF: 20
+	Burst: 4
 	Range: 4
 	Report: MGUN11
 	Projectile: Bullet
@@ -627,12 +654,13 @@ MachineGun:
 		Spread: 3
 		Versus: 
 			None: 100%
-			Wood: 50%
-			Light: 50%
+			Wood: 25%
+			Light: 75%
 			Heavy: 25%
+			Concrete: 10%
 		InfDeath: 2
-		Explosion: 1
-		Damage: 15
+		Explosion: piffs
+		Damage: 10
 
 BoatMissile:
 	ROF: 35
@@ -659,18 +687,18 @@ BoatMissile:
 			Light: 60%
 			Heavy: 25%
 		InfDeath: 3
-		Explosion: 5
+		Explosion: small_poof
 		ImpactSound: xplos
 		SmudgeType: Crater
 		Damage: 60
 
 TowerMissle:
-	ROF: 40
-	Range: 7
+	ROF: 24
+	Range: 8
 	Report: ROCKET2
 	ValidTargets: Ground, Air
 	Burst: 2
-	BurstDelay: 10
+	BurstDelay: 16
 	Projectile: Missile
 		Arm: 0
 		High: yes
@@ -678,22 +706,22 @@ TowerMissle:
 		Proximity: yes
 		Inaccuracy: 3
 		Image: DRAGON
-		ROT: 10
+		ROT: 20
 		Trail: smokey
-		Speed: 25
+		Speed: 35
 		RangeLimit: 40
 	Warhead:
-		Spread: 6
+		Spread: 12
 		Versus: 
-			None: 90%
-			Wood: 75%
-			Light: 60%
-			Heavy: 25%
+			None: 25%
+			Wood: 25%
+			Light: 100%
+			Heavy: 80%
 		InfDeath: 3
-		Explosion: 5
+		Explosion: med_frag
 		ImpactSound: xplos
 		SmudgeType: Crater
-		Damage: 60
+		Damage: 45
 
 Napalm:
 	ROF: 2
@@ -705,12 +733,12 @@ Napalm:
 			None: 90%
 			Wood: 100%
 			Light: 60%
-			Heavy: 25%
+			Heavy: 55%
 		InfDeath: 5
-		Explosion: 3
+		Explosion: med_napalm
 		ImpactSound: flamer2
 		SmudgeType: Scorch
-		Damage: 100
+		Damage: 130
 
 Napalm.Crate:
 	Warhead:
@@ -721,26 +749,28 @@ Napalm.Crate:
 			Light: 60%
 			Heavy: 25%
 		InfDeath: 5
-		Explosion: 3
+		Explosion: med_napalm
 		ImpactSound: flamer2
 		SmudgeType: Scorch
 		Damage: 500
 
 Laser:
 	ROF: 90
-	Range: 7.5
+	Range: 8.5
 	Charges: true
 	Report: OBELRAY1
 	Projectile: LaserZap
 		BeamRadius: 1
 	Warhead:
 		Spread: 1
+		Versus:
+			Wood: 50%
 		InfDeath: 5
 		SmudgeType: Scorch
 		Damage: 200
 
 SAMMissile:
-	ROF: 50
+	ROF: 15
 	Range: 10
 	Report: ROCKET2
 	ValidTargets: Air
@@ -751,21 +781,21 @@ SAMMissile:
 		Proximity: yes
 		Image: MISSILE
 		ROT: 20
-		Speed: 40
-		RangeLimit: 50
+		Speed: 50
+		RangeLimit: 35
 		Trail: smokey
 	Warhead: AP
 		Spread: 3
 		Versus: 
-			None: 30%
-			Wood: 75%
-			Light: 75%
-			Heavy: 50%
+			None: 100%
+			Wood: 100%
+			Light: 100%
+			Heavy: 75%
 		InfDeath: 4
-		Explosion: 4
+		Explosion: small_frag
 		ImpactSound: xplos
 		SmudgeType: Crater
-		Damage: 50
+		Damage: 30
 
 HonestJohn:
 	ROF: 200
@@ -790,7 +820,7 @@ HonestJohn:
 			Light: 60%
 			Heavy: 25%
 		InfDeath: 3
-		Explosion: 5
+		Explosion: small_poof
 		ImpactSound: xplos
 		SmudgeType: Crater
 		Damage: 100
@@ -804,7 +834,24 @@ Tiberium:
 		PreventProne: yes
 
 APCGun:
-	ROF: 10
+	ROF: 12
+	Range: 5
+	Report: gun20
+	ValidTargets: Ground
+	Projectile: Bullet
+		Speed: 100
+	Warhead:
+		Spread: 3
+		Versus:
+			None: 35%
+			Wood: 50%
+			Light: 100%
+			Heavy: 20%
+		Explosion: small_poof
+		Damage: 15
+		
+APCGun.AA:
+	ROF: 12
 	Range: 7
 	Report: gun20
 	ValidTargets: Air
@@ -812,8 +859,38 @@ APCGun:
 		Speed: 100
 		High: true
 	Warhead:
-		Spread: 5
+		Spread: 3
 		Versus:
+			Heavy: 50%
+		Explosion: small_poof
+		Damage: 25
+
+Patriot:
+	ROF: 30
+	Range: 10
+	MinRange: 1
+	Burst: 2
+	BurstDelay: 15
+	Report:	ROCKET2
+	ValidTargets: Air
+	Projectile: Missile
+		High: yes
+		Shadow: no
+		Image: patriot
+		Trail: smokey
+		ROT: 20
+		Speed: 50
+		RangeLimit: 30
+		Angle: .15
+	Warhead: AP
+		Spread: 16
+		Versus: 
+			None: 100%	
+			Wood: 100%
 			Light: 100%
-		Explosion: 5
-		Damage: 12
+			Heavy: 75%
+		InfDeath: 4	
+		Explosion: poof
+		ImpactSound: xplos
+		SmudgeType: Crater
+		Damage: 30

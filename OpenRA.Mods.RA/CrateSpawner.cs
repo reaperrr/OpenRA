@@ -19,12 +19,18 @@ namespace OpenRA.Mods.RA
 {
 	public class CrateSpawnerInfo : TraitInfo<CrateSpawner>
 	{
-		public readonly int Minimum = 1; // Minimum number of crates
-		public readonly int Maximum = 255; // Maximum number of crates
-		public readonly string[] ValidGround = {"Clear", "Rough", "Road", "Ore", "Beach"}; // Which terrain types can we drop on?
+		[Desc("Minimum number of crates")]
+		public readonly int Minimum = 1;
+		[Desc("Maximum number of crates")]
+		public readonly int Maximum = 255;
+		[Desc("Which terrain types can we drop on?")]
+		public readonly string[] ValidGround = {"Clear", "Rough", "Road", "Ore", "Beach"};
+		[Desc("Which terrain types count as water?")]
 		public readonly string[] ValidWater = {"Water"};
-		public readonly int SpawnInterval = 180; // Average time (seconds) between crate spawn
-		public readonly float WaterChance = .2f; // Chance of generating a water crate instead of a land crate
+		[Desc("Average time (seconds) between crate spawn")]
+		public readonly int SpawnInterval = 180;
+		[Desc("Chance of generating a water crate instead of a land crate")]
+		public readonly float WaterChance = .2f;
 	}
 
 	public class CrateSpawner : ITick
@@ -34,10 +40,12 @@ namespace OpenRA.Mods.RA
 
 		public void Tick(Actor self)
 		{
+			if (!self.World.LobbyInfo.GlobalSettings.Crates) return;
+
 			if (--ticks <= 0)
 			{
 				var info = self.Info.Traits.Get<CrateSpawnerInfo>();
-				ticks = info.SpawnInterval * 25;		// todo: randomize
+				ticks = info.SpawnInterval * 25;		// TODO: randomize
 
 				crates.RemoveAll(x => !x.IsInWorld);
 
@@ -52,7 +60,7 @@ namespace OpenRA.Mods.RA
 		void SpawnCrate(Actor self, CrateSpawnerInfo info)
 		{
 			var threshold = 100;
-			var inWater = self.World.SharedRandom.NextDouble() < info.WaterChance;
+			var inWater = self.World.SharedRandom.NextFloat() < info.WaterChance;
 
 			for (var n = 0; n < threshold; n++ )
 			{

@@ -5,14 +5,23 @@ Background@SERVER_LOBBY:
 	Width:800
 	Height:600
 	Children:
-		Label@TITLE:
+		ColorPreviewManager@COLOR_MANAGER:
+			RemapIndices: 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95
+		Label@SERVER_NAME:
 			X:0
 			Y:17
 			Align:Center
-			Width:800
+			Width:530
 			Height:20
 			Font:Bold
 			Text:OpenRA Multiplayer Lobby
+		Label@MAP_TITLE:
+			X:532
+			Y:17
+			Align:Center
+			Width:250
+			Height:20
+			Font:Bold
 		Background@LOBBY_MAP_BG:
 			X:PARENT_RIGHT-268
 			Y:50
@@ -25,6 +34,7 @@ Background@SERVER_LOBBY:
 					Y:4
 					Width:244
 					Height:244
+					TooltipContainer:TOOLTIP_CONTAINER
 		ScrollPanel@PLAYERS:
 			X:20
 			Y:67
@@ -39,23 +49,38 @@ Background@SERVER_LOBBY:
 					Height:25
 					Visible:false
 					Children:
+						Image@ADMIN_INDICATOR:
+							ImageCollection:lobby-bits
+							ImageName:admin
+							X:2
+							Visible:false
+						Container@LATENCY:
+							X:0
+							Y:6
+							Width:11
+							Height:14
+							Visible:false
+							Children:
+								ColorBlock@LATENCY_COLOR:
+									X:2
+									Y:2
+									Width:PARENT_RIGHT-4
+									Height:PARENT_BOTTOM-4
+						ClientTooltipRegion@CLIENT_REGION:
+							TooltipContainer:TOOLTIP_CONTAINER
+							Template:CLIENT_TOOLTIP
+							Width:11
+							Height:25
 						TextField@NAME:
 							Text:Name
-							Width:150
+							X:15
+							Width:135
 							Height:25
-							X:0
-							Y:0
 							MaxLength:16
-						Image@ISADMIN:
-							Width:16
-							Height:16
-							X:150
-							Y:4
-							ImageName:isadmin
-							ImageCollection:misc
-						DropDownButton@BOT_DROPDOWN:
+						DropDownButton@SLOT_OPTIONS:
 							Text:Name
-							Width:150
+							X:15
+							Width:135
 							Height:25
 							Font:Regular
 							Visible:false
@@ -115,19 +140,34 @@ Background@SERVER_LOBBY:
 					Height:25
 					Visible:false
 					Children:
+						Image@ADMIN_INDICATOR:
+							ImageCollection:lobby-bits
+							ImageName:admin
+							X:2
+							Visible:false
+						Container@LATENCY:
+							X:0
+							Y:6
+							Width:11
+							Height:14
+							Visible:false
+							Children:
+								ColorBlock@LATENCY_COLOR:
+									X:2
+									Y:2
+									Width:PARENT_RIGHT-4
+									Height:PARENT_BOTTOM-4
+						ClientTooltipRegion@CLIENT_REGION:
+							TooltipContainer:TOOLTIP_CONTAINER
+							Template:CLIENT_TOOLTIP
+							Width:11
+							Height:25
 						Label@NAME:
 							Text:Name
-							Width:145
+							Width:130
 							Height:25
-							X:5
+							X:20
 							Y:0-1
-						Image@ISADMIN:
-							Width:16
-							Height:16
-							X:150
-							Y:4
-							ImageName:isadmin
-							ImageCollection:misc
 						Button@KICK:
 							Text:X
 							Width:25
@@ -135,12 +175,12 @@ Background@SERVER_LOBBY:
 							X:125
 							Y:2
 							Font:Bold
-						ColorBlock@COLOR:
+						ColorBlock@COLORBLOCK:
 							X:165
 							Y:6
 							Width:45
 							Height:13
-						Label@FACTION:
+						Container@FACTION:
 							Width:130
 							Height:25
 							X:250
@@ -172,7 +212,6 @@ Background@SERVER_LOBBY:
 							Height:20
 							ImageCollection:checkbox-bits
 							ImageName:checked
-
 				Container@TEMPLATE_EMPTY:
 					X:5
 					Y:0
@@ -182,15 +221,15 @@ Background@SERVER_LOBBY:
 					Children:
 						Label@NAME:
 							Text:Name
-							Width:145
+							Width:130
 							Height:25
-							X:5
+							X:20
 							Y:0-1
-						DropDownButton@NAME_HOST:
+						DropDownButton@SLOT_OPTIONS:
 							Text:Name
-							Width:150
+							Width:135
 							Height:25
-							X:0
+							X:15
 							Y:0
 							Visible:false
 						Button@JOIN:
@@ -199,13 +238,6 @@ Background@SERVER_LOBBY:
 							Height:25
 							X:160
 							Y:0
-						Image@ISADMIN:
-							Width:16
-							Height:16
-							X:150
-							Y:4
-							ImageName:isadmin
-							ImageCollection:misc
 				Container@TEMPLATE_EDITABLE_SPECTATOR:
 					X:5
 					Y:0
@@ -213,9 +245,32 @@ Background@SERVER_LOBBY:
 					Height:25
 					Visible:false
 					Children:
+						Image@ADMIN_INDICATOR:
+							ImageCollection:lobby-bits
+							ImageName:admin
+							X:2
+							Visible:false
+						Container@LATENCY:
+							X:0
+							Y:6
+							Width:11
+							Height:14
+							Visible:false
+							Children:
+								ColorBlock@LATENCY_COLOR:
+									X:2
+									Y:2
+									Width:PARENT_RIGHT-4
+									Height:PARENT_BOTTOM-4
+						ClientTooltipRegion@CLIENT_REGION:
+							TooltipContainer:TOOLTIP_CONTAINER
+							Template:CLIENT_TOOLTIP
+							Width:11
+							Height:25
 						TextField@NAME:
 							Text:Name
-							Width:150
+							X:15
+							Width:135
 							Height:25
 							MaxLength:16
 						DropDownButton@COLOR:
@@ -250,14 +305,6 @@ Background@SERVER_LOBBY:
 							Height:20
 							ImageCollection:checkbox-bits
 							ImageName:checked
-						Image@ISADMIN:
-							Width:16
-							Height:16
-							X:150
-							Y:4
-							ImageName:isadmin
-							ImageCollection:misc
-
 				Container@TEMPLATE_NONEDITABLE_SPECTATOR:
 					X:5
 					Y:0
@@ -265,19 +312,34 @@ Background@SERVER_LOBBY:
 					Height:25
 					Visible:false
 					Children:
+						Image@ADMIN_INDICATOR:
+							ImageCollection:lobby-bits
+							ImageName:admin
+							X:2
+							Visible:false
+						Container@LATENCY:
+							X:0
+							Y:6
+							Width:11
+							Height:14
+							Visible:false
+							Children:
+								ColorBlock@LATENCY_COLOR:
+									X:2
+									Y:2
+									Width:PARENT_RIGHT-4
+									Height:PARENT_BOTTOM-4
+						ClientTooltipRegion@CLIENT_REGION:
+							TooltipContainer:TOOLTIP_CONTAINER
+							Template:CLIENT_TOOLTIP
+							Width:11
+							Height:25
 						Label@NAME:
 							Text:Name
-							Width:145
+							Width:130
 							Height:25
-							X:5
+							X:20
 							Y:0-1
-						Image@ISADMIN:
-							Width:16
-							Height:16
-							X:130
-							Y:4
-							ImageName:isadmin
-							ImageCollection:misc
 						Button@KICK:
 							Text:X
 							Width:25
@@ -285,7 +347,7 @@ Background@SERVER_LOBBY:
 							X:125
 							Y:2
 							Font:Bold
-						ColorBlock@COLOR:
+						ColorBlock@COLORBLOCK:
 							X:165
 							Y:6
 							Width:45
@@ -364,13 +426,6 @@ Background@SERVER_LOBBY:
 					Text:Ready
 					Align:Left
 					Font:Bold
-		Button@CHANGEMAP_BUTTON:
-			X:PARENT_RIGHT-154
-			Y:PARENT_BOTTOM-269
-			Width:120
-			Height:25
-			Text:Change Map
-			Font:Bold
 		ScrollPanel@CHAT_DISPLAY:
 			X:20
 			Y:PARENT_BOTTOM - 289
@@ -412,6 +467,53 @@ Background@SERVER_LOBBY:
 			Y:PARENT_BOTTOM - 49
 			Width:550
 			Height:25
+		Button@CHANGEMAP_BUTTON:
+			X:PARENT_RIGHT-154
+			Y:PARENT_BOTTOM-289
+			Width:120
+			Height:25
+			Text:Change Map
+			Font:Bold
+		DropDownButton@ASSIGNTEAMS_DROPDOWNBUTTON:
+			X:PARENT_RIGHT-154
+			Y:PARENT_BOTTOM-229
+			Width:120
+			Height:25
+			Font:Bold
+			Visible:false
+			Text:Assign
+		DropDownButton@DIFFICULTY_DROPDOWNBUTTON:
+			X:PARENT_RIGHT-154
+			Y:PARENT_BOTTOM-199
+			Width:120
+			Height:25
+			Font:Bold
+			Visible:false
+		Checkbox@ALLOWCHEATS_CHECKBOX:
+			X: PARENT_RIGHT-154
+			Y: PARENT_BOTTOM-169
+			Width: 80
+			Height: 20
+			Text: Allow Cheats
+		Checkbox@CRATES_CHECKBOX:
+			X: PARENT_RIGHT-154
+			Y: PARENT_BOTTOM-144
+			Width: 80
+			Height: 20
+			Text: Crates
+		Checkbox@FRAGILEALLIANCES_CHECKBOX:
+			X: PARENT_RIGHT-154
+			Y: PARENT_BOTTOM-119
+			Width: 80
+			Height: 20
+			Text: Fragile Alliances
+		Button@DISCONNECT_BUTTON:
+			X:PARENT_RIGHT-154
+			Y:PARENT_BOTTOM-94
+			Width:120
+			Height:25
+			Text:Disconnect
+			Font:Bold
 		Button@START_GAME_BUTTON:
 			X:PARENT_RIGHT-154
 			Y:PARENT_BOTTOM-49
@@ -419,82 +521,4 @@ Background@SERVER_LOBBY:
 			Height:25
 			Text:Start Game
 			Font:Bold
-		Button@DISCONNECT_BUTTON:
-			X:PARENT_RIGHT-154
-			Y:PARENT_BOTTOM-189+25
-			Width:120
-			Height:25
-			Text:Disconnect
-			Font:Bold
-		Checkbox@ALLOWCHEATS_CHECKBOX:
-			X: PARENT_RIGHT-154
-			Y: PARENT_BOTTOM-229
-			Width: 80
-			Height: 20
-			Text: Allow Cheats
-Background@COLOR_CHOOSER:
-	Logic:ColorPickerLogic
-	Background:dialog2
-	Width:310
-	Height:120
-	Children:
-		Button@SAVE_BUTTON:
-			X:210
-			Y:85
-			Width:90
-			Height:25
-			Text:Save
-			Font:Bold
-		Button@RANDOM_BUTTON:
-			X:115
-			Y:85
-			Width:90
-			Height:25
-			Text:Random
-			Font:Bold
-		ShpImage@FACT:
-			X:220
-			Y:10
-			Image:fact
-			Palette:colorpicker
-		Label@HUE_LABEL:
-			X:0
-			Y:5
-			Width:40
-			Height:20
-			Align: Right
-			Text: Hue:
-		Slider@HUE:
-			X:43
-			Y:10
-			Width:160
-			Height:20
-			Ticks:5
-		Label@SAT_LABEL:
-			X:0
-			Y:30
-			Width:40
-			Height:20
-			Align: Right
-			Text: Sat:	
-		Slider@SAT:
-			X:43
-			Y:35
-			Width:160
-			Height:20
-			Ticks:5
-		Label@LUM_LABEL:
-			X:0
-			Y:55
-			Width:40
-			Height:20
-			Align: Right
-			Text: Lum:	
-		Slider@LUM:
-			X:43
-			Y:60
-			Width:160
-			Height:20
-			Ticks:5
-			MinimumValue: 0.2
-			MaximumValue: 1
+		TooltipContainer@TOOLTIP_CONTAINER:

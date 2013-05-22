@@ -13,10 +13,14 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.RA
 {
+	[Desc("Loads the palette specified in the tileset definition")]
 	class PaletteFromCurrentTilesetInfo : ITraitInfo
 	{
+		[Desc("internal palette name")]
 		public readonly string Name = null;
+		[Desc("Map listed indices to shadow. Ignores previous color.")]
 		public readonly int[] ShadowIndex = { };
+		public readonly bool AllowModifiers = true;
 
 		public object Create(ActorInitializer init) { return new PaletteFromCurrentTileset(init.world, this); }
 	}
@@ -32,9 +36,9 @@ namespace OpenRA.Mods.RA
 			this.info = info;
 		}
 
-		public void InitPalette( OpenRA.Graphics.WorldRenderer wr )
+		public void InitPalette(OpenRA.Graphics.WorldRenderer wr)
 		{
-			wr.AddPalette( info.Name, new Palette( FileSystem.Open( world.TileSet.Palette ), info.ShadowIndex ) );
+			wr.AddPalette(info.Name, new Palette(FileSystem.Open(world.TileSet.Palette), info.ShadowIndex), info.AllowModifiers);
 		}
 	}
 }

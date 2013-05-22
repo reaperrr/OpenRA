@@ -21,6 +21,7 @@ namespace OpenRA.Traits
 		public bool PathDebug = false;
 		public bool UnlimitedPower;
 		public bool BuildAnywhere;
+		public bool ShowMuzzles;
 
 		public object Create (ActorInitializer init) { return new DeveloperMode(this); }
 	}
@@ -36,6 +37,9 @@ namespace OpenRA.Traits
 		[Sync] public bool UnlimitedPower;
 		[Sync] public bool BuildAnywhere;
 
+		// Client size only
+		public bool ShowMuzzles;
+
 		public DeveloperMode(DeveloperModeInfo info)
 		{
 			Info = info;
@@ -45,6 +49,7 @@ namespace OpenRA.Traits
 			PathDebug = info.PathDebug;
 			UnlimitedPower = info.UnlimitedPower;
 			BuildAnywhere = info.BuildAnywhere;
+			ShowMuzzles = info.ShowMuzzles;
 		}
 
 		public void ResolveOrder (Actor self, Order order)
@@ -73,11 +78,11 @@ namespace OpenRA.Traits
 						self.Trait<PlayerResources>().GiveCash(Info.Cash);
 						break;
 					}
-				case "DevShroud":
+				case "DevShroudDisable":
 					{
 						DisableShroud ^= true;
 						if (self.World.LocalPlayer == self.Owner)
-							self.World.LocalShroud.Disabled = DisableShroud;
+							self.World.RenderPlayer = DisableShroud ? null : self.Owner;
 						break;
 					}
 				case "DevPathDebug":
@@ -87,8 +92,12 @@ namespace OpenRA.Traits
 					}
 				case "DevGiveExploration":
 					{
-						if (self.World.LocalPlayer == self.Owner)
-							self.World.WorldActor.Trait<Shroud>().ExploreAll(self.World);
+						self.Owner.Shroud.ExploreAll(self.World);
+						break;
+					}
+				case "DevResetExploration":
+					{
+						self.Owner.Shroud.ResetExploration();
 						break;
 					}
 				case "DevUnlimitedPower":

@@ -8,22 +8,41 @@
  */
 #endregion
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using OpenRA.Mods.RA.Buildings;
 using OpenRA.Traits;
+using OpenRA.FileFormats;
 
 namespace OpenRA.Mods.RA
 {
+	[Desc("Attach this to the world actor (not a building!) to define a new shared build queue.",
+		"Will only work together with the Production: trait on the actor that actually does the production.", 
+		"You will also want to add PrimaryBuildings: to let the user choose where new units should exit.")]
 	public class ClassicProductionQueueInfo : ProductionQueueInfo, Requires<TechTreeInfo>, Requires<PowerManagerInfo>, Requires<PlayerResourcesInfo>
 	{
+		[Desc("If you build more actors of the same type,", "the same queue will get its build time lowered for every actor produced there.")]
+		public readonly bool SpeedUp = false;
+		[Desc("Every time another production building of the same queue is", 
+			"contructed, the build times of all actors in the queue", 
+			"are divided by this value.")]
+		public readonly int BuildTimeSpeedUpDivisor = 2;
+		[Desc("You can still build more production buildings", "than this value, but the build time won't increase further.")]
+		public readonly int MaxBuildTimeReductionSteps = 6;
+
 		public override object Create(ActorInitializer init) { return new ClassicProductionQueue(init.self, this); }
 	}
 
 	public class ClassicProductionQueue : ProductionQueue, ISync
 	{
-		public ClassicProductionQueue( Actor self, ClassicProductionQueueInfo info )
-			: base(self, self, info) {}
+		public new ClassicProductionQueueInfo Info;
+
+		public ClassicProductionQueue(Actor self, ClassicProductionQueueInfo info)
+			: base(self, self, info)
+		{
+			this.Info = info;
+		}
 
 		[Sync] bool isActive = false;
 
@@ -70,6 +89,32 @@ namespace OpenRA.Mods.RA
 				}
 			}
 			return false;
+		}
+
+		public override int GetBuildTime(String unitString)
+		{
+			var unit = Rules.Info[unitString];
+			if (unit == null || ! unit.Traits.Contains<BuildableInfo>())
+				return 0;
+
+			if (self.World.LobbyInfo.GlobalSettings.AllowCheats && self.Owner.PlayerActor.Trait<DeveloperMode>().FastBuild)
+				return 0;
+
+			var time = (int) (unit.GetBuildTime() * Info.BuildSpeedModifier);
+
+			if (Info.SpeedUp)
+			{
+				var selfsameBuildings = self.World.ActorsWithTrait<Production>()
+					.Where(p => p.Trait.Info.Produces.Contains(unit.Traits.Get<BuildableInfo>().Queue))
+						.Where(p => p.Actor.Owner == self.Owner).ToArray();
+
+				var BuildTimeReductionSteps = Math.Min(selfsameBuildings.Count(), Info.MaxBuildTimeReductionSteps);
+
+				for (int i = 1; i < BuildTimeReductionSteps; i++)
+					time /= Info.BuildTimeSpeedUpDivisor;
+			}
+
+			return time;
 		}
 	}
 }
