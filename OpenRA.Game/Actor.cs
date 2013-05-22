@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using OpenRA.FileFormats;
+using OpenRA.Graphics;
 using OpenRA.Traits;
 
 namespace OpenRA
@@ -27,6 +28,8 @@ namespace OpenRA
 		Lazy<IOccupySpace> occupySpace;
 		IHasLocation HasLocation;
 		Lazy<IMove> Move;
+		Lazy<IFacing> Facing;
+
 		public Cached<Rectangle> Bounds;
 		public Cached<Rectangle> ExtendedBounds;
 
@@ -44,8 +47,28 @@ namespace OpenRA
 			}
 		}
 
-		[Sync]
-		public Player Owner;
+		public WPos CenterPosition
+		{
+			get
+			{
+				var altitude = Move.Value != null ? Move.Value.Altitude : 0;
+				return CenterLocation.ToWPos(altitude);
+			}
+		}
+
+		public WRot Orientation
+		{
+			get
+			{
+				// TODO: Support non-zero pitch/roll in IFacing (IOrientation?)
+				var facing = Facing.Value != null ? Facing.Value.Facing : 0;
+				return new WRot(WAngle.Zero, WAngle.Zero, WAngle.FromFacing(facing));
+			}
+		}
+
+		public Shroud.ActorVisibility Sight;
+
+		[Sync] public Player Owner;
 
 		Activity currentActivity;
 		public Group Group;
@@ -71,7 +94,8 @@ namespace OpenRA
 					AddTrait(trait.Create(init));
 			}
 
-			Move = Lazy.New( () => TraitOrDefault<IMove>() );
+			Move = Lazy.New(() => TraitOrDefault<IMove>());
+			Facing = Lazy.New(() => TraitOrDefault<IFacing>());
 
 			Size = Lazy.New(() =>
 			{
@@ -79,17 +103,23 @@ namespace OpenRA
 				if (si != null && si.Bounds != null)
 					return new int2(si.Bounds[0], si.Bounds[1]);
 
-				// auto size from render
-				var firstSprite = TraitsImplementing<IRender>().SelectMany(ApplyIRender).FirstOrDefault();
-				if (firstSprite.Sprite == null) return int2.Zero;
-				return (firstSprite.Sprite.size * firstSprite.Scale).ToInt2();
+				return TraitsImplementing<IAutoSelectionSize>().Select(x => x.SelectionSize(this)).FirstOrDefault();
 			});
 
-			ApplyIRender = x => x.Render(this);
-			ApplyRenderModifier = (m, p) => p.ModifyRender(this, m);
+			if (this.HasTrait<RevealsShroud>())
+			{
+				Sight = new Shroud.ActorVisibility
+				{
+					range = this.Trait<RevealsShroud>().RevealRange,
+					vis = Shroud.GetVisOrigins(this).ToArray()
+				};
+			}
 
-			Bounds = Cached.New( () => CalculateBounds(false) );
-			ExtendedBounds = Cached.New( () => CalculateBounds(true) );
+			ApplyIRender = (x, wr) => x.Render(this, wr);
+			ApplyRenderModifier = (m, p, wr) => p.ModifyRender(this, wr, m);
+
+			Bounds = Cached.New(() => CalculateBounds(false));
+			ExtendedBounds = Cached.New(() => CalculateBounds(true));
 		}
 
 		public void Tick()
@@ -97,7 +127,12 @@ namespace OpenRA
 			Bounds.Invalidate();
 			ExtendedBounds.Invalidate();
 
-			currentActivity = Util.RunActivity( this, currentActivity );
+			currentActivity = Traits.Util.RunActivity( this, currentActivity );
+		}
+		
+		public void UpdateSight()
+		{
+			Sight.vis = Shroud.GetVisOrigins(this).ToArray();
 		}
 
 		public bool IsIdle
@@ -108,13 +143,13 @@ namespace OpenRA
 		OpenRA.FileFormats.Lazy<int2> Size;
 
 		// note: these delegates are cached to avoid massive allocation.
-		Func<IRender, IEnumerable<Renderable>> ApplyIRender;
-		Func<IEnumerable<Renderable>, IRenderModifier, IEnumerable<Renderable>> ApplyRenderModifier;
-		public IEnumerable<Renderable> Render()
+		Func<IRender, WorldRenderer, IEnumerable<Renderable>> ApplyIRender;
+		Func<IEnumerable<Renderable>, IRenderModifier, WorldRenderer, IEnumerable<Renderable>> ApplyRenderModifier;
+		public IEnumerable<Renderable> Render(WorldRenderer wr)
 		{
 			var mods = TraitsImplementing<IRenderModifier>();
-			var sprites = TraitsImplementing<IRender>().SelectMany(ApplyIRender);
-			return mods.Aggregate(sprites, ApplyRenderModifier);
+			var sprites = TraitsImplementing<IRender>().SelectMany(x => ApplyIRender(x, wr));
+			return mods.Aggregate(sprites, (m,p) => ApplyRenderModifier(m,p,wr));
 		}
 
 		// When useAltitude = true, the bounding box is extended
@@ -129,22 +164,14 @@ namespace OpenRA
 			var si = Info.Traits.GetOrDefault<SelectableInfo>();
 			if (si != null && si.Bounds != null && si.Bounds.Length > 2)
 			{
-#if true
 				loc += new PVecInt(si.Bounds[2], si.Bounds[3]);
-#else
-				loc.X += si.Bounds[2];
-				loc.Y += si.Bounds[3];
-#endif
 			}
 
 			var move = Move.Value;
 			if (move != null)
 			{
-#if true
 				loc -= new PVecInt(0, move.Altitude);
-#else
-				loc.Y -= move.Altitude;
-#endif
+
 				if (useAltitude)
 					size = new PVecInt(size.X, size.Y + move.Altitude);
 			}
@@ -235,15 +262,20 @@ namespace OpenRA
 			} );
 		}
 
-		// todo: move elsewhere.
+		// TODO: move elsewhere.
 		public void ChangeOwner(Player newOwner)
 		{
 			World.AddFrameEndTask(w =>
 			{
+				var oldOwner = Owner;
+
 				// momentarily remove from world so the ownership queries don't get confused
 				w.Remove(this);
 				Owner = newOwner;
 				w.Add(this);
+
+				foreach (var t in this.TraitsImplementing<INotifyOwnerChanged>())
+					t.OnOwnerChanged(this, oldOwner, newOwner);
 			});
 		}
 	}

@@ -1,6 +1,6 @@
 #region Copyright & License Information
 /*
- * Copyright 2007-2012 The OpenRA Developers (see AUTHORS)
+ * Copyright 2007-2013 The OpenRA Developers (see AUTHORS)
  * This file is part of OpenRA, which is free software. It is made
  * available to you under the terms of the GNU General Public License
  * as published by the Free Software Foundation. For more information,
@@ -21,7 +21,8 @@ namespace OpenRA.Mods.RA.Widgets.Logic
 	{
 		Widget bg;
 
-		public SettingsMenuLogic()
+		[ObjectCreator.UseCtor]
+		public SettingsMenuLogic(Action onExit)
 		{
 			bg = Ui.Root.Get<BackgroundWidget>("SETTINGS_MENU");
 			var tabs = bg.Get<ContainerWidget>("TAB_CONTAINER");
@@ -30,6 +31,7 @@ namespace OpenRA.Mods.RA.Widgets.Logic
 			tabs.Get<ButtonWidget>("GENERAL").OnClick = () => FlipToTab("GENERAL_PANE");
 			tabs.Get<ButtonWidget>("AUDIO").OnClick = () => FlipToTab("AUDIO_PANE");
 			tabs.Get<ButtonWidget>("DISPLAY").OnClick = () => FlipToTab("DISPLAY_PANE");
+			tabs.Get<ButtonWidget>("KEYS").OnClick = () => FlipToTab("KEYS_PANE");
 			tabs.Get<ButtonWidget>("DEBUG").OnClick = () => FlipToTab("DEBUG_PANE");
 			FlipToTab("GENERAL_PANE");
 
@@ -69,6 +71,14 @@ namespace OpenRA.Mods.RA.Widgets.Logic
 			showShellmapCheckbox.IsChecked = () => Game.Settings.Game.ShowShellmap;
 			showShellmapCheckbox.OnClick = () => Game.Settings.Game.ShowShellmap ^= true;
 
+			var useClassicMouseStyleCheckbox = general.Get<CheckboxWidget>("USE_CLASSIC_MOUSE_STYLE_CHECKBOX");
+			useClassicMouseStyleCheckbox.IsChecked = () => Game.Settings.Game.UseClassicMouseStyle;
+			useClassicMouseStyleCheckbox.OnClick = () => Game.Settings.Game.UseClassicMouseStyle ^= true;
+
+			var allowNatDiscoveryCheckbox = general.Get<CheckboxWidget>("ALLOW_NAT_DISCOVERY_CHECKBOX");
+			allowNatDiscoveryCheckbox.IsChecked = () => Game.Settings.Server.DiscoverNatDevices;
+			allowNatDiscoveryCheckbox.OnClick = () => Game.Settings.Server.DiscoverNatDevices ^= true;
+
 			// Audio
 			var audio = bg.Get("AUDIO_PANE");
 			var soundSettings = Game.Settings.Sound;
@@ -81,10 +91,23 @@ namespace OpenRA.Mods.RA.Widgets.Logic
 			musicslider.OnChange += x => Sound.MusicVolume = x;
 			musicslider.Value = Sound.MusicVolume;
 
+			var videoslider = audio.Get<SliderWidget>("VIDEO_VOLUME");
+			videoslider.OnChange += x => Sound.VideoVolume = x;
+			videoslider.Value = Sound.VideoVolume;
+
 			var cashticksdropdown = audio.Get<DropDownButtonWidget>("CASH_TICK_TYPE");
 			cashticksdropdown.OnMouseDown = _ => ShowSoundTickDropdown(cashticksdropdown, soundSettings);
 			cashticksdropdown.GetText = () => soundSettings.SoundCashTickType == SoundCashTicks.Extreme ?
 				"Extreme" : soundSettings.SoundCashTickType == SoundCashTicks.Normal ? "Normal" : "Disabled";
+
+			var mapMusicCheckbox = audio.Get<CheckboxWidget>("MAP_MUSIC_CHECKBOX");
+			mapMusicCheckbox.IsChecked = () => Game.Settings.Sound.MapMusic;
+			mapMusicCheckbox.OnClick = () => Game.Settings.Sound.MapMusic ^= true;
+
+			var soundEngineDropdown = audio.Get<DropDownButtonWidget>("SOUND_ENGINE");
+			soundEngineDropdown.OnMouseDown = _ => ShowSoundEngineDropdown(soundEngineDropdown, soundSettings);
+			soundEngineDropdown.GetText = () => soundSettings.Engine == "AL" ?
+				"OpenAL" : soundSettings.Engine == "Null" ? "None" : "OpenAL";
 
 			
 			// Display
@@ -116,16 +139,109 @@ namespace OpenRA.Mods.RA.Widgets.Logic
 				Game.viewport.Zoom = gs.PixelDouble ? 2 : 1;
 			};
 
+			var capFrameRateCheckbox = display.Get<CheckboxWidget>("CAPFRAMERATE_CHECKBOX");
+			capFrameRateCheckbox.IsChecked = () => gs.CapFramerate;
+			capFrameRateCheckbox.OnClick = () => gs.CapFramerate ^= true;
+
+			var maxFrameRate = display.Get<TextFieldWidget>("MAX_FRAMERATE");
+			maxFrameRate.Text = gs.MaxFramerate.ToString();
+
+			// Keys
+			var keys = bg.Get("KEYS_PANE");
+			var keyConfig = Game.Settings.Keys;
+
+			var specialHotkeyList = keys.Get<ScrollPanelWidget>("SPECIALHOTKEY_LIST");
+			var specialHotkeyTemplate = specialHotkeyList.Get<ScrollItemWidget>("SPECIALHOTKEY_TEMPLATE");
+
+			var pauseKey = ScrollItemWidget.Setup(specialHotkeyTemplate, () => false, () => {});
+			SetupKeyBinding(pauseKey, "Pause the game:", () => keyConfig.PauseKey, k => keyConfig.PauseKey = k);
+			specialHotkeyList.AddChild(pauseKey);
+
+			var viewportToBase = ScrollItemWidget.Setup(specialHotkeyTemplate, () => false, () => {});
+			SetupKeyBinding(viewportToBase, "Move Viewport to Base:", () => keyConfig.CycleBaseKey, k => keyConfig.CycleBaseKey = k);
+			specialHotkeyList.AddChild(viewportToBase);
+
+			var lastEventKey = ScrollItemWidget.Setup(specialHotkeyTemplate, () => false, () => {});
+			SetupKeyBinding(lastEventKey, "Move Viewport to Last Event:", () => keyConfig.ToLastEventKey, k => keyConfig.ToLastEventKey = k);
+			specialHotkeyList.AddChild(lastEventKey);
+
+			var viewportToSelectionKey = ScrollItemWidget.Setup(specialHotkeyTemplate, () => false, () => {});
+			SetupKeyBinding(viewportToSelectionKey, "Move Viewport to Selection:", () => keyConfig.ToSelectionKey, k => keyConfig.ToSelectionKey = k);
+			specialHotkeyList.AddChild(viewportToSelectionKey);
+			
+			var sellKey = ScrollItemWidget.Setup(specialHotkeyTemplate, () => false, () => {});
+			SetupKeyBinding(sellKey, "Switch to Sell-Cursor:", () => keyConfig.SellKey, k => keyConfig.SellKey = k);
+			specialHotkeyList.AddChild(sellKey);
+
+			var powerDownKey = ScrollItemWidget.Setup(specialHotkeyTemplate, () => false, () => {});
+			SetupKeyBinding(powerDownKey, "Switch to Power-Down-Cursor:", () => keyConfig.PowerDownKey, k => keyConfig.PowerDownKey = k);
+			specialHotkeyList.AddChild(powerDownKey);
+
+			var repairKey = ScrollItemWidget.Setup(specialHotkeyTemplate, () => false, () => {});
+			SetupKeyBinding(repairKey, "Switch to Repair-Cursor:", () => keyConfig.RepairKey, k => keyConfig.RepairKey = k);
+			specialHotkeyList.AddChild(repairKey);
+
+			var tabCycleKey = ScrollItemWidget.Setup(specialHotkeyTemplate, () => false, () => {});
+			SetupKeyBinding(tabCycleKey, "Cycle Tabs (+Shift to Reverse):", () => keyConfig.CycleTabsKey, k => keyConfig.CycleTabsKey = k);
+			specialHotkeyList.AddChild(tabCycleKey);
+
+			var unitCommandHotkeyList = keys.Get<ScrollPanelWidget>("UNITCOMMANDHOTKEY_LIST");
+			var unitCommandHotkeyTemplate = unitCommandHotkeyList.Get<ScrollItemWidget>("UNITCOMMANDHOTKEY_TEMPLATE");
+
+			var attackKey = ScrollItemWidget.Setup(unitCommandHotkeyTemplate, () => false, () => {});
+			SetupKeyBinding(attackKey, "Attack Move:", () => keyConfig.AttackMoveKey, k => keyConfig.AttackMoveKey = k);
+			unitCommandHotkeyList.AddChild(attackKey);
+
+			var stopKey = ScrollItemWidget.Setup(unitCommandHotkeyTemplate, () => false, () => {});
+			SetupKeyBinding(stopKey, "Stop:", () => keyConfig.StopKey, k => keyConfig.StopKey = k);
+			unitCommandHotkeyList.AddChild(stopKey);
+
+			var scatterKey = ScrollItemWidget.Setup(unitCommandHotkeyTemplate, () => false, () => {});
+			SetupKeyBinding(scatterKey, "Scatter:", () => keyConfig.ScatterKey, k => keyConfig.ScatterKey = k);
+			unitCommandHotkeyList.AddChild(scatterKey);
+
+			var stanceCycleKey = ScrollItemWidget.Setup(unitCommandHotkeyTemplate, () => false, () => {});
+			SetupKeyBinding(stanceCycleKey, "Cycle Stance:", () => keyConfig.StanceCycleKey, k => keyConfig.StanceCycleKey = k);
+			unitCommandHotkeyList.AddChild(stanceCycleKey);
+
+			var deployKey = ScrollItemWidget.Setup(unitCommandHotkeyTemplate, () => false, () => {});
+			SetupKeyBinding(deployKey, "Deploy:", () => keyConfig.DeployKey, k => keyConfig.DeployKey = k);
+			unitCommandHotkeyList.AddChild(deployKey);
+
+			var guardKey = ScrollItemWidget.Setup(unitCommandHotkeyTemplate, () => false, () => { });
+			SetupKeyBinding(guardKey, "Guard: ", () => keyConfig.GuardKey, k => keyConfig.GuardKey = k);
+			unitCommandHotkeyList.AddChild(guardKey);
+
 			// Debug
 			var debug = bg.Get("DEBUG_PANE");
 
-			var perfgraphCheckbox = debug.Get<CheckboxWidget>("PERFDEBUG_CHECKBOX");
+			var perfgraphCheckbox = debug.Get<CheckboxWidget>("PERFGRAPH_CHECKBOX");
 			perfgraphCheckbox.IsChecked = () => Game.Settings.Debug.PerfGraph;
 			perfgraphCheckbox.OnClick = () => Game.Settings.Debug.PerfGraph ^= true;
+
+			var perftextCheckbox = debug.Get<CheckboxWidget>("PERFTEXT_CHECKBOX");
+			perftextCheckbox.IsChecked = () => Game.Settings.Debug.PerfText;
+			perftextCheckbox.OnClick = () => Game.Settings.Debug.PerfText ^= true;
+
+			var sampleSlider = debug.Get<SliderWidget>("PERFTEXT_SAMPLE_AMOUNT");
+			sampleSlider.Value = sampleSlider.MaximumValue-Game.Settings.Debug.Samples;
+			sampleSlider.OnChange += x => Game.Settings.Debug.Samples = (int)sampleSlider.MaximumValue-(int)Math.Round(x);
 
 			var checkunsyncedCheckbox = debug.Get<CheckboxWidget>("CHECKUNSYNCED_CHECKBOX");
 			checkunsyncedCheckbox.IsChecked = () => Game.Settings.Debug.SanityCheckUnsyncedCode;
 			checkunsyncedCheckbox.OnClick = () => Game.Settings.Debug.SanityCheckUnsyncedCode ^= true;
+
+			var botdebugCheckbox = debug.Get<CheckboxWidget>("BOTDEBUG_CHECKBOX");
+			botdebugCheckbox.IsChecked = () => Game.Settings.Debug.BotDebug;
+			botdebugCheckbox.OnClick = () => Game.Settings.Debug.BotDebug ^= true;
+
+			var ignoreVersionMismatchCheckbox = debug.Get<CheckboxWidget>("IGNOREVERSIONMISMATCH_CHECKBOX");
+			ignoreVersionMismatchCheckbox.IsChecked = () => Game.Settings.Debug.IgnoreVersionMismatch;
+			ignoreVersionMismatchCheckbox.OnClick = () => Game.Settings.Debug.IgnoreVersionMismatch ^= true;
+
+			var verboseNatDiscoveryCheckbox = debug.Get<CheckboxWidget>("VERBOSE_NAT_DISCOVERY_CHECKBOX");
+			verboseNatDiscoveryCheckbox.IsChecked = () => Game.Settings.Server.VerboseNatDiscovery;
+			verboseNatDiscoveryCheckbox.OnClick = () => Game.Settings.Server.VerboseNatDiscovery ^= true;
 
 			bg.Get<ButtonWidget>("BUTTON_CLOSE").OnClick = () =>
 			{
@@ -133,8 +249,10 @@ namespace OpenRA.Mods.RA.Widgets.Logic
 				int.TryParse(windowWidth.Text, out x);
 				int.TryParse(windowHeight.Text, out y);
 				gs.WindowedSize = new int2(x,y);
+				int.TryParse(maxFrameRate.Text, out gs.MaxFramerate);
 				Game.Settings.Save();
 				Ui.CloseWindow();
+				onExit();
 			};
 		}
 
@@ -195,6 +313,26 @@ namespace OpenRA.Mods.RA.Widgets.Logic
 			return true;
 		}
 
+		void SetupKeyBinding(ScrollItemWidget keyWidget, string description, Func<string> getValue, Action<string> setValue)
+		{
+			keyWidget.Get<LabelWidget>("FUNCTION").GetText = () => description;
+
+			var textBox = keyWidget.Get<TextFieldWidget>("HOTKEY");
+
+			textBox.Text = getValue();
+
+			textBox.OnLoseFocus = () =>
+			{
+				textBox.Text.Trim();
+				if (textBox.Text.Length == 0)
+					textBox.Text = getValue();
+				else
+					setValue(textBox.Text);
+			};
+
+			textBox.OnEnterKey = () => { textBox.LoseFocus(); return true; };
+		}
+
 		public static bool ShowRendererDropdown(DropDownButtonWidget dropdown, GraphicSettings s)
 		{
 			var options = new Dictionary<string, string>()
@@ -208,6 +346,27 @@ namespace OpenRA.Mods.RA.Widgets.Logic
 				var item = ScrollItemWidget.Setup(itemTemplate,
 					() => s.Renderer == options[o],
 					() => s.Renderer = options[o]);
+				item.Get<LabelWidget>("LABEL").GetText = () => o;
+				return item;
+			};
+
+			dropdown.ShowDropDown("LABEL_DROPDOWN_TEMPLATE", 500, options.Keys, setupItem);
+			return true;
+		}
+
+		public static bool ShowSoundEngineDropdown(DropDownButtonWidget dropdown, SoundSettings s)
+		{
+			var options = new Dictionary<string, string>()
+			{
+				{ "OpenAL", "AL" },
+				{ "None", "Null" },
+			};
+
+			Func<string, ScrollItemWidget, ScrollItemWidget> setupItem = (o, itemTemplate) =>
+			{
+				var item = ScrollItemWidget.Setup(itemTemplate,
+					() => s.Engine == options[o],
+					() => s.Engine = options[o]);
 				item.Get<LabelWidget>("LABEL").GetText = () => o;
 				return item;
 			};

@@ -97,7 +97,7 @@ namespace OpenRA.Mods.RA
 			if (chargeTick <= 0 // Can jump
 				&& (self.Location - xy).Length <= Info.JumpDistance // Within jump range
 				&& movement.CanEnterCell(xy) // Can enter cell
-				&& (ignoreVis || self.World.LocalShroud.IsExplored(xy))) // Not in shroud						
+				&& (ignoreVis || self.Owner.Shroud.IsExplored(xy))) // Not in shroud						
 				return true;
 			else
 				return false;
@@ -112,7 +112,7 @@ namespace OpenRA.Mods.RA
 
 		public IEnumerable<Order> Order(World world, CPos xy, MouseInput mi)
 		{
-			if (mi.Button == MouseButton.Left)
+			if (mi.Button == Game.mouseButtonPreference.Cancel)
 			{
 				world.CancelInputMode();
 				yield break;

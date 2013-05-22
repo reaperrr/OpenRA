@@ -1,20 +1,25 @@
+# Arranged structures in order, from basic to advanced: Buildings, Defenses, Walls, Misc.
+
 FACT:
 	Inherits: ^Building
-	-Buildable:
+	Buildable:
+		Queue: Building
+		BuildPaletteOrder: 1000
+		Owner: None
 	Valued:
 		Cost: 2000
 	Tooltip:
 		Name: Construction Yard
-		Icon: mcvicnh
 		Description: Builds structures
+		Icon: facticnh
 	Building:
 		Power: 15
 		Footprint: xxx xxx
 		Dimensions: 3,2
 	Health:
-		HP: 2000
+		HP: 1400
 	Armor: 
-		Type: Heavy
+		Type: Wood
 	RevealsShroud:
 		Range: 10
 	Bib:
@@ -40,6 +45,9 @@ FACT:
 		ReadyAudio: ConstructionComplete
 	BaseBuilding:
 	ProductionBar:
+	BaseProvider:
+		Cooldown: 75
+		Range: 14
 
 NUKE:
 	Inherits: ^Building
@@ -65,6 +73,30 @@ NUKE:
 		Range: 4
 	Bib:
 
+NUK2:
+	Inherits: ^Building
+	Valued:
+		Cost: 500
+	Tooltip:
+		Name: Advanced Power Plant
+		Icon:nuk2icnh
+		Description: Provides more power, cheaper than the \nstandard Power Plant
+	ProvidesCustomPrerequisite:
+		Prerequisite: anypower
+	Buildable:
+		BuildPaletteOrder: 30
+		Prerequisites: anyhq
+		Owner: gdi,nod
+	Building:
+		Power: 200
+		Footprint: xx xx
+		Dimensions: 2,2
+	Health:
+		HP: 650
+	RevealsShroud:
+		Range: 4
+	Bib:
+
 PROC:
 	Inherits: ^Building
 	Valued:
@@ -74,7 +106,7 @@ PROC:
 		Icon: procicnh
 		Description: Processes raw Tiberium\ninto useable resources
 	Buildable:
-		BuildPaletteOrder: 30
+		BuildPaletteOrder: 20
 		Prerequisites: anypower
 		Owner: gdi,nod
 	Building:
@@ -91,14 +123,12 @@ PROC:
 		TickRate: 15
 	StoresOre:
 		PipColor: Green
-		PipCount: 18
-		Capacity: 1800
+		PipCount: 15
+		Capacity: 1500
 	Selectable:
 		Bounds: 73,72
 	CustomSellValue:
 		Value: 300
-	CustomBuildTimeValue:
-		Value: 80
 	FreeActor:
 		Actor: HARV
 		InitialActivity: FindResources
@@ -110,14 +140,14 @@ PROC:
 SILO:
 	Inherits: ^Building
 	Valued:
-		Cost: 150
+		Cost: 300
 	Tooltip:
 		Name: Tiberium Silo
 		Icon: siloicnh
 		Description: Stores processed Tiberium
 	Buildable:
 		Queue: Defense
-		BuildPaletteOrder: 15
+		BuildPaletteOrder: 35
 		Prerequisites: proc
 		Owner: gdi,nod
 	Building:
@@ -126,16 +156,16 @@ SILO:
 		Dimensions: 2,1
 	-GivesBuildableArea:
 	Health:
-		HP: 300
+		HP: 400
 	RevealsShroud:
 		Range: 4
 	RenderBuildingSilo:
 	StoresOre:
-		PipCount: 12
+		PipCount: 24
 		PipColor: Green
-		Capacity: 1200
+		Capacity: 2400
 	Selectable:
-		Bounds: 49,24
+		Bounds: 49,30
 	-RenderBuilding:
 	-EmitInfantryOnSell:
 
@@ -225,7 +255,7 @@ AFLD:
 	ProvidesCustomPrerequisite:
 		Prerequisite: vehicleproduction
 	Buildable:
-		BuildPaletteOrder: 60
+		BuildPaletteOrder: 50
 		Prerequisites: proc
 		Owner: nod
 	Building:
@@ -233,7 +263,7 @@ AFLD:
 		Footprint: xxxx xxxx
 		Dimensions: 4,2
 	Health:
-		HP: 1750
+		HP: 1000
 	RevealsShroud:
 		Range: 7
 	Bib:
@@ -264,7 +294,7 @@ WEAP:
 	ProvidesCustomPrerequisite:
 		Prerequisite: vehicleproduction
 	Buildable:
-		BuildPaletteOrder: 60
+		BuildPaletteOrder: 50
 		Prerequisites: proc
 		Owner: gdi
 	Building:
@@ -272,7 +302,7 @@ WEAP:
 		Footprint: ___ xxx ===
 		Dimensions: 3,3
 	Health:
-		HP: 1750
+		HP: 1000
 	RevealsShroud:
 		Range: 4
 	Bib:
@@ -292,102 +322,16 @@ WEAP:
 		LowPowerSlowdown: 3
 	ProductionBar:
 
-HQ:
-	RequiresPower:
-	CanPowerDown:
-	Inherits: ^Building
-	Valued:
-		Cost: 1000
-	Tooltip:
-		Name: Communications Center
-		Icon: hqicnh
-		Description: Provides an overview of the battlefield.\n  Requires power to operate.
-	Buildable:
-		BuildPaletteOrder: 80
-		Prerequisites: proc
-		Owner: gdi,nod
-	Building:
-		Power: -40
-		Footprint: x_ xx
-		Dimensions: 2,2
-	Health:
-		HP: 1000
-	RevealsShroud:
-		Range: 10
-	Bib:
-	ProvidesRadar:
-	RenderDetectionCircle:
-	DetectCloaked:
-		Range: 8
-	AirstrikePower:
-		Image: bombicnh
-		ChargeTime: 240
-		Description: Air Strike
-		LongDesc: Deploy an aerial napalm strike.\nBurns buildings and infantry along a line.
-		EndChargeSound: airredy1.aud
-		SelectTargetSound: select1.aud
-		UnitType: a10
-	SupportPowerChargeBar:
-
-NUK2:
-	Inherits: ^Building
-	Valued:
-		Cost: 500
-	Tooltip:
-		Name: Advanced Power Plant
-		Icon:nuk2icnh
-		Description: Provides more power, cheaper than the \nstandard Power Plant
-	ProvidesCustomPrerequisite:
-		Prerequisite: anypower
-	Buildable:
-		BuildPaletteOrder: 90
-		Prerequisites: hq
-		Owner: gdi,nod
-	Building:
-		Power: 200
-		Footprint: xx xx
-		Dimensions: 2,2
-	Health:
-		HP: 650
-	RevealsShroud:
-		Range: 4
-	Bib:
-		
-FIX:
-	Inherits: ^Building
-	Valued:
-		Cost: 1200
-	Tooltip:
-		Name: Repair Facility
-		Icon: fixicnh
-		Description: Repairs vehicles and allows the\nconstruction of additional bases.
-	Buildable:
-		BuildPaletteOrder: 70
-		Prerequisites: vehicleproduction
-		Owner: gdi,nod
-	Building:
-		Power: -30
-		Footprint: _x_ xxx _x_
-		Dimensions: 3,3
-	Health:
-		HP: 800
-	RevealsShroud:
-		Range: 5
-	BelowUnits:
-	Reservable:
-	RepairsUnits:
-	RallyPoint:
-	
 HPAD:
 	Inherits: ^Building
 	Valued:
-		Cost: 1500
+		Cost: 1000
 	Tooltip:
 		Name: Helipad
 		Icon:hpadicnh
 		Description: Produces, rearms and\nrepairs helicopters
 	Buildable:
-		BuildPaletteOrder: 50
+		BuildPaletteOrder: 60
 		Prerequisites: barracks
 		Owner: gdi,nod
 	Building:
@@ -413,6 +357,70 @@ HPAD:
 		LowPowerSlowdown: 3
 	ProductionBar:
 
+HQ:
+	RequiresPower:
+	CanPowerDown:
+	Inherits: ^Building
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: Communications Center
+		Icon: hqicnh
+		Description: Provides an overview of the battlefield.\n  Requires power to operate.
+	ProvidesCustomPrerequisite:
+		Prerequisite: anyhq
+	Buildable:
+		BuildPaletteOrder: 70
+		Prerequisites: proc
+		Owner: gdi,nod
+	Building:
+		Power: -40
+		Footprint: x_ xx
+		Dimensions: 2,2
+	Health:
+		HP: 750
+	RevealsShroud:
+		Range: 10
+	Bib:
+	ProvidesRadar:
+	RenderDetectionCircle:
+	DetectCloaked:
+		Range: 8
+	AirstrikePower:
+		Image: bombicnh
+		ChargeTime: 180
+		Description: Air Strike
+		LongDesc: Deploy an aerial napalm strike.\nBurns buildings and infantry along a line.
+		EndChargeSound: airredy1.aud
+		SelectTargetSound: select1.aud
+		UnitType: a10
+	SupportPowerChargeBar:
+
+FIX:
+	Inherits: ^Building
+	Valued:
+		Cost: 500
+	Tooltip:
+		Name: Repair Facility
+		Icon: fixicnh
+		Description: Repairs vehicles
+	Buildable:
+		BuildPaletteOrder: 80
+		Prerequisites: vehicleproduction
+		Owner: gdi,nod
+	Building:
+		Power: -30
+		Footprint: _x_ xxx _x_
+		Dimensions: 3,3
+	Health:
+		HP: 400
+	RevealsShroud:
+		Range: 5
+	BelowUnits:
+	Reservable:
+	RepairsUnits:
+	RallyPoint:
+	
 EYE:
 	RequiresPower:
 	CanPowerDown:
@@ -423,16 +431,18 @@ EYE:
 		Name: Advanced Communications Center
 		Icon: eyeicnh
 		Description: Provides access to the Ion Cannon.\n  Requires power to operate.
+	ProvidesCustomPrerequisite:
+		Prerequisite: anyhq
 	Buildable:
 		BuildPaletteOrder: 100
-		Prerequisites: hq
+		Prerequisites: anyhq
 		Owner: gdi
 	Building:
 		Power: -200
 		Footprint: x_ xx
 		Dimensions: 2,2
 	Health:
-		HP: 1000
+		HP: 1200
 	RevealsShroud:
 		Range: 10
 	Bib:
@@ -461,9 +471,11 @@ TMPL:
 		Name: Temple of Nod
 		Icon: tmplicnh
 		Description: Place of worship and secret missile silo.\n  Requires power to operate.
+	ProvidesCustomPrerequisite:
+		Prerequisite: anyhq
 	Buildable:
 		BuildPaletteOrder: 100
-		Prerequisites: hq
+		Prerequisites: anyhq
 		Owner: nod
 	Building:
 		Power: -150
@@ -482,9 +494,83 @@ TMPL:
 		BeginChargeSound: 
 		EndChargeSound: nukavail.aud
 		SelectTargetSound: select1.aud
-		LaunchSound: nukemisl.aud
+		LaunchSound: nukel.aud
 		MissileWeapon: atomic
 	SupportPowerChargeBar:
+
+GUN:
+	Inherits: ^Building
+	Valued:
+		Cost: 600
+	Tooltip:
+		Name: Turret
+		Icon: gunicnh
+		Description: Anti-Armor base defense.\n  Strong vs Tanks\n  Weak vs Infantry, Aircraft
+	Buildable:
+		Queue: Defense
+		BuildPaletteOrder: 45
+		Prerequisites: barracks
+		Owner: gdi,nod
+	Building:
+		Power: -20
+	-GivesBuildableArea:
+	Health:
+		HP: 400
+	RevealsShroud:
+		Range: 7
+	Turreted:
+		ROT: 12
+		InitialFacing: 50
+	RenderBuildingTurreted:
+	Armament:
+		Weapon: TurretGun
+		LocalOffset: -71,0,85
+	AttackTurreted:
+	AutoTarget:
+	-AutoTargetIgnore:
+	-RenderBuilding:
+	-DeadBuildingState:
+	RenderRangeCircle:
+	RenderDetectionCircle:
+	DetectCloaked:
+		Range: 5
+
+SAM:
+	Inherits: ^Building
+	RequiresPower:
+	Valued:
+		Cost: 750
+	Tooltip:
+		Name: SAM Site
+		Icon: samicnh
+		Description: Anti-Air base defense.\n  Strong vs Aircraft\n  Weak vs Infantry, Tanks
+	Buildable:
+		Queue: Defense
+		BuildPaletteOrder: 50
+		Prerequisites: hand
+		Owner: nod
+	Building:
+		Power: -20
+		Footprint: xx
+		Dimensions: 2,1
+	-GivesBuildableArea:
+	Health:
+		HP: 400
+	Armor: 
+		Type: Heavy
+	RevealsShroud:
+		Range: 5
+	Turreted:
+		ROT: 10
+		InitialFacing: 0
+	RenderBuildingTurreted:
+	Armament:
+		Weapon: SAMMissile
+	AttackPopupTurreted:
+	WithMuzzleFlash:
+	AutoTarget:
+	-RenderBuilding:
+	RenderRangeCircle:
 
 OBLI:
 	RequiresPower:
@@ -513,13 +599,17 @@ OBLI:
 		Range: 8
 	RenderBuildingCharge:
 		ChargeAudio: obelpowr.aud
-	AttackTurreted:
-		PrimaryWeapon: Laser
-		PrimaryOffset: 0,0,-2,-17
+	Armament:
+		Weapon: Laser
+		LocalOffset: 0,0,725
 		FireDelay: 8
+	AttackTurreted:
 	Turreted:
 		ROT:255
 	AutoTarget:
+	RenderBuilding:
+		QuantizedFacings: 8
+	-AutoTargetIgnore:
 	-RenderBuilding:
 	RenderRangeCircle:
 	-EmitInfantryOnSell:
@@ -527,25 +617,82 @@ OBLI:
 	DetectCloaked:
 		Range: 6
 
-CYCL:
-	Inherits: ^Wall
+GTWR:
+	Inherits: ^Building
 	Valued:
-		Cost: 25
-	CustomSellValue:
-		Value: 0
+		Cost: 500
 	Tooltip:
-		Name: Chain Link Barrier
-		Icon:cyclicnh
-		Description: Stops infantry and blocks enemy fire.\nCan be crushed by tanks.
+		Name: Guard Tower
+		Icon: gtwricnh
+		Description: Basic defensive structure.\n  Strong vs Infantry\n  Weak vs Tanks, Aircraft
 	Buildable:
 		Queue: Defense
-		BuildPaletteOrder: 20
-		Prerequisites: fact
-		Owner: nod
+		BuildPaletteOrder: 40
+		Prerequisites: barracks
+		Owner: gdi,nod
+	Building:
+		Power: -10
+	-GivesBuildableArea:
 	Health:
-		HP: 100
+		HP: 400
+	RevealsShroud:
+		Range: 7
+	Armament:
+		Weapon: HighV
+		LocalOffset: 256,0,256
+	AttackTurreted:
+	RenderBuilding:
+		QuantizedFacings: 8
+	AutoTarget:
+	-AutoTargetIgnore:
+	DetectCloaked:
+		Range: 5
+	RenderDetectionCircle:
+	RenderRangeCircle:
+	WithMuzzleFlash:
+	Turreted:
+		ROT:255
+
+ATWR:
+	Inherits: ^Building
+	RequiresPower:
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: Advanced Guard Tower
+		Icon: atwricnh
+		Description: Anti-armor defensive structure.\n  Strong vs Light Vehicles, Tanks\n  Weak vs Infantry
+	Buildable:
+		Queue: Defense
+		BuildPaletteOrder: 60
+		Prerequisites: anyhq
+		Owner: gdi
+	Building:
+		Power: -40
+		Footprint: _ x
+		Dimensions: 1,2
+	-GivesBuildableArea:
+	Health:
+		HP: 600
 	Armor: 
-		Type: Light
+		Type: Heavy
+	RevealsShroud:
+		Range: 9
+	Turreted:
+		ROT:255
+	Armament:
+		Weapon: TowerMissle
+		LocalOffset: 299,299,-85, 299,-299,-85
+		LocalYaw: -100,100
+	AttackTurreted:
+	AutoTarget:
+	RenderBuilding:
+		QuantizedFacings: 8
+	-AutoTargetIgnore:
+	RenderDetectionCircle:
+	DetectCloaked:
+		Range: 6
+	RenderRangeCircle:
 
 SBAG:
 	Inherits: ^Wall
@@ -562,6 +709,26 @@ SBAG:
 		BuildPaletteOrder: 20
 		Prerequisites: fact
 		Owner: gdi
+	Health:
+		HP: 100
+	Armor: 
+		Type: Light
+
+CYCL:
+	Inherits: ^Wall
+	Valued:
+		Cost: 25
+	CustomSellValue:
+		Value: 0
+	Tooltip:
+		Name: Chain Link Barrier
+		Icon:cyclicnh
+		Description: Stops infantry and blocks enemy fire.\nCan be crushed by tanks.
+	Buildable:
+		Queue: Defense
+		BuildPaletteOrder: 20
+		Prerequisites: fact
+		Owner: nod
 	Health:
 		HP: 100
 	Armor: 
@@ -592,145 +759,23 @@ BRIK:
 	SoundOnDamageTransition:
 		DestroyedSound: crumble.aud
 
-GUN:
-	Inherits: ^Building
-	Valued:
-		Cost: 600
+# custom prerequisites:
+BARRACKS:
 	Tooltip:
-		Name: Turret
-		Icon: gunicnh
-		Description: Anti-Armor base defense.\n  Strong vs Tanks\n  Weak vs Infantry, Aircraft
-	Buildable:
-		Queue: Defense
-		BuildPaletteOrder: 45
-		Prerequisites: barracks
-		Owner: gdi,nod
-	Building:
-		Power: -20
-	-GivesBuildableArea:
-	Health:
-		HP: 400
-	RevealsShroud:
-		Range: 7
-	Turreted:
-		ROT: 12
-		InitialFacing: 50
-	RenderBuildingTurreted:
-	AttackTurreted:
-		PrimaryWeapon: TurretGun
-		PrimaryLocalOffset: 0,4,0,-2,0
-	AutoTarget:
-	-AutoTargetIgnore:
-	-RenderBuilding:
-	-DeadBuildingState:
-	RenderRangeCircle:
-	RenderDetectionCircle:
-	DetectCloaked:
-		Range: 3
-SAM:
-	Inherits: ^Building
-	RequiresPower:
-	Valued:
-		Cost: 750
-	Tooltip:
-		Name: SAM Site
-		Icon: samicnh
-		Description: Anti-Air base defense.\n  Strong vs Aircraft\n  Weak vs Infantry, Tanks
-	Buildable:
-		Queue: Defense
-		BuildPaletteOrder: 50
-		Prerequisites: hand
-		Owner: nod
-	Building:
-		Power: -20
-		Footprint: xx
-		Dimensions: 2,1
-	-GivesBuildableArea:
-	Health:
-		HP: 400
-	Armor: 
-		Type: Heavy
-	RevealsShroud:
-		Range: 5
-	Turreted:
-		ROT: 7
-		InitialFacing: 0
-	RenderBuildingTurreted:
-	AttackPopupTurreted:
-		PrimaryWeapon: SAMMissile
-	WithMuzzleFlash:
-	AutoTarget:
-	-RenderBuilding:
-	RenderRangeCircle:
-	
-GTWR:
-	Inherits: ^Building
-	Valued:
-		Cost: 500
-	Tooltip:
-		Name: Guard Tower
-		Icon: gtwricnh
-		Description: Basic defensive structure.\n  Strong vs Infantry\n  Weak vs Tanks, Aircraft
-	Buildable:
-		Queue: Defense
-		BuildPaletteOrder: 40
-		Prerequisites: barracks
-		Owner: gdi,nod
-	Building:
-		Power: -10
-	-GivesBuildableArea:
-	Health:
-		HP: 600
-	RevealsShroud:
-		Range: 6
-	AttackTurreted:
-		PrimaryWeapon: HighV
-		PrimaryOffset: 0,0,0,-6
-		PrimaryLocalOffset: 0,-6,0,0,0
-	AutoTarget:
-	-AutoTargetIgnore:
-	DetectCloaked:
-		Range: 3
-	RenderDetectionCircle:
-	RenderRangeCircle:
-	WithMuzzleFlash:
-	Turreted:
-		ROT:255
+		Name: Infantry Production
+		Description: Infantry Production
 
-ATWR:
-	Inherits: ^Building
-	RequiresPower:
-	Valued:
-		Cost: 1000
+VEHICLEPRODUCTION:
 	Tooltip:
-		Name: Advanced Guard Tower
-		Icon: atwricnh
-		Description: Anti-armor defensive structure.\n  Strong vs Light Vehicles, Tanks\n  Weak vs Infantry
-	Buildable:
-		Queue: Defense
-		BuildPaletteOrder: 60
-		Prerequisites: hq
-		Owner: gdi
-	Building:
-		Power: -20
-		Footprint: _ x
-		Dimensions: 1,2
-	-GivesBuildableArea:
-	Health:
-		HP: 800
-	Armor: 
-		Type: Heavy
-	RevealsShroud:
-		Range: 8
-	AttackTurreted:
-		PrimaryWeapon: TowerMissle
-		PrimaryOffset: 0,0,5,2
-		PrimaryLocalOffset: 7,-7,0,0,-25, -7,-7,0,0,25
-	Turreted:
-		ROT:255
-	AutoTarget:
-	-AutoTargetIgnore:
-	RenderDetectionCircle:
-	DetectCloaked:
-		Range: 6
-	RenderRangeCircle:
+		Name: Vehicle Production
+		Description: Vehicle Production
+
+ANYPOWER:
+	Tooltip:
+		Name: Power Plant
+		Description: Power Plant
+
+ANYHQ:
+	Tooltip:
+		Name: a communications center
+		Description: a communications center

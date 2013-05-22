@@ -15,22 +15,14 @@ namespace OpenRA.Graphics
 {
 	public class ShroudRenderer
 	{
-		Traits.Shroud shroud;
+		Map map;
+		ShroudInfo shroudInfo;
 		Sprite[] shadowBits = Game.modData.SpriteLoader.LoadAllSprites("shadow");
 		Sprite[,] sprites, fogSprites;
+		int shroudHash;
 
-		bool dirty = true;
-		Map map;
-
-		public ShroudRenderer(World world)
-		{
-			this.shroud = world.LocalShroud;
-			this.map = world.Map;
-
-			sprites = new Sprite[map.MapSize.X, map.MapSize.Y];
-			fogSprites = new Sprite[map.MapSize.X, map.MapSize.Y];
-			shroud.Dirty += () => dirty = true;
-		}
+		bool initializePalettes = true;
+		PaletteReference fogPalette, shroudPalette;
 
 		static readonly byte[][] SpecialShroudTiles =
 		{
@@ -52,78 +44,133 @@ namespace OpenRA.Graphics
 			new byte[] { 46 },
 		};
 
-		Sprite ChooseShroud(int i, int j)
+		public ShroudRenderer(World world)
 		{
-			if( !shroud.IsExplored( i, j ) ) return shadowBits[ 0xf ];
+			this.map = world.Map;
+			shroudInfo = Rules.Info["player"].Traits.Get<ShroudInfo>();
 
-			// bits are for unexploredness: up, right, down, left
-			var v = 0;
-			// bits are for unexploredness: TL, TR, BR, BL
-			var u = 0;
+			sprites = new Sprite[map.MapSize.X, map.MapSize.Y];
+			fogSprites = new Sprite[map.MapSize.X, map.MapSize.Y];
 
-			if( !shroud.IsExplored( i, j - 1 ) ) { v |= 1; u |= 3; }
-			if( !shroud.IsExplored( i + 1, j ) ) { v |= 2; u |= 6; }
-			if( !shroud.IsExplored( i, j + 1 ) ) { v |= 4; u |= 12; }
-			if( !shroud.IsExplored( i - 1, j ) ) { v |= 8; u |= 9; }
-
-			var uSides = u;
-
-			if( !shroud.IsExplored( i - 1, j - 1 ) ) u |= 1;
-			if( !shroud.IsExplored( i + 1, j - 1 ) ) u |= 2;
-			if( !shroud.IsExplored( i + 1, j + 1 ) ) u |= 4;
-			if( !shroud.IsExplored( i - 1, j + 1 ) ) u |= 8;
-
-			return shadowBits[ SpecialShroudTiles[ u ^ uSides ][ v ] ];
+			// Force update on first render
+			shroudHash = -1;
 		}
 
-		Sprite ChooseFog(int i, int j)
+		Sprite ChooseShroud(Shroud s, int i, int j)
 		{
-			if (!shroud.IsVisible(i,j)) return shadowBits[0xf];
-			if (!shroud.IsExplored(i, j)) return shadowBits[0xf];
+			if (!s.IsExplored(i, j))
+				return shadowBits[0xf];
 
 			// bits are for unexploredness: up, right, down, left
 			var v = 0;
 			// bits are for unexploredness: TL, TR, BR, BL
 			var u = 0;
 
-			if (!shroud.IsVisible(i, j - 1)) { v |= 1; u |= 3; }
-			if (!shroud.IsVisible(i + 1, j)) { v |= 2; u |= 6; }
-			if (!shroud.IsVisible(i, j + 1)) { v |= 4; u |= 12; }
-			if (!shroud.IsVisible(i - 1, j)) { v |= 8; u |= 9; }
+			if (!s.IsExplored(i, j - 1)) { v |= 1; u |= 3; }
+			if (!s.IsExplored(i + 1, j)) { v |= 2; u |= 6; }
+			if (!s.IsExplored(i, j + 1)) { v |= 4; u |= 12; }
+			if (!s.IsExplored(i - 1, j)) { v |= 8; u |= 9; }
 
 			var uSides = u;
-
-			if (!shroud.IsVisible(i - 1, j - 1)) u |= 1;
-			if (!shroud.IsVisible(i + 1, j - 1)) u |= 2;
-			if (!shroud.IsVisible(i + 1, j + 1)) u |= 4;
-			if (!shroud.IsVisible(i - 1, j + 1)) u |= 8;
+			if (!s.IsExplored(i - 1, j - 1)) u |= 1;
+			if (!s.IsExplored(i + 1, j - 1)) u |= 2;
+			if (!s.IsExplored(i + 1, j + 1)) u |= 4;
+			if (!s.IsExplored(i - 1, j + 1)) u |= 8;
 
 			return shadowBits[SpecialShroudTiles[u ^ uSides][v]];
 		}
 
-		internal void Draw( WorldRenderer wr )
+		Sprite ChooseFog(Shroud s, int i, int j)
 		{
-			if (dirty)
-			{
-				dirty = false;
-				for (int i = map.Bounds.Left; i < map.Bounds.Right; i++)
-					for (int j = map.Bounds.Top; j < map.Bounds.Bottom; j++)
-						sprites[i, j] = ChooseShroud(i, j);
+			if (!s.IsVisible(i, j)) return shadowBits[0xf];
+			if (!s.IsExplored(i, j)) return shadowBits[0xf];
 
-				for (int i = map.Bounds.Left; i < map.Bounds.Right; i++)
-					for (int j = map.Bounds.Top; j < map.Bounds.Bottom; j++)
-						fogSprites[i, j] = ChooseFog(i, j);
-			}
+			// bits are for unexploredness: up, right, down, left
+			var v = 0;
+			// bits are for unexploredness: TL, TR, BR, BL
+			var u = 0;
 
-			var clipRect = Game.viewport.WorldBounds(wr.world);
-			DrawShroud( wr, clipRect, fogSprites, "fog" );
-			DrawShroud( wr, clipRect, sprites, "shroud" );
+			if (!s.IsVisible(i, j - 1)) { v |= 1; u |= 3; }
+			if (!s.IsVisible(i + 1, j)) { v |= 2; u |= 6; }
+			if (!s.IsVisible(i, j + 1)) { v |= 4; u |= 12; }
+			if (!s.IsVisible(i - 1, j)) { v |= 8; u |= 9; }
+
+			var uSides = u;
+
+			if (!s.IsVisible(i - 1, j - 1)) u |= 1;
+			if (!s.IsVisible(i + 1, j - 1)) u |= 2;
+			if (!s.IsVisible(i + 1, j + 1)) u |= 4;
+			if (!s.IsVisible(i - 1, j + 1)) u |= 8;
+
+			return shadowBits[SpecialShroudTiles[u ^ uSides][v]];
 		}
 
-		void DrawShroud( WorldRenderer wr, Rectangle clip, Sprite[,] s, string pal )
+		void GenerateSprites(Shroud shroud)
 		{
-			var shroudPalette = wr.GetPaletteIndex(pal);
+			var hash = shroud != null ? shroud.Hash : 0;
+			if (shroudHash == hash)
+				return;
 
+			shroudHash = hash;
+			if (shroud == null)
+			{
+				// Players with no shroud see the whole map so we only need to set the edges
+				var b = map.Bounds;
+				for (int i = b.Left; i < b.Right; i++)
+					for (int j = b.Top; j < b.Bottom; j++)
+				{
+					var v = 0;
+					var u = 0;
+
+					if (j == b.Top) { v |= 1; u |= 3; }
+					if (i == b.Right - 1) { v |= 2; u |= 6; }
+					if (j == b.Bottom - 1) { v |= 4; u |= 12; }
+					if (i == b.Left) { v |= 8; u |= 9; }
+
+					var uSides = u;
+					if (i == b.Left && j == b.Top) u |= 1;
+					if (i == b.Right - 1 && j == b.Top) u |= 2;
+					if (i == b.Right - 1 && j == b.Bottom - 1) u |= 4;
+					if (i == b.Left && j == b.Bottom - 1) u |= 8;
+
+					sprites[i, j] = fogSprites[i, j] = shadowBits[SpecialShroudTiles[u ^ uSides][v]];
+				}
+			}
+			else
+			{
+				for (int i = map.Bounds.Left; i < map.Bounds.Right; i++)
+					for (int j = map.Bounds.Top; j < map.Bounds.Bottom; j++)
+						sprites[i, j] = ChooseShroud(shroud, i, j);
+
+				for (int i = map.Bounds.Left; i < map.Bounds.Right; i++)
+					for (int j = map.Bounds.Top; j < map.Bounds.Bottom; j++)
+						fogSprites[i, j] = ChooseFog(shroud, i, j);
+			}
+		}
+
+		internal void Draw(WorldRenderer wr, Shroud shroud)
+		{
+			if (initializePalettes)
+			{
+				if (shroudInfo.Fog)
+					fogPalette = wr.Palette("fog");
+				shroudPalette = wr.Palette("shroud");
+				initializePalettes = false;
+			}
+
+			GenerateSprites(shroud);
+
+			var clipRect = Game.viewport.WorldBounds(wr.world);
+
+			// We draw the shroud when disabled to hide the sharp map edges
+			DrawShroud(wr, clipRect, sprites, shroudPalette);
+
+			if (shroudInfo.Fog)
+				DrawShroud(wr, clipRect, fogSprites, fogPalette);
+		}
+
+		void DrawShroud(WorldRenderer wr, Rectangle clip, Sprite[,] s, PaletteReference pal)
+		{
 			for (var j = clip.Top; j < clip.Bottom; j++)
 			{
 				var starti = clip.Left;
@@ -138,14 +185,14 @@ namespace OpenRA.Graphics
 					{
 						s[starti, j].DrawAt(
 							Game.CellSize * new float2(starti, j),
-							shroudPalette,
+							pal.Index,
 							new float2(Game.CellSize * (i - starti), Game.CellSize));
 						starti = i + 1;
 					}
 
 					s[i, j].DrawAt(
 						Game.CellSize * new float2(i, j),
-						shroudPalette);
+						pal.Index);
 					starti = i + 1;
 					last = s[i, j];
 				}
@@ -153,7 +200,7 @@ namespace OpenRA.Graphics
 				if (starti < clip.Right)
 					s[starti, j].DrawAt(
 						Game.CellSize * new float2(starti, j),
-						shroudPalette,
+						pal.Index,
 						new float2(Game.CellSize * (clip.Right - starti), Game.CellSize));
 			}
 		}

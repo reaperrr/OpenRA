@@ -1,6 +1,6 @@
 ﻿#region Copyright & License Information
 /*
- * Copyright 2007-2011 The OpenRA Developers (see AUTHORS)
+ * Copyright 2007-2013 The OpenRA Developers (see AUTHORS)
  * This file is part of OpenRA, which is free software. It is made
  * available to you under the terms of the GNU General Public License
  * as published by the Free Software Foundation. For more information,
@@ -16,20 +16,13 @@ using OpenRA.Graphics;
 using OpenRA.Network;
 using OpenRA.Orders;
 using OpenRA.Widgets;
+using OpenRA.Mods.RA.Orders;
 
 namespace OpenRA.Mods.RA.Widgets
 {
 	public class WorldCommandWidget : Widget
 	{
 		public World World { get { return OrderManager.world; } }
-
-		public string AttackMoveKey = "a";
-		public string StopKey = "s";
-		public string ScatterKey = "x";
-		public string DeployKey = "f";
-		public string StanceCycleKey = "z";
-		public string BaseCycleKey = "backspace";
-		public string GotoLastEventKey = "space";
 
 		public readonly OrderManager OrderManager;
 
@@ -51,44 +44,49 @@ namespace OpenRA.Mods.RA.Widgets
 		{
 			if (e.Modifiers == Modifiers.None && e.Event == KeyInputEvent.Down)
 			{
-				if (e.KeyName == BaseCycleKey)
+				if (e.KeyName == Game.Settings.Keys.CycleBaseKey)
 					return CycleBases();
 
-				if (e.KeyName == GotoLastEventKey)
-					return GotoLastEvent();
+				if (e.KeyName == Game.Settings.Keys.ToLastEventKey)
+					return ToLastEvent();
 
-				if (!World.Selection.Actors.Any())
+				if (e.KeyName == Game.Settings.Keys.ToSelectionKey)
+					return ToSelection();
+
+				if (!World.Selection.Actors.Any()) // Put all functions, that are no unit-functions, before this line!
 					return false;
 
-				if (e.KeyName == AttackMoveKey)
+				if (e.KeyName == Game.Settings.Keys.AttackMoveKey)
 					return PerformAttackMove();
 
-				if (e.KeyName == StopKey)
+				if (e.KeyName == Game.Settings.Keys.StopKey)
 					return PerformStop();
 
-				if (e.KeyName == ScatterKey)
+				if (e.KeyName == Game.Settings.Keys.ScatterKey)
 					return PerformScatter();
 
-				if (e.KeyName == DeployKey)
+				if (e.KeyName == Game.Settings.Keys.DeployKey)
 					return PerformDeploy();
 
-				if (e.KeyName == StanceCycleKey)
+				if (e.KeyName == Game.Settings.Keys.StanceCycleKey)
 					return PerformStanceCycle();
+
+				if (e.KeyName == Game.Settings.Keys.GuardKey)
+					return PerformGuard();
 			}
 
 			return false;
 		}
 
-		// todo: take ALL this garbage and route it through the OrderTargeter stuff.
+		// TODO: take ALL this garbage and route it through the OrderTargeter stuff.
 
 		bool PerformAttackMove()
 		{
-			var actors = World.Selection.Actors
-				.Where(a => a.Owner == World.LocalPlayer).ToArray();
+			var actors = World.Selection.Actors.Where(a => a.Owner == World.LocalPlayer).ToArray();
 
-			if (actors.Length > 0)
-				World.OrderGenerator = new GenericSelectTarget(actors, "AttackMove",
-				"attackmove", MouseButton.Right);
+			if (actors.Any())
+				World.OrderGenerator = new GenericSelectTarget(actors,
+					"AttackMove", "attackmove", Game.mouseButtonPreference.Action);
 
 			return true;
 		}
@@ -96,7 +94,7 @@ namespace OpenRA.Mods.RA.Widgets
 		void PerformKeyboardOrderOnSelection(Func<Actor, Order> f)
 		{
 			var orders = World.Selection.Actors
-				.Where(a => a.Owner == World.LocalPlayer).Select(f).ToArray();
+				.Where(a => a.Owner == World.LocalPlayer && !a.Destroyed).Select(f).ToArray();
 			foreach (var o in orders) World.IssueOrder(o);
 			World.PlayVoiceForOrders(orders);
 		}
@@ -115,10 +113,11 @@ namespace OpenRA.Mods.RA.Widgets
 
 		bool PerformDeploy()
 		{
-			/* hack: three orders here -- ReturnToBase, DeployTransform, Unload. */
+			/* hack: multiple orders here */
 			PerformKeyboardOrderOnSelection(a => new Order("ReturnToBase", a, false));
 			PerformKeyboardOrderOnSelection(a => new Order("DeployTransform", a, false));
 			PerformKeyboardOrderOnSelection(a => new Order("Unload", a, false));
+			PerformKeyboardOrderOnSelection(a => new Order("DemoDeploy", a, false));
 			return true;
 		}
 
@@ -149,6 +148,16 @@ namespace OpenRA.Mods.RA.Widgets
 			return true;
 		}
 
+		bool PerformGuard()
+		{
+			var actors = World.Selection.Actors.Where(a => a.Owner == World.LocalPlayer && a.HasTrait<Guard>());
+
+			if (actors.Any())
+				World.OrderGenerator = new GuardOrderGenerator(actors);
+
+			return true;
+		}
+
 		bool CycleBases()
 		{
 			var bases = World.ActorsWithTrait<BaseBuilding>()
@@ -165,11 +174,11 @@ namespace OpenRA.Mods.RA.Widgets
 				next = bases.Select(b => b.Actor).First();
 
 			World.Selection.Combine(World, new Actor[] { next }, false, true);
-			Game.viewport.Center(World.Selection.Actors);
-			return true;
+
+			return ToSelection();
 		}
 
-		bool GotoLastEvent()
+		bool ToLastEvent()
 		{
 			if (World.LocalPlayer == null)
 				return true;
@@ -182,6 +191,12 @@ namespace OpenRA.Mods.RA.Widgets
 				return true;
 
 			Game.viewport.Center(eventNotifier.lastAttackLocation.ToFloat2());
+			return true;
+		}
+
+		bool ToSelection()
+		{
+			Game.viewport.Center(World.Selection.Actors);
 			return true;
 		}
 	}

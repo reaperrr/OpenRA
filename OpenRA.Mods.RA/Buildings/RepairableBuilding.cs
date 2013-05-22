@@ -11,14 +11,17 @@
 using System;
 using OpenRA.Mods.RA.Effects;
 using OpenRA.Traits;
+using OpenRA.FileFormats;
 
 namespace OpenRA.Mods.RA.Buildings
 {
+	[Desc("Building can be repaired by the repair button.")]
 	public class RepairableBuildingInfo : ITraitInfo, Requires<HealthInfo>
 	{
 		public readonly int RepairPercent = 20;
 		public readonly int RepairInterval = 24;
 		public readonly int RepairStep = 7;
+		public readonly string IndicatorPalettePrefix = "player";
 
 		public object Create(ActorInitializer init) { return new RepairableBuilding(init.self, this); }
 	}
@@ -51,7 +54,7 @@ namespace OpenRA.Mods.RA.Buildings
 						Sound.PlayNotification(Repairer, "Speech", "Repairing", self.Owner.Country.Race);
 
 						self.World.AddFrameEndTask(
-							w => w.Add(new RepairIndicator(self, p)));
+							w => w.Add(new RepairIndicator(self, Info.IndicatorPalettePrefix, p)));
 					}
 				}
 			}

@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using OpenRA.Graphics;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.RA
@@ -67,13 +68,16 @@ namespace OpenRA.Mods.RA
 
 		static readonly Renderable[] Nothing = { };
 
-		public IEnumerable<Renderable> ModifyRender(Actor self, IEnumerable<Renderable> rs)
+		public IEnumerable<Renderable> ModifyRender(Actor self, WorldRenderer wr, IEnumerable<Renderable> r)
 		{
 			if (remainingTime > 0)
-				return rs;
+				return r;
 
-			if (Cloaked && IsVisible(self))
-				return rs.Select(a => a.WithPalette(info.Palette));
+			if (Cloaked && IsVisible(self, self.World.RenderPlayer))
+				if (string.IsNullOrEmpty(info.Palette))
+					return r;
+				else
+					return r.Select(a => a.WithPalette(wr.Palette(info.Palette)));
 			else
 				return Nothing;
 		}
@@ -92,14 +96,13 @@ namespace OpenRA.Mods.RA
 				lastPos = self.Location;
 			}
 		}
-
-		public bool IsVisible(Actor self)
+		
+		public bool IsVisible(Actor self, Player byPlayer)
 		{
-			if (!Cloaked || self.Owner == self.World.LocalPlayer ||
-				self.World.LocalPlayer == null ||
-				self.Owner.Stances[self.World.LocalPlayer] == Stance.Ally)
+			if (!Cloaked || self.Owner.IsAlliedWith(byPlayer))
 				return true;
 
+			// TODO: Change this to be per-player? A cloak detector revealing to everyone is dumb
 			return self.World.ActorsWithTrait<DetectCloaked>().Any(a =>
 				a.Actor.Owner.Stances[self.Owner] != Stance.Ally &&
 				(self.Location - a.Actor.Location).Length < a.Actor.Info.Traits.Get<DetectCloakedInfo>().Range);
@@ -107,7 +110,7 @@ namespace OpenRA.Mods.RA
 
 		public Color RadarColorOverride(Actor self)
 		{
-			var c = self.Owner.ColorRamp.GetColor(0);
+			var c = self.Owner.Color.RGB;
 			if (self.Owner == self.World.LocalPlayer && Cloaked)
 				c = Color.FromArgb(128, c);
 			return c;

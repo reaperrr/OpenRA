@@ -33,21 +33,21 @@ namespace OpenRA.Traits
 			{
 				hasSetupPalettes = true;
 				foreach (var rt in world.WorldActor.TraitsImplementing<ResourceType>())
-					rt.info.PaletteIndex = wr.GetPaletteIndex(rt.info.Palette);
+					rt.info.PaletteRef = wr.Palette(rt.info.Palette);
 			}
 
 			var clip = Game.viewport.WorldBounds(world);
 			for (int x = clip.Left; x < clip.Right; x++)
 				for (int y = clip.Top; y < clip.Bottom; y++)
 				{
-					if (!world.LocalShroud.IsExplored(new CPos(x, y)))
+					if (world.ShroudObscures(new CPos(x, y)))
 						continue;
 
 					var c = content[x, y];
 					if (c.image != null)
 						c.image[c.density].DrawAt(
 							new CPos(x, y).ToPPos().ToFloat2(),
-							c.type.info.PaletteIndex);
+							c.type.info.PaletteRef.Index);
 				}
 		}
 

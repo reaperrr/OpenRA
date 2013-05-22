@@ -26,7 +26,7 @@ namespace OpenRA
 		public int Deaths;
 		public WinState WinState = WinState.Undefined;
 
-		public readonly ColorRamp ColorRamp;
+		public readonly HSLColor Color;
 
 		public readonly string PlayerName;
 		public readonly string InternalName;
@@ -36,7 +36,7 @@ namespace OpenRA
 		public readonly PlayerReference PlayerReference;
 		public bool IsBot;
 
-		public Shroud Shroud { get { return World.LocalShroud; } }
+		public Shroud Shroud;
 		public World World { get; private set; }
 
 		static CountryInfo ChooseCountry(World world, string name)
@@ -60,7 +60,7 @@ namespace OpenRA
 			if (client != null)
 			{
 				ClientIndex = client.Index;
-				ColorRamp = client.ColorRamp;
+				Color = client.Color;
 				PlayerName = client.Name;
 				botType = client.Bot;
 				Country = ChooseCountry(world, client.Country);
@@ -68,14 +68,15 @@ namespace OpenRA
 			else
 			{
 				// Map player
-				ClientIndex = 0; // Owned by the host (todo: fix this)
-				ColorRamp = pr.ColorRamp;
+				ClientIndex = 0; // Owned by the host (TODO: fix this)
+				Color = pr.Color;
 				PlayerName = pr.Name;
 				NonCombatant = pr.NonCombatant;
 				botType = pr.Bot;
 				Country = ChooseCountry(world, pr.Race);
 			}
 			PlayerActor = world.CreateActor("Player", new TypeDictionary { new OwnerInit(this) });
+			Shroud = PlayerActor.Trait<Shroud>();
 
 			// Enable the bot logic on the host
 			IsBot = botType != null;
@@ -90,6 +91,16 @@ namespace OpenRA
 			}
 		}
 
+		public override string ToString()
+		{
+			return "{0} ({1})".F(PlayerName, ClientIndex);
+		}
+
 		public Dictionary<Player, Stance> Stances = new Dictionary<Player, Stance>();
+		public bool IsAlliedWith(Player p)
+		{
+			// Observers are considered as allies
+			return p == null || Stances[p] == Stance.Ally;
+		}
 	}
 }

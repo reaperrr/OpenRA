@@ -212,9 +212,6 @@ namespace OpenRA.Mods.RA
 		// Returns true when unloading is complete
 		public bool TickUnload(Actor self, Actor proc)
 		{
-			if (!proc.IsInWorld)
-				return false;	// fail to deliver if there is no proc.
-
 			// Wait until the next bale is ready
 			if (--currentUnloadTicks > 0)
 				return false;
@@ -428,7 +425,7 @@ namespace OpenRA.Mods.RA
 			public bool CanTargetLocation(Actor self, CPos location, List<Actor> actorsAtLocation, bool forceAttack, bool forceQueued, ref string cursor)
 			{
 				// Don't leak info about resources under the shroud
-				if (!self.World.LocalShroud.IsExplored(location)) return false;
+				if (!self.Owner.Shroud.IsExplored(location)) return false;
 
 				var res = self.World.WorldActor.Trait<ResourceLayer>().GetResource(location);
 				var info = self.Info.Traits.Get<HarvesterInfo>();

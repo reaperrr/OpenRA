@@ -1,11 +1,12 @@
 #region Copyright & License Information
 /*
- * Copyright 2007-2011 The OpenRA Developers (see AUTHORS)
+ * Copyright 2007-2013 The OpenRA Developers (see AUTHORS)
  * This file is part of OpenRA, which is free software. It is made
  * available to you under the terms of the GNU General Public License
  * as published by the Free Software Foundation. For more information,
  * see COPYING.
  */
+
 #endregion
 
 using System;
@@ -17,6 +18,7 @@ using OpenRA.GameRules;
 using OpenRA.Mods.RA;
 using OpenRA.Mods.RA.Widgets.Logic;
 using OpenRA.Widgets;
+using OpenRA.Mods.RA.Widgets;
 
 namespace OpenRA.Mods.Cnc.Widgets.Logic
 {
@@ -25,7 +27,7 @@ namespace OpenRA.Mods.Cnc.Widgets.Logic
 		enum PanelType { General, Input }
 
 		PanelType Settings = PanelType.General;
-		ColorPickerPaletteModifier playerPalettePreview;
+		ColorPreviewManagerWidget colorPreview;
 		World world;
 
 		[ObjectCreator.UseCtor]
@@ -37,7 +39,7 @@ namespace OpenRA.Mods.Cnc.Widgets.Logic
 			// General pane
 			var generalButton = panel.Get<ButtonWidget>("GENERAL_BUTTON");
 			generalButton.OnClick = () => Settings = PanelType.General;
-			generalButton.IsDisabled = () => Settings == PanelType.General;
+			generalButton.IsHighlighted = () => Settings == PanelType.General;
 
 			var generalPane = panel.Get("GENERAL_CONTROLS");
 			generalPane.IsVisible = () => Settings == PanelType.General;
@@ -52,12 +54,12 @@ namespace OpenRA.Mods.Cnc.Widgets.Logic
 			var nameTextfield = generalPane.Get<TextFieldWidget>("NAME_TEXTFIELD");
 			nameTextfield.Text = playerSettings.Name;
 
-			playerPalettePreview = world.WorldActor.Trait<ColorPickerPaletteModifier>();
-			playerPalettePreview.Ramp = playerSettings.ColorRamp;
+			colorPreview = panel.Get<ColorPreviewManagerWidget>("COLOR_MANAGER");
+			colorPreview.Color = playerSettings.Color;
 
 			var colorDropdown = generalPane.Get<DropDownButtonWidget>("COLOR");
 			colorDropdown.OnMouseDown = _ => ShowColorPicker(colorDropdown, playerSettings);
-			colorDropdown.Get<ColorBlockWidget>("COLORBLOCK").GetColor = () => playerSettings.ColorRamp.GetColor(0);
+			colorDropdown.Get<ColorBlockWidget>("COLORBLOCK").GetColor = () => playerSettings.Color.RGB;
 
 			// Debug
 			var perftextCheckbox = generalPane.Get<CheckboxWidget>("PERFTEXT_CHECKBOX");
@@ -107,8 +109,8 @@ namespace OpenRA.Mods.Cnc.Widgets.Logic
 			musicSlider.Value = soundSettings.MusicVolume;
 
 			var shellmapMusicCheckbox = generalPane.Get<CheckboxWidget>("SHELLMAP_MUSIC");
-			shellmapMusicCheckbox.IsChecked = () => soundSettings.ShellmapMusic;
-			shellmapMusicCheckbox.OnClick = () => soundSettings.ShellmapMusic ^= true;
+			shellmapMusicCheckbox.IsChecked = () => soundSettings.MapMusic;
+			shellmapMusicCheckbox.OnClick = () => soundSettings.MapMusic ^= true;
 
 			// Input pane
 			var inputPane = panel.Get("INPUT_CONTROLS");
@@ -116,9 +118,11 @@ namespace OpenRA.Mods.Cnc.Widgets.Logic
 
 			var inputButton = panel.Get<ButtonWidget>("INPUT_BUTTON");
 			inputButton.OnClick = () => Settings = PanelType.Input;
-			inputButton.IsDisabled = () => Settings == PanelType.Input;
+			inputButton.IsHighlighted = () => Settings == PanelType.Input;
 
-			inputPane.Get<CheckboxWidget>("CLASSICORDERS_CHECKBOX").IsDisabled = () => true;
+			var classicMouseCheckbox = inputPane.Get<CheckboxWidget>("CLASSICORDERS_CHECKBOX");
+			classicMouseCheckbox.IsChecked = () => gameSettings.UseClassicMouseStyle;
+			classicMouseCheckbox.OnClick = () => gameSettings.UseClassicMouseStyle ^= true;
 
 			var scrollSlider = inputPane.Get<SliderWidget>("SCROLLSPEED_SLIDER");
 			scrollSlider.Value = gameSettings.ViewportEdgeScrollStep;
@@ -151,17 +155,21 @@ namespace OpenRA.Mods.Cnc.Widgets.Logic
 
 		bool ShowColorPicker(DropDownButtonWidget color, PlayerSettings s)
 		{
-			Action<ColorRamp> onSelect = c => { s.ColorRamp = c; color.RemovePanel(); };
-			Action<ColorRamp> onChange = c => {	playerPalettePreview.Ramp = c; };
+			Action<HSLColor> onChange = c => colorPreview.Color = c;
+			Action onExit = () =>
+			{
+				s.Color = colorPreview.Color;
+				color.RemovePanel();
+			};
 
 			var colorChooser = Game.LoadWidget(world, "COLOR_CHOOSER", null, new WidgetArgs()
 			{
-				{ "onSelect", onSelect },
+				{ "onExit", onExit },
 				{ "onChange", onChange },
-				{ "initialRamp", s.ColorRamp }
+				{ "initialColor", s.Color }
 			});
 
-			color.AttachPanel(colorChooser);
+			color.AttachPanel(colorChooser, onExit);
 			return true;
 		}
 

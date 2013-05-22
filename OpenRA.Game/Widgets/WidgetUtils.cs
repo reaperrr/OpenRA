@@ -34,6 +34,11 @@ namespace OpenRA.Widgets
 			Game.Renderer.SpriteRenderer.DrawSprite(s,pos, wr, "chrome");
 		}
 
+		public static void DrawSHP(Sprite s, float2 pos, WorldRenderer wr, float2 size)
+		{
+			Game.Renderer.SpriteRenderer.DrawSprite(s, pos, wr, "chrome", size);
+		}
+
 		public static void DrawPanel(string collection, Rectangle Bounds)
 		{
 			DrawPanelPartial(collection, Bounds, PanelSides.All);
@@ -220,6 +225,12 @@ namespace OpenRA.Widgets
 		{
 			var mod = Game.modData.Manifest.Mods[0];
 			return Mod.AllMods[mod].Title;
+		}
+
+		public static string ActiveModId()
+		{
+			var mod = Game.modData.Manifest.Mods[0];
+			return Mod.AllMods[mod].Id;
 		}
 
 		public static string ChooseInitialMap(string map)

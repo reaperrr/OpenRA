@@ -1,4 +1,4 @@
-﻿#region Copyright & License Information
+#region Copyright & License Information
 /*
  * Copyright 2007-2011 The OpenRA Developers (see AUTHORS)
  * This file is part of OpenRA, which is free software. It is made
@@ -84,15 +84,12 @@ namespace OpenRA.Mods.RA
 		{
 			get
 			{
-				yield return new UnitTraitOrderTargeter<IAcceptSpy>( "SpyInfiltrate", 7, "enter", true, false ) { ForceAttack=false };
-				yield return new UnitTraitOrderTargeter<RenderInfantry>( "Disguise", 7, "ability", true, true ) { ForceAttack=false };
+				yield return new TargetTypeOrderTargeter("Disguise", "Disguise", 7, "ability", true, true) { ForceAttack=false };
 			}
 		}
 
 		public Order IssueOrder( Actor self, IOrderTargeter order, Target target, bool queued )
 		{
-			if( order.OrderID == "SpyInfiltrate" )
-				return new Order(order.OrderID, self, queued) { TargetActor = target.Actor };
 			if( order.OrderID == "Disguise" )
 				return new Order(order.OrderID, self, queued) { TargetActor = target.Actor };
 			return null;
@@ -100,14 +97,6 @@ namespace OpenRA.Mods.RA
 
 		public void ResolveOrder(Actor self, Order order)
 		{
-			if (order.OrderString == "SpyInfiltrate")
-			{
-				self.SetTargetLine(Target.FromOrder(order), Color.Red);
-
-				self.CancelActivity();
-				self.QueueActivity(new Enter(order.TargetActor));
-				self.QueueActivity(new Infiltrate(order.TargetActor));
-			}
 			if (order.OrderString == "Disguise")
 			{
 				var target = order.TargetActor == self ? null : order.TargetActor;
@@ -121,17 +110,15 @@ namespace OpenRA.Mods.RA
 
 		public string VoicePhraseForOrder(Actor self, Order order)
 		{
-			return (order.OrderString == "Disguise"
-					|| order.OrderString == "SpyInfiltrate") ? "Attack" : null;
+			return (order.OrderString == "Disguise") ? "Attack" : null;
 		}
 
 		public Color RadarColorOverride(Actor self)
 		{
-			if (!Disguised || self.World.LocalPlayer == null ||
-				self.Owner.Stances[self.World.LocalPlayer] == Stance.Ally)
-				return self.Owner.ColorRamp.GetColor(0);
+			if (!Disguised || self.Owner.IsAlliedWith(self.World.RenderPlayer))
+				return self.Owner.Color.RGB;
 
-			return disguisedAsPlayer.ColorRamp.GetColor(0);
+			return disguisedAsPlayer.Color.RGB;
 		}
 
 		void DisguiseAs(Actor target)
@@ -155,4 +142,7 @@ namespace OpenRA.Mods.RA
 
 	class IgnoresDisguiseInfo : TraitInfo<IgnoresDisguise> {}
 	class IgnoresDisguise {}
+
+	class DontDestroyWhenInfiltratingInfo : TraitInfo<DontDestroyWhenInfiltrating> { }
+	class DontDestroyWhenInfiltrating { }
 }

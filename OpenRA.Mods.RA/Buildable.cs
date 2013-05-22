@@ -22,8 +22,9 @@ namespace OpenRA.Mods.RA
 
 		public readonly string Queue;
 		public readonly bool Hidden = false;
+		public readonly int BuildLimit = 0;
 
-		// todo: UI fluff; doesn't belong here
+		// TODO: UI fluff; doesn't belong here
 		public readonly int BuildPaletteOrder = 9999;
 		public readonly string Hotkey = null;
 	}

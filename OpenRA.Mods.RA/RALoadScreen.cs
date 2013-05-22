@@ -41,7 +41,7 @@ namespace OpenRA.Mods.RA
 			r = Game.Renderer;
 			if (r == null) return;
 
-			var s = new Sheet("mods/ra/uibits/loadscreen.png");
+			var s = new Sheet(Info["LoadScreenImage"]);
 			Logo = new Sprite(s, new Rectangle(0,0,256,256), TextureChannel.Alpha);
 			Stripe = new Sprite(s, new Rectangle(256,0,256,256), TextureChannel.Alpha);
 			StripeRect = new Rectangle(0, Renderer.Resolution.Height/2 - 128, Renderer.Resolution.Width, 256);
@@ -55,6 +55,9 @@ namespace OpenRA.Mods.RA
 
 			// Update text at most every 0.5 seconds
 			if (lastLoadScreen.ElapsedTime() < 0.5)
+				return;
+
+			if (r.Fonts == null)
 				return;
 
 			lastLoadScreen.Reset();
@@ -87,11 +90,7 @@ namespace OpenRA.Mods.RA
 				Ui.OpenWindow(Info["InstallerMenuWidget"], args);
 			}
 			else
-			{
 				Game.LoadShellMap();
-				Ui.ResetAll();
-				Ui.OpenWindow("MAINMENU_BG");
-			}
 		}
 	}
 }

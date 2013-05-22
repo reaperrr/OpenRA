@@ -10,8 +10,8 @@
 
 using System.Collections.Generic;
 using System.Drawing;
+using OpenRA.Effects;
 using OpenRA.Mods.RA.Activities;
-using OpenRA.Mods.RA.Buildings;
 using OpenRA.Mods.RA.Move;
 using OpenRA.Mods.RA.Orders;
 using OpenRA.Traits;
@@ -35,12 +35,12 @@ namespace OpenRA.Mods.RA
 
 		public IEnumerable<IOrderTargeter> Orders
 		{
-			get { yield return new UnitTraitOrderTargeter<Building>( "C4", 6, "c4", true, false ); }
+			get { yield return new TargetTypeOrderTargeter("C4", "C4", 6, "c4", true, false); }
 		}
 
 		public Order IssueOrder( Actor self, IOrderTargeter order, Target target, bool queued )
 		{
-			if( order.OrderID == "C4" )
+			if (order.OrderID == "C4")
 				return new Order("C4", self, queued) { TargetActor = target.Actor };
 
 			return null;
@@ -52,11 +52,8 @@ namespace OpenRA.Mods.RA
 			{
 				self.SetTargetLine(Target.FromOrder(order), Color.Red);
 
-				var mobile = self.Trait<Mobile>();
 				self.CancelActivity();
-				self.QueueActivity(new Enter(order.TargetActor));
-				self.QueueActivity(new Demolish(order.TargetActor, Info.C4Delay));
-				self.QueueActivity(mobile.MoveTo(self.Location, 0));
+				self.QueueActivity(new Enter(order.TargetActor, new Demolish(order.TargetActor, Info.C4Delay)));
 			}
 		}
 

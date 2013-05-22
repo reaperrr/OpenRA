@@ -24,7 +24,7 @@ namespace OpenRA
 		public static IEnumerable<Actor> FindUnitsAtMouse(this World world, int2 mouseLocation)
 		{
 			var loc = Game.viewport.ViewToWorldPx(mouseLocation);
-			return FindUnits(world, loc, loc).Where(a => world.LocalShroud.IsVisible(a));
+			return FindUnits(world, loc, loc).Where(a => !world.FogObscures(a));
 		}
 
 		public static IEnumerable<Actor> FindUnits(this World world, PPos a, PPos b)
@@ -127,7 +127,7 @@ namespace OpenRA
 
 		public static float Gauss1D(this Thirdparty.Random r, int samples)
 		{
-			return Exts.MakeArray(samples, _ => (float)r.NextDouble() * 2 - 1f)
+			return Exts.MakeArray(samples, _ => r.NextFloat() * 2 - 1f)
 				.Sum() / samples;
 		}
 

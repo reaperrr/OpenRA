@@ -3,8 +3,8 @@ Background@CHEATS_PANEL:
 	X:(WINDOW_RIGHT - WIDTH)/2
 	Y:(WINDOW_BOTTOM - HEIGHT)/2
 	Width:350
-	Height:420
-	Visible:true
+	Height:475
+	Visible:false
 	Children:
 		Label@LABEL_TITLE:
 			X:(PARENT_RIGHT - WIDTH)/2
@@ -13,18 +13,25 @@ Background@CHEATS_PANEL:
 			Height:25
 			Text:Developer Mode
 			Align:Center
+			Font:Bold
 		Checkbox@DISABLE_SHROUD:
 			X:30
 			Y:50
 			Height:20
 			Width:PARENT_RIGHT - 30
 			Text:Disable Shroud
-		Button@GIVE_EXPLORATION
+		Button@GIVE_EXPLORATION:
 			X:30
 			Y:80
-			Width:200
-			Height:20
-			Text: Give Exploration
+			Width:120
+			Height:25
+			Text:Give Exploration
+		Button@RESET_EXPLORATION:
+			X:200
+			Y:80
+			Width:120
+			Height:25
+			Text:Reset Exploration
 		Checkbox@SHOW_UNIT_PATHS:
 			X:30
 			Y:110
@@ -34,9 +41,10 @@ Background@CHEATS_PANEL:
 		Button@GIVE_CASH:
 			X:30
 			Y:140
-			Width:200
+			Width:150
 			Height:20
-			Text: Give Cash
+			Text: Give $20000 Cash
+			Height:25
 		Checkbox@INSTANT_BUILD:
 			X:30
 			Y:170
@@ -67,10 +75,34 @@ Background@CHEATS_PANEL:
 			Width:PARENT_RIGHT - 30
 			Height:20
 			Text:Build Anywhere
+		Checkbox@SHOW_ASTAR:
+			X:30
+			Y:320
+			Width:PARENT_RIGHT - 30
+			Height:20
+			Text:Show A* Cost
+		Checkbox@SHOW_MUZZLES:
+			X:30
+			Y:350
+			Height:20
+			Width:200
+			Text:Show Muzzle Positions
+		Checkbox@DESYNC_ARMED:
+			X:30
+			Y:382
+			Width:20
+			Height:20
+		Button@DESYNC:
+			X:60
+			Y:380
+			Width:150
+			Height:20
+			Text: Force Desync
+			Height:25
 		Button@CLOSE:
 			X:30
-			Y:360
+			Y:420
 			Width:PARENT_RIGHT - 60
-			Height:20
+			Height:25
 			Text:Close
 			Key:escape

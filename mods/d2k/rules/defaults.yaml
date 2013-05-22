@@ -1,15 +1,15 @@
 ^Vehicle:
 	AppearsOnRadar:
 	Mobile:
-		Crushes: crate, worm
+		Crushes: crate
 		TerrainSpeeds:
-			Sand: 80
-			Rock: 90
-			Transition: 85
+			Sand: 90
+			Rock: 100
+			Transition: 95
 			Concrete: 100
-			Spice: 70
-			SpiceBlobs: 70
-			Dune: 40
+			Spice: 80
+			SpiceBlobs: 80
+			Dune: 60
 		ROT: 5
 	SelectionDecorations:
 	Selectable: 
@@ -23,34 +23,29 @@
 	GainsExperience:
 	GivesExperience:
 	DrawLineToTarget:
-	ActorLostNotification@Atreides:
-		Race: atreides
-		Notification: AI_ULOST.AUD
-	ActorLostNotification@Harkonnen:
-		Race: harkonnen
-		Notification: HI_ULOST.AUD
-	ActorLostNotification@Ordos:
-		Race: ordos
-		Notification: OI_ULOST.AUD
+	ActorLostNotification:
 	ProximityCaptor:
 		Types:Vehicle
 	GivesBounty:
-	WithSmoke:
+	#WithSmoke:
 	Repairable:
-		RepairBuildings: repaira,repairh,repairo
+		RepairBuildings: repair
+	DebugMuzzlePositions:
+	Guard:
+	Guardable:
 
 ^Tank:
 	AppearsOnRadar:
 	Mobile:
-		Crushes: crate, worm
+		Crushes: crate
 		TerrainSpeeds:
-			Sand: 80
-			Rock: 90
-			Transition: 85
+			Sand: 85
+			Rock: 100
+			Transition: 92
 			Concrete: 100
-			Spice: 70
-			SpiceBlobs: 70
-			Dune: 40
+			Spice: 80
+			SpiceBlobs: 80
+			Dune: 70
 		ROT: 5
 	SelectionDecorations:
 	Selectable: 
@@ -64,21 +59,48 @@
 	GainsExperience:
 	GivesExperience:
 	DrawLineToTarget:
-	ActorLostNotification@Atreides:
-		Race: atreides
-		Notification: AI_ULOST.AUD
-	ActorLostNotification@Harkonnen:
-		Race: harkonnen
-		Notification: HI_ULOST.AUD
-	ActorLostNotification@Ordos:
-		Race: ordos
-		Notification: OI_ULOST.AUD
+	ActorLostNotification:
 	ProximityCaptor:
 		Types:Tank
 	GivesBounty:
-	WithSmoke:
+	#WithSmoke:
 	Repairable:
-		RepairBuildings: repaira,repairh,repairo
+		RepairBuildings: repair
+	DebugMuzzlePositions:
+	Guard:
+	Guardable:
+
+^Husk:
+	Health:
+		HP: 75
+	Armor: 
+		Type: Light
+	Husk:
+	HiddenUnderFog:
+	AppearsOnRadar:
+	Burns:
+		Interval: 4
+	ProximityCaptor:
+		Types:Husk
+	Tooltip:
+		Name: Destroyed Tank
+
+^TowerHusk:
+	Health:
+		HP: 125
+	Armor: 
+		Type: Concrete
+	Husk:
+	AppearsOnRadar:
+	HiddenUnderFog:
+	Burns:
+		Interval: 2
+	EditorAppearance:
+		RelativeToTopLeft: yes
+	Tooltip:
+		Name: Destroyed Tower
+	ProximityCaptor:
+		Types:Husk
 
 ^Infantry:
 	AppearsOnRadar:
@@ -87,19 +109,19 @@
 	Armor:
 		Type: None
 	RevealsShroud:
-		Range: 4
+		Range: 6
 	Mobile:
 		Crushes: crate
 		SharesCell: true
 		TerrainSpeeds:
 			Sand: 80
-			Rock: 90
-			Transition: 85
+			Rock: 100
+			Transition: 90
 			Concrete: 100
-			Spice: 70
-			SpiceBlobs: 70
-			Dune: 40
-			Rough: 60
+			Spice: 80
+			SpiceBlobs: 80
+			Dune: 60
+			Rough: 70
 	SelectionDecorations:
 	Selectable:
 		Voice: InfantryVoice
@@ -115,20 +137,18 @@
 	GainsExperience:
 	GivesExperience:
 	DrawLineToTarget:
-	ActorLostNotification@Atreides:
-		Race: atreides
-		Notification: AI_ULOST.AUD
-	ActorLostNotification@Harkonnen:
-		Race: harkonnen
-		Notification: HI_ULOST.AUD
-	ActorLostNotification@Ordos:
-		Race: ordos
-		Notification: OI_ULOST.AUD
+	ActorLostNotification:
 	ProximityCaptor:
 		Types:Infantry
 	GivesBounty:
 	CrushableInfantry:
-		CrushSound:
+		CrushSound: squishy2.aud
+	RepairableNear:
+		Buildings: barra, barro
+		CloseEnough: 1
+	DebugMuzzlePositions:
+	Guard:
+	Guardable:
 
 ^Plane:
 	AppearsOnRadar:
@@ -143,22 +163,11 @@
 	GainsExperience:
 	GivesExperience:
 	DrawLineToTarget:
-	ActorLostNotification@Atreides:
-		Race: atreides
-		Notification: AI_ULOST.AUD
-	ActorLostNotification@Harkonnen:
-		Race: harkonnen
-		Notification: HI_ULOST.AUD
-	ActorLostNotification@Ordos:
-		Race: ordos
-		Notification: OI_ULOST.AUD
-	DebugAircraftFacing:
-	DebugAircraftSubPxX:
-	DebugAircraftSubPxY:
-	DebugAircraftAltitude:
+	ActorLostNotification:
 	ProximityCaptor:
 		Types:Plane
 	GivesBounty:
+	DebugMuzzlePositions:
 
 ^Helicopter:
 	Inherits: ^Plane
@@ -167,15 +176,17 @@
 	AppearsOnRadar:
 	SelectionDecorations:
 	Selectable:
-		Priority: 3
+		Priority: 2
 	TargetableBuilding:
-		TargetTypes: Ground
+		TargetTypes: Ground, C4
 	Building:
+		RequiresBaseProvider: true
 		Dimensions: 1,1
 		Footprint: x
 		TerrainTypes: Rock, Concrete
 		BuildSounds: BUILD1.aud
 		SellSounds: BUILD1.aud
+		Adjacent: 3
 	GivesBuildableArea:
 	Capturable:
 	CapturableBar:
@@ -186,28 +197,13 @@
 	WithBuildingExplosion:
 	RepairableBuilding:
 	EmitInfantryOnSell:
-		ActorTypes: rifle,rifle,rifle,bazooka,bazooka,engineer
+		ActorTypes: rifle,rifle,rifle,rifle,rifle,bazooka,bazooka,bazooka,engineer
 	MustBeDestroyed:
 	GivesExperience:
-#	FrozenUnderFog:
-	CaptureNotification@Atreides:
-		Race: atreides
-		Notification: AI_CAPT.AUD
-	CaptureNotification@Harkonnen:
-		Race: harkonnen
-		Notification: HI_CAPT.AUD
-	CaptureNotification@Ordos:
-		Race: ordos
-		Notification: OI_CAPT.AUD
-	ActorLostNotification@Atreides:
-		Race: atreides
-		Notification: AI_BLOST.AUD
-	ActorLostNotification@Harkonnen:
-		Race: harkonnen
-		Notification: HI_BLOST.AUD
-	ActorLostNotification@Ordos:
-		Race: ordos
-		Notification: OI_BLOST.AUD
+	FrozenUnderFog:
+	CaptureNotification:
+	ActorLostNotification:
+		Notification: BuildingLost
 	EditorAppearance:
 		RelativeToTopLeft: yes
 	AutoTargetIgnore:
@@ -216,3 +212,7 @@
 		Types:Building
 	Sellable:
 	GivesBounty:
+	DebugMuzzlePositions:
+	Bib:
+	Guardable:
+		Range: 3

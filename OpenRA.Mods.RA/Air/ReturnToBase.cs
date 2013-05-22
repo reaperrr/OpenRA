@@ -52,17 +52,21 @@ namespace OpenRA.Mods.RA.Air
 
 			var speed = .2f * aircraft.MovementSpeed;
 
-			var approachStart = landPos.ToFloat2() - new float2(aircraft.Altitude * speed, 0);
+			/* if the aircraft is on the ground, it will take off to the cruise altitude first before approaching */
+			var altitude = aircraft.Altitude;
+			if (altitude == 0) altitude = self.Info.Traits.Get<PlaneInfo>().CruiseAltitude;
+
+			var approachStart = landPos.ToInt2() - new float2(altitude * speed, 0);
 			var turnRadius = (128f / self.Info.Traits.Get<AircraftInfo>().ROT) * speed / (float)Math.PI;
 
 			/* work out the center points */
 			var fwd = -float2.FromAngle(aircraft.Facing / 128f * (float)Math.PI);
 			var side = new float2(-fwd.Y, fwd.X);		/* rotate */
 			var sideTowardBase = new[] { side, -side }
-				.OrderBy(a => float2.Dot(a, self.CenterLocation.ToFloat2() - approachStart))
+				.OrderBy(a => float2.Dot(a, self.CenterLocation.ToInt2() - approachStart))
 				.First();
 
-			var c1 = self.CenterLocation.ToFloat2() + turnRadius * sideTowardBase;
+			var c1 = self.CenterLocation.ToInt2() + turnRadius * sideTowardBase;
 			var c2 = approachStart + new float2(0, turnRadius * Math.Sign(self.CenterLocation.Y - approachStart.Y));	// above or below start point
 
 			/* work out tangent points */
@@ -70,7 +74,7 @@ namespace OpenRA.Mods.RA.Air
 			var e = (turnRadius / d.Length) * d;
 			var f = new float2(-e.Y, e.X);		/* rotate */
 
-			/* todo: support internal tangents, too! */
+			/* TODO: support internal tangents, too! */
 
 			if (f.X > 0) f = -f;
 
@@ -89,7 +93,10 @@ namespace OpenRA.Mods.RA.Air
 
 		public override Activity Tick(Actor self)
 		{
-			if (IsCanceled) return NextActivity;
+			if (IsCanceled)
+				return NextActivity;
+			if (self.IsDead())
+				return NextActivity;
 			if (!isCalculated)
 				Calculate(self);
 			if (dest == null)

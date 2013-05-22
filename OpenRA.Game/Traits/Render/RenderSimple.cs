@@ -10,29 +10,39 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using OpenRA.Graphics;
+using OpenRA.FileFormats;
 
 namespace OpenRA.Traits
 {
-	public class RenderSimpleInfo : ITraitInfo
+	public class RenderSimpleInfo : ITraitInfo, LocalCoordinatesModelInfo
 	{
+		[Desc("Defaults to the actor name.")]
 		public readonly string Image = null;
+		[Desc("custom palette name")]
 		public readonly string Palette = null;
+		[Desc("custom PlayerColorPalette: BaseName")]
 		public readonly string PlayerPalette = "player";
+		[Desc("Change the sprite image size.")]
 		public readonly float Scale = 1f;
 
+		[Desc("Number of facings for gameplay calculations. -1 indiciates auto-detection from sequence")]
+		public readonly int QuantizedFacings = -1;
+
+		public readonly WAngle CameraPitch = WAngle.FromDegrees(40);
 		public virtual object Create(ActorInitializer init) { return new RenderSimple(init.self); }
 
-		public virtual IEnumerable<Renderable> RenderPreview(ActorInfo building, Player owner)
+		public virtual IEnumerable<Renderable> RenderPreview(ActorInfo building, PaletteReference pr)
 		{
 			var anim = new Animation(RenderSimple.GetImage(building), () => 0);
 			anim.PlayRepeating("idle");
-			yield return new Renderable(anim.Image, 0.5f * anim.Image.size * (1 - Scale), 
-				Palette ?? (owner != null ? PlayerPalette + owner.InternalName : null), 0, Scale);
+
+			yield return new Renderable(anim.Image, 0.5f * anim.Image.size * (1 - Scale), pr, 0, Scale);
 		}
 	}
 
-	public class RenderSimple : IRender, ITick
+	public class RenderSimple : IRender, ILocalCoordinatesModel, IAutoSelectionSize, ITick, INotifyOwnerChanged
 	{
 		public Dictionary<string, AnimationWithOffset> anims = new Dictionary<string, AnimationWithOffset>();
 
@@ -55,7 +65,6 @@ namespace OpenRA.Traits
 			return Info.Image ?? actor.Name;
 		}
 
-		string cachedImage = null;
 		public string GetImage(Actor self)
 		{
 			if (cachedImage != null)
@@ -65,6 +74,9 @@ namespace OpenRA.Traits
 		}
 
 		RenderSimpleInfo Info;
+		string cachedImage = null;
+		bool initializePalette = true;
+		protected PaletteReference palette;
 
 		public RenderSimple(Actor self, Func<int> baseFacing)
 		{
@@ -77,18 +89,38 @@ namespace OpenRA.Traits
 			anim.PlayRepeating("idle");
 		}
 
-		public string Palette(Player p) { return Info.Palette ?? Info.PlayerPalette + p.InternalName; }
-
-		public virtual IEnumerable<Renderable> Render(Actor self)
+		protected virtual string PaletteName(Actor self)
 		{
+			return Info.Palette ?? Info.PlayerPalette + self.Owner.InternalName;
+		}
+
+		protected void UpdatePalette() { initializePalette = true; }
+		public void OnOwnerChanged(Actor self, Player oldOwner, Player newOwner) { UpdatePalette(); }
+
+		public virtual IEnumerable<Renderable> Render(Actor self, WorldRenderer wr)
+		{
+			if (initializePalette)
+			{
+				palette = wr.Palette(PaletteName(self));
+				initializePalette = false;
+			}
+
 			foreach (var a in anims.Values)
 				if (a.DisableFunc == null || !a.DisableFunc())
 				{
-					Renderable ret = a.Image(self, Palette(self.Owner));
+					Renderable ret = a.Image(self, wr, palette);
 					if (Info.Scale != 1f)
 						ret = ret.WithScale(Info.Scale).WithPos(ret.Pos + 0.5f * ret.Sprite.size * (1 - Info.Scale));
 					yield return ret;
 				}
+		}
+
+		public int2 SelectionSize(Actor self)
+		{
+			return anims.Values.Where(b => (b.DisableFunc == null || !b.DisableFunc())
+			                                && b.Animation.CurrentSequence != null)
+				.Select(a => (a.Animation.Image.size*Info.Scale).ToInt2())
+				.FirstOrDefault();
 		}
 
 		public virtual void Tick(Actor self)
@@ -111,6 +143,23 @@ namespace OpenRA.Traits
 			if (anim.HasSequence(name))
 				anim.PlayThen(NormalizeSequence(self, name),
 					() => anim.PlayRepeating(NormalizeSequence(self, "idle")));
+		}
+
+		public WVec LocalToWorld(WVec vec)
+		{
+			// RA's 2d perspective doesn't correspond to an orthonormal 3D
+			// coordinate system, so fudge the y axis to make things look good
+			return new WVec(vec.Y, -Info.CameraPitch.Sin()*vec.X/1024, vec.Z);
+		}
+
+		public WRot QuantizeOrientation(Actor self, WRot orientation)
+		{
+			// Map yaw to the closest facing
+			var numDirs = Info.QuantizedFacings == -1 ? anim.CurrentSequence.Facings : Info.QuantizedFacings;
+			var facing = Util.QuantizeFacing(orientation.Yaw.Angle / 4, numDirs) * (256 / numDirs);
+
+			// Roll and pitch are always zero
+			return new WRot(WAngle.Zero, WAngle.Zero, WAngle.FromFacing(facing));
 		}
 	}
 }

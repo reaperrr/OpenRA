@@ -7,6 +7,7 @@
 			Rough: 40
 			Road: 100
 			Ore: 70
+			Gems: 70
 			Beach: 40
 		ROT: 5
 	SelectionDecorations:
@@ -25,13 +26,16 @@
 	GivesExperience:
 	DrawLineToTarget:
 	ActorLostNotification:
-		Notification: unitlst1.aud
 	ProximityCaptor:
 		Types:Vehicle
 	GivesBounty:
 	GpsDot:
 		String:Vehicle
 	WithSmoke:
+	UpdatesPlayerStatistics:
+	DebugMuzzlePositions:
+	Guard:
+	Guardable:
 
 ^Tank:
 	AppearsOnRadar:
@@ -42,6 +46,7 @@
 			Rough: 70
 			Road: 100
 			Ore: 70
+			Gems: 70
 			Beach: 70
 		ROT: 5
 	SelectionDecorations:
@@ -60,13 +65,16 @@
 	GivesExperience:
 	DrawLineToTarget:
 	ActorLostNotification:
-		Notification: unitlst1.aud
 	ProximityCaptor:
 		Types:Tank
 	GivesBounty:
 	GpsDot:
 		String:Vehicle
 	WithSmoke:
+	UpdatesPlayerStatistics:
+	DebugMuzzlePositions:
+	Guard:
+	Guardable:
 
 ^Infantry:
 	AppearsOnRadar:
@@ -84,12 +92,13 @@
 			Rough: 80
 			Road: 100
 			Ore: 80
+			Gems: 80
 			Beach: 80
 	SelectionDecorations:
 	Selectable:
 		Voice: GenericVoice
 	TargetableUnit:
-		TargetTypes: Ground
+		TargetTypes: Ground, Disguise
 	RenderInfantry:
 	AutoTarget:
 	AttackMove:
@@ -101,7 +110,6 @@
 	GivesExperience:
 	DrawLineToTarget:
 	ActorLostNotification:
-		Notification: unitlst1.aud
 	ProximityCaptor:
 		Types:Infantry
 	GivesBounty:
@@ -114,6 +122,10 @@
 	RepairableNear:
 		Buildings: hosp
 		CloseEnough: 1
+	UpdatesPlayerStatistics:
+	DebugMuzzlePositions:
+	Guard:
+	Guardable:
 
 ^Ship:
 	AppearsOnRadar:
@@ -123,7 +135,7 @@
 			Water: 100
 	SelectionDecorations:
 	Selectable:
-		Voice: ShipVoice
+		Voice: VehicleVoice
 	TargetableUnit:
 		TargetTypes: Ground, Water
 	DetectCloaked:
@@ -134,13 +146,17 @@
 	GivesExperience:
 	DrawLineToTarget:
 	ActorLostNotification:
-		Notification: navylst1.aud
+		Notification: NavalUnitLost
 	ProximityCaptor:
 		Types:Ship
 	GivesBounty:
 	GpsDot:
 		String:Ship
 	WithSmoke:
+	UpdatesPlayerStatistics:
+	DebugMuzzlePositions:
+	Guard:
+	Guardable:
 
 ^Plane:
 	AppearsOnRadar:
@@ -156,11 +172,7 @@
 	GivesExperience:
 	DrawLineToTarget:
 	ActorLostNotification:
-		Notification: aunitl1.aud
-	DebugAircraftFacing:
-	DebugAircraftSubPxX:
-	DebugAircraftSubPxY:
-	DebugAircraftAltitude:
+		Notification: AirUnitLost
 	ProximityCaptor:
 		Types:Plane
 	EjectOnDeath:
@@ -169,6 +181,8 @@
 	GivesBounty:
 	GpsDot:
 		String:Plane
+	UpdatesPlayerStatistics:
+	DebugMuzzlePositions:
 
 ^Helicopter:
 	Inherits: ^Plane
@@ -181,7 +195,7 @@
 	Selectable:
 		Priority: 3
 	TargetableBuilding:
-		TargetTypes: Ground
+		TargetTypes: Ground, C4, DemoTruck
 	Building:
 		Dimensions: 1,1
 		Footprint: x
@@ -195,13 +209,13 @@
 	RenderBuilding:
 	WithBuildingExplosion:
 	RepairableBuilding:
+	EngineerRepairable:
 	EmitInfantryOnSell:
-		ActorTypes: e1,e1,e1,c1,c2,e6
+		ActorTypes: e1,e1,e1,e1,e1,e1,e1,e1,e1,e1,e1,e1,e1,e1,e1,c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,e6,e6,e6,e6,e6
 	MustBeDestroyed:
 	GivesExperience:
 #	FrozenUnderFog:
 	CaptureNotification:
-		Notification: strucap1.aud
 	EditorAppearance:
 		RelativeToTopLeft: yes
 	ShakeOnDeath:
@@ -210,6 +224,10 @@
 	Sellable:
 	AcceptsSupplies:
 	GivesBounty:
+	UpdatesPlayerStatistics:
+	DebugMuzzlePositions:
+	Guardable:
+		Range: 3
 
 ^Wall:
 	AppearsOnRadar:
@@ -230,21 +248,25 @@
 	Selectable:
 		Priority: 1
 	TargetableBuilding:
-		TargetTypes: Ground
+		TargetTypes: Ground, C4, DemoTruck
 	RenderBuildingWall:
 		HasMakeAnimation: false
 		Palette: terrain
 	GivesExperience:
 	EditorAppearance:
 		RelativeToTopLeft: yes
+		UseTerrainPalette: true
 	AutoTargetIgnore:
 	ProximityCaptor:
 		Types:Wall
 	Sellable:
+	UpdatesPlayerStatistics:
+	Guardable:
 
-^CivBuilding:
+^TechBuilding:
 	Inherits: ^Building
 	-RepairableBuilding:
+	-EngineerRepairable:
 	Health:
 		HP: 400
 	Armor:
@@ -258,6 +280,37 @@
 	-Sellable:
 	-Capturable:
 	-CapturableBar:
+
+^CivInfantry:
+	Inherits: ^Infantry
+	Selectable:
+		Voice: CivilianMaleVoice
+		Bounds: 12,17,0,-9
+	Valued:
+		Cost: 70
+	Tooltip:
+		Name: Civilian
+	Health:
+		HP: 20
+	Mobile:
+		Speed: 4
+	RevealsShroud:
+		Range: 2
+	Armament:
+		Weapon: Pistol
+	AttackFrontal:
+	ProximityCaptor:
+		Types:CivilianInfantry
+	-RenderInfantry:
+	RenderInfantryPanic:
+	ScaredyCat:
+
+^CivBuilding:
+	Inherits: ^TechBuilding
+	RenderBuilding:
+		Palette: terrain
+	EditorAppearance:
+		UseTerrainPalette: true
 
 ^CivField:
 	Inherits: ^CivBuilding
@@ -281,8 +334,15 @@
 		Terrain: Tree
 	EditorAppearance:
 		RelativeToTopLeft: yes
+		UseTerrainPalette: true
 	ProximityCaptor:
 		Types:Tree
+	Health:
+		HP: 500
+	DeadBuildingState:
+	Armor:
+		Type: Wood
+	AutoTargetIgnore:
 
 ^Husk:
 	Husk:
@@ -296,6 +356,7 @@
 	Burns:
 	ProximityCaptor:
 		Types:Husk
+	BelowUnits:
 
 ^Bridge:
 	Tooltip:
@@ -312,7 +373,7 @@
 		Types:Bridge
 	AutoTargetIgnore:
 
-#Terrain Expansion
+#Temperate Terrain Expansion
 ^SVBridge:
 	Tooltip:
 		Name: Small Bridge
@@ -326,6 +387,8 @@
 		HP: 750
 	ProximityCaptor:
 		Types:Bridge
+	AutoTargetIgnore:
+
 ^SHBridge:
 	Tooltip:
 		Name: Small Bridge
@@ -339,6 +402,8 @@
 		HP: 750
 	ProximityCaptor:
 		Types:Bridge
+	AutoTargetIgnore:
+
 ^STDBridge:
 	Tooltip:
 		Name: Small Bridge
@@ -352,3 +417,27 @@
 		HP: 750
 	ProximityCaptor:
 		Types:Bridge
+	AutoTargetIgnore:
+
+#Desert Terrain Expansion:
+^Rock:
+	Tooltip:
+		Name: Rock
+	RenderBuilding:
+		Palette: terrain
+	Building:
+		Footprint: __ x_
+		Dimensions: 2,2
+	AppearsOnRadar:
+	RadarColorFromTerrain:
+		Terrain: Tree
+	EditorAppearance:
+		RelativeToTopLeft: yes
+		UseTerrainPalette: true
+	ProximityCaptor:
+		Types:Tree
+
+^DesertCivBuilding:
+	Inherits: ^CivBuilding
+	RenderBuilding:
+		Palette: terrain

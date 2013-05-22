@@ -1,4 +1,4 @@
-Selectable: False
+Selectable: True
 
 MapFormat: 5
 
@@ -6,7 +6,7 @@ RequiresMod: cnc
 
 Title: Storm the Beachhead
 
-Description: Remake of the first GDI Mission
+Description: Conversion of the first GDI Mission
 
 Author: Westwood Studios
 
@@ -18,7 +18,7 @@ Bounds: 35,39,27,23
 
 UseAsShellmap: False
 
-Type: Conquest
+Type: Campaign
 
 Players:
 	PlayerReference@BadGuy:
@@ -42,6 +42,7 @@ Players:
 		InitialCash: 20
 		Allies: GoodGuy
 		Enemies: BadGuy,Creeps
+		Required: True
 	PlayerReference@Neutral:
 		Name: Neutral
 		OwnsWorld: True
@@ -450,6 +451,8 @@ Rules:
 		Gdi01Script:
 	Player:
 		-ConquestVictoryConditions:
+	PROC:
+		-Buildable:
 	SILO:
 		-Buildable:
 	WEAP:
@@ -460,13 +463,11 @@ Rules:
 		-Buildable:
 	FIX:
 		-Buildable:
-	HPAD:
+	HPAD.GDI:
 		-Buildable:
 	EYE:
 		-Buildable:
-	SBAG:
-		-Buildable:
-	BRIK:
+	GUN:
 		-Buildable:
 	GTWR:
 		-Buildable:
@@ -480,6 +481,9 @@ Rules:
 		-Buildable:
 	RMBO:
 		-Buildable:
+	BOAT:
+		Mobile:
+			OnRails: false # workaround a crash
 
 Sequences:
 

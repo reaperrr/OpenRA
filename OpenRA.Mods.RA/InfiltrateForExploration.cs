@@ -16,22 +16,13 @@ namespace OpenRA.Mods.RA
 {
 	class InfiltrateForExplorationInfo : TraitInfo<InfiltrateForExploration> {}
 
-	class InfiltrateForExploration : IAcceptSpy
+	class InfiltrateForExploration : IAcceptInfiltrator
 	{
-		public void OnInfiltrate(Actor self, Actor spy)
+		public void OnInfiltrate(Actor self, Actor infiltrator)
 		{
-			/* todo: changes for per-player shrouds:
-			 * - apply this everywhere, not just on the victim's client
-			 * - actually steal their exploration before resetting it
-			 */
-			if (self.World.LocalPlayer != null && self.World.LocalPlayer.Stances[self.Owner] == Stance.Ally)
-			{
-				var gpsWatcher = self.Owner.PlayerActor.TraitOrDefault<GpsWatcher>();
-				if (gpsWatcher != null && (gpsWatcher.Granted || gpsWatcher.GrantedAllies)) 
-					return;
-
-				self.Owner.Shroud.ResetExploration();
-			}
+			infiltrator.Owner.Shroud.MergeShroud(self.Owner.Shroud);
+			if (!self.Owner.HasFogVisibility())
+			    self.Owner.Shroud.ResetExploration();
 		}
 	}
 }
