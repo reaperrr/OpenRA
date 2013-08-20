@@ -1,4 +1,4 @@
-﻿#region Copyright & License Information
+#region Copyright & License Information
 /*
  * Copyright 2007-2011 The OpenRA Developers (see AUTHORS)
  * This file is part of OpenRA, which is free software. It is made
@@ -19,30 +19,35 @@ namespace OpenRA.Mods.RA.Activities
 		CPos destination;
 		bool killCargo;
 		Actor chronosphere;
+		string sound;
 
-		public Teleport(Actor chronosphere, CPos destination, bool killCargo)
+		public Teleport(Actor chronosphere, CPos destination, bool killCargo, string sound)
 		{
 			this.chronosphere = chronosphere;
 			this.destination = destination;
 			this.killCargo = killCargo;
+			this.sound = sound;
 		}
 
 		public override Activity Tick(Actor self)
 		{
-			Sound.Play("chrono2.aud", self.Location.ToPPos());
-			Sound.Play("chrono2.aud", destination.ToPPos());
+			Sound.Play(sound, self.CenterPosition);
+			Sound.Play(sound, destination.CenterPosition);
 
-			self.Trait<ITeleportable>().SetPosition(self, destination);
+			self.Trait<IPositionable>().SetPosition(self, destination);
+			self.Generation++;
 
 			if (killCargo && self.HasTrait<Cargo>())
 			{
 				var cargo = self.Trait<Cargo>();
 				while (!cargo.IsEmpty(self))
 				{
-					if (chronosphere != null)
-						chronosphere.Owner.Kills++;
+					if (chronosphere != null && chronosphere.HasTrait<UpdatesPlayerStatistics>())
+						chronosphere.Owner.PlayerActor.Trait<PlayerStatistics>().UnitsKilled++;
+
 					var a = cargo.Unload(self);
-					a.Owner.Deaths++;
+					if (a.HasTrait<UpdatesPlayerStatistics>())
+						a.Owner.PlayerActor.Trait<PlayerStatistics>().UnitsDead++;
 				}
 			}
 
@@ -65,7 +70,8 @@ namespace OpenRA.Mods.RA.Activities
 
 		public override Activity Tick(Actor self)
 		{
-			self.Trait<ITeleportable>().SetPosition(self, destination);
+			self.Trait<IPositionable>().SetPosition(self, destination);
+			self.Generation++;
 			return NextActivity;
 		}
 	}

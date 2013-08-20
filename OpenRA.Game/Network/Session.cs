@@ -84,7 +84,6 @@ namespace OpenRA.Network
 		{
 			public string ServerName;
 			public string Map;
-			public string[] Ban;
 			public string[] Mods = { "ra" };	// mod names
 			public int OrderLatency = 3;		// net tick frames (x 120 = ms)
 			public int RandomSeed = 0;
@@ -93,6 +92,11 @@ namespace OpenRA.Network
 			public bool Dedicated;
 			public string Difficulty;
 			public bool Crates = true;
+			public bool Shroud = true;
+			public bool Fog = true;
+			public bool AllyBuildRadius = true;
+			public int StartingCash = 5000;
+			public string StartingUnitsClass = "none";
 			public bool AllowVersionMismatch;
 		}
 

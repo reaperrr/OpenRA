@@ -25,7 +25,6 @@ namespace OpenRA.Mods.RA.Widgets.Logic
 			rootMenu = widget;
 			rootMenu.IsVisible = () => Menu == MenuType.Main;
 
-			Game.modData.WidgetLoader.LoadWidget( new WidgetArgs(), Ui.Root, "PERF_BG" );
 			var versionLabel = Ui.Root.GetOrNull<LabelWidget>("VERSION_LABEL");
 			if (versionLabel != null)
 				versionLabel.GetText = WidgetUtils.ActiveModVersion;
@@ -46,7 +45,7 @@ namespace OpenRA.Mods.RA.Widgets.Logic
 			widget.Get<ButtonWidget>("MAINMENU_BUTTON_MUSIC").OnClick = () =>
 			{
 				Menu = MenuType.None;
-				Ui.OpenWindow("MUSIC_MENU", new WidgetArgs()
+				Ui.OpenWindow("MUSIC_PANEL", new WidgetArgs()
 				{
 					{ "onExit", () => Menu = MenuType.Main }
 				});
@@ -62,6 +61,15 @@ namespace OpenRA.Mods.RA.Widgets.Logic
 				});
 			};
 
+			widget.Get<ButtonWidget>("MAINMENU_BUTTON_CREDITS").OnClick = () =>
+			{
+				Menu = MenuType.None;
+				Ui.OpenWindow("CREDITS_PANEL", new WidgetArgs()
+				{
+					{ "onExit", () => Menu = MenuType.Main },
+				});
+			};
+
 			widget.Get<ButtonWidget>("MAINMENU_BUTTON_REPLAY_VIEWER").OnClick = () =>
 			{
 				Menu = MenuType.None;
@@ -72,7 +80,8 @@ namespace OpenRA.Mods.RA.Widgets.Logic
 				});
 			};
 
-			widget.Get<ButtonWidget>("MAINMENU_BUTTON_ASSET_BROWSER").OnClick = () =>
+			var assetBrowserButton = widget.Get<ButtonWidget>("MAINMENU_BUTTON_ASSET_BROWSER");
+			assetBrowserButton.OnClick = () =>
 			{
 				Menu = MenuType.None;
 				Game.OpenWindow("ASSETBROWSER_BG", new WidgetArgs()
@@ -81,7 +90,18 @@ namespace OpenRA.Mods.RA.Widgets.Logic
 				});
 			};
 
-			widget.Get<ButtonWidget>("MAINMENU_BUTTON_QUIT").OnClick = () => Game.Exit();
+			var quitButton = widget.Get<ButtonWidget>("MAINMENU_BUTTON_QUIT");
+			quitButton.OnClick = () => Game.Exit();
+
+			// Hide developer-specific buttons
+			if (Game.Settings.Debug.DeveloperMenu == false)
+			{
+				assetBrowserButton.IsVisible = () => false;
+				var offset = assetBrowserButton.Bounds.Y - quitButton.Bounds.Y;
+				quitButton.Bounds.Y += offset;
+				rootMenu.Bounds.Height += offset;
+				rootMenu.Bounds.Y -= offset/2;
+			}
 		}
 
 		void RemoveShellmapUI()

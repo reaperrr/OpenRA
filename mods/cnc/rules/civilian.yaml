@@ -415,7 +415,7 @@ VICE:
 	Armor:
 		Type: Wood
 	RevealsShroud:
-		Range: 4
+		Range: 6
 	Mobile:
 		Speed: 5
 		TerrainSpeeds:
@@ -426,11 +426,11 @@ VICE:
 			BlueTiberium: 70
 			Beach: 80
 	Selectable:
-		Voice: GenericVoice
+		Voice: DinoVoice
 	TargetableUnit:
 		TargetTypes: Ground
 	AutoTarget:
-		ScanRadius: 4
+		ScanRadius: 5
 	AttackMove:
 	HiddenUnderFog:
 	GainsExperience:
@@ -445,3 +445,4 @@ VICE:
 	AttackWander:
 	RenderUnit:
 	WithMuzzleFlash:
+	BodyOrientation:

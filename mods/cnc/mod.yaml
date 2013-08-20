@@ -47,11 +47,13 @@ Sequences:
 	mods/cnc/sequences/structures.yaml
 	mods/cnc/sequences/vehicles.yaml
 	mods/cnc/sequences/infantry.yaml
+	mods/cnc/sequences/aircraft.yaml
 	mods/cnc/sequences/map.yaml
 	mods/cnc/sequences/misc.yaml
-	# Low priority sequences that break the batch when used
+	mods/cnc/sequences/funpark.yaml
 	mods/cnc/sequences/civilian.yaml
 	mods/cnc/sequences/campaign.yaml
+
 Cursors:
 	mods/cnc/cursors.yaml
 
@@ -69,6 +71,7 @@ ChromeLayout:
 	mods/cnc/chrome/createserver.yaml
 	mods/cnc/chrome/directconnect.yaml
 	mods/cnc/chrome/lobby.yaml
+	mods/cnc/chrome/lobby-playerbin.yaml
 	mods/cnc/chrome/connection.yaml
 	mods/cnc/chrome/mapchooser.yaml
 	mods/cnc/chrome/replaybrowser.yaml
@@ -77,6 +80,7 @@ ChromeLayout:
 	mods/cnc/chrome/music.yaml
 	mods/cnc/chrome/modchooser.yaml
 	mods/cnc/chrome/settings.yaml
+	mods/cnc/chrome/credits.yaml
 	mods/cnc/chrome/cheats.yaml
 	mods/cnc/chrome/dialogs.yaml
 	mods/cnc/chrome/objectives.yaml
@@ -114,6 +118,14 @@ ServerTraits:
 	LobbyCommands
 	PlayerPinger
 	MasterServerPinger
+
+LobbyDefaults:
+	AllowCheats: false
+	Crates: true
+	StartingUnitsClass: light
+	FragileAlliances: false
+	Shroud: true
+	Fog: true
 
 ChromeMetrics:
 	mods/cnc/metrics.yaml

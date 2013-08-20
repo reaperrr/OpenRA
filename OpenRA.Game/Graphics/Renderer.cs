@@ -28,8 +28,10 @@ namespace OpenRA.Graphics
 		internal static int TempBufferCount;
 
 		public SpriteRenderer WorldSpriteRenderer { get; private set; }
+		public SpriteRenderer WorldRgbaSpriteRenderer { get; private set; }
 		public QuadRenderer WorldQuadRenderer { get; private set; }
 		public LineRenderer WorldLineRenderer { get; private set; }
+		public VoxelRenderer WorldVoxelRenderer { get; private set; }
 		public LineRenderer LineRenderer { get; private set; }
 		public SpriteRenderer RgbaSpriteRenderer { get; private set; }
 		public SpriteRenderer SpriteRenderer { get; private set; }
@@ -45,7 +47,9 @@ namespace OpenRA.Graphics
 			SheetSize = Game.Settings.Graphics.SheetSize;
 
 			WorldSpriteRenderer = new SpriteRenderer(this, device.CreateShader("shp"));
+			WorldRgbaSpriteRenderer = new SpriteRenderer(this, device.CreateShader("rgba"));
 			WorldLineRenderer = new LineRenderer(this, device.CreateShader("line"));
+			WorldVoxelRenderer = new VoxelRenderer(this, device.CreateShader("vxl"));
 			LineRenderer = new LineRenderer(this, device.CreateShader("line"));
 			WorldQuadRenderer = new QuadRenderer(this, device.CreateShader("line"));
 			RgbaSpriteRenderer = new SpriteRenderer(this, device.CreateShader("rgba"));
@@ -66,11 +70,13 @@ namespace OpenRA.Graphics
 		{
 			device.Clear();
 			WorldSpriteRenderer.SetViewportParams(Resolution, zoom, scroll);
+			WorldRgbaSpriteRenderer.SetViewportParams(Resolution, zoom, scroll);
 			SpriteRenderer.SetViewportParams(Resolution, 1f, float2.Zero);
 			RgbaSpriteRenderer.SetViewportParams(Resolution, 1f, float2.Zero);
 			WorldLineRenderer.SetViewportParams(Resolution, zoom, scroll);
 			WorldQuadRenderer.SetViewportParams(Resolution, zoom, scroll);
 			LineRenderer.SetViewportParams(Resolution, 1f, float2.Zero);
+			WorldVoxelRenderer.SetViewportParams(Resolution, zoom, scroll);
 		}
 
 		ITexture currentPaletteTexture;
@@ -85,6 +91,8 @@ namespace OpenRA.Graphics
 			RgbaSpriteRenderer.SetPalette(currentPaletteTexture);
 			SpriteRenderer.SetPalette(currentPaletteTexture);
 			WorldSpriteRenderer.SetPalette(currentPaletteTexture);
+			WorldRgbaSpriteRenderer.SetPalette(currentPaletteTexture);
+			WorldVoxelRenderer.SetPalette(currentPaletteTexture);
 		}
 
 		public void EndFrame(IInputHandler inputHandler)
@@ -185,6 +193,18 @@ namespace OpenRA.Graphics
 		{
 			Flush();
 			Device.DisableScissor();
+		}
+
+		public void EnableDepthBuffer()
+		{
+			Flush();
+			Device.EnableDepthBuffer();
+		}
+
+		public void DisableDepthBuffer()
+		{
+			Flush();
+			Device.DisableDepthBuffer();
 		}
 	}
 }

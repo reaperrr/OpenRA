@@ -60,7 +60,7 @@ namespace OpenRA.Widgets
 
 			if (mi.Button == MouseButton.Left && mi.Event == MouseInputEvent.Down)
 			{
-				if (!TakeFocus(mi))
+				if (!TakeMouseFocus(mi))
 					return false;
 				
 				dragStart = dragEnd = xy;
@@ -75,13 +75,13 @@ namespace OpenRA.Widgets
 
 			if (mi.Button == MouseButton.Left && mi.Event == MouseInputEvent.Up)
 			{
-				if (UseClassicMouseStyle && Focused)
+				if (UseClassicMouseStyle && HasMouseFocus)
 				{
 					//order units around
 					if (!HasBox && world.Selection.Actors.Any() && !MultiClick)
 					{
 						ApplyOrders(world, xy, mi);
-						LoseFocus(mi);
+						YieldMouseFocus(mi);
 						return true;
 					}
 				}
@@ -108,7 +108,7 @@ namespace OpenRA.Widgets
 				}
 				
 				dragStart = dragEnd = xy;
-				LoseFocus(mi);
+				YieldMouseFocus(mi);
 			}
 			
 			if (mi.Button == MouseButton.None && mi.Event == MouseInputEvent.Move)
@@ -174,7 +174,9 @@ namespace OpenRA.Widgets
 					world.Selection.DoControlGroup(world, e.KeyName[0] - '0', e.Modifiers, e.MultiTapCount);
 					return true;
 				}
-				else if (e.KeyName == Game.Settings.Keys.PauseKey)
+
+				// Disable pausing for spectators
+				else if (e.KeyName == Game.Settings.Keys.PauseKey && world.LocalPlayer != null)
 					world.SetPauseState(!world.Paused);
 			}
 			return false;
@@ -183,7 +185,7 @@ namespace OpenRA.Widgets
 		static readonly Actor[] NoActors = {};
 		IEnumerable<Actor> SelectActorsInBox(World world, PPos a, PPos b, Func<Actor, bool> cond)
 		{
-			return world.FindUnits(a, b)
+			return world.FindActorsInBox(a.ToWPos(0), b.ToWPos(0))
 				.Where(x => x.HasTrait<Selectable>() && x.Trait<Selectable>().Info.Selectable && !world.FogObscures(x) && cond(x))
 				.GroupBy(x => x.GetSelectionPriority())
 				.OrderByDescending(g => g.Key)

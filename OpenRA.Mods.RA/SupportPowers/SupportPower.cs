@@ -17,7 +17,7 @@ namespace OpenRA.Mods.RA
 	public abstract class SupportPowerInfo : ITraitInfo
 	{
 		public readonly int ChargeTime = 0;
-		public readonly string Image = null;
+		public readonly string Icon = null;
 		public readonly string Description = "";
 		public readonly string LongDesc = "";
 		public readonly bool AllowMultiple = false;
@@ -27,6 +27,8 @@ namespace OpenRA.Mods.RA
 		public readonly string EndChargeSound = null;
 		public readonly string SelectTargetSound = null;
 		public readonly string LaunchSound = null;
+
+		public readonly bool DisplayTimer = false;
 
 		public readonly string OrderName;
 		public abstract object Create(ActorInitializer init);

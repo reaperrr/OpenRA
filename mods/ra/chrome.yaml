@@ -2,14 +2,9 @@ chrome-allies: chrome-allies.png
 	specialbin-top: 0,0,30,51
 	specialbin-middle: 0,51,30,51
 	specialbin-bottom: 0,153,30,39
-	moneybin: 192,0,320,32
+	moneybin: 192,0,320,31
+	radar: 297,31,210,222
 	tooltip-bg: 0,288,272,136
-
-radar-allies: chrome-allies.png
-	left: 297,31,9,192
-	right: 498,31,9,192
-	bottom: 297,223,210,30
-	bg: 306,31,192,192
 
 power-allies: chrome-allies.png
 	power-indicator: 187,4,4,7
@@ -44,15 +39,9 @@ chrome-soviet: chrome-soviet.png
 	specialbin-top: 0,0,30,51
 	specialbin-middle: 0,51,30,51
 	specialbin-bottom: 0,153,30,39
-	moneybin: 192,0,320,32
+	moneybin: 192,0,320,31
+	radar: 297,31,210,222
 	tooltip-bg: 0,288,272,136
-
-radar-soviet: chrome-soviet.png
-	left: 297,31,9,192
-	right: 498,31,9,192
-	bottom: 297,223,210,30
-	bg: 306,31,192,192
-	power-indicator: 187,4,4,7
 
 power-soviet: chrome-soviet.png
 	power-indicator: 187,4,4,7
@@ -88,13 +77,15 @@ tabs-selected: tabs.png
 	allies-Defense: 0,40,27,41
 	allies-Infantry: 0,80,27,41
 	allies-Vehicle: 0,120,27,41
-	allies-Plane: 0,160,27,41
+	allies-Plane: 80,160,27,41
+	allies-Helicopter: 0,160,27,41
 	allies-Ship: 0,200,27,41
 	soviet-Building: 80,0,27,41
 	soviet-Defense: 80,40,27,41
 	soviet-Infantry: 80,80,27,41
 	soviet-Vehicle: 80,120,27,41
 	soviet-Plane: 80,160,27,41
+	soviet-Helicopter: 0,160,27,41
 	soviet-Ship: 80,200,27,41
 
 tabs-ready: tabs.png
@@ -102,13 +93,15 @@ tabs-ready: tabs.png
 	allies-Defense: 27,40,27,41
 	allies-Infantry: 27,80,27,41
 	allies-Vehicle: 27,120,27,41
-	allies-Plane: 27,160,27,41
+	allies-Plane: 107,160,27,41
+	allies-Helicopter: 27,160,27,41
 	allies-Ship: 27,200,27,41
 	soviet-Building: 107,0,27,41
 	soviet-Defense: 107,40,27,41
 	soviet-Infantry: 107,80,27,41
 	soviet-Vehicle: 107,120,27,41
 	soviet-Plane: 107,160,27,41
+	soviet-Helicopter: 27,160,27,41
 	soviet-Ship: 107,200,27,41
 
 tabs-normal: tabs.png
@@ -116,13 +109,15 @@ tabs-normal: tabs.png
 	allies-Defense: 54,40,27,41
 	allies-Infantry: 54,80,27,41
 	allies-Vehicle: 54,120,27,41
-	allies-Plane: 54,160,27,41
+	allies-Plane: 134,160,27,41
+	allies-Helicopter: 54,160,27,41
 	allies-Ship: 54,200,27,41
 	soviet-Building: 134,0,27,41
 	soviet-Defense: 134,40,27,41
 	soviet-Infantry: 134,80,27,41
 	soviet-Vehicle: 134,120,27,41
 	soviet-Plane: 134,160,27,41
+	soviet-Helicopter: 54,160,27,41
 	soviet-Ship: 134,200,27,41
 
 dialog2: dialog.png
@@ -526,7 +521,19 @@ scrollitem-hover: dialog.png
 	corner-tr: 594,0,1,1
 	corner-bl: 512,82,1,1
 	corner-br: 594,82,1,1
-	
+
+# A copy of dialog2
+scrollheader-selected: dialog.png
+	background: 513,1,126,126
+	border-r: 639,1,1,126
+	border-l: 512,1,1,126
+	border-b: 513,127,126,1
+	border-t: 513,0,126,1
+	corner-tl: 512,0,1,1
+	corner-tr: 594,0,1,1
+	corner-bl: 512,82,1,1
+	corner-br: 594,82,1,1
+
 logos: loadscreen.png
 	logo: 0,0,256,256
 

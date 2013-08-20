@@ -55,12 +55,17 @@ namespace OpenRA.Mods.RA.Server
 
 		void CheckAutoStart(S server, Connection conn, Session.Client client)
 		{
-			var actualPlayers = server.conns
-				.Select(c => server.GetClient(c))
-				.Where(c => c.Slot != null);
+			var playerClients = server.lobbyInfo.Clients.Where(c => c.Bot == null && c.Slot != null);
 
-			if (actualPlayers.Count() > 0 && actualPlayers.All(c => c.State == Session.ClientState.Ready))
-				InterpretCommand(server, conn, client, "startgame");
+			// Are all players ready?
+			if (playerClients.Count() == 0 || playerClients.Any(c => c.State != Session.ClientState.Ready))
+				return;
+
+			// Are the map conditions satisfied?
+			if (server.lobbyInfo.Slots.Any(sl => sl.Value.Required && server.lobbyInfo.ClientInSlot(sl.Key) == null))
+				return;
+
+			server.StartGame();
 		}
 
 		public bool InterpretCommand(S server, Connection conn, Session.Client client, string cmd)
@@ -132,6 +137,7 @@ namespace OpenRA.Mods.RA.Server
 					{
 						client.Slot = null;
 						client.SpawnPoint = 0;
+						client.Color = HSLColor.FromRGB(255, 255, 255);
 						server.SyncLobbyInfo();
 						return true;
 					}},
@@ -303,6 +309,12 @@ namespace OpenRA.Mods.RA.Server
 							return true;
 						}
 
+						if (server.Map.Options.FragileAlliances.HasValue)
+						{
+							server.SendOrderTo(conn, "Message", "Map has disabled alliance configuration");
+							return true;
+						}
+
 						bool.TryParse(s, out server.lobbyInfo.GlobalSettings.FragileAlliances);
 						server.SyncLobbyInfo();
 						return true;
@@ -316,7 +328,52 @@ namespace OpenRA.Mods.RA.Server
 							return true;
 						}
 
+						if (server.Map.Options.Cheats.HasValue)
+						{
+							server.SendOrderTo(conn, "Message", "Map has disabled cheat configuration");
+							return true;
+						}
+
 						bool.TryParse(s, out server.lobbyInfo.GlobalSettings.AllowCheats);
+						server.SyncLobbyInfo();
+						return true;
+					}},
+				{ "shroud",
+					s =>
+					{
+						if (!client.IsAdmin)
+						{
+							server.SendOrderTo(conn, "Message", "Only the host can set that option");
+							return true;
+						}
+
+						if (server.Map.Options.Shroud.HasValue)
+						{
+							server.SendOrderTo(conn, "Message", "Map has disabled shroud configuration");
+							return true;
+						}
+
+						bool.TryParse(s, out server.lobbyInfo.GlobalSettings.Shroud);
+						server.SyncLobbyInfo();
+						return true;
+					}},
+				{ "fog",
+					s =>
+					{
+						if (!client.IsAdmin)
+						{
+							server.SendOrderTo(conn, "Message", "Only the host can set that option");
+							return true;
+						}
+
+						if (server.Map.Options.Fog.HasValue)
+						{
+							server.SendOrderTo(conn, "Message", "Map has disabled fog configuration");
+							return true;
+						}
+
+
+						bool.TryParse(s, out server.lobbyInfo.GlobalSettings.Fog);
 						server.SyncLobbyInfo();
 						return true;
 					}},
@@ -329,43 +386,35 @@ namespace OpenRA.Mods.RA.Server
 							return true;
 						}
 
-						int teams;
-						if (!int.TryParse(s, out teams))
+						int teamCount;
+						if (!int.TryParse(s, out teamCount))
 						{
 							server.SendOrderTo(conn, "Message", "Number of teams could not be parsed: {0}".F(s));
 							return true;
 						}
-						teams = teams.Clamp(2, 8);
 
+						var maxTeams = (server.lobbyInfo.Clients.Count(c => c.Slot != null) + 1) / 2;
+						teamCount = teamCount.Clamp(0, maxTeams);
 						var players = server.lobbyInfo.Slots
-							.Select(slot => server.lobbyInfo.Clients.SingleOrDefault(c => c.Slot == slot.Key))
-							.Where(c => c != null && !server.lobbyInfo.Slots[c.Slot].LockTeam).ToArray();
-						if (players.Length < 2)
+							.Select(slot => server.lobbyInfo.ClientInSlot(slot.Key))
+							.Where(c => c != null && !server.lobbyInfo.Slots[c.Slot].LockTeam);
+
+						var assigned = 0;
+						var playerCount = players.Count();
+						foreach (var player in players)
 						{
-							server.SendOrderTo(conn, "Message", "Not enough players to assign teams");
-							return true;
-						}
-						if (teams > players.Length)
-						{
-							server.SendOrderTo(conn, "Message", "Too many teams for the number of players");
-							return true;
+							// Free for all
+							if (teamCount == 0)
+								player.Team = 0;
+
+							// Humans vs Bots
+							else if (teamCount == 1)
+								player.Team = player.Bot == null ? 1 : 2;
+
+							else
+								player.Team = assigned++ * teamCount / playerCount + 1;
 						}
 
-						var teamSizes = new int[players.Length];
-						for (var i = 0; i < players.Length; i++)
-							teamSizes[i % teams]++;
-
-						var playerIndex = 0;
-						for (var team = 1; team <= teams; team++)
-						{
-							for (var teamPlayerIndex = 0; teamPlayerIndex < teamSizes[team - 1]; playerIndex++, teamPlayerIndex++)
-							{
-								var cl = players[playerIndex];
-								if (cl.Bot == null)
-									cl.State = Session.ClientState.NotReady;
-								cl.Team = team;
-							}
-						}
 						server.SyncLobbyInfo();
 						return true;
 					}},
@@ -378,7 +427,32 @@ namespace OpenRA.Mods.RA.Server
 							return true;
 						}
 
+						if (server.Map.Options.Crates.HasValue)
+						{
+							server.SendOrderTo(conn, "Message", "Map has disabled crate configuration");
+							return true;
+						}
+
 						bool.TryParse(s, out server.lobbyInfo.GlobalSettings.Crates);
+						server.SyncLobbyInfo();
+						return true;
+					}},
+				{ "allybuildradius",
+					s =>
+					{
+						if (!client.IsAdmin)
+						{
+							server.SendOrderTo(conn, "Message", "Only the host can set that option");
+							return true;
+						}
+
+						if (server.Map.Options.AllyBuildRadius.HasValue)
+						{
+							server.SendOrderTo(conn, "Message", "Map has disabled ally build radius configuration");
+							return true;
+						}
+
+						bool.TryParse(s, out server.lobbyInfo.GlobalSettings.AllyBuildRadius);
 						server.SyncLobbyInfo();
 						return true;
 					}},
@@ -390,10 +464,11 @@ namespace OpenRA.Mods.RA.Server
 							server.SendOrderTo(conn, "Message", "Only the host can set that option");
 							return true;
 						}
-						if ((server.Map.Difficulties == null && s != null) || (server.Map.Difficulties != null && !server.Map.Difficulties.Contains(s)))
+
+						if (s != null && !server.Map.Options.Difficulties.Contains(s))
 						{
 							server.SendOrderTo(conn, "Message", "Unsupported difficulty selected: {0}".F(s));
-							server.SendOrderTo(conn, "Message", "Supported difficulties: {0}".F(server.Map.Difficulties.JoinWith(",")));
+							server.SendOrderTo(conn, "Message", "Supported difficulties: {0}".F(server.Map.Options.Difficulties.JoinWith(",")));
 							return true;
 						}
 
@@ -401,28 +476,85 @@ namespace OpenRA.Mods.RA.Server
 						server.SyncLobbyInfo();
 						return true;
 					}},
+				{ "startingunits",
+					s =>
+					{
+						if (!client.IsAdmin)
+						{
+							server.SendOrderTo(conn, "Message", "Only the host can set that option");
+							return true;
+						}
+
+						if (!server.Map.Options.ConfigurableStartingUnits)
+						{
+							server.SendOrderTo(conn, "Message", "Map has disabled start unit configuration");
+							return true;
+						}
+
+						server.lobbyInfo.GlobalSettings.StartingUnitsClass = s;
+						server.SyncLobbyInfo();
+						return true;
+					}},
+				{ "startingcash",
+					s =>
+					{
+						if (!client.IsAdmin)
+						{
+							server.SendOrderTo(conn, "Message", "Only the host can set that option");
+							return true;
+						}
+
+						if (server.Map.Options.StartingCash.HasValue)
+						{
+							server.SendOrderTo(conn, "Message", "Map has disabled cash configuration");
+							return true;
+						}
+
+						server.lobbyInfo.GlobalSettings.StartingCash = int.Parse(s);
+						server.SyncLobbyInfo();
+						return true;
+					}},
 				{ "kick",
 					s =>
 					{
-
 						if (!client.IsAdmin)
 						{
 							server.SendOrderTo(conn, "Message", "Only the host can kick players");
 							return true;
 						}
 
-						int clientID;
-						int.TryParse(s, out clientID);
+						var split = s.Split(' ');
+						if (split.Length < 2)
+						{
+							server.SendOrderTo(conn, "Message", "Malformed kick command");
+							return true;
+						}
 
-						var connToKick = server.conns.SingleOrDefault( c => server.GetClient(c) != null && server.GetClient(c).Index == clientID);
-						if (connToKick == null)
+						int kickClientID;
+						int.TryParse(split[0], out kickClientID);
+
+						var kickConn = server.conns.SingleOrDefault(c => server.GetClient(c) != null && server.GetClient(c).Index == kickClientID);
+						if (kickConn == null)
 						{
 							server.SendOrderTo(conn, "Message", "Noone in that slot.");
 							return true;
 						}
 
-						server.SendOrderTo(connToKick, "ServerError", "You have been kicked from the server");
-						server.DropClient(connToKick);
+						var kickConnIP = server.GetClient(kickConn).IpAddress;
+
+						Log.Write("server", "Kicking client {0} as requested", kickClientID);
+						server.SendOrderTo(kickConn, "ServerError", "You have been kicked from the server");
+						server.DropClient(kickConn);
+
+						bool tempBan;
+						bool.TryParse(split[1], out tempBan);
+
+						if (tempBan)
+						{
+							Log.Write("server", "Temporarily banning client {0} ({1}) as requested", kickClientID, kickConnIP);
+							server.TempBans.Add(kickConnIP);
+						}
+
 						server.SyncLobbyInfo();
 						return true;
 					}},
@@ -522,8 +654,8 @@ namespace OpenRA.Mods.RA.Server
 						if (targetClient.Index != client.Index && !client.IsAdmin)
 							return true;
 
-						// Map has disabled color changes
-						if (targetClient.Slot != null && server.lobbyInfo.Slots[targetClient.Slot].LockColor)
+						// Spectator or map has disabled color changes
+						if (targetClient.Slot == null || server.lobbyInfo.Slots[targetClient.Slot].LockColor)
 							return true;
 
 						var ci = parts[1].Split(',').Select(cc => int.Parse(cc)).ToArray();
@@ -574,16 +706,20 @@ namespace OpenRA.Mods.RA.Server
 				.Select(p => MakeSlotFromPlayerReference(p.Value))
 				.Where(s => s != null)
 				.ToDictionary(s => s.PlayerReference, s => s);
+
+			server.Map.Options.UpdateServerSettings(server.lobbyInfo.GlobalSettings);
 		}
 
 		static void SetDefaultDifficulty(S server)
 		{
-			if (server.Map.Difficulties != null && server.Map.Difficulties.Any())
+			if (!server.Map.Options.Difficulties.Any())
 			{
-				if (!server.Map.Difficulties.Contains(server.lobbyInfo.GlobalSettings.Difficulty))
-					server.lobbyInfo.GlobalSettings.Difficulty = server.Map.Difficulties.First();
+				server.lobbyInfo.GlobalSettings.Difficulty = null;
+				return;
 			}
-			else server.lobbyInfo.GlobalSettings.Difficulty = null;
+
+			if (!server.Map.Options.Difficulties.Contains(server.lobbyInfo.GlobalSettings.Difficulty))
+				server.lobbyInfo.GlobalSettings.Difficulty = server.Map.Options.Difficulties.First();
 		}
 	}
 }

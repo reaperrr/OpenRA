@@ -39,7 +39,7 @@ namespace OpenRA.Mods.RA
 		{
 			self.Trait<RenderBuilding>().PlayCustomAnim(self, "active");
 
-			Sound.Play("ironcur9.aud", order.TargetLocation.ToPPos());
+			Sound.Play("ironcur9.aud", order.TargetLocation.CenterPosition);
 
 			foreach (var target in UnitsInRange(order.TargetLocation)
 				.Where(a => a.Owner.Stances[self.Owner] == Stance.Ally))
@@ -95,11 +95,12 @@ namespace OpenRA.Mods.RA
 					wr.DrawSelectionBox(unit, Color.Red);
 			}
 
-			public void RenderBeforeWorld(WorldRenderer wr, World world)
+			public IEnumerable<IRenderable> Render(WorldRenderer wr, World world)
 			{
 				var xy = Game.viewport.ViewToWorld(Viewport.LastMousePos);
+				var pal = wr.Palette("terrain");
 				foreach (var t in world.FindTilesInCircle(xy, range))
-					tile.DrawAt( wr, t.ToPPos().ToFloat2(), "terrain" );
+					yield return new SpriteRenderable(tile, t.CenterPosition, WVec.Zero, -511, pal, 1f, true);
 			}
 
 			public string GetCursor(World world, CPos xy, MouseInput mi)

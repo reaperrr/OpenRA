@@ -36,7 +36,7 @@ namespace OpenRA.GameRules
 		public bool VerboseNatDiscovery = false; // print very detailed logs for debugging
 		public bool AllowCheats = false;
 		public string Map = null;
-		public string[] Ban = null;
+		public string[] Ban = { };
 		public int TimeOut = 0;
 		public bool Dedicated = false;
 		public bool DedicatedLoop = true;
@@ -77,6 +77,10 @@ namespace OpenRA.GameRules
 		public bool SanityCheckUnsyncedCode = false;
 		public int Samples = 25;
 		public bool IgnoreVersionMismatch = false;
+		public bool DeveloperMenu = false;
+
+		public bool ShowFatalErrorDialog = true;
+		public string FatalErrorDialogFaq = "http://github.com/OpenRA/OpenRA/wiki/FAQ";
 	}
 
 	public class GraphicSettings
@@ -99,11 +103,14 @@ namespace OpenRA.GameRules
 		public float SoundVolume = 0.5f;
 		public float MusicVolume = 0.5f;
 		public float VideoVolume = 0.5f;
+
 		public bool Shuffle = false;
 		public bool Repeat = false;
 		public bool MapMusic = true;
+
 		public string Engine = "AL";
-		
+		public string Device = null;
+
 		public SoundCashTicks SoundCashTickType = SoundCashTicks.Extreme;
 	}
 
@@ -130,7 +137,6 @@ namespace OpenRA.GameRules
 		// Internal game settings
 		public int Timestep = 40;
 
-		public string ConnectTo = "";
 		public bool AllowDownloading = true;
 		public string MapRepository = "http://content.open-ra.org/map/";
 	}

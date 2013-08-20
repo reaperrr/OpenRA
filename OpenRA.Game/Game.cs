@@ -122,17 +122,17 @@ namespace OpenRA
 		public static void RunAfterTick(Action a) { delayedActions.Add(a); }
 		public static void RunAfterDelay(int delay, Action a) { delayedActions.Add(a, delay); }
 
-		static void Tick( OrderManager orderManager, Viewport viewPort )
+		static void Tick(OrderManager orderManager, Viewport viewPort)
 		{
 			if (orderManager.Connection.ConnectionState != lastConnectionState)
 			{
 				lastConnectionState = orderManager.Connection.ConnectionState;
-				ConnectionStateChanged( orderManager );
+				ConnectionStateChanged(orderManager);
 			}
 
-			Tick( orderManager );
-			if( worldRenderer != null && orderManager.world != worldRenderer.world )
-				Tick( worldRenderer.world.orderManager );
+			Tick(orderManager);
+			if (worldRenderer != null && orderManager.world != worldRenderer.world)
+				Tick(worldRenderer.world.orderManager);
 
 			using (new PerfSample("render"))
 			{
@@ -149,12 +149,12 @@ namespace OpenRA
 			delayedActions.PerformActions();
 		}
 
-		static void Tick( OrderManager orderManager )
+		static void Tick(OrderManager orderManager)
 		{
 			int t = Environment.TickCount;
 			int dt = t - orderManager.LastTickTime;
 			if (dt >= Settings.Game.Timestep)
-				using( new PerfSample( "tick_time" ) )
+				using (new PerfSample("tick_time"))
 				{
 					orderManager.LastTickTime += Settings.Game.Timestep;
 					Ui.Tick();
@@ -162,7 +162,7 @@ namespace OpenRA
 					if (orderManager.GameStarted)
 						++Viewport.TicksSinceLastMove;
 					Sound.Tick();
-					Sync.CheckSyncUnchanged( world, () => { orderManager.TickImmediate(); } );
+					Sync.CheckSyncUnchanged(world, orderManager.TickImmediate);
 
 					if (world != null)
 					{
@@ -191,7 +191,7 @@ namespace OpenRA
 							if (orderManager.NetFrameNumber == 0)
 								orderManager.LastTickTime = Environment.TickCount;
 
-						world.TickRender(worldRenderer);
+						Sync.CheckSyncUnchanged(world, () => world.TickRender(worldRenderer));
 						viewport.Tick();
 					}
 				}
@@ -215,7 +215,8 @@ namespace OpenRA
 			worldRenderer = new WorldRenderer(orderManager.world);
 
 			if (orderManager.GameStarted) return;
-			Ui.SelectedWidget = null;
+			Ui.MouseFocusWidget = null;
+			Ui.KeyboardFocusWidget = null;
 
 			orderManager.LocalFrameNumber = 0;
 			orderManager.LastTickTime = Environment.TickCount;
@@ -230,7 +231,7 @@ namespace OpenRA
 		{
 			get
 			{
-				var client= orderManager.LobbyInfo.ClientWithIndex (
+				var client= orderManager.LobbyInfo.ClientWithIndex(
 					orderManager.Connection.LocalClientId);
 				return ((client!=null) && client.IsAdmin);
 			}
@@ -258,6 +259,7 @@ namespace OpenRA
 			Log.AddChannel("debug", "debug.log");
 			Log.AddChannel("sync", "syncreport.log");
 			Log.AddChannel("server", "server.log");
+			Log.AddChannel("sound", "sound.log");
 
 			if (Settings.Server.DiscoverNatDevices)
 				UPnP.TryNatDiscovery();
@@ -315,7 +317,6 @@ namespace OpenRA
 			Renderer.InitializeFonts(modData.Manifest);
 			modData.InitializeLoaders();
 
-
 			PerfHistory.items["render"].hasNormalTick = false;
 			PerfHistory.items["batches"].hasNormalTick = false;
 			PerfHistory.items["render_widgets"].hasNormalTick = false;
@@ -331,11 +332,11 @@ namespace OpenRA
 					Game.Settings.Server.Map = WidgetUtils.ChooseInitialMap(Game.Settings.Server.Map);
 					Game.Settings.Save();
 					Game.CreateServer(new ServerSettings(Game.Settings.Server));
-					while(true)
+					while (true)
 					{
 						System.Threading.Thread.Sleep(100);
 
-						if((server.State == Server.ServerState.GameStarted)
+						if ((server.State == Server.ServerState.GameStarted)
 						    && (server.conns.Count<=1))
 						{
 							Console.WriteLine("No one is playing, shutting down...");
@@ -426,7 +427,7 @@ namespace OpenRA
 
 		public static T CreateObject<T>( string name )
 		{
-			return modData.ObjectCreator.CreateObject<T>( name );
+			return modData.ObjectCreator.CreateObject<T>(name);
 		}
 
 		public static void CreateServer(ServerSettings settings)
@@ -457,23 +458,6 @@ namespace OpenRA
 		public static bool IsCurrentWorld(World world)
 		{
 			return orderManager != null && orderManager.world == world;
-		}
-
-		public static void JoinExternalGame()
-		{
-			var addressParts = Game.Settings.Game.ConnectTo.Split(
-				new [] { ':' }, StringSplitOptions.RemoveEmptyEntries);
-
-			if (addressParts.Length < 1 || addressParts.Length > 2)
-				return;
-
-			var host = addressParts[0];
-			var port = Exts.WithDefault(1234, () => int.Parse(addressParts[1]));
-
-			Game.Settings.Game.ConnectTo = "";
-			Game.Settings.Save();
-
-			Game.JoinServer(host, port);
 		}
 
 		public static bool DownloadMap(string mapHash)

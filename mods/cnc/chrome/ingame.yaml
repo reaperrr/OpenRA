@@ -23,20 +23,31 @@ Container@INGAME_ROOT:
 			Height: 30
 			UseContrast: yes
 		Container@PERFORMANCE_INFO:
-			Logic:CncPerfDebugLogic
+			Logic:PerfDebugLogic
 			Children:
 				Label@PERF_TEXT:
-					X:85
-					Y:10
+					X:WINDOW_RIGHT - 200
+					Y:WINDOW_BOTTOM - 70
 					Width:170
 					Height:40
 					Contrast:true
-				PerfGraph@GRAPH:
+					VAlign:Top
+				Background@GRAPH_BG:
 					X:10
 					Y:WINDOW_BOTTOM-HEIGHT-10
-					Width:200
-					Height:200
-		CncWorldInteractionController@INTERACTION_CONTROLLER:
+					Width:220
+					Height:220
+					Background:panel-black
+					Children:
+						PerfGraph@GRAPH:
+							X:10
+							Y:10
+							Width:200
+							Height:200
+		WorldInteractionController@INTERACTION_CONTROLLER:
+			Width:WINDOW_RIGHT
+			Height:WINDOW_BOTTOM
+		ViewportController:
 			Width:WINDOW_RIGHT
 			Height:WINDOW_BOTTOM
 			TooltipContainer:TOOLTIP_CONTAINER
@@ -81,7 +92,7 @@ Container@OBSERVER_WIDGETS:
 			Visible:true
 Container@PLAYER_WIDGETS:
 	Children:
-		LogicTicker@WIN_LOSS_WATCHER:
+		LogicTicker@SIDEBAR_TICKER:
 		WorldCommand:
 			Width:WINDOW_RIGHT
 			Height:WINDOW_BOTTOM
@@ -146,7 +157,7 @@ Container@PLAYER_WIDGETS:
 					Height:168
 					Background:panel-gray
 					Children:
-						Radar:
+						Radar@RADAR_MINIMAP:
 							X:1
 							Y:1
 							Width:PARENT_RIGHT-2
@@ -165,6 +176,7 @@ Container@PLAYER_WIDGETS:
 							Width:PARENT_RIGHT-2
 							Height:PARENT_BOTTOM-2
 							TooltipContainer:TOOLTIP_CONTAINER
+							IndicatorImage:indicator-left
 				Background@SILOBAR_PANEL:
 					X:180
 					Y:5
@@ -178,6 +190,7 @@ Container@PLAYER_WIDGETS:
 							Width:PARENT_RIGHT-2
 							Height:PARENT_BOTTOM-2
 							TooltipContainer:TOOLTIP_CONTAINER
+							IndicatorImage:indicator-right
 				Label@CASH:
 					Y:170
 					Width:PARENT_RIGHT

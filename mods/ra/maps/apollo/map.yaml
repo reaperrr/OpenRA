@@ -4,7 +4,7 @@ MapFormat: 5
 
 Title: Apollo
 
-Description: This very large naval map is basically the eastern part of the map Zeus. The map is recommend for 4-6 players and features a fight between north and south. Oil Derricks are hard to destroy and repairible. Mine layers carry less mines. Enjoy! Check the forums/IRC for additional information about the map.
+Description: This very large naval map is made from the eastern part of the giant map Zeus. The map features a naval contest between north and south and is recommended for 4-6 players. Players are encouraged to leave their initial islands as soon as possible.
 
 Author: wuschel
 
@@ -30,42 +30,49 @@ Players:
 		DefaultStartingUnits: True
 		Race: Random
 		Enemies: Creeps
+		AllowBots: False
 	PlayerReference@Multi1:
 		Name: Multi1
 		Playable: True
 		DefaultStartingUnits: True
 		Race: Random
 		Enemies: Creeps
+		AllowBots: False
 	PlayerReference@Multi2:
 		Name: Multi2
 		Playable: True
 		DefaultStartingUnits: True
 		Race: Random
 		Enemies: Creeps
+		AllowBots: False
 	PlayerReference@Multi3:
 		Name: Multi3
 		Playable: True
 		DefaultStartingUnits: True
 		Race: Random
 		Enemies: Creeps
+		AllowBots: False
 	PlayerReference@Multi4:
 		Name: Multi4
 		Playable: True
 		DefaultStartingUnits: True
 		Race: Random
 		Enemies: Creeps
+		AllowBots: False
 	PlayerReference@Multi5:
 		Name: Multi5
 		Playable: True
 		DefaultStartingUnits: True
 		Race: Random
 		Enemies: Creeps
+		AllowBots: False
 	PlayerReference@Multi6:
 		Name: Multi6
 		Playable: True
 		DefaultStartingUnits: True
 		Race: Random
 		Enemies: Creeps
+		AllowBots: False
 	PlayerReference@Creeps:
 		Name: Creeps
 		NonCombatant: True
@@ -2591,37 +2598,20 @@ Actors:
 Smudges:
 
 Rules:
-	OILB:
-		Health:
-			HP: 1500
-		Armor:
-			Heavy:
-		Tooltip:
-			Name: Reinforced Oil Derrick
-		RepairableBuilding:
-
-	MNLY.AT:
-		LimitedAmmo:
-			Ammo: 1
-
-	MNLY.AP:
-		LimitedAmmo:
-			Ammo: 2
-
 	MISS:
 		Tooltip:
-			Name: Wall Street Speculators
+			Name: Wuschel's Wall Street Speculator HQ
 		RevealsShroud:
 			Range: 30
 		Health:
-			HP: 1500
+			HP: 2000
 		Armor:
 			Heavy:
 		Capturable:
 		CapturableBar:
 		CashTrickler:
-			Period: 250
-			Amount: 50
+			Period: 750
+			Amount: 333
 		RepairableBuilding:
 
 Sequences:

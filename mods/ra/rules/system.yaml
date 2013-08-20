@@ -28,13 +28,16 @@ Player:
 		Type: Plane
 		BuildSpeed: .4
 		LowPowerSlowdown: 3
+	ClassicProductionQueue@Helicopter:
+		Type: Helicopter
+		BuildSpeed: .4
+		LowPowerSlowdown: 3
 	PlaceBuilding:
 	SupportPowerManager:
 	ConquestVictoryConditions:
 	PowerManager:
 	AllyRepair:
 	PlayerResources:
-		InitialCash: 5000
 	ActorGroupProxy:
 	DeveloperMode:
 	HackyAI@EasyAI:
@@ -520,6 +523,7 @@ Player:
 		RemapIndex: 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95
 	GpsWatcher:
 	Shroud:
+	FrozenActorLayer:
 	BaseAttackNotifier:
 	PlayerStatistics:
 
@@ -544,7 +548,7 @@ World:
 		WaterChance: .2
 	PlayerPaletteFromCurrentTileset:
 		Name: player
-		ShadowIndex: 4
+		ShadowIndex: 3,4
 	PaletteFromCurrentTileset:
 		Name: terrain
 		ShadowIndex: 3,4
@@ -597,13 +601,16 @@ World:
 	ShroudPalette@fog:
 		Name: fog
 		Type: Fog
+	ShroudPalette@combined:
+		Name: shroudfog
+		Type: Combined
 	Country@0:
 		Name: Allies
 		Race: allies
 	Country@1:
 		Name: Soviet
 		Race: soviet
-	BibLayer:
+	DomainIndex:
 	ResourceLayer:
 	ResourceClaimLayer:
 	ResourceType@ore:
@@ -638,6 +645,38 @@ World:
 	DebugOverlay:
 	SpawnMapActors:
 	CreateMPPlayers:
+	MPStartUnits@mcvonly:
+		Class: none
+		Races: soviet, allies
+		BaseActor: mcv
+	MPStartUnits@lightallies:
+		Class: light
+		Races: allies
+		BaseActor: mcv
+		SupportActors: e1,e1,e1,e3,e3,jeep,1tnk
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@lightsoviet:
+		Class: light
+		Races: soviet
+		BaseActor: mcv
+		SupportActors: e1,e1,e1,e3,e3,apc,ftrk
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@heavyallies:
+		Class: heavy
+		Races: allies
+		BaseActor: mcv
+		SupportActors: e1,e1,e1,e3,e3,jeep,1tnk,2tnk,2tnk,2tnk
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@heavysoviet:
+		Class: heavy
+		Races: soviet
+		BaseActor: mcv
+		SupportActors: e1,e1,e1,e3,e3,apc,ftrk,3tnk,3tnk
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
 	MPStartLocations:
 	SpawnMPUnits:
 	SpatialBins:
@@ -670,6 +709,7 @@ MINP:
 		Types: Mine
 	TargetableUnit:
 		TargetTypes: Ground
+	BodyOrientation:
 
 MINV:
 	Mine:
@@ -695,6 +735,7 @@ MINV:
 		Types: Mine
 	TargetableUnit:
 		TargetTypes: Ground
+	BodyOrientation:
 
 CRATE:
 	Tooltip:
@@ -727,6 +768,7 @@ CRATE:
 	SupportPowerCrateAction@parabombs:
 		SelectionShares: 5
 		Proxy: powerproxy.parabombs
+		Effect: parabombs
 	GiveMcvCrateAction:
 		SelectionShares: 2
 		NoBaseSelectionShares: 9001
@@ -753,10 +795,10 @@ CRATE:
 		SelectionShares: 3
 		Unit: 4tnk
 	RenderSimple:
-	BelowUnits:
 	ProximityCaptor:
 		Types:Crate
 	Passenger:
+	BodyOrientation:
 
 CAMERA:
 	Aircraft:
@@ -766,6 +808,7 @@ CAMERA:
 		Range: 10
 	ProximityCaptor:
 		Types:Camera
+	BodyOrientation:
 
 FLARE:
 	Aircraft:
@@ -780,6 +823,7 @@ FLARE:
 		Name: Flare
 	ProximityCaptor:
 		Types: Flare
+	BodyOrientation:
 
 powerproxy.parabombs:
 	AirstrikePower:
@@ -805,7 +849,9 @@ powerproxy.sonarpulse:
 mpspawn:
 	Waypoint:
 	RenderEditorOnly:
+	BodyOrientation:
 
 waypoint:
 	Waypoint:
 	RenderEditorOnly:
+	BodyOrientation:

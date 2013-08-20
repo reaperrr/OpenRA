@@ -84,7 +84,7 @@ E2:
 		IdleAnimations: idle1,idle2
 	Explodes:
 		Weapon: UnitExplodeSmall
-		Chance: 50		
+		Chance: 50
 
 E3:
 	Inherits: ^Infantry
@@ -204,7 +204,7 @@ SPY:
 	TakeCover:
 	Spy:
 	Infiltrates:
-		InfiltrateTypes: Cash, SupportPower, Exploration
+		Types: Cash, SupportPower, Exploration
 	-AutoTarget:
 	AttackMove:
 		JustMove: true
@@ -383,6 +383,8 @@ GNRL:
 	Inherits: ^CivInfantry
 	Tooltip:
 		Name: General
+	Selectable:
+		Voice: StavrosVoice
 
 THF:
 	Inherits: ^Infantry
@@ -446,7 +448,6 @@ SNIPER:
 	Valued:
 		Cost: 700
 	Tooltip:
-		Icon: snipericon
 		Name: Sniper
 		Description: Elite sniper infantry unit.\n  Strong vs Infantry\n  Weak vs Vehicles
 	Buildable:
@@ -454,13 +455,13 @@ SNIPER:
 		BuildPaletteOrder: 80
 		Owner: soviet
 		Prerequisites: dome
-		Hotkey: n
+		Hotkey: h
 	Selectable:
 		Bounds: 12,17,0,-6
 	Mobile:
 		Speed: 4
 	Health:
-		HP: 200
+		HP: 80
 	Passenger:
 		PipType: Red
 	RevealsShroud:
@@ -480,6 +481,59 @@ SNIPER:
 		CloakSound:
 		UncloakSound:
 		UncloakOnMove: yes
-	Captures:
-		CaptureTypes: civilianbuilding
-		AllowAllies: true
+	LegacyCaptures:
+		CaptureTypes: CivilianBuilding
+		Sabotage: no
+		SabotageHPRemoval: 0
+
+Zombie:
+	Inherits: ^Infantry
+	Valued:
+		Cost: 100
+	Tooltip:
+		Name: Zombie
+		Description: Slow undead. Attacks in close combat.
+	Buildable:
+		Queue: Infantry
+		BuildPaletteOrder: 28
+		Owner: Umbrella
+		Prerequisites: bio
+	Selectable:
+		Voice: AntVoice
+		Bounds: 12,17,0,-9
+	Health:
+		HP: 250
+	Mobile:
+		Speed: 3
+	AttackWander:
+	AutoTarget:
+		ScanRadius: 5
+	AttackFrontal:
+	Armament:
+		Weapon: claw
+
+Ant:
+	Inherits: ^Infantry
+	Valued:
+		Cost: 300
+	Tooltip:
+		Name: Giant Ant
+		Description: Irradiated insect that grew oversize.
+	Buildable:
+		Queue: Infantry
+		BuildPaletteOrder: 1954
+		Owner: Them
+		Prerequisites: bio
+	Selectable:
+		Voice: AntVoice
+	Health:
+		HP: 750
+	Mobile:
+		Speed: 7
+		SharesCell: no
+	AttackWander:
+	AutoTarget:
+		ScanRadius: 5
+	AttackFrontal:
+	Armament:
+		Weapon: mandible

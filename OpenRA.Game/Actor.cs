@@ -26,8 +26,6 @@ namespace OpenRA
 		public readonly uint ActorID;
 
 		Lazy<IOccupySpace> occupySpace;
-		IHasLocation HasLocation;
-		Lazy<IMove> Move;
 		Lazy<IFacing> Facing;
 
 		public Cached<Rectangle> Bounds;
@@ -36,25 +34,8 @@ namespace OpenRA
 		public IOccupySpace OccupiesSpace { get { return occupySpace.Value; } }
 
 		public CPos Location { get { return occupySpace.Value.TopLeft; } }
-
-		public PPos CenterLocation
-		{
-			get
-			{
-				if (HasLocation == null)
-					HasLocation = Trait<IHasLocation>();
-				return HasLocation.PxPosition;
-			}
-		}
-
-		public WPos CenterPosition
-		{
-			get
-			{
-				var altitude = Move.Value != null ? Move.Value.Altitude : 0;
-				return CenterLocation.ToWPos(altitude);
-			}
-		}
+		public PPos CenterLocation { get { return PPos.FromWPos(occupySpace.Value.CenterPosition); } }
+		public WPos CenterPosition { get { return occupySpace.Value.CenterPosition; } }
 
 		public WRot Orientation
 		{
@@ -66,23 +47,22 @@ namespace OpenRA
 			}
 		}
 
-		public Shroud.ActorVisibility Sight;
-
 		[Sync] public Player Owner;
 
 		Activity currentActivity;
 		public Group Group;
+		public int Generation;
 
-		internal Actor(World world, string name, TypeDictionary initDict )
+		internal Actor(World world, string name, TypeDictionary initDict)
 		{
-			var init = new ActorInitializer( this, initDict );
+			var init = new ActorInitializer(this, initDict);
 
 			World = world;
 			ActorID = world.NextAID();
-			if( initDict.Contains<OwnerInit>() )
+			if (initDict.Contains<OwnerInit>())
 				Owner = init.Get<OwnerInit,Player>();
 
-			occupySpace = Lazy.New( () => TraitOrDefault<IOccupySpace>() );
+			occupySpace = Lazy.New(() => TraitOrDefault<IOccupySpace>());
 
 			if (name != null)
 			{
@@ -94,7 +74,6 @@ namespace OpenRA
 					AddTrait(trait.Create(init));
 			}
 
-			Move = Lazy.New(() => TraitOrDefault<IMove>());
 			Facing = Lazy.New(() => TraitOrDefault<IFacing>());
 
 			Size = Lazy.New(() =>
@@ -105,15 +84,6 @@ namespace OpenRA
 
 				return TraitsImplementing<IAutoSelectionSize>().Select(x => x.SelectionSize(this)).FirstOrDefault();
 			});
-
-			if (this.HasTrait<RevealsShroud>())
-			{
-				Sight = new Shroud.ActorVisibility
-				{
-					range = this.Trait<RevealsShroud>().RevealRange,
-					vis = Shroud.GetVisOrigins(this).ToArray()
-				};
-			}
 
 			ApplyIRender = (x, wr) => x.Render(this, wr);
 			ApplyRenderModifier = (m, p, wr) => p.ModifyRender(this, wr, m);
@@ -127,12 +97,7 @@ namespace OpenRA
 			Bounds.Invalidate();
 			ExtendedBounds.Invalidate();
 
-			currentActivity = Traits.Util.RunActivity( this, currentActivity );
-		}
-		
-		public void UpdateSight()
-		{
-			Sight.vis = Shroud.GetVisOrigins(this).ToArray();
+			currentActivity = Traits.Util.RunActivity(this, currentActivity);
 		}
 
 		public bool IsIdle
@@ -167,13 +132,14 @@ namespace OpenRA
 				loc += new PVecInt(si.Bounds[2], si.Bounds[3]);
 			}
 
-			var move = Move.Value;
-			if (move != null)
+			var ios = occupySpace.Value;
+			if (ios != null)
 			{
-				loc -= new PVecInt(0, move.Altitude);
+				var altitude = ios.CenterPosition.Z * Game.CellSize / 1024;
+				loc -= new PVecInt(0, altitude);
 
 				if (useAltitude)
-					size = new PVecInt(size.X, size.Y + move.Altitude);
+					size = new PVecInt(size.X, size.Y + altitude);
 			}
 
 			return new Rectangle(loc.X, loc.Y, size.X, size.Y);
@@ -272,6 +238,7 @@ namespace OpenRA
 				// momentarily remove from world so the ownership queries don't get confused
 				w.Remove(this);
 				Owner = newOwner;
+				Generation++;
 				w.Add(this);
 
 				foreach (var t in this.TraitsImplementing<INotifyOwnerChanged>())

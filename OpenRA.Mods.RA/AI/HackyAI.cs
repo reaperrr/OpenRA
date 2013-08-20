@@ -168,7 +168,7 @@ namespace OpenRA.Mods.RA.AI
 				if (owner.IsEmpty) return false;
 				var u = owner.units.Random(owner.random);
 
-				var units = owner.world.FindUnitsInCircle(u.CenterLocation, Game.CellSize * dangerRadius).ToList();
+				var units = owner.world.FindActorsInCircle(u.CenterPosition, WRange.FromCells(dangerRadius)).ToList();
 				var ownBaseBuildingAround = units.Where(unit => unit.Owner == owner.bot.p && unit.HasTrait<Building>()).ToList();
 				if (ownBaseBuildingAround.Count > 0) return false;
 
@@ -226,18 +226,18 @@ namespace OpenRA.Mods.RA.AI
 
 			protected static bool CanAttackTarget(Actor a, Actor target)
 			{
-				if (!a.HasTrait<AttackBase>()) return false;
-				if (!target.HasTrait<TargetableUnit<TargetableUnitInfo>>() &&
-					!target.HasTrait<TargetableBuilding>()) return false;
+				if (!a.HasTrait<AttackBase>())
+					return false;
+
+				var targetable = target.TraitOrDefault<ITargetable>();
+				if (targetable == null)
+					return false;
 
 				var arms = a.TraitsImplementing<Armament>();
 				foreach (var arm in arms)
-					if (target.HasTrait<TargetableUnit<TargetableUnitInfo>>() && 
-						arm.Weapon.ValidTargets.Intersect(target.Trait<TargetableUnit<TargetableUnitInfo>>().TargetTypes) != null)
+					if (arm.Weapon.ValidTargets.Intersect(targetable.TargetTypes) != null)
 						return true;
-					else if (target.HasTrait<TargetableBuilding>() && 
-				    	arm.Weapon.ValidTargets.Intersect(target.Trait<TargetableBuilding>().TargetTypes) != null)
-						return true;
+
 				return false;
 			}
 		}
@@ -301,7 +301,7 @@ namespace OpenRA.Mods.RA.AI
 					for (int j = 0; j < y; j += dangerRadius * 2)
 					{
 						CPos pos = new CPos(i, j);
-						if (NearToPosSafely(owner, pos.ToPPos(), out detectedEnemyTarget))
+						if (NearToPosSafely(owner, pos.CenterPosition, out detectedEnemyTarget))
 						{
 							if (needTarget)
 							{
@@ -316,16 +316,16 @@ namespace OpenRA.Mods.RA.AI
 				return null;
 			}
 
-			protected static bool NearToPosSafely(Squad owner, PPos loc)
+			protected static bool NearToPosSafely(Squad owner, WPos loc)
 			{
 				Actor a;
 				return NearToPosSafely(owner, loc, out a);
 			}
 
-			protected static bool NearToPosSafely(Squad owner, PPos loc, out Actor detectedEnemyTarget)
+			protected static bool NearToPosSafely(Squad owner, WPos loc, out Actor detectedEnemyTarget)
 			{
 				detectedEnemyTarget = null;
-				var unitsAroundPos = owner.world.FindUnitsInCircle(loc, Game.CellSize * dangerRadius)
+				var unitsAroundPos = owner.world.FindActorsInCircle(loc, WRange.FromCells(dangerRadius))
 					.Where(unit => owner.bot.p.Stances[unit.Owner] == Stance.Enemy).ToList();
 
 				int missileUnitsCount = 0;
@@ -412,7 +412,7 @@ namespace OpenRA.Mods.RA.AI
 				if (!owner.TargetIsValid)
 				{
 					var a = owner.units.Random(owner.random);
-					var closestEnemy = owner.bot.FindClosestEnemy(a.CenterLocation);
+					var closestEnemy = owner.bot.FindClosestEnemy(a.CenterPosition);
 					if (closestEnemy != null)
 						owner.Target = closestEnemy;
 					else
@@ -422,7 +422,7 @@ namespace OpenRA.Mods.RA.AI
 					}
 				}
 
-				if (!NearToPosSafely(owner, owner.Target.CenterLocation))
+				if (!NearToPosSafely(owner, owner.Target.CenterPosition))
 				{
 					owner.fsm.ChangeState(new AirFleeState(), true);
 					return;
@@ -504,12 +504,12 @@ namespace OpenRA.Mods.RA.AI
 				if (owner.IsEmpty) return;
 				if (!owner.TargetIsValid)
 				{
-					var t = owner.bot.FindClosestEnemy(owner.units.FirstOrDefault().CenterLocation);
+					var t = owner.bot.FindClosestEnemy(owner.units.FirstOrDefault().CenterPosition);
 					if (t == null) return;
 					owner.Target = t;
 				}
 
-				var enemyUnits = owner.world.FindUnitsInCircle(owner.Target.CenterLocation, Game.CellSize * 10)
+				var enemyUnits = owner.world.FindActorsInCircle(owner.Target.CenterPosition, WRange.FromCells(10))
 					.Where(unit => owner.bot.p.Stances[unit.Owner] == Stance.Enemy).ToList();
 				if (enemyUnits.Any())
 
@@ -518,7 +518,7 @@ namespace OpenRA.Mods.RA.AI
 					if (owner.attackOrFleeFuzzy.CanAttack)
 					{
 						foreach(var u in owner.units)
-							owner.world.IssueOrder(new Order("AttackMove", u, false) { TargetLocation = owner.Target.CenterLocation.ToCPos() });
+							owner.world.IssueOrder(new Order("AttackMove", u, false) { TargetLocation = owner.Target.CenterPosition.ToCPos() });
 						// We have gathered sufficient units. Attack the nearest enemy unit.
 						owner.fsm.ChangeState(new GroundUnitsAttackMoveState(), true);
 						return;
@@ -541,7 +541,7 @@ namespace OpenRA.Mods.RA.AI
 
 				if (!owner.TargetIsValid)
 				{
-					var closestEnemy = owner.bot.FindClosestEnemy(owner.units.Random(owner.random).CenterLocation);
+					var closestEnemy = owner.bot.FindClosestEnemy(owner.units.Random(owner.random).CenterPosition);
 					if (closestEnemy != null)
 						owner.Target = closestEnemy;
 					else
@@ -551,25 +551,25 @@ namespace OpenRA.Mods.RA.AI
 					}
 				}
 
-				Actor leader = owner.units.ClosestTo(owner.Target.CenterLocation);
+				Actor leader = owner.units.ClosestTo(owner.Target.CenterPosition);
 				if (leader == null)
 					return;
-				var ownUnits = owner.world.FindUnitsInCircle(leader.CenterLocation, Game.CellSize * owner.units.Count/3)
+				var ownUnits = owner.world.FindActorsInCircle(leader.CenterPosition, WRange.FromCells(owner.units.Count) / 3)
 					.Where(a => a.Owner == owner.units.FirstOrDefault().Owner && owner.units.Contains(a)).ToList();
 				if (ownUnits.Count < owner.units.Count)
 				{
 					owner.world.IssueOrder(new Order("Stop", leader, false));
 					foreach (var unit in owner.units.Where(a => !ownUnits.Contains(a)))
-						owner.world.IssueOrder(new Order("AttackMove", unit, false) { TargetLocation = leader.CenterLocation.ToCPos() });
+						owner.world.IssueOrder(new Order("AttackMove", unit, false) { TargetLocation = leader.CenterPosition.ToCPos() });
 				}
 				else
 				{
-					var enemys = owner.world.FindUnitsInCircle(leader.CenterLocation, Game.CellSize * 12)
+					var enemys = owner.world.FindActorsInCircle(leader.CenterPosition, WRange.FromCells(12))
 						.Where(a1 => !a1.Destroyed && !a1.IsDead()).ToList();
 					var enemynearby = enemys.Where(a1 => a1.HasTrait<ITargetable>() && leader.Owner.Stances[a1.Owner] == Stance.Enemy).ToList();
 					if (enemynearby.Any())
 					{
-						owner.Target = enemynearby.ClosestTo(leader.CenterLocation);
+						owner.Target = enemynearby.ClosestTo(leader.CenterPosition);
 						owner.fsm.ChangeState(new GroundUnitsAttackState(), true);
 						return;
 					}
@@ -598,7 +598,7 @@ namespace OpenRA.Mods.RA.AI
 
 				if (!owner.TargetIsValid)
 				{
-					var closestEnemy = owner.bot.FindClosestEnemy(owner.units.Random(owner.random).CenterLocation);
+					var closestEnemy = owner.bot.FindClosestEnemy(owner.units.Random(owner.random).CenterPosition);
 					if (closestEnemy != null)
 						owner.Target = closestEnemy;
 					else
@@ -609,7 +609,7 @@ namespace OpenRA.Mods.RA.AI
 				}
 				foreach (var a in owner.units)
 					if (!BusyAttack(a))
-						owner.world.IssueOrder(new Order("Attack", a, false) { TargetActor = owner.bot.FindClosestEnemy(a.CenterLocation) });
+						owner.world.IssueOrder(new Order("Attack", a, false) { TargetActor = owner.bot.FindClosestEnemy(a.CenterPosition) });
 
 				if (MayBeFlee(owner))
 				{
@@ -652,7 +652,9 @@ namespace OpenRA.Mods.RA.AI
 				if (owner.IsEmpty) return;
 				if (!owner.TargetIsValid)
 				{
-					owner.Target = owner.bot.FindClosestEnemy(AverageUnitsPosition(owner.units).Value.ToPPos(), 8);
+					var circaPostion = AverageUnitsPosition(owner.units);
+					if (circaPostion == null) return;
+					owner.Target = owner.bot.FindClosestEnemy(circaPostion.Value.CenterPosition, WRange.FromCells(8));
 
 					if (owner.Target == null)
 					{
@@ -763,7 +765,7 @@ namespace OpenRA.Mods.RA.AI
 			if (!buildableThings.Any()) return null;
 
 			var myUnits = p.World
-				.ActorsWithTrait<IMove>()
+				.ActorsWithTrait<IPositionable>()
 				.Where(a => a.Actor.Owner == p)
 				.Select(a => a.Actor.Info.Name).ToArray();
 
@@ -783,7 +785,7 @@ namespace OpenRA.Mods.RA.AI
 
 		int CountUnits(string unit, Player owner)
 		{
-			return world.ActorsWithTrait<IMove>().Where(a => a.Actor.Owner == owner && a.Actor.Info.Name == unit).Count();
+			return world.ActorsWithTrait<IPositionable>().Where(a => a.Actor.Owner == owner && a.Actor.Info.Name == unit).Count();
 		}
 
 		int? CountBuildingByCommonName(string commonName, Player owner)
@@ -907,7 +909,7 @@ namespace OpenRA.Mods.RA.AI
 		CPos defenseCenter;
 		public CPos? ChooseBuildLocation(string actorType, BuildingType type)
 		{
-			return ChooseBuildLocation(actorType, false, MaxBaseDistance, type);
+			return ChooseBuildLocation(actorType, true, MaxBaseDistance, type);
 		}
 
 		public CPos? ChooseBuildLocation(string actorType, bool distanceToBaseIsImportant, int maxBaseDistance, BuildingType type)
@@ -915,12 +917,12 @@ namespace OpenRA.Mods.RA.AI
 			var bi = Rules.Info[actorType].Traits.Get<BuildingInfo>();
 			if (bi == null) return null;
 
-			Func<PPos, CPos, CPos?> findPos = (PPos pos, CPos center) =>
+			Func<WPos, CPos, CPos?> findPos = (WPos pos, CPos center) =>
 			{
 				for (var k = MaxBaseDistance; k >= 0; k--)
 				{
 					var tlist = world.FindTilesInCircle(center, k)
-						.OrderBy(a => (new PPos(a.ToPPos().X, a.ToPPos().Y) - pos).LengthSquared);
+						.OrderBy(a => (a.CenterPosition - pos).LengthSquared);
 					foreach (var t in tlist)
 						if (world.CanPlaceBuilding(actorType, bi, t, null))
 							if (bi.IsCloseEnoughToBase(world, p, actorType, t))
@@ -933,14 +935,14 @@ namespace OpenRA.Mods.RA.AI
 			switch(type)
 			{
 				case BuildingType.Defense:
-					Actor enemyBase = FindEnemyBuildingClosestToPos(baseCenter.ToPPos());
-					return enemyBase != null ? findPos(enemyBase.CenterLocation, defenseCenter) : null;
+					Actor enemyBase = FindEnemyBuildingClosestToPos(baseCenter.CenterPosition);
+					return enemyBase != null ? findPos(enemyBase.CenterPosition, defenseCenter) : null;
 
 				case BuildingType.Refinery:
 					var tilesPos = world.FindTilesInCircle(baseCenter, MaxBaseDistance)
 						.Where(a => resourceTypes.Contains(world.GetTerrainType(new CPos(a.X, a.Y))))
-						.OrderBy(a => (new PPos(a.ToPPos().X, a.ToPPos().Y) - baseCenter.ToPPos()).LengthSquared);
-					return tilesPos.Any() ? findPos(tilesPos.First().ToPPos(), baseCenter) : null;
+						.OrderBy(a => (a.CenterPosition - baseCenter.CenterPosition).LengthSquared);
+					return tilesPos.Any() ? findPos(tilesPos.First().CenterPosition, baseCenter) : null;
 
 				case BuildingType.Building:
 					for (var k = 0; k < maxBaseDistance; k++)
@@ -949,14 +951,14 @@ namespace OpenRA.Mods.RA.AI
 							{
 								if (distanceToBaseIsImportant)
 									if (!bi.IsCloseEnoughToBase(world, p, actorType, t))
-										return null;
+										continue;
 								if (NoBuildingsUnder(Util.ExpandFootprint(FootprintUtils.Tiles(actorType, bi, t), false)))
 									return t;
 							}
 					break;
 			}
 
-			return null;		// Don't know where to put it.
+			return null;		// i don't know where to put it.
 		}
 
 		public void Tick(Actor self)
@@ -1006,7 +1008,7 @@ namespace OpenRA.Mods.RA.AI
 			Actor target = null;
 
 			if (targets.Any())
-				target = targets.ClosestTo(baseCenter.ToPPos());
+				target = targets.ClosestTo(baseCenter.CenterPosition);
 
 			if (target == null)
 			{
@@ -1024,20 +1026,20 @@ namespace OpenRA.Mods.RA.AI
 			return target;
 		}
 
-		internal Actor FindClosestEnemy(PPos pos)
+		internal Actor FindClosestEnemy(WPos pos)
 		{
 			var allEnemyUnits = world.Actors
 				.Where(unit => p.Stances[unit.Owner] == Stance.Enemy && !unit.HasTrait<Husk>() &&
-					unit.HasTrait<ITargetable>() && unit.HasTrait<IHasLocation>()).ToList();
+					unit.HasTrait<ITargetable>()).ToList();
 
 			if (allEnemyUnits.Count > 0)
 				return allEnemyUnits.ClosestTo(pos);
 			return null;
 		}
 
-		internal Actor FindClosestEnemy(PPos pos, int radius)
+		internal Actor FindClosestEnemy(WPos pos, WRange radius)
 		{
-			var enemyUnits = world.FindUnitsInCircle(pos, Game.CellSize * radius)
+			var enemyUnits = world.FindActorsInCircle(pos, radius)
 								.Where(unit => p.Stances[unit.Owner] == Stance.Enemy &&
 									!unit.HasTrait<Husk>() && unit.HasTrait<ITargetable>()).ToList();
 
@@ -1048,14 +1050,14 @@ namespace OpenRA.Mods.RA.AI
 
 		List<Actor> FindEnemyConstructionYards()
 		{
-			var bases =  world.Actors.Where(a => p.Stances[a.Owner] == Stance.Enemy && a.HasTrait<IHasLocation>()
-				&& !a.Destroyed && a.HasTrait<BaseBuilding>() && !a.HasTrait<Mobile>()).ToList();
+			var bases = world.Actors.Where(a => p.Stances[a.Owner] == Stance.Enemy && !a.Destroyed
+				&& a.HasTrait<BaseBuilding>() && !a.HasTrait<Mobile>()).ToList();
 			return bases != null ? bases : new List<Actor>();
 		}
 
-		Actor FindEnemyBuildingClosestToPos(PPos pos)
+		Actor FindEnemyBuildingClosestToPos(WPos pos)
 		{
-			var closestBuilding = world.Actors.Where(a => p.Stances[a.Owner] == Stance.Enemy && a.HasTrait<IHasLocation>()
+			var closestBuilding = world.Actors.Where(a => p.Stances[a.Owner] == Stance.Enemy
 			   && !a.Destroyed && a.HasTrait<Building>()).ClosestTo(pos);
 			return closestBuilding;
 		}
@@ -1145,7 +1147,7 @@ namespace OpenRA.Mods.RA.AI
 
 		void FindNewUnits(Actor self)
 		{
-			var newUnits = self.World.ActorsWithTrait<IMove>()
+			var newUnits = self.World.ActorsWithTrait<IPositionable>()
 				.Where(a => a.Actor.Owner == p && !a.Actor.HasTrait<BaseBuilding>()
 			&& !activeUnits.Contains(a.Actor))
 			.Select(a => a.Actor).ToArray();
@@ -1194,7 +1196,7 @@ namespace OpenRA.Mods.RA.AI
 			if (!allEnemyBaseBuilder.Any() || (ownUnits.Count < Info.SquadSize)) return;
 			foreach (var b in allEnemyBaseBuilder)
 			{
-				var enemys = world.FindUnitsInCircle(b.CenterLocation, Game.CellSize * 15)
+				var enemys = world.FindActorsInCircle(b.CenterPosition, WRange.FromCells(15))
 					.Where(unit => p.Stances[unit.Owner] == Stance.Enemy && unit.HasTrait<AttackBase>()).ToList();
 				
 				rushFuzzy.CalculateFuzzy(ownUnits, enemys);
@@ -1223,7 +1225,7 @@ namespace OpenRA.Mods.RA.AI
 				protectSq.Target = attacker;
 			if (protectSq.IsEmpty)
 			{
-				var ownUnits = world.FindUnitsInCircle(baseCenter.ToPPos(), Game.CellSize * 15)
+				var ownUnits = world.FindActorsInCircle(baseCenter.CenterPosition, WRange.FromCells(15))
 									.Where(unit => unit.Owner == p && !unit.HasTrait<Building>()
 										&& unit.HasTrait<AttackBase>()).ToList();
 				foreach (var a in ownUnits)
@@ -1340,7 +1342,7 @@ namespace OpenRA.Mods.RA.AI
 				for (int j = 0; j < y; j += radiusOfPower * 2)
 				{
 					CPos pos = new CPos(i, j);
-					var targets = world.FindUnitsInCircle(pos.ToPPos(), Game.CellSize * radiusOfPower).ToList();
+					var targets = world.FindActorsInCircle(pos.CenterPosition, WRange.FromCells(radiusOfPower)).ToList();
 					var enemys = targets.Where(unit => p.Stances[unit.Owner] == Stance.Enemy).ToList();
 					var ally = targets.Where(unit => p.Stances[unit.Owner] == Stance.Ally || unit.Owner == p).ToList();
 
@@ -1424,12 +1426,12 @@ namespace OpenRA.Mods.RA.AI
 				aggro[e.Attacker.Owner].Aggro += e.Damage;
 
 			//protected harvesters or building
-			if (self.HasTrait<Harvester>() || self.HasTrait<Building>())
-				if (e.Attacker.HasTrait<IHasLocation>() && (p.Stances[e.Attacker.Owner] == Stance.Enemy))
-				{
-					defenseCenter = e.Attacker.Location;
-					ProtectOwn(e.Attacker);
-				}
+			if ((self.HasTrait<Harvester>() || self.HasTrait<Building>()) &&
+			    p.Stances[e.Attacker.Owner] == Stance.Enemy)
+			{
+				defenseCenter = e.Attacker.Location;
+				ProtectOwn(e.Attacker);
+			}
 		}
 	}
 }

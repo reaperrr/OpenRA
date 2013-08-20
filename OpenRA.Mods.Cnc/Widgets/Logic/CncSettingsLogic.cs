@@ -16,9 +16,9 @@ using OpenRA.FileFormats;
 using OpenRA.FileFormats.Graphics;
 using OpenRA.GameRules;
 using OpenRA.Mods.RA;
+using OpenRA.Mods.RA.Widgets;
 using OpenRA.Mods.RA.Widgets.Logic;
 using OpenRA.Widgets;
-using OpenRA.Mods.RA.Widgets;
 
 namespace OpenRA.Mods.Cnc.Widgets.Logic
 {
@@ -26,7 +26,8 @@ namespace OpenRA.Mods.Cnc.Widgets.Logic
 	{
 		enum PanelType { General, Input }
 
-		PanelType Settings = PanelType.General;
+		SoundDevice soundDevice;
+		PanelType settingsPanel = PanelType.General;
 		ColorPreviewManagerWidget colorPreview;
 		World world;
 
@@ -38,11 +39,11 @@ namespace OpenRA.Mods.Cnc.Widgets.Logic
 
 			// General pane
 			var generalButton = panel.Get<ButtonWidget>("GENERAL_BUTTON");
-			generalButton.OnClick = () => Settings = PanelType.General;
-			generalButton.IsHighlighted = () => Settings == PanelType.General;
+			generalButton.OnClick = () => settingsPanel = PanelType.General;
+			generalButton.IsHighlighted = () => settingsPanel == PanelType.General;
 
 			var generalPane = panel.Get("GENERAL_CONTROLS");
-			generalPane.IsVisible = () => Settings == PanelType.General;
+			generalPane.IsVisible = () => settingsPanel == PanelType.General;
 
 			var gameSettings = Game.Settings.Game;
 			var playerSettings = Game.Settings.Player;
@@ -74,6 +75,10 @@ namespace OpenRA.Mods.Cnc.Widgets.Logic
 			checkunsyncedCheckbox.IsChecked = () => debugSettings.SanityCheckUnsyncedCode;
 			checkunsyncedCheckbox.OnClick = () => debugSettings.SanityCheckUnsyncedCode ^= true;
 
+			var showFatalErrorDialog = generalPane.Get<CheckboxWidget>("SHOW_FATAL_ERROR_DIALOG_CHECKBOX");
+			showFatalErrorDialog.IsChecked = () => Game.Settings.Debug.ShowFatalErrorDialog;
+			showFatalErrorDialog.OnClick = () => Game.Settings.Debug.ShowFatalErrorDialog ^= true;
+
 			// Video
 			var windowModeDropdown = generalPane.Get<DropDownButtonWidget>("MODE_DROPDOWN");
 			windowModeDropdown.OnMouseDown = _ => SettingsMenuLogic.ShowWindowModeDropdown(windowModeDropdown, graphicsSettings);
@@ -101,7 +106,7 @@ namespace OpenRA.Mods.Cnc.Widgets.Logic
 
 			// Audio
 			var soundSlider = generalPane.Get<SliderWidget>("SOUND_SLIDER");
-			soundSlider.OnChange += x => { soundSettings.SoundVolume = x; Sound.SoundVolume = x;};
+			soundSlider.OnChange += x => { soundSettings.SoundVolume = x; Sound.SoundVolume = x; };
 			soundSlider.Value = soundSettings.SoundVolume;
 
 			var musicSlider = generalPane.Get<SliderWidget>("MUSIC_SLIDER");
@@ -112,13 +117,20 @@ namespace OpenRA.Mods.Cnc.Widgets.Logic
 			shellmapMusicCheckbox.IsChecked = () => soundSettings.MapMusic;
 			shellmapMusicCheckbox.OnClick = () => soundSettings.MapMusic ^= true;
 
+			var devices = Sound.AvailableDevices();
+			soundDevice = devices.FirstOrDefault(d => d.Engine == soundSettings.Engine && d.Device == soundSettings.Device) ?? devices.First();
+
+			var audioDeviceDropdown = generalPane.Get<DropDownButtonWidget>("AUDIO_DEVICE");
+			audioDeviceDropdown.OnMouseDown = _ => ShowAudioDeviceDropdown(audioDeviceDropdown, soundSettings, devices);
+			audioDeviceDropdown.GetText = () => soundDevice.Label;
+
 			// Input pane
 			var inputPane = panel.Get("INPUT_CONTROLS");
-			inputPane.IsVisible = () => Settings == PanelType.Input;
+			inputPane.IsVisible = () => settingsPanel == PanelType.Input;
 
 			var inputButton = panel.Get<ButtonWidget>("INPUT_BUTTON");
-			inputButton.OnClick = () => Settings = PanelType.Input;
-			inputButton.IsHighlighted = () => Settings == PanelType.Input;
+			inputButton.OnClick = () => settingsPanel = PanelType.Input;
+			inputButton.IsHighlighted = () => settingsPanel == PanelType.Input;
 
 			var classicMouseCheckbox = inputPane.Get<CheckboxWidget>("CLASSICORDERS_CHECKBOX");
 			classicMouseCheckbox.IsChecked = () => gameSettings.UseClassicMouseStyle;
@@ -146,11 +158,35 @@ namespace OpenRA.Mods.Cnc.Widgets.Logic
 				int x, y;
 				int.TryParse(windowWidth.Text, out x);
 				int.TryParse(windowHeight.Text, out y);
-				graphicsSettings.WindowedSize = new int2(x,y);
+				graphicsSettings.WindowedSize = new int2(x, y);
+				soundSettings.Device = soundDevice.Device;
+				soundSettings.Engine = soundDevice.Engine;
 				Game.Settings.Save();
 				Ui.CloseWindow();
 				onExit();
 			};
+		}
+
+		static bool ShowMouseScrollDropdown(DropDownButtonWidget dropdown, GameSettings s)
+		{
+			var options = new Dictionary<string, MouseScrollType>()
+			{
+				{ "Disabled", MouseScrollType.Disabled },
+				{ "Standard", MouseScrollType.Standard },
+				{ "Inverted", MouseScrollType.Inverted },
+			};
+
+			Func<string, ScrollItemWidget, ScrollItemWidget> setupItem = (o, itemTemplate) =>
+			{
+				var item = ScrollItemWidget.Setup(itemTemplate,
+				                                  () => s.MouseScroll == options[o],
+				                                  () => s.MouseScroll = options[o]);
+				item.Get<LabelWidget>("LABEL").GetText = () => o;
+				return item;
+			};
+
+			dropdown.ShowDropDown("LABEL_DROPDOWN_TEMPLATE", 500, options.Keys, setupItem);
+			return true;
 		}
 
 		bool ShowColorPicker(DropDownButtonWidget color, PlayerSettings s)
@@ -173,21 +209,18 @@ namespace OpenRA.Mods.Cnc.Widgets.Logic
 			return true;
 		}
 
-		static bool ShowMouseScrollDropdown(DropDownButtonWidget dropdown, GameSettings s)
+		bool ShowAudioDeviceDropdown(DropDownButtonWidget dropdown, SoundSettings s, SoundDevice[] devices)
 		{
-			var options = new Dictionary<string, MouseScrollType>()
-			{
-				{ "Disabled", MouseScrollType.Disabled },
-				{ "Standard", MouseScrollType.Standard },
-				{ "Inverted", MouseScrollType.Inverted },
-			};
+			var i = 0;
+			var options = devices.ToDictionary(d => (i++).ToString(), d => d);
 
 			Func<string, ScrollItemWidget, ScrollItemWidget> setupItem = (o, itemTemplate) =>
 			{
 				var item = ScrollItemWidget.Setup(itemTemplate,
-					() => s.MouseScroll == options[o],
-					() => s.MouseScroll = options[o]);
-				item.Get<LabelWidget>("LABEL").GetText = () => o;
+					() => soundDevice == options[o],
+					() => soundDevice = options[o]);
+
+				item.Get<LabelWidget>("LABEL").GetText = () => options[o].Label;
 				return item;
 			};
 

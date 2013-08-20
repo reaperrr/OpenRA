@@ -55,12 +55,14 @@ namespace OpenRA.Mods.RA.Render
 		public AnimationState State { get; private set; }
 
 		public RenderInfantry(Actor self, RenderInfantryInfo info)
-			: base(self, RenderSimple.MakeFacingFunc(self))
+			: base(self, MakeFacingFunc(self))
 		{
 			Info = info;
 			anim.PlayFetchIndex(NormalizeInfantrySequence(self, "stand"), () => 0);
 			State = AnimationState.Waiting;
 			mobile = self.Trait<Mobile>();
+
+			self.Trait<IBodyOrientation>().SetAutodetectedFacings(anim.CurrentSequence.Facings);
 		}
 
 		public void Attacking(Actor self, Target target)
@@ -70,6 +72,11 @@ namespace OpenRA.Mods.RA.Render
 				anim.PlayThen(NormalizeInfantrySequence(self, "shoot"), () => State = AnimationState.Idle);
 			else if (anim.HasSequence(NormalizeInfantrySequence(self, "heal")))
 				anim.PlayThen(NormalizeInfantrySequence(self, "heal"), () => State = AnimationState.Idle);
+		}
+
+		public void Attacking(Actor self, Target target, Armament a, Barrel barrel)
+		{
+			Attacking(self, target);
 		}
 
 		public override void Tick(Actor self)

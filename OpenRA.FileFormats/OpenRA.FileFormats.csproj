@@ -126,11 +126,10 @@
     <Compile Include="Primitives\Set.cs" />
     <Compile Include="Primitives\float2.cs" />
     <Compile Include="Primitives\int2.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Support\Log.cs" />
     <Compile Include="Support\Stopwatch.cs" />
     <Compile Include="Support\Timer.cs" />
-    <Compile Include="Thirdparty\Random.cs" />
+    <Compile Include="Random.cs" />
     <Compile Include="TypeDictionary.cs" />
     <Compile Include="WPos.cs" />
     <Compile Include="WVec.cs" />
@@ -141,6 +140,13 @@
     <Compile Include="Graphics\ShpTSReader.cs" />
     <Compile Include="FileFormats\XccLocalDatabase.cs" />
     <Compile Include="FileFormats\XccGlobalDatabase.cs" />
+    <Compile Include="Graphics\VxlReader.cs" />
+    <Compile Include="Graphics\HvaReader.cs" />
+    <Compile Include="StreamExts.cs" />
+    <Compile Include="FileFormats\WavLoader.cs" />
+    <Compile Include="Filesystem\D2kSoundResources.cs" />
+    <Compile Include="Graphics\R8Reader.cs" />
+    <Compile Include="Graphics\TileSetRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

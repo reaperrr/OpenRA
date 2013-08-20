@@ -36,7 +36,7 @@ namespace OpenRA.Mods.RA.Effects
 				parachuteOffset = pai.Offset;
 
 			// Adjust x,y to match the target subcell
-			cargo.Trait<ITeleportable>().SetPosition(cargo, new CPos(dropPosition));
+			cargo.Trait<IPositionable>().SetPosition(cargo, dropPosition.ToCPos());
 			var cp = cargo.CenterPosition;
 			pos = new WPos(cp.X, cp.Y, dropPosition.Z);
 		}
@@ -72,11 +72,14 @@ namespace OpenRA.Mods.RA.Effects
 			var shadow = wr.Palette("shadow");
 			foreach (var c in rc)
 			{
-				yield return c.WithPalette(shadow).WithZOffset(-1);
-				yield return c.WithPos(pos);
+				if (!c.IsDecoration)
+					yield return c.WithPalette(shadow).WithZOffset(c.ZOffset - 1).AsDecoration();
+
+				yield return c.OffsetBy(pos - c.Pos);
 			}
 
-			yield return new SpriteRenderable(paraAnim.Image, pos + parachuteOffset, 1, rc.First().Palette, 1f);
+			foreach (var r in paraAnim.Render(pos, parachuteOffset, 1, rc.First().Palette, 1f))
+				yield return r;
 		}
 	}
 }

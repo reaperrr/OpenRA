@@ -7,9 +7,11 @@ fire:
 	1: fire1
 		Start: 0
 		Length: *
+		Offset: 0,-3
 	2: fire2
 		Start: 0
 		Length: *
+		Offset: 0,-3
 
 120mm:
 	idle:
@@ -145,6 +147,7 @@ rallypoint:
 	flag:flagfly
 		Start: 0
 		Length: *
+		Offset: 10,-5
 	circles:fpls
 		Start: 0
 		Length: *
@@ -162,8 +165,10 @@ allyrepair:
 crate:
 	idle: wcrate
 		Start: 0
+		ZOffset: -511
 	land: wcrate
 		Start: 0
+		ZOffset: -511
 
 crate-effects:
 	airstrike: deviator
@@ -198,12 +203,6 @@ crate-effects:
 		Length: *
 		Tick: 200
 
-miss:
-	idle:
-		Start: 0
-	damaged-idle:
-		Start: 2
-
 atomicup:
 	idle:
 		Start: 0
@@ -226,6 +225,8 @@ ionsfx:
 	idle:
 		Start: 0
 		Length: *
+		Offset: 0, -78
+		ZOffset: 1
 
 bomblet:
 	idle:
@@ -296,3 +297,11 @@ poweroff:
 		Start: 0
 		Length: *
 		Tick: 160
+
+icon:
+	airstrike: bombicnh
+		Start: 0
+	ioncannon: ionicnh
+		Start: 0
+	abomb: atomicnh
+		Start: 0

@@ -54,7 +54,9 @@ V2RL:
 		Weapon: 25mm
 		Recoil: 85
 		RecoilRecovery: 25
+		LocalOffset: 768,0,90
 	AttackTurreted:
+	WithMuzzleFlash:
 	RenderUnit:
 	WithTurret:
 	AutoTarget:
@@ -92,7 +94,9 @@ V2RL:
 		Weapon: 90mm
 		Recoil: 128
 		RecoilRecovery: 38
+		LocalOffset: 720,0,80
 	AttackTurreted:
+	WithMuzzleFlash:
 	RenderUnit:
 	WithTurret:
 	AutoTarget:
@@ -132,8 +136,9 @@ V2RL:
 		Weapon: 105mm
 		Recoil: 128
 		RecoilRecovery: 38
-		LocalOffset: 0,85,0, 0,-85,0
+		LocalOffset: 768,85,90, 768,-85,90
 	AttackTurreted:
+	WithMuzzleFlash:
 	RenderUnit:
 	WithTurret:
 	AutoTarget:
@@ -155,6 +160,8 @@ V2RL:
 		Hotkey: m
 	Valued:
 		Cost: 1800
+	CustomBuildTimeValue:
+		Value: 2225
 	Tooltip:
 		Name: Mammoth Tank
 		Description: Big and slow tank, with anti-air capability.\n  Strong vs Tanks, Aircraft\n  Weak vs Infantry
@@ -171,15 +178,17 @@ V2RL:
 		ROT: 2
 	Armament@PRIMARY:
 		Weapon: 120mm
-		LocalOffset: 800,180,340, 800,-180,340
+		LocalOffset: 900,180,340, 900,-180,340
 		Recoil: 171
 		RecoilRecovery: 30
 	Armament@SECONDARY:
+		Name: secondary
 		Weapon: MammothTusk
 		LocalOffset: -85,384,340, -85,-384,340
 		LocalYaw: -100,100
 		Recoil: 43
 	AttackTurreted:
+	WithMuzzleFlash@PRIMARY:
 	RenderUnit:
 	WithTurret:
 	AutoTarget:
@@ -220,7 +229,9 @@ ARTY:
 		Range: 5
 	Armament:
 		Weapon: 155mm
+		LocalOffset: 624,0,208
 	AttackFrontal:
+	WithMuzzleFlash:
 	RenderUnit:
 	Explodes:
 		Weapon: UnitExplode
@@ -261,6 +272,7 @@ HARV:
 	RevealsShroud:
 		Range: 4
 	RenderHarvester:
+		ImagesByFullness: harvempty, harvhalf, harv
 	-AttackMove:
 	GpsDot:
 		String:Harvester
@@ -390,7 +402,6 @@ MNLY.AP:
 		Cost: 800
 	Tooltip:
 		Name: Minelayer (Anti-Personnel)
-		Icon: MNLYICON
 		Description: Lays mines to destroy unwary enemy units.\n  Unarmed
 	Health:
 		HP: 100
@@ -425,7 +436,6 @@ MNLY.AT:
 		Cost: 800
 	Tooltip:
 		Name: Minelayer (Anti-Tank)
-		Icon: MNLYICON
 		Description: Lays mines to destroy unwary enemy units.\n  Unarmed
 	Health:
 		HP: 100
@@ -474,7 +484,7 @@ TRUK:
 		Payload: 500
 	AttackMove:
 		JustMove: yes
-		
+
 MGG:
 	Inherits: ^Vehicle
 	Buildable:
@@ -497,8 +507,9 @@ MGG:
 	RevealsShroud:
 		Range: 6
 	RenderUnit:
-	WithSpinner:
+	WithIdleOverlay@SPINNER:
 		Offset: -299,0,171
+		Sequence: spinner
 	AttackMove:
 		JustMove: yes
 	CreatesShroud:
@@ -542,7 +553,8 @@ MRJ:
 	RevealsShroud:
 		Range: 6
 	RenderUnit:
-	WithSpinner:
+	WithIdleOverlay@SPINNER:
+		Sequence: spinner
 		Offset: -256,0,256
 	AttackMove:
 		JustMove: yes
@@ -552,7 +564,7 @@ MRJ:
 	JamsRadar:
 		Range: 15
 	JamsMissiles:
-		Range: 3
+		Range: 4
 	RenderJammerCircle:
 
 1TNK.Husk:
@@ -639,7 +651,8 @@ TTNK:
 		LocalOffset: 0,0,213
 	AttackFrontal:
 	RenderUnit:
-	WithSpinner:
+	WithIdleOverlay@SPINNER:
+		Sequence: spinner
 	Selectable:
 		Bounds: 28,28,0,0
 	AutoTarget:
@@ -671,7 +684,9 @@ FTRK:
 	Armament:
 		Weapon: FLAK-23
 		Recoil: 85
+		LocalOffset: 512,0,192
 	AttackTurreted:
+	WithMuzzleFlash:
 	RenderUnit:
 	WithTurret:
 	AutoTarget:

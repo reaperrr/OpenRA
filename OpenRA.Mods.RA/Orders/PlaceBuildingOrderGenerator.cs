@@ -68,15 +68,15 @@ namespace OpenRA.Mods.RA.Orders
 		}
 
 		public void Tick(World world) {}
-		public void RenderAfterWorld(WorldRenderer wr, World world) {}
-		public void RenderBeforeWorld(WorldRenderer wr, World world)
+		public IEnumerable<IRenderable> Render(WorldRenderer wr, World world) { yield break; }
+		public void RenderAfterWorld(WorldRenderer wr, World world)
 		{
 			var position = Game.viewport.ViewToWorld(Viewport.LastMousePos);
 			var topLeft = position - FootprintUtils.AdjustForBuildingSize(BuildingInfo);
 
 			var actorInfo = Rules.Info[Building];
 			foreach (var dec in actorInfo.Traits.WithInterface<IPlaceBuildingDecoration>())
-				dec.Render(wr, world, actorInfo, Traits.Util.CenterOfCell(position));	/* hack hack */
+				dec.Render(wr, world, actorInfo, position.CenterPosition);	/* hack hack */
 
 			var cells = new Dictionary<CPos, bool>();
 			// Linebuild for walls.
@@ -98,9 +98,9 @@ namespace OpenRA.Mods.RA.Orders
 					initialized = true;
 				}
 
-				var offset = (topLeft - CPos.Zero).ToWVec() + FootprintUtils.CenterOffset(BuildingInfo);
+				var offset = topLeft.CenterPosition + FootprintUtils.CenterOffset(BuildingInfo) - WPos.Zero;
 				foreach (var r in preview)
-					r.WithPos(r.Pos + offset).Render(wr);
+					r.OffsetBy(offset).Render(wr);
 
 				var res = world.WorldActor.Trait<ResourceLayer>();
 				var isCloseEnough = BuildingInfo.IsCloseEnoughToBase(world, world.LocalPlayer, Building, topLeft);
@@ -108,8 +108,12 @@ namespace OpenRA.Mods.RA.Orders
 					cells.Add(t, isCloseEnough && world.IsCellBuildable(t, BuildingInfo) && res.GetResource(t) == null);
 			}
 
+			var pal = wr.Palette("terrain");
 			foreach (var c in cells)
-				(c.Value ? buildOk : buildBlocked).DrawAt(wr, c.Key.ToPPos().ToFloat2(), "terrain");
+			{
+				var tile = c.Value ? buildOk : buildBlocked;
+				tile.DrawAt(wr.ScreenPxPosition(c.Key.CenterPosition) - 0.5f * tile.size, pal);
+			}
 		}
 
 		public string GetCursor(World world, CPos xy, MouseInput mi) { return "default"; }

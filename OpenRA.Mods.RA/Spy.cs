@@ -51,17 +51,6 @@ namespace OpenRA.Mods.RA
 			return self.Owner;
 		}
 
-		public Stance Stance()
-		{
-			if (spy.Disguised)
-			{
-				if (self.Owner == self.World.LocalPlayer)
-					return self.World.LocalPlayer.Stances[self.Owner];
-				return self.World.LocalPlayer.Stances[spy.disguisedAsPlayer];
-			}
-			return self.World.LocalPlayer.Stances[self.Owner];
-		}
-
 		public SpyToolTip( Actor self, TooltipInfo info )
 		{
 			this.self = self;
@@ -126,7 +115,7 @@ namespace OpenRA.Mods.RA
 			var tooltip = target.TraitsImplementing<IToolTip>().FirstOrDefault();
 			disguisedAsName = tooltip.Name();
 			disguisedAsPlayer = tooltip.Owner();
-			disguisedAsSprite = target.Trait<RenderSimple>().GetImage(target);
+			disguisedAsSprite = target.Trait<RenderSprites>().GetImage(target);
 		}
 
 		void DropDisguise()
@@ -137,12 +126,9 @@ namespace OpenRA.Mods.RA
 		}
 
 		/* lose our disguise if we attack anything */
-		public void Attacking(Actor self, Target target) { DropDisguise(); }
+		public void Attacking(Actor self, Target target, Armament a, Barrel barrel) { DropDisguise(); }
 	}
 
 	class IgnoresDisguiseInfo : TraitInfo<IgnoresDisguise> {}
 	class IgnoresDisguise {}
-
-	class DontDestroyWhenInfiltratingInfo : TraitInfo<DontDestroyWhenInfiltrating> { }
-	class DontDestroyWhenInfiltrating { }
 }

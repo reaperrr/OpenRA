@@ -482,9 +482,11 @@ v19.husk:
 	fire-start: flmspt
 		Start: 0
 		Length: *
+		Offset: 7,-15
 	fire-loop: flmspt
 		Start: 50
 		Length: *
+		Offset: 7,-15
 
 v20:
 	idle:
@@ -732,6 +734,8 @@ miss:
 		Start: 0
 		Length: *
 		Tick: 80
+	icon: missicnh
+		Start: 0
 
 miss.husk:
 	idle: miss

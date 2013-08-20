@@ -1,6 +1,6 @@
 Metadata:
-	Title: Dune 2000 (beta)
-	Description: early version of the Dune 2000 mod
+	Title: Dune 2000
+	Description: OpenRA Reimagining of the classic game
 	Version: {DEV_VERSION}
 	Author: The OpenRA Developers
 
@@ -10,16 +10,12 @@ Folders:
 	./mods/d2k/bits
 	./mods/d2k/uibits
 	./mods/ra/uibits
-	~^/Content/ra
 	~^/Content/d2k
 	~^/Content/d2k/GAMESFX
 	~^/Content/d2k/Music
-	~^/Content/d2k/Tilesets
-	~^/Content/d2k/SHPs
 
 Packages:
-	~main.mix
-	conquer.mix
+	SOUND.RS
 
 Rules:
 	mods/d2k/rules/system.yaml
@@ -33,7 +29,12 @@ Rules:
 	mods/d2k/rules/ordos.yaml
 
 Sequences:
-	mods/d2k/sequences.yaml
+	mods/d2k/sequences/aircraft.yaml
+	mods/d2k/sequences/vehicles.yaml
+	mods/d2k/sequences/infantry.yaml
+	mods/d2k/sequences/structures.yaml
+	mods/d2k/sequences/misc.yaml
+	mods/d2k/sequences/map.yaml
 
 Cursors:
 	mods/d2k/cursors.yaml
@@ -48,14 +49,17 @@ Assemblies:
 
 ChromeLayout:
 	mods/d2k/chrome/gameinit.yaml
-	mods/ra/chrome/ingame.yaml
+	mods/d2k/chrome/ingame.yaml
 	mods/ra/chrome/ingame-chat.yaml
 	mods/ra/chrome/ingame-fmvplayer.yaml
 	mods/ra/chrome/ingame-menu.yaml
 	mods/ra/chrome/ingame-observerstats.yaml
 	mods/d2k/chrome/mainmenu.yaml
 	mods/ra/chrome/settings.yaml
-	mods/d2k/chrome/lobby.yaml
+	mods/ra/chrome/credits.yaml
+	mods/ra/chrome/lobby.yaml
+	mods/d2k/chrome/lobby-playerbin.yaml
+	mods/ra/chrome/lobby-dialogs.yaml
 	mods/d2k/chrome/color-picker.yaml
 	mods/ra/chrome/map-chooser.yaml
 	mods/ra/chrome/create-server.yaml
@@ -66,12 +70,10 @@ ChromeLayout:
 	mods/ra/chrome/cheats.yaml
 	mods/ra/chrome/musicplayer.yaml
 	mods/d2k/chrome/tooltips.yaml
-	mods/ra/chrome/assetbrowser.yaml
+	mods/d2k/chrome/assetbrowser.yaml
 	mods/ra/chrome/convertassets.yaml
 
 Weapons:
-	mods/d2k/weapons/defaults.yaml
-	mods/d2k/weapons/explosions.yaml
 	mods/d2k/weapons.yaml
 
 Voices:
@@ -92,13 +94,21 @@ Movies:
 
 LoadScreen: D2kLoadScreen
 	InstallerMenuWidget: INSTALL_PANEL
-	TestFile: deathhandlaunch.shp
-	PackageURL: http://open-ra.org/get-dependency.php?file=d2k-complete-packages
+	TestFile: DATA.R8
+	PackageURL: http://open-ra.org/get-dependency.php?file=d2k-103-packages
 
 ServerTraits:
 	LobbyCommands
 	PlayerPinger
 	MasterServerPinger
+
+LobbyDefaults:
+	AllowCheats: false
+	Crates: true
+	StartingUnitsClass: none
+	FragileAlliances: false
+	Shroud: false
+	Fog: true
 
 ChromeMetrics:
 	mods/d2k/metrics.yaml
@@ -111,8 +121,8 @@ Fonts:
 		Font:FreeSansBold.ttf
 		Size:14
 	Title:
-		Font:titles.ttf
-		Size:48
+		Font:Dune2k.ttf
+		Size:32
 	BigBold:
 		Font:FreeSansBold.ttf
 		Size:24

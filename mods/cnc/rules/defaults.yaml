@@ -33,6 +33,8 @@
 	DebugMuzzlePositions:
 	Guard:
 	Guardable:
+	BodyOrientation:
+	UpdatesPlayerStatistics:
 
 ^Tank:
 	AppearsOnRadar:
@@ -72,6 +74,8 @@
 	DebugMuzzlePositions:
 	Guard:
 	Guardable:
+	BodyOrientation:
+	UpdatesPlayerStatistics:
 
 ^Helicopter:
 	AppearsOnRadar:
@@ -97,6 +101,8 @@
 		Weapon: HeliExplode
 		EmptyWeapon: HeliExplode
 	DebugMuzzlePositions:
+	BodyOrientation:
+	UpdatesPlayerStatistics:
 
 ^Infantry:
 	AppearsOnRadar:
@@ -143,12 +149,17 @@
 		Probability: 2
 	CrushableInfantry:
 		WarnProbability: 60
-	RepairableNear:
-		Buildings: hosp
-		CloseEnough: 1
 	DebugMuzzlePositions:
 	Guard:
 	Guardable:
+	BodyOrientation:
+	SelfHealing:
+		Step: 5
+		Ticks: 100
+		HealIfBelow: 1
+		DamageCooldown: 125
+		RequiresTech: InfantryHealing
+	UpdatesPlayerStatistics:
 
 ^CivInfantry:
 	Inherits: ^Infantry
@@ -183,6 +194,50 @@
 		JustMove: yes
 	CrushableInfantry:
 
+^DINO:
+	AppearsOnRadar:
+	Health:
+		Radius: 3
+		HP: 1000
+	Armor:
+		Type: Wood
+	Buildable:
+		Queue: Biolab
+		BuildPaletteOrder: 50
+		Owner: gdi, nod
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: Dinosaur
+	RevealsShroud:
+		Range: 6
+	Mobile:
+		Speed: 8
+		TerrainSpeeds:
+			Clear: 90
+			Rough: 80
+			Road: 100
+			Tiberium: 70
+			BlueTiberium: 70
+			Beach: 80
+	Selectable:
+		Voice: DinoVoice
+	TargetableUnit:
+		TargetTypes: Ground
+	HiddenUnderFog:
+	GivesExperience:
+	RenderInfantry:
+		Palette: terrain
+	EditorAppearance:
+		UseTerrainPalette: true
+	BodyOrientation:
+	DrawLineToTarget:
+	AutoTarget:
+		ScanRadius: 4
+	AttackMove:
+	AttackFrontal:
+	UpdatesPlayerStatistics:
+
 ^Plane:
 	AppearsOnRadar:
 		UseLocation: yes
@@ -197,6 +252,7 @@
 	DrawLineToTarget:
 	ActorLostNotification:
 	DebugMuzzlePositions:
+	BodyOrientation:
 
 ^Ship:
 	AppearsOnRadar:
@@ -218,6 +274,8 @@
 	DebugMuzzlePositions:
 	Guard:
 	Guardable:
+	BodyOrientation:
+	UpdatesPlayerStatistics:
 
 ^Building:
 	AppearsOnRadar:
@@ -258,14 +316,15 @@
 		Notification: BuildingLost
 	EditorAppearance:
 		RelativeToTopLeft: yes
-	AutoTargetIgnore:
 	ShakeOnDeath:
 	Sellable:
-	Capturable:
-	CapturableBar:
+	LegacyCapturable:
 	DebugMuzzlePositions:
 	Guardable:
 		Range: 3
+	BodyOrientation:
+	FrozenUnderFog:
+	UpdatesPlayerStatistics:
 
 ^CivBuilding:
 	Inherits: ^Building
@@ -280,11 +339,12 @@
 	RenderBuilding:
 	WithBuildingExplosion:
 	-RepairableBuilding:
-	-Capturable:
-	-CapturableBar:
+	-LegacyCapturable:
 	-Sellable:
 	Tooltip:
 		Name: Civilian Building
+	FrozenUnderFog:
+		StartsRevealed: true
 
 ^CivBuildingHusk:
 	AppearsOnRadar:
@@ -296,11 +356,13 @@
 		RelativeToTopLeft: yes
 	Tooltip:
 		Name: Civilian Building (Destroyed)
+	BodyOrientation:
+	FrozenUnderFog:
+		StartsRevealed: true
 
 ^TechBuilding:
 	Inherits: ^CivBuilding
-	Capturable:
-	CapturableBar:
+	LegacyCapturable:
 	RepairableBuilding:
 	RevealsShroud:
 		Range: 3
@@ -326,6 +388,11 @@
 	Tooltip:
 		Name: Field (Destroyed)
 	BelowUnits:
+	BodyOrientation:
+	RenderBuilding:
+		Palette: terrain
+	FrozenUnderFog:
+		StartsRevealed: true
 
 ^Wall:
 	AppearsOnRadar:
@@ -354,6 +421,8 @@
 	AutoTargetIgnore:
 	Sellable:
 	Guardable:
+	BodyOrientation:
+	FrozenUnderFog:
 
 ^Tree:
 	Tooltip:
@@ -374,6 +443,9 @@
 	Armor:
 		Type: Wood
 	AutoTargetIgnore:
+	BodyOrientation:
+	FrozenUnderFog:
+		StartsRevealed: true
 
 ^Rock:
 	Tooltip:
@@ -388,6 +460,9 @@
 		Terrain: Tree
 	EditorAppearance:
 		RelativeToTopLeft: yes
+	BodyOrientation:
+	FrozenUnderFog:
+		StartsRevealed: true
 
 ^Husk:
 	Health:
@@ -395,6 +470,7 @@
 	Armor: 
 		Type: Light
 	Husk:
+		AllowedTerrain: Clear, Rough, Road, Tiberium, BlueTiberium, Beach
 	HiddenUnderFog:
 	AppearsOnRadar:
 	Burns:
@@ -403,11 +479,24 @@
 	TransformOnCapture:
 		ForceHealthPercentage: 25
 	BelowUnits:
+	BodyOrientation:
 #	Capturable:
 #		Type: husk
 #		AllowAllies: true
 #		AllowNeutral: true
 #		AllowEnemies: true
+
+^HelicopterHusk:
+	Inherits: ^Husk
+	-Husk:
+	-Burns:
+	FallsToEarth:
+		Spins: True
+		Moves: False
+		Explosion: HeliCrash
+	-BelowUnits:
+	-TransformOnCapture:
+	-TargetableUnit:
 
 ^Bridge:
 	Tooltip:
@@ -420,3 +509,4 @@
 	SoundOnDamageTransition:
 		DamagedSound: xplos.aud
 		DestroyedSound: xplobig4.aud
+	BodyOrientation:

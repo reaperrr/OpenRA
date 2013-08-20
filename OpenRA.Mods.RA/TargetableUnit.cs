@@ -14,20 +14,20 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.RA
 {
-	public class TargetableUnitInfo : ITraitInfo
+	public class TargetableUnitInfo : ITraitInfo, ITargetableInfo
 	{
 		public readonly string[] TargetTypes = { };
 
-		public virtual object Create( ActorInitializer init ) { return new TargetableUnit<TargetableUnitInfo>( init.self, this ); }
+		public string[] GetTargetTypes() { return TargetTypes; }
+		public virtual object Create(ActorInitializer init) { return new TargetableUnit(init.self, this); }
 	}
 
-	public class TargetableUnit<Info> : ITargetable
-		where Info : TargetableUnitInfo
+	public class TargetableUnit : ITargetable
 	{
-		protected readonly Info info;
-		protected Cloak Cloak;
+		readonly TargetableUnitInfo info;
+		protected Cloak cloak;
 
-		public TargetableUnit( Actor self, Info info )
+		public TargetableUnit(Actor self, TargetableUnitInfo info)
 		{
 			this.info = info;
 			ReceivedCloak(self);
@@ -36,15 +36,15 @@ namespace OpenRA.Mods.RA
 		// Arbitrary units can receive cloak via a crate during gameplay
 		public void ReceivedCloak(Actor self)
 		{
-			Cloak = self.TraitOrDefault<Cloak>();
+			cloak = self.TraitOrDefault<Cloak>();
 		}
 
 		public virtual bool TargetableBy(Actor self, Actor byActor)
 		{
-			if (Cloak == null)
+			if (cloak == null || !cloak.Cloaked)
 				return true;
 
-			if (!Cloak.Cloaked || self.Owner == byActor.Owner || self.Owner.Stances[byActor.Owner] == Stance.Ally)
+			if (self.Owner.IsAlliedWith(byActor.Owner))
 				return true;
 
 			return self.World.ActorsWithTrait<DetectCloaked>().Any(a => (self.Location - a.Actor.Location).Length < a.Actor.Info.Traits.Get<DetectCloakedInfo>().Range);
@@ -52,9 +52,9 @@ namespace OpenRA.Mods.RA
 
 		public virtual string[] TargetTypes { get { return info.TargetTypes; } }
 
-		public virtual IEnumerable<CPos> TargetableCells( Actor self )
+		public virtual IEnumerable<WPos> TargetablePositions(Actor self)
 		{
-			yield return self.CenterLocation.ToCPos();
+			yield return self.CenterPosition;
 		}
 	}
 }

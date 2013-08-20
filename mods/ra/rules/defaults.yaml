@@ -36,6 +36,7 @@
 	DebugMuzzlePositions:
 	Guard:
 	Guardable:
+	BodyOrientation:
 
 ^Tank:
 	AppearsOnRadar:
@@ -75,6 +76,7 @@
 	DebugMuzzlePositions:
 	Guard:
 	Guardable:
+	BodyOrientation:
 
 ^Infantry:
 	AppearsOnRadar:
@@ -119,13 +121,17 @@
 		Offset: 0,0,427
 	CrushableInfantry:
 		CrushSound: squishy2.aud
-	RepairableNear:
-		Buildings: hosp
-		CloseEnough: 1
 	UpdatesPlayerStatistics:
 	DebugMuzzlePositions:
 	Guard:
 	Guardable:
+	BodyOrientation:
+	SelfHealing:
+		Step: 5
+		Ticks: 100
+		HealIfBelow: 1
+		DamageCooldown: 125
+		RequiresTech: InfantryHealing
 
 ^Ship:
 	AppearsOnRadar:
@@ -157,6 +163,7 @@
 	DebugMuzzlePositions:
 	Guard:
 	Guardable:
+	BodyOrientation:
 
 ^Plane:
 	AppearsOnRadar:
@@ -183,6 +190,7 @@
 		String:Plane
 	UpdatesPlayerStatistics:
 	DebugMuzzlePositions:
+	BodyOrientation:
 
 ^Helicopter:
 	Inherits: ^Plane
@@ -214,7 +222,6 @@
 		ActorTypes: e1,e1,e1,e1,e1,e1,e1,e1,e1,e1,e1,e1,e1,e1,e1,c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,e6,e6,e6,e6,e6
 	MustBeDestroyed:
 	GivesExperience:
-#	FrozenUnderFog:
 	CaptureNotification:
 	EditorAppearance:
 		RelativeToTopLeft: yes
@@ -228,6 +235,10 @@
 	DebugMuzzlePositions:
 	Guardable:
 		Range: 3
+	BodyOrientation:
+	FrozenUnderFog:
+	GpsDot:
+		String:Structure
 
 ^Wall:
 	AppearsOnRadar:
@@ -260,8 +271,9 @@
 	ProximityCaptor:
 		Types:Wall
 	Sellable:
-	UpdatesPlayerStatistics:
 	Guardable:
+	BodyOrientation:
+	FrozenUnderFog:
 
 ^TechBuilding:
 	Inherits: ^Building
@@ -280,6 +292,25 @@
 	-Sellable:
 	-Capturable:
 	-CapturableBar:
+	FrozenUnderFog:
+		StartsRevealed: true
+	-GpsDot:
+
+^AmmoBox:
+	Inherits: ^TechBuilding
+	Selectable:
+		Priority: 0
+	Health:
+		HP: 10
+	Explodes:
+		Weapon: UnitExplode
+	Tooltip:
+		Name: Ammo Box
+	AutoTargetIgnore:
+	Armor:
+		Type: Light
+	TargetableBuilding:
+		TargetTypes: Ground, DemoTruck
 
 ^CivInfantry:
 	Inherits: ^Infantry
@@ -343,9 +374,13 @@
 	Armor:
 		Type: Wood
 	AutoTargetIgnore:
+	BodyOrientation:
+	FrozenUnderFog:
+		StartsRevealed: true
 
 ^Husk:
 	Husk:
+		AllowedTerrain: Clear, Rough, Road, Ore, Gems, Beach
 	RenderUnit:
 	Health:
 		HP: 140
@@ -357,6 +392,26 @@
 	ProximityCaptor:
 		Types:Husk
 	BelowUnits:
+	BodyOrientation:
+	Chronoshiftable:
+
+^HelicopterHusk:
+	Inherits: ^Husk
+	-Husk:
+	-Burns:
+	FallsToEarth:
+		Spins: True
+		Moves: False
+	-BelowUnits:
+
+^PlaneHusk:
+	Inherits: ^Husk
+	-Husk:
+	-Burns:
+	FallsToEarth:
+		Spins: False
+		Moves: True
+	-BelowUnits:
 
 ^Bridge:
 	Tooltip:
@@ -372,6 +427,7 @@
 	ProximityCaptor:
 		Types:Bridge
 	AutoTargetIgnore:
+	BodyOrientation:
 
 #Temperate Terrain Expansion
 ^SVBridge:
@@ -388,6 +444,7 @@
 	ProximityCaptor:
 		Types:Bridge
 	AutoTargetIgnore:
+	BodyOrientation:
 
 ^SHBridge:
 	Tooltip:
@@ -403,6 +460,7 @@
 	ProximityCaptor:
 		Types:Bridge
 	AutoTargetIgnore:
+	BodyOrientation:
 
 ^STDBridge:
 	Tooltip:
@@ -418,6 +476,7 @@
 	ProximityCaptor:
 		Types:Bridge
 	AutoTargetIgnore:
+	BodyOrientation:
 
 #Desert Terrain Expansion:
 ^Rock:
@@ -436,6 +495,9 @@
 		UseTerrainPalette: true
 	ProximityCaptor:
 		Types:Tree
+	BodyOrientation:
+	FrozenUnderFog:
+		StartsRevealed: true
 
 ^DesertCivBuilding:
 	Inherits: ^CivBuilding

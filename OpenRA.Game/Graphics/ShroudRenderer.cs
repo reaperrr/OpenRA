@@ -15,8 +15,8 @@ namespace OpenRA.Graphics
 {
 	public class ShroudRenderer
 	{
+		World world;
 		Map map;
-		ShroudInfo shroudInfo;
 		Sprite[] shadowBits = Game.modData.SpriteLoader.LoadAllSprites("shadow");
 		Sprite[,] sprites, fogSprites;
 		int shroudHash;
@@ -46,8 +46,8 @@ namespace OpenRA.Graphics
 
 		public ShroudRenderer(World world)
 		{
+			this.world = world;
 			this.map = world.Map;
-			shroudInfo = Rules.Info["player"].Traits.Get<ShroudInfo>();
 
 			sprites = new Sprite[map.MapSize.X, map.MapSize.Y];
 			fogSprites = new Sprite[map.MapSize.X, map.MapSize.Y];
@@ -152,9 +152,10 @@ namespace OpenRA.Graphics
 		{
 			if (initializePalettes)
 			{
-				if (shroudInfo.Fog)
+				if (world.LobbyInfo.GlobalSettings.Fog)
 					fogPalette = wr.Palette("fog");
-				shroudPalette = wr.Palette("shroud");
+
+				shroudPalette = world.LobbyInfo.GlobalSettings.Fog ? wr.Palette("shroud") : wr.Palette("shroudfog");
 				initializePalettes = false;
 			}
 
@@ -165,7 +166,7 @@ namespace OpenRA.Graphics
 			// We draw the shroud when disabled to hide the sharp map edges
 			DrawShroud(wr, clipRect, sprites, shroudPalette);
 
-			if (shroudInfo.Fog)
+			if (world.LobbyInfo.GlobalSettings.Fog)
 				DrawShroud(wr, clipRect, fogSprites, fogPalette);
 		}
 
@@ -185,14 +186,14 @@ namespace OpenRA.Graphics
 					{
 						s[starti, j].DrawAt(
 							Game.CellSize * new float2(starti, j),
-							pal.Index,
+							pal,
 							new float2(Game.CellSize * (i - starti), Game.CellSize));
 						starti = i + 1;
 					}
 
 					s[i, j].DrawAt(
 						Game.CellSize * new float2(i, j),
-						pal.Index);
+						pal);
 					starti = i + 1;
 					last = s[i, j];
 				}
@@ -200,7 +201,7 @@ namespace OpenRA.Graphics
 				if (starti < clip.Right)
 					s[starti, j].DrawAt(
 						Game.CellSize * new float2(starti, j),
-						pal.Index,
+						pal,
 						new float2(Game.CellSize * (clip.Right - starti), Game.CellSize));
 			}
 		}

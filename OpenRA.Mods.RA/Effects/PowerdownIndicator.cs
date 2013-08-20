@@ -36,9 +36,10 @@ namespace OpenRA.Mods.RA.Effects
 
 		public IEnumerable<IRenderable> Render(WorldRenderer wr)
 		{
-			if (!a.Destroyed && a.Owner.IsAlliedWith(a.World.RenderPlayer))
-				yield return new SpriteRenderable(anim.Image, a.CenterPosition, 0,
-					wr.Palette("chrome"), 1f);
+			if (a.Destroyed || wr.world.FogObscures(a))
+				return SpriteRenderable.None;
+
+			return anim.Render(a.CenterPosition, wr.Palette("chrome"));
 		}
 	}
 }

@@ -85,6 +85,7 @@ Section "Client" Client
 	File "${SRCDIR}\ICSharpCode.SharpZipLib.dll"
 	File "${SRCDIR}\FuzzyLogicLibrary.dll"
 	File "${SRCDIR}\Mono.Nat.dll"
+	File "${SRCDIR}\AUTHORS"
 	File "${SRCDIR}\COPYING"
 	File "${SRCDIR}\HACKING"
 	File "${SRCDIR}\INSTALL"
@@ -92,6 +93,9 @@ Section "Client" Client
 	File "${SRCDIR}\OpenRA.ico"
 	File "${SRCDIR}\Tao.*.dll"
 	File "${SRCDIR}\SharpFont.dll"
+	File "${SRCDIR}\global mix database.dat"
+	File "${SRCDIR}\GeoIP.dll"
+	File "${SRCDIR}\GeoIP.dat"
 
 	!insertmacro MUI_STARTMENU_WRITE_BEGIN Application
 		CreateDirectory "$SMPROGRAMS\$StartMenuFolder"
@@ -126,6 +130,7 @@ SectionGroup /e "Mods"
 		File /r "${SRCDIR}\mods\ra\chrome"
 		File /r "${SRCDIR}\mods\ra\bits"
 		File /r "${SRCDIR}\mods\ra\rules"
+		File /r "${SRCDIR}\mods\ra\sequences"
 		File /r "${SRCDIR}\mods\ra\tilesets"
 		File /r "${SRCDIR}\mods\ra\uibits"
 	SectionEnd
@@ -150,8 +155,8 @@ SectionGroup /e "Mods"
 		File /r "${SRCDIR}\mods\d2k\bits"
 		File /r "${SRCDIR}\mods\d2k\rules"
 		File /r "${SRCDIR}\mods\d2k\tilesets"
+		File /r "${SRCDIR}\mods\d2k\sequences"
 		File /r "${SRCDIR}\mods\d2k\uibits"
-		File /r "${SRCDIR}\mods\d2k\weapons"
 	SectionEnd
 SectionGroupEnd
 
@@ -265,6 +270,7 @@ Function ${UN}Clean
 	Delete $INSTDIR\Mono.Nat.dll
 	Delete $INSTDIR\Tao.*.dll
 	Delete $INSTDIR\SharpFont.dll
+	Delete $INSTDIR\AUTHORS
 	Delete $INSTDIR\COPYING
 	Delete $INSTDIR\HACKING
 	Delete $INSTDIR\INSTALL
@@ -275,6 +281,9 @@ Function ${UN}Clean
 	Delete $INSTDIR\cg.dll
 	Delete $INSTDIR\cgGL.dll
 	Delete $INSTDIR\zlib1.dll
+	Delete "$INSTDIR\global mix database.dat"
+	Delete $INSTDIR\GeoIP.dat
+	Delete $INSTDIR\GeoIP.dll
 	DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\OpenRA"
 	Delete $INSTDIR\uninstaller.exe
 	RMDir $INSTDIR

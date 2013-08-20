@@ -48,12 +48,15 @@ namespace OpenRA.GameRules
 		[Desc("Whether we should prevent prone response for infantry.")]
 		public readonly bool PreventProne = false;
 
-		public float EffectivenessAgainst(Actor self)
+		public float EffectivenessAgainst(ActorInfo ai)
 		{
-			var health = self.Info.Traits.GetOrDefault<HealthInfo>();
-			if (health == null) return 0f;
-			var armor = self.Info.Traits.GetOrDefault<ArmorInfo>();
-			if (armor == null || armor.Type == null) return 1;
+			var health = ai.Traits.GetOrDefault<HealthInfo>();
+			if (health == null)
+				return 0f;
+
+			var armor = ai.Traits.GetOrDefault<ArmorInfo>();
+			if (armor == null || armor.Type == null)
+				return 1;
 
 			float versus;
 			return Versus.TryGetValue(armor.Type, out versus) ? versus : 1;
@@ -74,8 +77,6 @@ namespace OpenRA.GameRules
 		}
 	}
 
-
-
 	public enum DamageModel
 	{
 		Normal,								// classic RA damage model: point actors, distance-based falloff
@@ -85,14 +86,12 @@ namespace OpenRA.GameRules
 	public class ProjectileArgs
 	{
 		public WeaponInfo weapon;
-		public Actor firedBy;
-		public PPos src;
-		public int srcAltitude;
-		public int facing;
-		public Target target;
-		public PPos dest;
-		public int destAltitude;
 		public float firepowerModifier = 1.0f;
+		public int facing;
+		public WPos source;
+		public Actor sourceActor;
+		public WPos passiveTarget;
+		public Target guidedTarget;
 	}
 
 	public interface IProjectileInfo { IEffect Create(ProjectileArgs args); }
@@ -136,6 +135,54 @@ namespace OpenRA.GameRules
 					ret.Add( new WarheadInfo( w.Value ) );
 
 			return ret;
+		}
+
+		public bool IsValidAgainst(Actor a)
+		{
+			var targetable = a.TraitOrDefault<ITargetable>();
+			if (targetable == null || !ValidTargets.Intersect(targetable.TargetTypes).Any())
+				return false;
+
+			if (Warheads.All(w => w.EffectivenessAgainst(a.Info) <= 0))
+				return false;
+
+			return true;
+		}
+
+		public bool IsValidAgainst(FrozenActor a)
+		{
+			var targetable = a.Info.Traits.GetOrDefault<ITargetableInfo>();
+			if (targetable == null || !ValidTargets.Intersect(targetable.GetTargetTypes()).Any())
+				return false;
+
+			if (Warheads.All(w => w.EffectivenessAgainst(a.Info) <= 0))
+				return false;
+
+			return true;
+		}
+
+
+		public bool IsValidAgainst(Target target, World world)
+		{
+			if (target.Type == TargetType.Actor)
+				return IsValidAgainst(target.Actor);
+
+			if (target.Type == TargetType.FrozenActor)
+				return IsValidAgainst(target.FrozenActor);
+
+			if (target.Type == TargetType.Terrain)
+			{
+				var cell = target.CenterPosition.ToCPos();
+				if (ValidTargets.Contains("Ground") && world.GetTerrainType(cell) != "Water")
+					return true;
+
+				if (ValidTargets.Contains("Water") && world.GetTerrainType(cell) == "Water")
+					return true;
+
+				return false;
+			}
+
+			return false;
 		}
 	}
 }

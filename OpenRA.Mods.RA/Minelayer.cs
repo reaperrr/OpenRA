@@ -1,4 +1,4 @@
-﻿#region Copyright & License Information
+#region Copyright & License Information
 /*
  * Copyright 2007-2011 The OpenRA Developers (see AUTHORS)
  * This file is part of OpenRA, which is free software. It is made
@@ -46,7 +46,7 @@ namespace OpenRA.Mods.RA
 		{
 			if( order is BeginMinefieldOrderTargeter )
 			{
-				var start = target.CenterLocation.ToCPos();
+				var start = target.CenterPosition.ToCPos();
 				self.World.OrderGenerator = new MinefieldOrderGenerator( self, start );
 				return new Order("BeginMinefield", self, false) { TargetLocation = start };
 			}
@@ -60,7 +60,7 @@ namespace OpenRA.Mods.RA
 
 			if (order.OrderString == "PlaceMinefield")
 			{
-				var movement = self.Trait<IMove>();
+				var movement = self.Trait<IPositionable>();
 
 				minefield = GetMinefieldCells(minefieldStart, order.TargetLocation,
 					self.Info.Traits.Get<MinelayerInfo>().MinefieldDepth)
@@ -125,20 +125,19 @@ namespace OpenRA.Mods.RA
 			}
 
 			CPos lastMousePos;
+			public IEnumerable<IRenderable> Render(WorldRenderer wr, World world) { yield break; }
 			public void RenderAfterWorld(WorldRenderer wr, World world)
 			{
 				if (!minelayer.IsInWorld)
 					return;
 
-				var movement = minelayer.Trait<IMove>();
+				var movement = minelayer.Trait<IPositionable>();
 				var minefield = GetMinefieldCells(minefieldStart, lastMousePos,
 					minelayer.Info.Traits.Get<MinelayerInfo>().MinefieldDepth)
 					.Where(p => movement.CanEnterCell(p)).ToArray();
 
 				wr.DrawLocus(Color.Cyan, minefield);
 			}
-
-			public void RenderBeforeWorld(WorldRenderer wr, World world) { }
 
 			public string GetCursor(World world, CPos xy, MouseInput mi) { lastMousePos = xy; return "ability"; }	/* TODO */
 		}
@@ -157,21 +156,21 @@ namespace OpenRA.Mods.RA
 			public string OrderID { get { return "BeginMinefield"; } }
 			public int OrderPriority { get { return 5; } }
 
-			public bool CanTargetActor(Actor self, Actor target, bool forceAttack, bool forceQueued, ref string cursor)
+			public bool CanTarget(Actor self, Target target, List<Actor> othersAtTarget, TargetModifiers modifiers, ref string cursor)
 			{
-				return false;
-			}
+				if (target.Type != TargetType.Terrain)
+					return false;
 
-			public bool CanTargetLocation(Actor self, CPos location, List<Actor> actorsAtLocation, bool forceAttack, bool forceQueued, ref string cursor)
-			{
+				var location = target.CenterPosition.ToCPos();
 				if (!self.World.Map.IsInMap(location))
 					return false;
 
 				cursor = "ability";
-				IsQueued = forceQueued;
+				IsQueued = modifiers.HasModifier(TargetModifiers.ForceQueue);
 
-				return (actorsAtLocation.Count == 0 && forceAttack);
+				return !othersAtTarget.Any() && modifiers.HasModifier(TargetModifiers.ForceAttack);
 			}
+
 			public bool IsQueued { get; protected set; }
 		}
 	}

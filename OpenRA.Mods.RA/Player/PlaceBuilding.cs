@@ -56,7 +56,7 @@ namespace OpenRA.Mods.RA
 
 							if (playSounds)
 								foreach (var s in buildingInfo.BuildSounds)
-									Sound.PlayToPlayer(order.Player, s, building.CenterLocation);
+									Sound.PlayToPlayer(order.Player, s, building.CenterPosition);
 							playSounds = false;
 						}
 					}
@@ -74,7 +74,7 @@ namespace OpenRA.Mods.RA
 							new OwnerInit( order.Player ),
 						});
 						foreach (var s in buildingInfo.BuildSounds)
-							Sound.PlayToPlayer(order.Player, s, building.CenterLocation);
+							Sound.PlayToPlayer(order.Player, s, building.CenterPosition);
 					}
 
 					PlayBuildAnim( self, unit );
@@ -83,18 +83,11 @@ namespace OpenRA.Mods.RA
 
 					if (buildingInfo.RequiresBaseProvider)
 					{
-						var center = buildingInfo.CenterLocation(order.TargetLocation);
-						foreach (var bp in w.ActorsWithTrait<BaseProvider>())
-						{
-							if (bp.Actor.Owner.Stances[self.Owner] != Stance.Ally || !bp.Trait.Ready())
-								continue;
-
-							if (Combat.IsInRange(center, bp.Trait.Info.Range, bp.Actor.CenterLocation))
-							{
-								bp.Trait.BeginCooldown();
-								break;
-							}
-						}
+						// May be null if the build anywhere cheat is active
+						// BuildingInfo.IsCloseEnoughToBase has already verified that this is a valid build location
+						var producer = buildingInfo.FindBaseProvider(w, self.Owner, order.TargetLocation);
+						if (producer != null)
+							producer.Trait<BaseProvider>().BeginCooldown();
 					}
 
 					if (GetNumBuildables(self.Owner) > prevItems)

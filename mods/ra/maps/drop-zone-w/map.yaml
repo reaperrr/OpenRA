@@ -16,7 +16,16 @@ Bounds: 16,16,32,32
 
 UseAsShellmap: False
 
-Type: Minigame
+Type: Drop Zone
+
+Options:
+	Crates: true
+	Fog: false
+	Shroud: false
+	AllyBuildRadius: false
+	FragileAlliances: false
+	StartingCash: 5000
+	ConfigurableStartingUnits: false
 
 Players:
 	PlayerReference@Neutral:
@@ -36,6 +45,7 @@ Players:
 		Race: allies
 		LockSpawn: True
 		Enemies: Creeps
+		AllowBots: False
 	PlayerReference@Multi1:
 		Name: Multi1
 		Playable: True
@@ -43,6 +53,7 @@ Players:
 		Race: allies
 		LockSpawn: True
 		Enemies: Creeps
+		AllowBots: False
 	PlayerReference@Multi2:
 		Name: Multi2
 		Playable: True
@@ -50,6 +61,7 @@ Players:
 		Race: allies
 		LockSpawn: True
 		Enemies: Creeps
+		AllowBots: False
 	PlayerReference@Multi3:
 		Name: Multi3
 		Playable: True
@@ -57,6 +69,7 @@ Players:
 		Race: allies
 		LockSpawn: True
 		Enemies: Creeps
+		AllowBots: False
 	PlayerReference@Multi4:
 		Name: Multi4
 		Playable: True
@@ -64,6 +77,7 @@ Players:
 		Race: allies
 		LockSpawn: True
 		Enemies: Creeps
+		AllowBots: False
 	PlayerReference@Multi5:
 		Name: Multi5
 		Playable: True
@@ -71,6 +85,7 @@ Players:
 		Race: allies
 		LockSpawn: True
 		Enemies: Creeps
+		AllowBots: False
 	PlayerReference@Multi6:
 		Name: Multi6
 		Playable: True
@@ -78,6 +93,7 @@ Players:
 		Race: allies
 		LockSpawn: True
 		Enemies: Creeps
+		AllowBots: False
 	PlayerReference@Multi7:
 		Name: Multi7
 		Playable: True
@@ -85,6 +101,7 @@ Players:
 		Race: allies
 		LockSpawn: True
 		Enemies: Creeps
+		AllowBots: False
 
 Actors:
 	Actor2: mpspawn
@@ -240,9 +257,12 @@ Rules:
 		Armament@PRIMARY:
 			Weapon:M60mg
 		Armament@SECONDARY:
+			Name: secondary
 			Weapon:M60mg
 		AttackFrontal:
-		WithMuzzleFlash:
+		WithMuzzleFlash@PRIMARY:
+		WithMuzzleFlash@SECONDARY:
+			Armament: secondary
 		MustBeDestroyed:
 		-GivesBounty:
 	PT:

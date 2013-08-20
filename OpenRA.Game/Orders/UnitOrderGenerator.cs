@@ -21,11 +21,23 @@ namespace OpenRA.Orders
 		{
 			var underCursor = world.FindUnitsAtMouse(mi.Location)
 				.Where(a => a.HasTrait<ITargetable>())
-				.OrderByDescending(a => a.SelectionPriority())
+				.OrderByDescending(a => a.Info.SelectionPriority())
 				.FirstOrDefault();
 
+			Target target;
+			if (underCursor != null)
+				target = Target.FromActor(underCursor);
+			else
+			{
+				var frozen = world.FindFrozenActorsAtMouse(mi.Location)
+					.Where(a => a.Info.Traits.Contains<ITargetableInfo>())
+					.OrderByDescending(a => a.Info.SelectionPriority())
+					.FirstOrDefault();
+				target = frozen != null ? Target.FromFrozenActor(frozen) : Target.FromCell(xy);
+			}
+
 			var orders = world.Selection.Actors
-				.Select(a => OrderForUnit(a, xy, mi, underCursor))
+				.Select(a => OrderForUnit(a, target, mi))
 				.Where(o => o != null)
 				.ToArray();
 
@@ -42,7 +54,7 @@ namespace OpenRA.Orders
 		}
 
 		public void Tick(World world) { }
-		public void RenderBeforeWorld(WorldRenderer wr, World world) { }
+		public IEnumerable<IRenderable> Render(WorldRenderer wr, World world) { yield break; }
 		public void RenderAfterWorld(WorldRenderer wr, World world) { }
 
 		public string GetCursor(World world, CPos xy, MouseInput mi)
@@ -51,7 +63,7 @@ namespace OpenRA.Orders
 
 			var underCursor = world.FindUnitsAtMouse(mi.Location)
 				.Where(a => a.HasTrait<ITargetable>())
-				.OrderByDescending(a => a.SelectionPriority())
+				.OrderByDescending(a => a.Info.SelectionPriority())
 				.FirstOrDefault();
 
 			if (underCursor != null && (mi.Modifiers.HasModifier(Modifiers.Shift) || !world.Selection.Actors.Any()))
@@ -61,8 +73,20 @@ namespace OpenRA.Orders
 					useSelect = true;
 			}
 
+			Target target;
+			if (underCursor != null)
+				target = Target.FromActor(underCursor);
+			else
+			{
+				var frozen = world.FindFrozenActorsAtMouse(mi.Location)
+					.Where(a => a.Info.Traits.Contains<ITargetableInfo>())
+					.OrderByDescending(a => a.Info.SelectionPriority())
+					.FirstOrDefault();
+				target = frozen != null ? Target.FromFrozenActor(frozen) : Target.FromCell(xy);
+			}
+
 			var orders = world.Selection.Actors
-				.Select(a => OrderForUnit(a, xy, mi, underCursor))
+				.Select(a => OrderForUnit(a, target, mi))
 				.Where(o => o != null)
 				.ToArray();
 
@@ -70,12 +94,12 @@ namespace OpenRA.Orders
 			return cursorName ?? (useSelect ? "select" : "default");
 		}
 
-		static UnitOrderResult OrderForUnit(Actor self, CPos xy, MouseInput mi, Actor underCursor)
+		static UnitOrderResult OrderForUnit(Actor self, Target target, MouseInput mi)
 		{
 			if (self.Owner != self.World.LocalPlayer)
 				return null;
 
-			if (self.Destroyed)
+			if (self.Destroyed || target.Type == TargetType.Invalid)
 				return null;
 
 			if (mi.Button == Game.mouseButtonPreference.Action)
@@ -85,16 +109,19 @@ namespace OpenRA.Orders
 						.Select(x => new { Trait = trait, Order = x } ))
 					.OrderByDescending(x => x.Order.OrderPriority))
 				{
-					var actorsAt = self.World.ActorMap.GetUnitsAt(xy).ToList();
+					var actorsAt = self.World.ActorMap.GetUnitsAt(target.CenterPosition.ToCPos()).ToList();
 
-					var forceAttack = mi.Modifiers.HasModifier(Modifiers.Ctrl);
-					var forceQueue = mi.Modifiers.HasModifier(Modifiers.Shift);
+					var modifiers = TargetModifiers.None;
+					if (mi.Modifiers.HasModifier(Modifiers.Ctrl))
+						modifiers |= TargetModifiers.ForceAttack;
+					if (mi.Modifiers.HasModifier(Modifiers.Shift))
+						modifiers |= TargetModifiers.ForceQueue;
+					if (mi.Modifiers.HasModifier(Modifiers.Alt))
+						modifiers |= TargetModifiers.ForceMove;
+
 					string cursor = null;
-					if (underCursor != null)
-						if (o.Order.CanTargetActor(self, underCursor, forceAttack, forceQueue, ref cursor))
-							return new UnitOrderResult(self, o.Order, o.Trait, cursor, Target.FromActor(underCursor));
-					if (o.Order.CanTargetLocation(self, xy, actorsAt, forceAttack, forceQueue, ref cursor))
-						return new UnitOrderResult(self, o.Order, o.Trait, cursor, Target.FromCell(xy));
+					if (o.Order.CanTarget(self, target, actorsAt, modifiers, ref cursor))
+						return new UnitOrderResult(self, o.Order, o.Trait, cursor, target);
 				}
 			}
 
@@ -131,9 +158,9 @@ namespace OpenRA.Orders
 
 	public static class SelectableExts
 	{
-		public static int SelectionPriority(this Actor a)
+		public static int SelectionPriority(this ActorInfo a)
 		{
-			var selectableInfo = a.Info.Traits.GetOrDefault<SelectableInfo>();
+			var selectableInfo = a.Traits.GetOrDefault<SelectableInfo>();
 			return selectableInfo != null ? selectableInfo.Priority : int.MinValue;
 		}
 	}

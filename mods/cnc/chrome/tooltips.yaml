@@ -25,8 +25,11 @@ Background@BUTTON_TOOLTIP:
 Background@WORLD_TOOLTIP:
 	Logic:WorldTooltipLogic
 	Background:panel-black
-	Width:141
 	Children:
+		Container@SINGLE_HEIGHT:
+			Height:25
+		Container@DOUBLE_HEIGHT:
+			Height:45
 		Label@LABEL:
 			X:5
 			Height:23
@@ -127,7 +130,7 @@ Background@SPAWN_TOOLTIP:
 Background@CLIENT_TOOLTIP:
 	Logic:ClientTooltipLogic
 	Background:panel-black
-	Height:35
+	Height:47
 	Width:5
 	Children:
 		Label@ADMIN:
@@ -142,8 +145,18 @@ Background@CLIENT_TOOLTIP:
 			Height:10
 			Font:TinyBold
 			Align:Center
-		Label@LATENCY:
+		Label@LOCATION:
 			Y:17
 			Height:10
 			Font:TinyBold
 			Align:Center
+		Label@LATENCY_PREFIX:
+			X:10
+			Y:29
+			Height:10
+			Font:TinyBold
+			Text:Latency:
+		Label@LATENCY:
+			Y:29
+			Height:10
+			Font:TinyBold

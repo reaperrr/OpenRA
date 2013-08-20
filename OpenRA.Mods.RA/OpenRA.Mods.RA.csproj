@@ -71,10 +71,17 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="ICSharpCode.SharpZipLib">
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\thirdparty\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Nat">
+      <HintPath>..\thirdparty\Mono.Nat.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activities\LegacyCaptureActor.cs" />
     <Compile Include="AI\AttackOrFleeFuzzy.cs" />
     <Compile Include="AI\BaseBuilder.cs" />
     <Compile Include="AI\HackyAI.cs" />
@@ -151,7 +158,6 @@
     <Compile Include="BridgeLayer.cs" />
     <Compile Include="Buildable.cs" />
     <Compile Include="BuildingCaptureNotification.cs" />
-    <Compile Include="Buildings\BibLayer.cs" />
     <Compile Include="Buildings\Building.cs" />
     <Compile Include="Buildings\BuildingInfluence.cs" />
     <Compile Include="Buildings\CanPowerDown.cs" />
@@ -171,6 +177,7 @@
     <Compile Include="C4Demolition.cs" />
     <Compile Include="Capturable.cs" />
     <Compile Include="CapturableBar.cs" />
+    <Compile Include="LegacyCapturable.cs" />
     <Compile Include="Captures.cs" />
     <Compile Include="Cargo.cs" />
     <Compile Include="CarpetBomb.cs" />
@@ -238,6 +245,7 @@
     <Compile Include="IronCurtainable.cs" />
     <Compile Include="JamsMissiles.cs" />
     <Compile Include="LeavesHusk.cs" />
+    <Compile Include="LegacyCaptures.cs" />
     <Compile Include="LightPaletteRotator.cs" />
     <Compile Include="LimitedAmmo.cs" />
     <Compile Include="Lint\CheckActorReferences.cs" />
@@ -246,6 +254,8 @@
     <Compile Include="Lint\CheckTraitPrerequisites.cs" />
     <Compile Include="Lint\LintBuildablePrerequisites.cs" />
     <Compile Include="Missions\DesertShellmapScript.cs" />
+    <Compile Include="Missions\FortLonestarScript.cs" />
+    <Compile Include="Missions\Survival02Script.cs" />
     <Compile Include="MPStartLocations.cs" />
     <Compile Include="Mine.cs" />
     <Compile Include="Minelayer.cs" />
@@ -272,7 +282,6 @@
     <Compile Include="NullLoadScreen.cs" />
     <Compile Include="LoadWidgetAtGameStart.cs" />
     <Compile Include="Orders\DeployOrderTargeter.cs" />
-    <Compile Include="Orders\EnterBuildingOrderTargeter.cs" />
     <Compile Include="Orders\PlaceBuildingOrderGenerator.cs" />
     <Compile Include="Orders\PowerDownOrderGenerator.cs" />
     <Compile Include="Orders\RepairOrderGenerator.cs" />
@@ -296,7 +305,6 @@
     <Compile Include="PrimaryBuilding.cs" />
     <Compile Include="Production.cs" />
     <Compile Include="ProductionBar.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProvidesRadar.cs" />
     <Compile Include="ProximityCaptor.cs" />
     <Compile Include="ProximityCapturable.cs" />
@@ -373,6 +381,7 @@
     <Compile Include="Widgets\BuildPaletteWidget.cs" />
     <Compile Include="Widgets\LogicTickerWidget.cs" />
     <Compile Include="Widgets\Logic\IngameMenuLogic.cs" />
+    <Compile Include="Widgets\Logic\KickClientLogic.cs" />
     <Compile Include="Widgets\Logic\ModBrowserLogic.cs" />
     <Compile Include="Widgets\Logic\ColorPickerLogic.cs" />
     <Compile Include="Widgets\Logic\ConnectionLogic.cs" />
@@ -400,13 +409,11 @@
     <Compile Include="Widgets\ObserverProductionIconsWidget.cs" />
     <Compile Include="Widgets\ObserverSupportPowerIconsWidget.cs" />
     <Compile Include="Widgets\OrderButtonWidget.cs" />
-    <Compile Include="Widgets\PowerBinWidget.cs" />
-    <Compile Include="Widgets\RadarBinWidget.cs" />
     <Compile Include="Widgets\RadarWidget.cs" />
     <Compile Include="Widgets\StrategicProgressWidget.cs" />
+    <Compile Include="Widgets\SupportPowerTimerWidget.cs" />
     <Compile Include="Widgets\SupportPowerBinWidget.cs" />
     <Compile Include="Widgets\WorldCommandWidget.cs" />
-    <Compile Include="Widgets\WorldTooltipWidget.cs" />
     <Compile Include="World\ChooseBuildTabOnSelect.cs" />
     <Compile Include="World\DebugOverlay.cs" />
     <Compile Include="World\ResourceClaim.cs" />
@@ -425,7 +432,6 @@
     <Compile Include="Armament.cs" />
     <Compile Include="DebugMuzzlePositions.cs" />
     <Compile Include="Buildings\BaseProvider.cs" />
-    <Compile Include="Render\WithSpinner.cs" />
     <Compile Include="Widgets\Logic\ObserverShroudSelectorLogic.cs" />
     <Compile Include="RepairsBridges.cs" />
     <Compile Include="Activities\RepairBridge.cs" />
@@ -439,6 +445,27 @@
     <Compile Include="Render\WithTurret.cs" />
     <Compile Include="Widgets\Logic\AssetBrowserLogic.cs" />
     <Compile Include="Widgets\Logic\ConvertGameFilesLogic.cs" />
+    <Compile Include="VoxelNormalsPalette.cs" />
+    <Compile Include="Render\RenderVoxels.cs" />
+    <Compile Include="Render\WithVoxelTurret.cs" />
+    <Compile Include="Render\WithVoxelBody.cs" />
+    <Compile Include="Render\WithVoxelBarrel.cs" />
+    <Compile Include="Render\WithVoxelWalkerBody.cs" />
+    <Compile Include="Widgets\Logic\CreditsLogic.cs" />
+    <Compile Include="Render\WithResources.cs" />
+    <Compile Include="Render\WithHarvestAnimation.cs" />
+    <Compile Include="Widgets\SlidingContainerWidget.cs" />
+    <Compile Include="Widgets\ResourceBarWidget.cs" />
+    <Compile Include="Widgets\Logic\SimpleTooltipLogic.cs" />
+    <Compile Include="World\DomainIndex.cs" />
+    <Compile Include="MPStartUnits.cs" />
+    <Compile Include="Orders\SetChronoTankDestination.cs" />
+    <Compile Include="Widgets\Logic\WorldTooltipLogic.cs" />
+    <Compile Include="TeslaZapRenderable.cs" />
+    <Compile Include="Buildings\Bib.cs" />
+    <Compile Include="Orders\EnterAlliedActorTargeter.cs" />
+    <Compile Include="Render\WithIdleOverlay.cs" />
+    <Compile Include="Tooltip.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OpenRA.FileFormats\OpenRA.FileFormats.csproj">
@@ -454,6 +481,10 @@
     <ProjectReference Include="..\OpenRA.Utility\OpenRA.Utility.csproj">
       <Project>{F33337BE-CB69-4B24-850F-07D23E408DDF}</Project>
       <Name>OpenRA.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GeoIP\GeoIP.csproj">
+      <Project>{021DDD6A-A608-424C-9A9A-252D8A9989E0}</Project>
+      <Name>GeoIP</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

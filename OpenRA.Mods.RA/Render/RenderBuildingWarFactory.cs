@@ -29,12 +29,10 @@ namespace OpenRA.Mods.RA.Render
 		public override IEnumerable<IRenderable> RenderPreview(ActorInfo building, PaletteReference pr)
 		{
 			var p = BaseBuildingPreview(building, pr);
-			foreach (var r in p)
-				yield return r;
-
-			var anim = new Animation(RenderSimple.GetImage(building), () => 0);
+			var anim = new Animation(RenderSprites.GetImage(building), () => 0);
 			anim.PlayRepeating("idle-top");
-			yield return new SpriteRenderable(anim.Image, WPos.Zero + Origin, 0, pr, 1f);
+
+			return p.Concat(anim.Render(WPos.Zero, pr));
 		}
 	}
 
@@ -49,10 +47,12 @@ namespace OpenRA.Mods.RA.Render
 			: base(init, info)
 		{
 			roof = new Animation(GetImage(init.self));
-
 			var bi = init.self.Info.Traits.Get<BuildingInfo>();
+
+			// Additional 512 units move from center -> top of cell
+			var offset = FootprintUtils.CenterOffset(bi).Y + 512;
 			anims.Add("roof", new AnimationWithOffset(roof, null,
-				() => !buildComplete, FootprintUtils.CenterOffset(bi).Y));
+				() => !buildComplete, offset));
 		}
 
 		public void BuildingComplete( Actor self )

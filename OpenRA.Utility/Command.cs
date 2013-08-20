@@ -55,7 +55,7 @@ namespace OpenRA.Utility
 				ShpWriter.Write(destStream, width, srcImage.Height,
 					srcImage.ToFrames(width));
 
-			Console.WriteLine(dest+" saved.");
+			Console.WriteLine(dest + " saved.");
 		}
 
 		static IEnumerable<byte[]> ToFrames(this Bitmap bitmap, int width)
@@ -82,15 +82,16 @@ namespace OpenRA.Utility
 			var dest = Path.ChangeExtension(src, ".png");
 
 			var srcImage = ShpReader.Load(src);
-			int[] ShadowIndex = { };
+			var shadowIndex = new int[] { };
 			if (args.Contains("--noshadow"))
 			{
-					Array.Resize(ref ShadowIndex, ShadowIndex.Length + 3);
-					ShadowIndex[ShadowIndex.Length - 1] = 1;
-					ShadowIndex[ShadowIndex.Length - 2] = 3;
-					ShadowIndex[ShadowIndex.Length - 1] = 4;
+					Array.Resize(ref shadowIndex, shadowIndex.Length + 3);
+					shadowIndex[shadowIndex.Length - 1] = 1;
+					shadowIndex[shadowIndex.Length - 2] = 3;
+					shadowIndex[shadowIndex.Length - 3] = 4;
 			}
-			var palette = Palette.Load(args[2], ShadowIndex);
+
+			var palette = Palette.Load(args[2], shadowIndex);
 
 			using (var bitmap = new Bitmap(srcImage.ImageCount * srcImage.Width, srcImage.Height, PixelFormat.Format8bppIndexed))
 			{
@@ -112,216 +113,65 @@ namespace OpenRA.Utility
 				}
 
 				bitmap.Save(dest);
-				Console.WriteLine(dest+" saved");
+				Console.WriteLine(dest + " saved");
 			}
 		}
 
 		public static void ConvertR8ToPng(string[] args)
 		{
 			var srcImage = new R8Reader(File.OpenRead(args[1]));
-			int[] ShadowIndex = { };
+			var shadowIndex = new int[] { };
 			if (args.Contains("--noshadow"))
 			{
-					Array.Resize(ref ShadowIndex, ShadowIndex.Length + 1);
-					ShadowIndex[ShadowIndex.Length - 1] = 3;
+				Array.Resize(ref shadowIndex, shadowIndex.Length + 1);
+				shadowIndex[shadowIndex.Length - 1] = 3;
 			}
-			var palette = Palette.Load(args[2], ShadowIndex);
+
+			var palette = Palette.Load(args[2], shadowIndex);
 			var startFrame = int.Parse(args[3]);
 			var endFrame = int.Parse(args[4]) + 1;
 			var filename = args[5];
-			var FrameCount = endFrame - startFrame;
+			var frameCount = endFrame - startFrame;
 
 			var frame = srcImage[startFrame];
-			var bitmap = new Bitmap(frame.FrameWidth * FrameCount, frame.FrameHeight, PixelFormat.Format8bppIndexed);
+			var bitmap = new Bitmap(frame.FrameSize.Width * frameCount, frame.FrameSize.Height, PixelFormat.Format8bppIndexed);
 			bitmap.Palette = palette.AsSystemPalette();
-
-			int OffsetX = 0;
-			int OffsetY = 0;
-
-			int x = 0;
 
 			frame = srcImage[startFrame];
 
-			if (args.Contains("--infantry")) //resorting to RA/CnC compatible counter-clockwise frame order
-			{
-				endFrame = startFrame-1;
-				for (int e = 8; e < FrameCount+1; e=e+8) //assuming 8 facings each animation set
-				{
-					
-					for (int f = startFrame+e-1; f > endFrame; f--)
-					{
-						OffsetX = frame.FrameWidth/2 - frame.Width/2;
-						OffsetY = frame.FrameHeight/2 - frame.Height/2;
-
-						Console.WriteLine("calculated OffsetX: {0}", OffsetX);
-						Console.WriteLine("calculated OffsetY: {0}", OffsetY);
-
-						var data = bitmap.LockBits(new Rectangle(x+OffsetX, 0+OffsetY, frame.Width, frame.Height), ImageLockMode.WriteOnly,
-							PixelFormat.Format8bppIndexed);
-
-						for (var i = 0; i < frame.Height; i++)
-							Marshal.Copy(frame.Image, i * frame.Width,
-								new IntPtr(data.Scan0.ToInt64() + i * data.Stride), frame.Width);
-
-						bitmap.UnlockBits(data);
-
-						x += frame.FrameWidth;
-
-						frame = srcImage[f];
-						Console.WriteLine("f: {0}", f);
-					}
-					endFrame = startFrame+e-1;
-					frame = srcImage[startFrame+e];
-					Console.WriteLine("e: {0}", e);
-					Console.WriteLine("FrameCount: {0}", FrameCount);
-				}
-			}
-			//resorting to RA/CnC compatible counter-clockwise frame order
-			else if (args.Contains("--vehicle") || args.Contains("--projectile"))
-			{
-				frame = srcImage[startFrame];
-
-				for (int f = endFrame-1; f > startFrame-1; f--)
-				{
-					OffsetX = frame.FrameWidth/2 - frame.OffsetX;
-					OffsetY = frame.FrameHeight/2 - frame.OffsetY;
-
-					Console.WriteLine("calculated OffsetX: {0}", OffsetX);
-					Console.WriteLine("calculated OffsetY: {0}", OffsetY);
-
-					var data = bitmap.LockBits(new Rectangle(x+OffsetX, 0+OffsetY, frame.Width, frame.Height), ImageLockMode.WriteOnly,
-						PixelFormat.Format8bppIndexed);
-
-					for (var i = 0; i < frame.Height; i++)
-						Marshal.Copy(frame.Image, i * frame.Width,
-							new IntPtr(data.Scan0.ToInt64() + i * data.Stride), frame.Width);
-
-					bitmap.UnlockBits(data);
-
-					x += frame.FrameWidth;
-
-					frame = srcImage[f];
-				}
-			}
-			else if (args.Contains("--turret")) //resorting to RA/CnC compatible counter-clockwise frame order
-			{
-				frame = srcImage[startFrame];
-
-				for (int f = endFrame-1; f > startFrame-1; f--)
-				{
-					if (frame.OffsetX < 0) { frame.OffsetX = 0 - frame.OffsetX; }
-					if (frame.OffsetY < 0) { frame.OffsetY = 0 - frame.OffsetY; }
-					OffsetX = 0 + frame.OffsetX;
-					OffsetY = frame.FrameHeight - frame.OffsetY;
-
-					Console.WriteLine("calculated OffsetX: {0}", OffsetX);
-					Console.WriteLine("calculated OffsetY: {0}", OffsetY);
-
-					var data = bitmap.LockBits(new Rectangle(x+OffsetX, 0+OffsetY, frame.Width, frame.Height), ImageLockMode.WriteOnly,
-						PixelFormat.Format8bppIndexed);
-
-					for (var i = 0; i < frame.Height; i++)
-						Marshal.Copy(frame.Image, i * frame.Width,
-							new IntPtr(data.Scan0.ToInt64() + i * data.Stride), frame.Width);
-
-					bitmap.UnlockBits(data);
-
-					x += frame.FrameWidth;
-
-					frame = srcImage[f];
-				}
-			}
-			else if (args.Contains("--wall")) //complex resorting to RA/CnC compatible frame order
-			{
-				int[] D2kBrikFrameOrder = {1, 4, 2, 12, 5, 6, 16, 9, 3, 13, 7, 8, 14, 10, 11, 15, 17, 20, 18, 28, 21, 22, 32, 25, 19, 29, 23, 24, 30, 26, 27, 31};
-				foreach (int o in D2kBrikFrameOrder)
-				{
-					int f = startFrame -1 + o;
-
-					frame = srcImage[f];
-
-					if (frame.OffsetX < 0) { frame.OffsetX = 0 - frame.OffsetX; }
-					if (frame.OffsetY < 0) { frame.OffsetY = 0 - frame.OffsetY; }
-					OffsetX = 0 + frame.OffsetX;
-					OffsetY = frame.FrameHeight - frame.OffsetY;
-					Console.WriteLine("calculated OffsetX: {0}", OffsetX);
-					Console.WriteLine("calculated OffsetY: {0}", OffsetY);
-
-					var data = bitmap.LockBits(new Rectangle(x+OffsetX, 0+OffsetY, frame.Width, frame.Height), ImageLockMode.WriteOnly,
-						PixelFormat.Format8bppIndexed);
-
-					for (var i = 0; i < frame.Height; i++)
-						Marshal.Copy(frame.Image, i * frame.Width,
-							new IntPtr(data.Scan0.ToInt64() + i * data.Stride), frame.Width);
-
-					bitmap.UnlockBits(data);
-
-					x += frame.FrameWidth;
-				}
-			}
-			else if (args.Contains("--tileset"))
+			if (args.Contains("--tileset"))
 			{
 				int f = 0;
-				var tileset = new Bitmap(frame.FrameWidth * 20, frame.FrameHeight * 40, PixelFormat.Format8bppIndexed);
+				var tileset = new Bitmap(frame.FrameSize.Width * 20, frame.FrameSize.Height * 40, PixelFormat.Format8bppIndexed);
 				tileset.Palette = palette.AsSystemPalette();
 
 				for (int h = 0; h < 40; h++)
 				{
 					for (int w = 0; w < 20; w++)
 					{
-						if (h * 20 + w < FrameCount)
+						if (h * 20 + w < frameCount)
 						{
 							Console.WriteLine(f);
 							frame = srcImage[f];
 
-							var data = tileset.LockBits(new Rectangle(w * frame.Width, h * frame.Height, frame.Width, frame.Height),
+							var data = tileset.LockBits(new Rectangle(w * frame.Size.Width, h * frame.Size.Height, frame.Size.Width, frame.Size.Height),
 								ImageLockMode.WriteOnly, PixelFormat.Format8bppIndexed);
 
-							for (var i = 0; i < frame.Height; i++)
-								Marshal.Copy(frame.Image, i * frame.Width,
-									new IntPtr(data.Scan0.ToInt64() + i * data.Stride), frame.Width);
+							for (var i = 0; i < frame.Size.Height; i++)
+								Marshal.Copy(frame.Image, i * frame.Size.Width,
+									new IntPtr(data.Scan0.ToInt64() + i * data.Stride), frame.Size.Width);
 
 							tileset.UnlockBits(data);
 							f++;
 						}
 					}
 				}
+
 				bitmap = tileset;
 			}
-			else
-			{
-				for (int f = startFrame; f < endFrame; f++)
-				{
-					frame = srcImage[f];
-					if (args.Contains("--infantrydeath"))
-					{
-						OffsetX = frame.FrameWidth/2 - frame.Width/2;
-						OffsetY = frame.FrameHeight/2 - frame.Height/2;
-					}
-					else if (args.Contains("--building"))
-					{
-						if (frame.OffsetX < 0) { frame.OffsetX = 0 - frame.OffsetX; }
-						if (frame.OffsetY < 0) { frame.OffsetY = 0 - frame.OffsetY; }
-						OffsetX = 0 + frame.OffsetX;
-						OffsetY = frame.FrameHeight - frame.OffsetY;
-					}
-					Console.WriteLine("calculated OffsetX: {0}", OffsetX);
-					Console.WriteLine("calculated OffsetY: {0}", OffsetY);
 
-					var data = bitmap.LockBits(new Rectangle(x+OffsetX, 0+OffsetY, frame.Width, frame.Height), ImageLockMode.WriteOnly,
-						PixelFormat.Format8bppIndexed);
-
-					for (var i = 0; i < frame.Height; i++)
-						Marshal.Copy(frame.Image, i * frame.Width,
-							new IntPtr(data.Scan0.ToInt64() + i * data.Stride), frame.Width);
-
-					bitmap.UnlockBits(data);
-
-					x += frame.FrameWidth;
-				}
-			}
-			bitmap.Save(filename+".png");
-			Console.WriteLine(filename+".png saved");
+			bitmap.Save(filename + ".png");
+			Console.WriteLine(filename + ".png saved");
 		}
 
 		public static void ConvertTmpToPng(string[] args)
@@ -329,27 +179,27 @@ namespace OpenRA.Utility
 			var mods = args[1].Split(',');
 			var theater = args[2];
 			var templateNames = args.Skip(3);
-			int[] ShadowIndex = { 3, 4 };
+			var shadowIndex = new int[] { 3, 4 };
 
 			var manifest = new Manifest(mods);
 			FileSystem.LoadFromManifest(manifest);
 
-			var tileset = manifest.TileSets.Select( a => new TileSet(a) )
-				.FirstOrDefault( ts => ts.Name == theater );
+			var tileset = manifest.TileSets.Select(a => new TileSet(a))
+				.FirstOrDefault(ts => ts.Name == theater);
 
 			if (tileset == null)
 				throw new InvalidOperationException("No theater named '{0}'".F(theater));
 
-			tileset.LoadTiles();
-			var palette = new Palette(FileSystem.Open(tileset.Palette), ShadowIndex);
+			var renderer = new TileSetRenderer(tileset, new Size(manifest.TileSize, manifest.TileSize));
+			var palette = new Palette(FileSystem.Open(tileset.Palette), shadowIndex);
 
-			foreach( var templateName in templateNames )
+			foreach (var templateName in templateNames)
 			{
 				var template = tileset.Templates.FirstOrDefault(tt => tt.Value.Image == templateName);
 				if (template.Value == null)
 					throw new InvalidOperationException("No such template '{0}'".F(templateName));
 
-				using (var image = tileset.RenderTemplate(template.Value.Id, palette))
+				using (var image = renderer.RenderTemplate(template.Value.Id, palette))
 					image.Save(Path.ChangeExtension(templateName, ".png"));
 			}
 		}
@@ -360,7 +210,7 @@ namespace OpenRA.Utility
 			var dest = args[2];
 
 			Dune2ShpReader srcImage = null;
-			using(var s = File.OpenRead(src))
+			using (var s = File.OpenRead(src))
 				srcImage = new Dune2ShpReader(s);
 
 			var size = srcImage.First().Size;
@@ -390,9 +240,9 @@ namespace OpenRA.Utility
 				if (src == null)
 					throw new InvalidOperationException("File not found: {0}".F(f));
 				var data = src.ReadAllBytes();
-				var output = args.Contains("--userdir") ? Platform.SupportDir+f : f;
+				var output = args.Contains("--userdir") ? Platform.SupportDir + f : f;
 				File.WriteAllBytes(output, data);
-				Console.WriteLine(output+" saved.");
+				Console.WriteLine(output + " saved.");
 			}
 		}
 
@@ -408,7 +258,7 @@ namespace OpenRA.Utility
 
 		public static void RemapShp(string[] args)
 		{
-			var remap = new Dictionary<int,int>();
+			var remap = new Dictionary<int, int>();
 
 			/* the first 4 entries are fixed */
 			for (var i = 0; i < 4; i++)
@@ -426,17 +276,17 @@ namespace OpenRA.Utility
 			FileSystem.LoadFromManifest(Game.modData.Manifest);
 			Rules.LoadRules(Game.modData.Manifest, new Map());
 			var destPaletteInfo = Rules.Info["player"].Traits.Get<PlayerColorPaletteInfo>();
-			int[] destRemapIndex = destPaletteInfo.RemapIndex;
+			var destRemapIndex = destPaletteInfo.RemapIndex;
+			var shadowIndex = new int[] { };
 
-			int[] ShadowIndex = { };
 			// the remap range is always 16 entries, but their location and order changes
 			for (var i = 0; i < 16; i++)
 				remap[PlayerColorRemap.GetRemapIndex(srcRemapIndex, i)]
 					= PlayerColorRemap.GetRemapIndex(destRemapIndex, i);
 
 			// map everything else to the best match based on channel-wise distance
-			var srcPalette = Palette.Load(args[1].Split(':')[1], ShadowIndex);
-			var destPalette = Palette.Load(args[2].Split(':')[1], ShadowIndex);
+			var srcPalette = Palette.Load(args[1].Split(':')[1], shadowIndex);
+			var destPalette = Palette.Load(args[2].Split(':')[1], shadowIndex);
 
 			var fullIndexRange = Exts.MakeArray<int>(256, x => x);
 
@@ -451,10 +301,9 @@ namespace OpenRA.Utility
 
 			using (var destStream = File.Create(args[4]))
 				ShpWriter.Write(destStream, srcImage.Width, srcImage.Height,
-					srcImage.Frames.Select( im => im.Image.Select(px => (byte)remap[px]).ToArray() ));
+					srcImage.Frames.Select(im => im.Image.Select(px => (byte)remap[px]).ToArray()));
 		}
 
-		//This is needed because the run and shoot animation are next to each other for each sequence in RA/CnC, but not in D2k.
 		public static void TransposeShp(string[] args)
 		{
 			var srcImage = ShpReader.Load(args[1]);
@@ -462,18 +311,18 @@ namespace OpenRA.Utility
 			var srcFrames = srcImage.Frames.ToArray();
 			var destFrames = srcImage.Frames.ToArray();
 
-			for( var z = 3; z < args.Length - 2; z += 3 )
+			for (var z = 3; z < args.Length - 2; z += 3)
 			{
 				var start = int.Parse(args[z]);
-				var m = int.Parse(args[z+1]);
-				var n = int.Parse(args[z+2]);
+				var m = int.Parse(args[z + 1]);
+				var n = int.Parse(args[z + 2]);
 
-				for( var i = 0; i < m; i++ )
-					for( var j = 0; j < n; j++ )
-						destFrames[ start + i*n + j ] = srcFrames[ start + j*m + i ];
+				for (var i = 0; i < m; i++)
+					for (var j = 0; j < n; j++)
+						destFrames[start + i * n + j] = srcFrames[start + j * m + i];
 			}
 
-			using( var destStream = File.Create(args[2]) )
+			using (var destStream = File.Create(args[2]))
 				ShpWriter.Write(destStream, srcImage.Width, srcImage.Height,
 					destFrames.Select(f => f.Image));
 		}
@@ -530,6 +379,12 @@ namespace OpenRA.Utility
 
 			Console.WriteLine();
 			Console.WriteLine("```");
+		}
+
+		public static void GetMapHash(string[] args)
+		{
+			var result = new Map(args[1]).Uid;
+			Console.WriteLine(result);
 		}
 	}
 }

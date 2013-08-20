@@ -21,7 +21,7 @@ namespace OpenRA.FileFormats
 		public bool NonCombatant = false;
 		public bool Playable = false;
 		public string Bot = null;
-		public bool DefaultStartingUnits = false;
+		public string StartingUnitsClass = null;
 		public bool AllowBots = true;
 		public bool Required = false;
 
@@ -39,7 +39,6 @@ namespace OpenRA.FileFormats
 		public bool LockTeam = false;
 		public int Team = 0;
 
-		public int InitialCash = 0;
 		public string[] Allies = {};
 		public string[] Enemies = {};
 

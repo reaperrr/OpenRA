@@ -140,19 +140,18 @@ namespace OpenRA.Mods.RA
 			{
 				var xy = Game.viewport.ViewToWorld(Viewport.LastMousePos);
 				var targetUnits = power.UnitsInRange(xy);
-				foreach (var unit in targetUnits) {
-					if (manager.self.Owner.Shroud.IsTargetable(unit) || manager.self.Owner.HasFogVisibility()) {
+				foreach (var unit in targetUnits)
+					if (manager.self.Owner.Shroud.IsTargetable(unit) || manager.self.Owner.HasFogVisibility())
 						wr.DrawSelectionBox(unit, Color.Red);
-					}
-				}
 			}
 
-			public void RenderBeforeWorld(WorldRenderer wr, World world)
+			public IEnumerable<IRenderable> Render(WorldRenderer wr, World world)
 			{
 				var xy = Game.viewport.ViewToWorld(Viewport.LastMousePos);
 				var tiles = world.FindTilesInCircle(xy, range);
+				var pal = wr.Palette("terrain");
 				foreach (var t in tiles)
-					tile.DrawAt( wr, t.ToPPos().ToFloat2(), "terrain" );
+					yield return new SpriteRenderable(tile, t.CenterPosition, WVec.Zero, -511, pal, 1f, true);
 			}
 
 			public string GetCursor(World world, CPos xy, MouseInput mi)
@@ -220,24 +219,23 @@ namespace OpenRA.Mods.RA
 
 			public void RenderAfterWorld(WorldRenderer wr, World world)
 			{
-				foreach (var unit in power.UnitsInRange(sourceLocation)) {
-					if (manager.self.Owner.Shroud.IsTargetable(unit) || manager.self.Owner.HasFogVisibility()) {
+				foreach (var unit in power.UnitsInRange(sourceLocation))
+					if (manager.self.Owner.Shroud.IsTargetable(unit) || manager.self.Owner.HasFogVisibility())
 						wr.DrawSelectionBox(unit, Color.Red);
-					}
-				}
 			}
 
-			public void RenderBeforeWorld(WorldRenderer wr, World world)
+			public IEnumerable<IRenderable> Render(WorldRenderer wr, World world)
 			{
 				var xy = Game.viewport.ViewToWorld(Viewport.LastMousePos);
+				var pal = wr.Palette("terrain");
 
 				// Source tiles
 				foreach (var t in world.FindTilesInCircle(sourceLocation, range))
-					sourceTile.DrawAt( wr, t.ToPPos().ToFloat2(), "terrain" );
+					yield return new SpriteRenderable(sourceTile, t.CenterPosition, WVec.Zero, -511, pal, 1f, true);
 
 				// Destination tiles
 				foreach (var t in world.FindTilesInCircle(xy, range))
-					sourceTile.DrawAt( wr, t.ToPPos().ToFloat2(), "terrain" );
+					yield return new SpriteRenderable(sourceTile, t.CenterPosition, WVec.Zero, -511, pal, 1f, true);
 
 				// Unit previews
 				foreach (var unit in power.UnitsInRange(sourceLocation))
@@ -245,7 +243,7 @@ namespace OpenRA.Mods.RA
 					var offset = (xy - sourceLocation).ToWVec();
 					if (manager.self.Owner.Shroud.IsTargetable(unit))
 						foreach (var r in unit.Render(wr))
-							r.WithPos(r.Pos + offset).Render(wr);
+							yield return r.OffsetBy(offset);
 				}
 
 				// Unit tiles
@@ -257,7 +255,7 @@ namespace OpenRA.Mods.RA
 						var canEnter = ((manager.self.Owner.Shroud.IsExplored(targetCell) || manager.self.Owner.HasFogVisibility()) &&
 						                unit.Trait<Chronoshiftable>().CanChronoshiftTo(unit,targetCell));
 						var tile = canEnter ? validTile : invalidTile;
-						tile.DrawAt(wr, targetCell.ToPPos().ToFloat2(), "terrain");
+						yield return new SpriteRenderable(tile, targetCell.CenterPosition, WVec.Zero, -511, pal, 1f, true);
 					}
 				}
 			}
@@ -274,7 +272,8 @@ namespace OpenRA.Mods.RA
 						break;
 					}
 				}
-				if (!canTeleport) {
+				if (!canTeleport)
+				{
 					// Check the terrain types. This will allow chronoshifts to occur on empty terrain to terrain of
 					// a similar type. This also keeps the cursor from changing in non-visible property, alerting the
 					// chronoshifter of enemy unit presence

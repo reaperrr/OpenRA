@@ -51,12 +51,12 @@ namespace OpenRA.Mods.RA
 		public void Uncloak(int time)
 		{
 			if (Cloaked)
-				Sound.Play(info.UncloakSound, self.CenterLocation);
+				Sound.Play(info.UncloakSound, self.CenterPosition);
 
 			remainingTime = Math.Max(remainingTime, time);
 		}
 
-		public void Attacking(Actor self, Target target) { Uncloak(); }
+		public void Attacking(Actor self, Target target, Armament a, Barrel barrel) { Uncloak(); }
 
 		public bool Cloaked { get { return remainingTime <= 0; } }
 
@@ -65,8 +65,6 @@ namespace OpenRA.Mods.RA
 			canCloak = (e.DamageState < DamageState.Critical);
 			if (!canCloak) Uncloak();
 		}
-
-		static readonly IRenderable[] Nothing = { };
 
 		public IEnumerable<IRenderable> ModifyRender(Actor self, WorldRenderer wr, IEnumerable<IRenderable> r)
 		{
@@ -79,14 +77,14 @@ namespace OpenRA.Mods.RA
 				else
 					return r.Select(a => a.WithPalette(wr.Palette(info.Palette)));
 			else
-				return Nothing;
+				return SpriteRenderable.None;
 		}
 
 		public void Tick(Actor self)
 		{
 			if (remainingTime > 0 && canCloak)
 				if (--remainingTime <= 0)
-					Sound.Play(info.CloakSound, self.CenterLocation);
+					Sound.Play(info.CloakSound, self.CenterPosition);
 			if (self.IsDisabled())
 				Uncloak();
 

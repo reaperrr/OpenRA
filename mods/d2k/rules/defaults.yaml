@@ -27,12 +27,14 @@
 	ProximityCaptor:
 		Types:Vehicle
 	GivesBounty:
-	#WithSmoke:
 	Repairable:
-		RepairBuildings: repair
+		RepairBuildings: repaira,repairo,repairh
 	DebugMuzzlePositions:
 	Guard:
 	Guardable:
+	RenderUnit:
+	BodyOrientation:
+	UpdatesPlayerStatistics:
 
 ^Tank:
 	AppearsOnRadar:
@@ -63,12 +65,14 @@
 	ProximityCaptor:
 		Types:Tank
 	GivesBounty:
-	#WithSmoke:
 	Repairable:
-		RepairBuildings: repair
+		RepairBuildings: repaira,repairo,repairh
 	DebugMuzzlePositions:
 	Guard:
 	Guardable:
+	RenderUnit:
+	BodyOrientation:
+	UpdatesPlayerStatistics:
 
 ^Husk:
 	Health:
@@ -76,6 +80,7 @@
 	Armor: 
 		Type: Light
 	Husk:
+		AllowedTerrain: Sand, Rock, Transition, Concrete, Spice, SpiceBlobs, Dune
 	HiddenUnderFog:
 	AppearsOnRadar:
 	Burns:
@@ -84,6 +89,7 @@
 		Types:Husk
 	Tooltip:
 		Name: Destroyed Tank
+	BodyOrientation:
 
 ^TowerHusk:
 	Health:
@@ -101,6 +107,16 @@
 		Name: Destroyed Tower
 	ProximityCaptor:
 		Types:Husk
+	BodyOrientation:
+
+^AircraftHusk:
+	Inherits: ^Husk
+	-Husk:
+	-Burns:
+	FallsToEarth:
+		Spins: False
+		Moves: True
+		Explosion: UnitExplodeScale
 
 ^Infantry:
 	AppearsOnRadar:
@@ -142,13 +158,15 @@
 		Types:Infantry
 	GivesBounty:
 	CrushableInfantry:
-		CrushSound: squishy2.aud
+		CrushSound: CRUSH1.WAV
 	RepairableNear:
 		Buildings: barra, barro
 		CloseEnough: 1
 	DebugMuzzlePositions:
 	Guard:
 	Guardable:
+	BodyOrientation:
+	UpdatesPlayerStatistics:
 
 ^Plane:
 	AppearsOnRadar:
@@ -168,6 +186,8 @@
 		Types:Plane
 	GivesBounty:
 	DebugMuzzlePositions:
+	BodyOrientation:
+	UpdatesPlayerStatistics:
 
 ^Helicopter:
 	Inherits: ^Plane
@@ -184,15 +204,15 @@
 		Dimensions: 1,1
 		Footprint: x
 		TerrainTypes: Rock, Concrete
-		BuildSounds: BUILD1.aud
-		SellSounds: BUILD1.aud
+		BuildSounds: BUILD1.WAV
+		SellSounds: BUILD1.WAV
 		Adjacent: 3
 	GivesBuildableArea:
 	Capturable:
 	CapturableBar:
 	SoundOnDamageTransition:
-		DamagedSound: EXPLSML1.aud
-		DestroyedSound: EXPLHG1.aud
+		DamagedSound: EXPLSML1.WAV
+		DestroyedSound: EXPLHG1.WAV
 	RenderBuilding:
 	WithBuildingExplosion:
 	RepairableBuilding:
@@ -206,13 +226,14 @@
 		Notification: BuildingLost
 	EditorAppearance:
 		RelativeToTopLeft: yes
-	AutoTargetIgnore:
 	ShakeOnDeath:
 	ProximityCaptor:
 		Types:Building
 	Sellable:
 	GivesBounty:
 	DebugMuzzlePositions:
-	Bib:
 	Guardable:
 		Range: 3
+	BodyOrientation:
+	UpdatesPlayerStatistics:
+	WithCrumbleOverlay:

@@ -40,7 +40,7 @@ namespace OpenRA.Mods.RA
 			base.Tick( self );
 		}
 
-		public void Attacking(Actor self, Target target)
+		public void Attacking(Actor self, Target target, Armament a, Barrel barrel)
 		{
 			--charges;
 			timeToRecharge = self.Info.Traits.Get<AttackTeslaInfo>().ReloadTime;
@@ -74,7 +74,7 @@ namespace OpenRA.Mods.RA
 					return this;
 
 				self.Trait<RenderBuildingCharge>().PlayCharge(self);
-				return Util.SequenceActivities( new Wait( 8 ), new TeslaZap( target ), this );
+				return Util.SequenceActivities( new Wait( 22 ), new TeslaZap( target ), this );
 			}
 		}
 

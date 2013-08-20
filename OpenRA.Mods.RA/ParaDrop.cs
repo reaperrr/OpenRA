@@ -1,4 +1,4 @@
-﻿#region Copyright & License Information
+#region Copyright & License Information
 /*
  * Copyright 2007-2011 The OpenRA Developers (see AUTHORS)
  * This file is part of OpenRA, which is free software. It is made
@@ -53,14 +53,14 @@ namespace OpenRA.Mods.RA
 
 					var a = cargo.Unload(self);
 					self.World.AddFrameEndTask(w => w.Add(new Parachute(a, self.CenterPosition)));
-					Sound.Play(info.ChuteSound, self.CenterLocation);
+					Sound.Play(info.ChuteSound, self.CenterPosition);
 				}
 			}
 		}
 
 		bool IsSuitableCell(Actor actorToDrop, CPos p)
 		{
-			return actorToDrop.Trait<ITeleportable>().CanEnterCell(p);
+			return actorToDrop.Trait<IPositionable>().CanEnterCell(p);
 		}
 
 		void FinishedDropping(Actor self)

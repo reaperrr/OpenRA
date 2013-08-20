@@ -52,21 +52,13 @@ namespace OpenRA.Mods.RA.Activities
 			int searchRadiusSquared = searchRadius * searchRadius;
 
 			// Find harvestable resources nearby:
+			// Avoid enemy territory:
+			// TODO: calculate weapons ranges of units and factor those in instead of hard-coding 8.
 			var path = self.World.WorldActor.Trait<PathFinder>().FindPath(
 				PathSearch.Search(self.World, mobileInfo, self, true)
-					.WithCustomCost(loc =>
-					{
-						// Avoid enemy territory:
-						int safetycost = (
-							// TODO: calculate weapons ranges of units and factor those in instead of hard-coding 8.
-							from u in self.World.FindUnitsInCircle(loc.ToPPos(), Game.CellSize * 8)
-							where !u.Destroyed
-							where self.Owner.Stances[u.Owner] == Stance.Enemy
-							select Math.Max(0, 64 - (loc - u.Location).LengthSquared)
-						).Sum();
-
-						return safetycost;
-					})
+					.WithCustomCost(loc => self.World.FindActorsInCircle(loc.CenterPosition, WRange.FromCells(8))
+						.Where (u => !u.Destroyed && self.Owner.Stances[u.Owner] == Stance.Enemy)
+						.Sum(u => Math.Max(0, 64 - (loc - u.Location).LengthSquared)))
 					.WithHeuristic(loc =>
 					{
 						// Avoid this cell:
@@ -135,45 +127,51 @@ namespace OpenRA.Mods.RA.Activities
 
 	public class HarvestResource : Activity
 	{
-		bool isHarvesting = false;
-
 		public override Activity Tick(Actor self)
 		{
-			if (isHarvesting) return this;
-
 			var territory = self.World.WorldActor.TraitOrDefault<ResourceClaimLayer>();
 			if (IsCanceled)
 			{
-				if (territory != null) territory.UnclaimByActor(self);
+				if (territory != null)
+					territory.UnclaimByActor(self);
 				return NextActivity;
 			}
 
 			var harv = self.Trait<Harvester>();
+			var harvInfo = self.Info.Traits.Get<HarvesterInfo>();
 			harv.LastHarvestedCell = self.Location;
 
 			if (harv.IsFull)
 			{
-				if (territory != null) territory.UnclaimByActor(self);
+				if (territory != null)
+					territory.UnclaimByActor(self);
 				return NextActivity;
+			}
+
+			// Turn to one of the harvestable facings
+			if (harvInfo.HarvestFacings != 0)
+			{
+				var facing = self.Trait<IFacing>().Facing;
+				var desired = Util.QuantizeFacing(facing, harvInfo.HarvestFacings) * (256 / harvInfo.HarvestFacings);
+				if (desired != facing)
+					return Util.SequenceActivities(new Turn(desired), this);
 			}
 
 			var resLayer = self.World.WorldActor.Trait<ResourceLayer>();
 			var resource = resLayer.Harvest(self.Location);
 			if (resource == null)
 			{
-				if (territory != null) territory.UnclaimByActor(self);
+				if (territory != null)
+					territory.UnclaimByActor(self);
 				return NextActivity;
 			}
 
-			var renderUnit = self.Trait<RenderUnit>();	/* better have one of these! */
-			if (renderUnit.anim.CurrentSequence.Name != "harvest")
-			{
-				isHarvesting = true;
-				renderUnit.PlayCustomAnimation(self, "harvest", () => isHarvesting = false);
-			}
-
 			harv.AcceptResource(resource);
-			return this;
+
+			foreach (var t in self.TraitsImplementing<INotifyHarvest>())
+				t.Harvested(self, resource);
+
+			return Util.SequenceActivities(new Wait(harvInfo.LoadTicksPerBale), this);
 		}
 	}
 }

@@ -9,6 +9,7 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 using OpenRA.Traits;
 
 namespace OpenRA.Graphics
@@ -34,19 +35,13 @@ namespace OpenRA.Graphics
 			this.ZOffset = zOffset;
 		}
 
-		public IRenderable Image(Actor self, WorldRenderer wr, PaletteReference pal)
+		public IEnumerable<IRenderable> Render(Actor self, WorldRenderer wr, PaletteReference pal, float scale)
 		{
-			return Image(self, wr, pal, 1f);
-		}
+			var center = self.CenterPosition;
+			var offset = OffsetFunc != null ? OffsetFunc() : WVec.Zero;
 
-		public IRenderable Image(Actor self, WorldRenderer wr, PaletteReference pal, float scale)
-		{
-			var p = self.CenterPosition;
-			if (OffsetFunc != null)
-				p += OffsetFunc();
-
-			var z = (ZOffset != null) ? ZOffset(p) : 0;
-			return new SpriteRenderable(Animation.Image, p, z, pal, scale);
+			var z = (ZOffset != null) ? ZOffset(center + offset) : 0;
+			return Animation.Render(center, offset, z, pal, scale);
 		}
 
 		public static implicit operator AnimationWithOffset(Animation a)

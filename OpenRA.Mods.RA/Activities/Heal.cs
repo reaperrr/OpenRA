@@ -17,12 +17,12 @@ namespace OpenRA.Mods.RA.Activities
 	/* non-turreted attack */
 	public class Heal : Attack
 	{
-		public Heal(Target target, int range, bool allowMovement)
+		public Heal(Target target, WRange range, bool allowMovement)
 			: base(target, range, allowMovement) {}
 
-		protected override Activity InnerTick( Actor self, AttackBase attack )
+		protected override Activity InnerTick(Actor self, AttackBase attack)
 		{
-			if (Target.IsActor && Target.Actor.GetDamageState() == DamageState.Undamaged)
+			if (Target.Type == TargetType.Actor && Target.Actor.GetDamageState() == DamageState.Undamaged)
 				return NextActivity;
 
 			return base.InnerTick(self, attack);

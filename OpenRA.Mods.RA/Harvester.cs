@@ -21,8 +21,10 @@ namespace OpenRA.Mods.RA
 	public class HarvesterInfo : ITraitInfo
 	{
 		public readonly int Capacity = 28;
+		public readonly int LoadTicksPerBale = 4;
 		public readonly int UnloadTicksPerBale = 4;
 		public readonly int PipCount = 7;
+		public readonly int HarvestFacings = 0;
 		public readonly string[] Resources = { };
 		public readonly decimal FullyLoadedSpeed = .85m;
 		/// <summary>
@@ -237,7 +239,8 @@ namespace OpenRA.Mods.RA
 		{
 			get
 			{
-				yield return new EnterOrderTargeter<IAcceptOre>("Deliver", 5, false, true, _ => true, proc => !IsEmpty && proc.Trait<IAcceptOre>().AllowDocking);
+				yield return new EnterAlliedActorTargeter<IAcceptOre>("Deliver", 5, _ => true,
+					proc => !IsEmpty && proc.Trait<IAcceptOre>().AllowDocking);
 				yield return new HarvestOrderTargeter();
 			}
 		}
@@ -248,7 +251,7 @@ namespace OpenRA.Mods.RA
 				return new Order(order.OrderID, self, queued) { TargetActor = target.Actor };
 
 			if (order.OrderID == "Harvest")
-				return new Order(order.OrderID, self, queued) { TargetLocation = target.CenterLocation.ToCPos() };
+				return new Order(order.OrderID, self, queued) { TargetLocation = target.CenterPosition.ToCPos() };
 
 			return null;
 		}
@@ -417,23 +420,27 @@ namespace OpenRA.Mods.RA
 			public int OrderPriority { get { return 10; } }
 			public bool IsQueued { get; protected set; }
 
-			public bool CanTargetActor(Actor self, Actor target, bool forceAttack, bool forceQueued, ref string cursor)
+			public bool CanTarget(Actor self, Target target, List<Actor> othersAtTarget, TargetModifiers modifiers, ref string cursor)
 			{
-				return false;
-			}
+				if (target.Type != TargetType.Terrain)
+					return false;
 
-			public bool CanTargetLocation(Actor self, CPos location, List<Actor> actorsAtLocation, bool forceAttack, bool forceQueued, ref string cursor)
-			{
+				if (modifiers.HasModifier(TargetModifiers.ForceMove))
+					return false;
+
+				var location = target.CenterPosition.ToCPos();
 				// Don't leak info about resources under the shroud
-				if (!self.Owner.Shroud.IsExplored(location)) return false;
+				if (!self.Owner.Shroud.IsExplored(location))
+					return false;
 
-				var res = self.World.WorldActor.Trait<ResourceLayer>().GetResource(location);
+				var res = self.World.WorldActor.Trait<ResourceLayer>().GetRenderedResource(location);
 				var info = self.Info.Traits.Get<HarvesterInfo>();
 
-				if (res == null) return false;
-				if (!info.Resources.Contains(res.info.Name)) return false;
+				if (res == null || !info.Resources.Contains(res.info.Name))
+					return false;
+
 				cursor = "harvest";
-				IsQueued = forceQueued;
+				IsQueued = modifiers.HasModifier(TargetModifiers.ForceQueue);
 
 				return true;
 			}

@@ -20,6 +20,7 @@ namespace OpenRA.Mods.RA.Widgets.Logic
 	public class SettingsMenuLogic
 	{
 		Widget bg;
+		SoundDevice soundDevice;
 
 		[ObjectCreator.UseCtor]
 		public SettingsMenuLogic(Action onExit)
@@ -43,13 +44,12 @@ namespace OpenRA.Mods.RA.Widgets.Logic
 			name.OnLoseFocus = () =>
 			{
 				name.Text = name.Text.Trim();
-
 				if (name.Text.Length == 0)
 					name.Text = Game.Settings.Player.Name;
 				else
 					Game.Settings.Player.Name = name.Text;
 			};
-			name.OnEnterKey = () => { name.LoseFocus(); return true; };
+			name.OnEnterKey = () => { name.YieldKeyboardFocus(); return true; };
 
 			var edgescrollCheckbox = general.Get<CheckboxWidget>("EDGE_SCROLL");
 			edgescrollCheckbox.IsChecked = () => Game.Settings.Game.ViewportEdgeScroll;
@@ -104,20 +104,16 @@ namespace OpenRA.Mods.RA.Widgets.Logic
 			mapMusicCheckbox.IsChecked = () => Game.Settings.Sound.MapMusic;
 			mapMusicCheckbox.OnClick = () => Game.Settings.Sound.MapMusic ^= true;
 
-			var soundEngineDropdown = audio.Get<DropDownButtonWidget>("SOUND_ENGINE");
-			soundEngineDropdown.OnMouseDown = _ => ShowSoundEngineDropdown(soundEngineDropdown, soundSettings);
-			soundEngineDropdown.GetText = () => soundSettings.Engine == "AL" ?
-				"OpenAL" : soundSettings.Engine == "Null" ? "None" : "OpenAL";
+			var devices = Sound.AvailableDevices();
+			soundDevice = devices.FirstOrDefault(d => d.Engine == soundSettings.Engine && d.Device == soundSettings.Device) ?? devices.First();
 
-			
+			var audioDeviceDropdown = audio.Get<DropDownButtonWidget>("AUDIO_DEVICE");
+			audioDeviceDropdown.OnMouseDown = _ => ShowAudioDeviceDropdown(audioDeviceDropdown, soundSettings, devices);
+			audioDeviceDropdown.GetText = () => soundDevice.Label;
+
 			// Display
 			var display = bg.Get("DISPLAY_PANE");
 			var gs = Game.Settings.Graphics;
-
-			var GraphicsRendererDropdown = display.Get<DropDownButtonWidget>("GRAPHICS_RENDERER");
-			GraphicsRendererDropdown.OnMouseDown = _ => ShowRendererDropdown(GraphicsRendererDropdown, gs);
-			GraphicsRendererDropdown.GetText = () => gs.Renderer == "Gl" ?
-				"OpenGL" : gs.Renderer == "Cg" ? "Cg Toolkit" : "OpenGL";
 
 			var windowModeDropdown = display.Get<DropDownButtonWidget>("MODE_DROPDOWN");
 			windowModeDropdown.OnMouseDown = _ => ShowWindowModeDropdown(windowModeDropdown, gs);
@@ -235,13 +231,17 @@ namespace OpenRA.Mods.RA.Widgets.Logic
 			botdebugCheckbox.IsChecked = () => Game.Settings.Debug.BotDebug;
 			botdebugCheckbox.OnClick = () => Game.Settings.Debug.BotDebug ^= true;
 
-			var ignoreVersionMismatchCheckbox = debug.Get<CheckboxWidget>("IGNOREVERSIONMISMATCH_CHECKBOX");
-			ignoreVersionMismatchCheckbox.IsChecked = () => Game.Settings.Debug.IgnoreVersionMismatch;
-			ignoreVersionMismatchCheckbox.OnClick = () => Game.Settings.Debug.IgnoreVersionMismatch ^= true;
-
 			var verboseNatDiscoveryCheckbox = debug.Get<CheckboxWidget>("VERBOSE_NAT_DISCOVERY_CHECKBOX");
 			verboseNatDiscoveryCheckbox.IsChecked = () => Game.Settings.Server.VerboseNatDiscovery;
 			verboseNatDiscoveryCheckbox.OnClick = () => Game.Settings.Server.VerboseNatDiscovery ^= true;
+
+			var developerMenuCheckbox = debug.Get<CheckboxWidget>("DEVELOPER_MENU_CHECKBOX");
+			developerMenuCheckbox.IsChecked = () => Game.Settings.Debug.DeveloperMenu;
+			developerMenuCheckbox.OnClick = () => Game.Settings.Debug.DeveloperMenu ^= true;
+
+			var showFatalErrorDialog = debug.Get<CheckboxWidget>("SHOW_FATAL_ERROR_DIALOG_CHECKBOX");
+			showFatalErrorDialog.IsChecked = () => Game.Settings.Debug.ShowFatalErrorDialog;
+			showFatalErrorDialog.OnClick = () => Game.Settings.Debug.ShowFatalErrorDialog ^= true;
 
 			bg.Get<ButtonWidget>("BUTTON_CLOSE").OnClick = () =>
 			{
@@ -250,6 +250,8 @@ namespace OpenRA.Mods.RA.Widgets.Logic
 				int.TryParse(windowHeight.Text, out y);
 				gs.WindowedSize = new int2(x,y);
 				int.TryParse(maxFrameRate.Text, out gs.MaxFramerate);
+				soundSettings.Device = soundDevice.Device;
+				soundSettings.Engine = soundDevice.Engine;
 				Game.Settings.Save();
 				Ui.CloseWindow();
 				onExit();
@@ -320,7 +322,6 @@ namespace OpenRA.Mods.RA.Widgets.Logic
 			var textBox = keyWidget.Get<TextFieldWidget>("HOTKEY");
 
 			textBox.Text = getValue();
-
 			textBox.OnLoseFocus = () =>
 			{
 				textBox.Text.Trim();
@@ -329,11 +330,10 @@ namespace OpenRA.Mods.RA.Widgets.Logic
 				else
 					setValue(textBox.Text);
 			};
-
-			textBox.OnEnterKey = () => { textBox.LoseFocus(); return true; };
+			textBox.OnEnterKey = () => { textBox.YieldKeyboardFocus(); return true; };
 		}
 
-		public static bool ShowRendererDropdown(DropDownButtonWidget dropdown, GraphicSettings s)
+		static bool ShowRendererDropdown(DropDownButtonWidget dropdown, GraphicSettings s)
 		{
 			var options = new Dictionary<string, string>()
 			{
@@ -354,20 +354,18 @@ namespace OpenRA.Mods.RA.Widgets.Logic
 			return true;
 		}
 
-		public static bool ShowSoundEngineDropdown(DropDownButtonWidget dropdown, SoundSettings s)
+		bool ShowAudioDeviceDropdown(DropDownButtonWidget dropdown, SoundSettings s, SoundDevice[] devices)
 		{
-			var options = new Dictionary<string, string>()
-			{
-				{ "OpenAL", "AL" },
-				{ "None", "Null" },
-			};
+			var i = 0;
+			var options = devices.ToDictionary(d => (i++).ToString(), d => d);
 
 			Func<string, ScrollItemWidget, ScrollItemWidget> setupItem = (o, itemTemplate) =>
 			{
 				var item = ScrollItemWidget.Setup(itemTemplate,
-					() => s.Engine == options[o],
-					() => s.Engine = options[o]);
-				item.Get<LabelWidget>("LABEL").GetText = () => o;
+					() => soundDevice == options[o],
+					() => soundDevice = options[o]);
+
+				item.Get<LabelWidget>("LABEL").GetText = () => options[o].Label;
 				return item;
 			};
 

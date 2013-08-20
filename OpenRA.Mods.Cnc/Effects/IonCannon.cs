@@ -34,15 +34,13 @@ namespace OpenRA.Mods.Cnc.Effects
 
 		public IEnumerable<IRenderable> Render(WorldRenderer wr)
 		{
-			yield return new SpriteRenderable(anim.Image,
-				target.CenterLocation.ToFloat2() - new float2(0, 0.5f*anim.Image.size.Y - Game.CellSize),
-				wr.Palette("effect"), (int)target.CenterLocation.Y);
+			return anim.Render(target.CenterPosition, wr.Palette("effect"));
 		}
 
-		void Finish( World world )
+		void Finish(World world)
 		{
 			world.AddFrameEndTask(w => w.Remove(this));
-			Combat.DoExplosion(firedBy, "IonCannon", target.CenterLocation, 0);
+			Combat.DoExplosion(firedBy, "IonCannon", target.CenterPosition);
 		}
 	}
 }

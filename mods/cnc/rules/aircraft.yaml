@@ -4,12 +4,10 @@ TRAN:
 		Cost: 750
 	Tooltip:
 		Name: Chinook Transport
-		Icon:tranicnh
 		Description: Fast Infantry Transport Helicopter.\n  Unarmed
 	Buildable:
 		BuildPaletteOrder: 10
 		Prerequisites: hpad
-		BuiltAt: hpad
 		Owner: gdi,nod
 	Selectable:
 		Bounds: 41,41
@@ -36,24 +34,22 @@ TRAN:
 		Types: Infantry
 		MaxWeight: 10
 		PipCount: 10
-	FallsToEarth:
-		Explosion: HeliCrash
+	LeavesHusk:
+		HuskActor: TRAN.Husk
 	Explodes:
 		Weapon: HeliExplode
 		EmptyWeapon: HeliExplode
-		
+
 HELI:
 	Inherits: ^Helicopter
 	Valued:
 		Cost: 1200
 	Tooltip:
 		Name: Apache Longbow
-		Icon: heliicnh
 		Description: Helicopter Gunship with Chainguns.\n  Strong vs Infantry, Light Vehicles\n  Weak vs Tanks
 	Buildable:
 		BuildPaletteOrder: 20
 		Prerequisites: hpad, anyhq
-		BuiltAt: hpad
 		Owner: nod
 	Selectable:
 		Bounds: 30,24
@@ -71,6 +67,7 @@ HELI:
 		Weapon: HeliAGGun
 		LocalOffset: 128,-213,-85, 128,213,-85
 	Armament@SECONDARY:
+		Name: secondary
 		Weapon: HeliAAGun
 		LocalOffset: 128,-213,-85, 128,213,-85
 	AttackHeli:
@@ -84,10 +81,12 @@ HELI:
 	RenderUnit:
 	WithRotor:
 		Offset: 0,0,85
-	WithMuzzleFlash:
+	WithMuzzleFlash@PRIMARY:
+	WithMuzzleFlash@SECONDARY:
+		Armament: secondary
 	WithShadow:
-	FallsToEarth:
-		Explosion: HeliCrash
+	LeavesHusk:
+		HuskActor: HELI.Husk
 	AutoTarget:
 	Explodes:
 		Weapon: HeliExplode
@@ -99,12 +98,10 @@ ORCA:
 		Cost: 1200
 	Tooltip:
 		Name: Orca
-		Icon: orcaicnh
 		Description: Helicopter Gunship with AG Missiles.\n  Strong vs Buildings, Tanks\n  Weak vs Infantry
 	Buildable:
 		BuildPaletteOrder: 20
 		Prerequisites: hpad, anyhq
-		BuiltAt: hpad
 		Owner: gdi
 	Selectable:
 		Bounds: 30,24
@@ -130,12 +127,12 @@ ORCA:
 		Ammo: 6
 		PipCount: 6
 	Reloads:
-		Count: 1
-		Period: 150
+		Count: 2
+		Period: 200
 	RenderUnit:
 	WithShadow:
-	FallsToEarth:
-		Explosion: HeliCrash
+	LeavesHusk:
+		HuskActor: ORCA.Husk
 	AutoTarget:
 	Explodes:
 		Weapon: HeliExplode
@@ -148,11 +145,6 @@ C17:
 	Tooltip:
 		Name: Supply Aircraft
 		Description: Drops vehicle reinforcements on Airstrips
-		Icon: c17icnh
-	Buildable:
-		Queue: Aircraft
-		BuildPaletteOrder: 1000
-		Owner: None
 	Valued:
 		Cost: 2000
 	Plane:
@@ -173,17 +165,13 @@ C17:
 	-TargetableUnit:
 	-GainsExperience:
 	FlyAwayOnIdle:
+	RejectsOrders:
 
 A10:
 	Inherits: ^Plane
 	Tooltip:
 		Name: A10 Bomber
-		Icon: a10icnh
 		Description: Used to deliver Napalm strikes.
-	Buildable:
-		Queue: Aircraft
-		BuildPaletteOrder: 1000
-		Owner: None
 	Valued:
 		Cost: 2000
 	Plane:
@@ -205,4 +193,44 @@ A10:
 	-Selectable:
 	-GainsExperience:
 	FlyAwayOnIdle:
+	RejectsOrders:
 
+TRAN.Husk:
+	Inherits: ^HelicopterHusk
+	Tooltip:
+		Name: Chinook Transport
+	Helicopter:
+		ROT: 5
+		Speed: 15
+	WithRotor@PRIMARY:
+		Offset: -597,0,171
+	WithRotor@SECONDARY:
+		Id: rotor_2
+		Offset: 597,0,85
+	RenderUnit:
+		Image: tran
+	WithShadow:
+
+HELI.Husk:
+	Inherits: ^HelicopterHusk
+	Tooltip:
+		Name: Apache Longbow
+	Helicopter:
+		ROT: 4
+		Speed: 20
+	WithRotor:
+		Offset: 0,0,85
+	RenderUnit:
+		Image: heli
+	WithShadow:
+
+ORCA.Husk:
+	Inherits: ^HelicopterHusk
+	Tooltip:
+		Name: Orca
+	Helicopter:
+		ROT: 4
+		Speed: 20
+	RenderUnit:
+		Image: orca
+	WithShadow:
