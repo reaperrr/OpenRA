@@ -1,0 +1,45 @@
+t55h:
+	idle:
+		Start: 0
+		Facings: 32
+	turret:
+		Start: 32
+		Facings: 32
+	muzzle: gunfire2
+		Start: 0
+		Length: 5
+	icon: 3tnkicon
+		Start: 0
+
+mrpg:
+	idle:
+		Start: 0
+		Facings: 32
+	muzzle: gunfire2
+		Start: 0
+		Length: 5
+	icon: mrpgicnh
+		Start: 0
+
+napc:
+	idle:
+		Start: 0
+		Facings: 32
+	muzzle: minigun
+		Start: 0
+		Length: 6
+		Facings: 8
+	close:
+		Start: 32
+		Length: 3
+	unload:
+		Start: 32
+	icon: napcicnh
+		Start: 0
+
+ctnk:
+	idle:
+		Start: 0
+		Facings: 32
+	icon: ctnkicnh
+		Start: 0
