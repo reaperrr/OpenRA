@@ -4,7 +4,7 @@ FlametankExplode:
 		Damage: 100
 		DeathType: 5
 	Warhead@2Eff: CreateEffect
-		Explosion: big_napalm
+		Explosion: big_ranapalm
 		ImpactSound: xplobig6.aud
 
 HeliCrash:

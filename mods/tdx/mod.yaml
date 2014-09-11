@@ -15,6 +15,7 @@ Folders:
 	./mods/tdx/bits
 	./mods/tdx/bits/tdx_aud
 	~^Content/cnc
+	~^Content/tdx
 
 MapFolders:
 	./mods/cnc/maps: System
@@ -52,6 +53,7 @@ Rules:
 	mods/cnc/rules/ships.yaml
 	mods/cnc/rules/aircraft.yaml
 	mods/cnc/rules/husks.yaml
+	mods/tdx/rules/vehicles.yaml
 
 Sequences:
 	mods/cnc/sequences/structures.yaml
@@ -63,6 +65,8 @@ Sequences:
 	mods/cnc/sequences/funpark.yaml
 	mods/cnc/sequences/civilian.yaml
 	mods/cnc/sequences/campaign.yaml
+	mods/tdx/sequences/tdx_misc.yaml
+	mods/tdx/sequences/tdx_vehicles.yaml
 
 Cursors:
 	mods/cnc/cursors.yaml
@@ -110,6 +114,7 @@ ChromeLayout:
 
 Weapons:
 	mods/tdx/weapons.yaml
+	mods/tdx/tdx_weapons.yaml
 
 Movies:
 	mods/cnc/movies-gdi.yaml
@@ -125,7 +130,7 @@ Notifications:
 	mods/cnc/notifications.yaml
 
 Music:
-	mods/cnc/music.yaml
+	mods/tdx/music.yaml
 
 TileSets:
 	mods/cnc/tilesets/desert.yaml
@@ -160,9 +165,9 @@ ServerTraits:
 	ColorValidator
 
 LobbyDefaults:
-	AllowCheats: false
+	AllowCheats: true
 	Crates: true
-	StartingUnitsClass: light
+	StartingUnitsClass: heavy
 	FragileAlliances: false
 	Shroud: true
 	Fog: true

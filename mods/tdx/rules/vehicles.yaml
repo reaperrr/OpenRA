@@ -1,0 +1,156 @@
+NAPC:
+	Inherits: ^Tank
+	Valued:
+		Cost: 600
+	Tooltip:
+		Name: Nod APC
+		Description: Armed infantry transport. \nCan attack Aircraft.\n  Strong vs Vehicles\n  Weak vs Infantry
+	Buildable:
+		BuildPaletteOrder: 30
+		Prerequisites: hand
+		Queue: Vehicle.Nod
+	Mobile:
+		ROT: 6
+		Speed: 128
+	Health:
+		HP: 200
+	Armor:
+		Type: Heavy
+	RevealsShroud:
+		Range: 7c0
+#	Turreted:
+#		ROT: 10
+	Armament@PRIMARY:
+		Weapon: MachineGun
+		LocalOffset: 85,85,299, 85,-85,299
+#		MuzzleSequence: muzzle
+	AttackFrontal:
+#	WithMuzzleFlash:
+	RenderUnit:
+#	WithTurret:
+	AutoTarget:
+	Cargo:
+		Types: Infantry
+		MaxWeight: 5
+		PipCount: 5
+	Selectable:
+		Bounds: 26,26,0,0
+#	LeavesHusk:
+#		HuskActor: APC.Husk
+
+MRPG:
+	Inherits: ^Tank
+	Valued:
+		Cost: 600
+	Tooltip:
+		Name: Mobile RPG Launcher
+		Description: Long-range artillery.\n  Strong vs Infantry, Vehicles & Buildings
+	Buildable:
+		BuildPaletteOrder: 60
+		Prerequisites: anyhq, ~techlevel.medium
+		Queue: Vehicle.GDI
+	Mobile:
+		ROT: 4
+		Speed: 112
+	Health:
+		HP: 125
+	Armor:
+		Type: Light
+	RevealsShroud:
+		Range: 8c0
+	Armament:
+		Weapon: RPGLauncher
+		LocalOffset: 43,43,256, 43,-43,256
+		MuzzleSequence: muzzle
+	AttackFrontal:
+	WithMuzzleFlash:
+	RenderUnit:
+	Explodes:
+		Weapon: UnitExplode
+		EmptyWeapon: UnitExplodeSmall
+	AutoTarget:
+		InitialStance: Defend
+	Selectable:
+		Bounds: 26,26,0,0
+#	LeavesHusk:
+#		HuskActor: ARTY.Husk
+
+CTNK:
+	Inherits: ^Tank
+	Valued:
+		Cost: 900
+	Tooltip:
+		Name: Chem Tank
+		Description: Heavily armored chemicals-spraying vehicle.\n  Strong vs Infantry, Buildings & Vehicles\n  Weak vs Tanks
+	Buildable:
+		BuildPaletteOrder: 51
+		Prerequisites: anyhq, ~techlevel.medium
+		Queue: Vehicle.Nod
+	Mobile:
+		ROT: 4
+		Speed: 75
+	Health:
+		HP: 520
+	Armor:
+		Type: Heavy
+	RevealsShroud:
+		Range: 5c0
+	Armament:
+		Weapon: BigChemspray
+		LocalOffset: 512,128,42, 512,-128,42
+		MuzzleSequence: muzzle
+		MuzzleSplitFacings: 8
+	AttackFrontal:
+	RenderUnit:
+	AutoTarget:
+	WithMuzzleFlash:
+		SplitFacings: true
+	Explodes:
+		Weapon: ChemtankExplode
+		EmptyWeapon: ChemtankExplode
+	Selectable:
+		Bounds: 30,30,0,-1
+#	LeavesHusk:
+#		HuskActor: FTNK.Husk
+
+T55H:
+	Inherits: ^Tank
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: Scorpion Tank
+		Description: Heavily armored Nod Tank. \nCan attack Aircraft.\n  Strong vs Buildings, Vehicles
+	Buildable:
+		BuildPaletteOrder: 60
+		Prerequisites: tmpl, ~techlevel.high
+		Queue: Vehicle.Nod
+	Mobile:
+		Crushes: wall, heavywall, crate, infantry
+		Speed: 85
+		ROT: 4
+	Health:
+		HP: 480
+	Armor:
+		Type: Heavy
+	RevealsShroud:
+		Range: 6c0
+	Turreted:
+		ROT: 4
+	Armament@PRIMARY:
+		Weapon: 100mmDual
+		LocalOffset: 700,120,256, 700,-120,256
+		Recoil: 85
+		RecoilRecovery: 42
+		MuzzleSequence: muzzle
+	AttackTurreted:
+	WithMuzzleFlash:
+	RenderUnit:
+	WithTurret:
+	AutoTarget:
+#	LeavesHusk:
+#		HuskActor: HTNK.Husk
+	Explodes:
+		Weapon: UnitExplodeSmall
+		EmptyWeapon: UnitExplodeSmall
+	Selectable:
+		Bounds: 28,28,0,-1
