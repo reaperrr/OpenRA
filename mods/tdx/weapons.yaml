@@ -15,6 +15,12 @@ HeliCrash:
 	Warhead@2Eff: CreateEffect
 		Explosion: poof
 		ImpactSound: xplos.aud
+		InvalidImpactTypes: Water
+	Warhead@3Eff: CreateEffect
+		Explosion: big_splash
+		ImpactSound: splash9.aud
+		ExplosionPalette: effectra
+		ValidImpactTypes: Water
 
 HeliExplode:
 	Warhead@1Dam: SpreadDamage
@@ -314,6 +320,12 @@ Rockets:
 	Warhead@3Eff: CreateEffect
 		Explosion: small_frag
 		ImpactSound: xplos.aud
+		InvalidImpactTypes: Water
+	Warhead@4Eff: CreateEffect
+		Explosion: sml_splash
+		ImpactSound: splash9.aud
+		ExplosionPalette: effectra
+		ValidImpactTypes: Water
 
 BikeRockets:
 	ReloadDelay: 50
@@ -348,6 +360,12 @@ BikeRockets:
 	Warhead@3Eff: CreateEffect
 		Explosion: small_frag
 		ImpactSound: xplos.aud
+		InvalidImpactTypes: Water
+	Warhead@4Eff: CreateEffect
+		Explosion: sml_splash
+		ImpactSound: splash9.aud
+		ExplosionPalette: effectra
+		ValidImpactTypes: Water
 
 OrcaAGMissiles:
 	ReloadDelay: 12
@@ -381,6 +399,12 @@ OrcaAGMissiles:
 	Warhead@3Eff: CreateEffect
 		Explosion: small_frag
 		ImpactSound: xplos.aud
+		InvalidImpactTypes: Water
+	Warhead@4Eff: CreateEffect
+		Explosion: sml_splash
+		ImpactSound: splash9.aud
+		ExplosionPalette: effectra
+		ValidImpactTypes: Water
 
 OrcaAAMissiles:
 	ReloadDelay: 12
@@ -506,6 +530,12 @@ Grenade:
 	Warhead@3Eff: CreateEffect
 		Explosion: small_poof
 		ImpactSound: xplos.aud
+		InvalidImpactTypes: Water
+	Warhead@4Eff: CreateEffect
+		Explosion: sml_splash
+		ImpactSound: splash9.aud
+		ExplosionPalette: effectra
+		ValidImpactTypes: Water
 
 70mm:
 	ReloadDelay: 30
@@ -529,6 +559,12 @@ Grenade:
 	Warhead@3Eff: CreateEffect
 		Explosion: small_frag
 		ImpactSound: xplos.aud
+		InvalidImpactTypes: Water
+	Warhead@4Eff: CreateEffect
+		Explosion: sml_splash
+		ImpactSound: splash9.aud
+		ExplosionPalette: effectra
+		ValidImpactTypes: Water
 
 105mm:
 	ReloadDelay: 50
@@ -551,6 +587,12 @@ Grenade:
 	Warhead@3Eff: CreateEffect
 		Explosion: small_frag
 		ImpactSound: xplos.aud
+		InvalidImpactTypes: Water
+	Warhead@4Eff: CreateEffect
+		Explosion: sml_splash
+		ImpactSound: splash9.aud
+		ExplosionPalette: effectra
+		ValidImpactTypes: Water
 
 120mm:
 	ReloadDelay: 40
@@ -574,6 +616,12 @@ Grenade:
 	Warhead@3Eff: CreateEffect
 		Explosion: small_frag
 		ImpactSound: xplos.aud
+		InvalidImpactTypes: Water
+	Warhead@4Eff: CreateEffect
+		Explosion: sml_splash
+		ImpactSound: splash9.aud
+		ExplosionPalette: effectra
+		ValidImpactTypes: Water
 
 120mmDual:
 	ReloadDelay: 40
@@ -599,6 +647,12 @@ Grenade:
 	Warhead@3Eff: CreateEffect
 		Explosion: small_frag
 		ImpactSound: xplos.aud
+		InvalidImpactTypes: Water
+	Warhead@4Eff: CreateEffect
+		Explosion: sml_splash
+		ImpactSound: splash9.aud
+		ExplosionPalette: effectra
+		ValidImpactTypes: Water
 
 TurretGun:
 	ReloadDelay: 20
@@ -621,6 +675,12 @@ TurretGun:
 	Warhead@3Eff: CreateEffect
 		Explosion: small_frag
 		ImpactSound: xplos.aud
+		InvalidImpactTypes: Water
+	Warhead@4Eff: CreateEffect
+		Explosion: sml_splash
+		ImpactSound: splash9.aud
+		ExplosionPalette: effectra
+		ValidImpactTypes: Water
 
 MammothMissiles:
 	ReloadDelay: 45
@@ -654,11 +714,16 @@ MammothMissiles:
 	Warhead@3Eff: CreateEffect
 		Explosion: small_poof
 		ImpactSound: xplos.aud
-		InvalidImpactTypes: Air, AirHit
+		InvalidImpactTypes: Air, AirHit, Water
 	Warhead@4EffAir: CreateEffect
 		Explosion: small_building
 		ImpactSound: xplos.aud
 		ValidImpactTypes: Air, AirHit
+	Warhead@5EffWater: CreateEffect
+		Explosion: sml_splash
+		ImpactSound: splash9.aud
+		ExplosionPalette: effectra
+		ValidImpactTypes: Water
 
 227mm:
 	ReloadDelay: 140
@@ -694,6 +759,12 @@ MammothMissiles:
 	Warhead@3Eff: CreateEffect
 		Explosion: med_frag
 		ImpactSound: xplos.aud
+		InvalidImpactTypes: Water
+	Warhead@4Eff: CreateEffect
+		Explosion: sml_splash
+		ImpactSound: splash9.aud
+		ExplosionPalette: effectra
+		ValidImpactTypes: Water
 
 227mm.stnk:
 	ReloadDelay: 70
@@ -727,6 +798,12 @@ MammothMissiles:
 	Warhead@3Eff: CreateEffect
 		Explosion: small_frag
 		ImpactSound: xplos.aud
+		InvalidImpactTypes: Water
+	Warhead@4Eff: CreateEffect
+		Explosion: sml_splash
+		ImpactSound: splash9.aud
+		ExplosionPalette: effectra
+		ValidImpactTypes: Water
 
 ArtilleryShell:
 	ReloadDelay: 65
@@ -753,7 +830,13 @@ ArtilleryShell:
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
 		Explosion: poof
-		ImpactSound: XPLOSML2.AUD
+		ImpactSound: xplosml2.aud
+		InvalidImpactTypes: Water
+	Warhead@4Eff: CreateEffect
+		Explosion: sml_splash
+		ImpactSound: splash9.aud
+		ExplosionPalette: effectra
+		ValidImpactTypes: Water
 
 MachineGun:
 	ReloadDelay: 20
@@ -807,11 +890,16 @@ BoatMissile:
 	Warhead@3Eff: CreateEffect
 		Explosion: small_poof
 		ImpactSound: xplos.aud
-		InvalidImpactTypes: Air, AirHit
+		InvalidImpactTypes: Air, AirHit, Water
 	Warhead@4EffAir: CreateEffect
 		Explosion: small_building
 		ImpactSound: xplos.aud
 		ValidImpactTypes: Air, AirHit
+	Warhead@5EffWater: CreateEffect
+		Explosion: sml_splash
+		ImpactSound: splash9.aud
+		ExplosionPalette: effectra
+		ValidImpactTypes: Water
 
 TowerMissle:
 	ReloadDelay: 15
@@ -843,6 +931,12 @@ TowerMissle:
 	Warhead@3Eff: CreateEffect
 		Explosion: med_frag
 		ImpactSound: xplos.aud
+		InvalidImpactTypes: Water
+	Warhead@4Eff: CreateEffect
+		Explosion: sml_splash
+		ImpactSound: splash9.aud
+		ExplosionPalette: effectra
+		ValidImpactTypes: Water
 
 Vulcan:
 	ValidTargets: Ground, Water
@@ -1024,7 +1118,7 @@ APCGun:
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
 		Damage: 15
-		ValidTargets: Ground
+		ValidTargets: Ground, Water
 		Versus:
 			None: 50
 			Wood: 50
@@ -1032,6 +1126,11 @@ APCGun:
 			Heavy: 50
 	Warhead@2Eff: CreateEffect
 		Explosion: small_poof
+		InvalidImpactTypes: Water
+	Warhead@3Eff: CreateEffect
+		Explosion: sml_splash
+		ExplosionPalette: effectra
+		ValidImpactTypes: Water
 
 APCGun.AA:
 	ReloadDelay: 18

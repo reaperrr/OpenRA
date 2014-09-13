@@ -14,7 +14,7 @@ RPGLauncher:
 	Burst: 4
 	BurstDelay: 10
 	Report: GRENLNCH.AUD
-	ValidTargets: Ground
+	ValidTargets: Ground, Water
 	Projectile: Bullet
 		High: true
 		Shadow: true
@@ -39,6 +39,12 @@ RPGLauncher:
 	Warhead@3Eff: CreateEffect
 		Explosion: small_poof
 		ImpactSound: xplomed1.aud
+		InvalidImpactTypes: Water
+	Warhead@4Eff: CreateEffect
+		Explosion: sml_splash
+		ImpactSound: splash9.aud
+		ExplosionPalette: effectra
+		ValidImpactTypes: Water
 
 100mmDual:
 	ReloadDelay: 65
@@ -64,6 +70,12 @@ RPGLauncher:
 	Warhead@3Eff: CreateEffect
 		Explosion: small_frag
 		ImpactSound: xplos.aud
+		InvalidImpactTypes: Water
+	Warhead@4Eff: CreateEffect
+		Explosion: sml_splash
+		ImpactSound: splash9.aud
+		ExplosionPalette: effectra
+		ValidImpactTypes: Water
 
 BigChemspray:
 	ReloadDelay: 75
