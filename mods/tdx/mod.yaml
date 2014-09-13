@@ -53,6 +53,7 @@ Rules:
 	mods/cnc/rules/ships.yaml
 	mods/cnc/rules/aircraft.yaml
 	mods/cnc/rules/husks.yaml
+	mods/tdx/rules/aircraft.yaml
 	mods/tdx/rules/vehicles.yaml
 
 Sequences:
@@ -65,6 +66,7 @@ Sequences:
 	mods/cnc/sequences/funpark.yaml
 	mods/cnc/sequences/civilian.yaml
 	mods/cnc/sequences/campaign.yaml
+	mods/tdx/sequences/tdx_aircraft.yaml
 	mods/tdx/sequences/tdx_misc.yaml
 	mods/tdx/sequences/tdx_vehicles.yaml
 

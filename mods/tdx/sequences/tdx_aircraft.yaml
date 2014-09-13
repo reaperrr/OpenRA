@@ -1,0 +1,16 @@
+hind:
+	idle:
+		Start: 0
+		Facings: 32
+	rotor: lrotorlg
+		Start: 0
+		Length: 4
+	slow-rotor: lrotorlg
+		Start: 4
+		Length: 8
+	muzzle: minigun
+		Start: 0
+		Length: 6
+		Facings: 8
+	icon: hindicnh
+		Start: 0
