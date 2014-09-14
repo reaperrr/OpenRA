@@ -27,3 +27,6 @@ explosion:
 	big_splash: h2o_exp1
 		Start: 0
 		Length: *
+	dust: dust1
+		Start: 0
+		Length: *

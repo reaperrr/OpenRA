@@ -70,12 +70,17 @@ RPGLauncher:
 	Warhead@3Eff: CreateEffect
 		Explosion: small_frag
 		ImpactSound: xplos.aud
-		InvalidImpactTypes: Water
-	Warhead@4Eff: CreateEffect
+		InvalidImpactTypes: Ground, Water
+	Warhead@4EffWater: CreateEffect
 		Explosion: sml_splash
 		ImpactSound: splash9.aud
 		ExplosionPalette: effectra
 		ValidImpactTypes: Water
+	Warhead@5EffDust: CreateEffect
+		Explosion: dust
+		ImpactSound: xplos.aud
+		ExplosionPalette: terrain
+		ValidImpactTypes: Ground
 
 BigChemspray:
 	ReloadDelay: 75
