@@ -6,16 +6,16 @@ Metadata:
 
 Folders:
 	.
+	./mods/tdx
+	./mods/tdx/bits
+	./mods/tdx/bits/tdx_aud
+	~^Content/tdx
 	./mods/cnc
 	./mods/cnc/bits
 	./mods/cnc/bits/jungle
 	./mods/cnc/bits/ss
 	./mods/cnc/uibits
-	./mods/tdx
-	./mods/tdx/bits
-	./mods/tdx/bits/tdx_aud
 	~^Content/cnc
-	~^Content/tdx
 
 MapFolders:
 	./mods/cnc/maps: System
@@ -58,7 +58,7 @@ Rules:
 
 Sequences:
 	mods/cnc/sequences/structures.yaml
-	mods/cnc/sequences/vehicles.yaml
+	mods/tdx/sequences/vehicles.yaml
 	mods/cnc/sequences/infantry.yaml
 	mods/cnc/sequences/aircraft.yaml
 	mods/cnc/sequences/decorations.yaml
@@ -115,8 +115,10 @@ ChromeLayout:
 	mods/cnc/chrome/missionbrowser.yaml
 
 Weapons:
-	mods/tdx/weapons.yaml
-	mods/tdx/tdx_weapons.yaml
+	mods/tdx/weapons/ballistic_weapons.yaml
+	mods/tdx/weapons/missile_weapons.yaml
+	mods/tdx/weapons/other_weapons.yaml
+	mods/tdx/weapons/smallarms_weapons.yaml
 
 Movies:
 	mods/cnc/movies-gdi.yaml

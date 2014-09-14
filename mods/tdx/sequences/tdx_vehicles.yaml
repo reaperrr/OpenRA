@@ -2,9 +2,11 @@ t55h:
 	idle:
 		Start: 0
 		Facings: 32
+		Offset: 0,2
 	turret:
 		Start: 32
 		Facings: 32
+		Offset: 0,2
 	muzzle: gunfire2
 		Start: 0
 		Length: 5
@@ -15,6 +17,7 @@ mrpg:
 	idle:
 		Start: 0
 		Facings: 32
+		Offset: 0,4
 	muzzle: gunfire2
 		Start: 0
 		Length: 5
@@ -25,6 +28,7 @@ napc:
 	idle:
 		Start: 0
 		Facings: 32
+		Offset: 0,3
 	muzzle: minigun
 		Start: 0
 		Length: 6
@@ -32,8 +36,10 @@ napc:
 	close:
 		Start: 32
 		Length: 3
+		Offset: 0,3
 	unload:
 		Start: 32
+		Offset: 0,3
 	icon: napcicnh
 		Start: 0
 
@@ -41,6 +47,7 @@ ctnk:
 	idle:
 		Start: 0
 		Facings: 32
+		Offset: 0,2
 	muzzle0: chem-n
 		Start: 0
 		Length: *
