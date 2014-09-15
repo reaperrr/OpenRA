@@ -30,6 +30,9 @@ explosion:
 	dust: dust
 		Start: 0
 		Length: *
+	med_frag1: frag1m
+		Start: 0
+		Length: *
 
 missile2:
 	idle:

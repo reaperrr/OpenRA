@@ -1,8 +1,8 @@
 Rockets:
 	ReloadDelay: 50
 	Range: 6c0
-	Report: BAZOOK1.AUD
-	ValidTargets: Ground, Air
+	Report: bazooka1.aud
+	ValidTargets: Ground, Water, Air
 	Projectile: Missile
 		Arm: 0
 		High: yes
@@ -17,32 +17,32 @@ Rockets:
 		Spread: 128
 		Damage: 30
 		DeathType: 4
-		ValidTargets: Ground, Air
+		ValidTargets: Ground, Water, Air
 		Versus:
-			None: 50
-			Wood: 85
+			None: 30
+			Wood: 65
 			Light: 100
 			Heavy: 100
 			Concrete: 25
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
-		Explosion: small_frag
-		ImpactSound: xplos.aud
+		Explosion: small_poof
+		ImpactSound: xplosml3.aud
 		InvalidImpactTypes: Water
 	Warhead@4Eff: CreateEffect
 		Explosion: sml_splash
-		ImpactSound: splash9.aud
+		ImpactSound: ssplash3.aud
 		ExplosionPalette: effectra
 		ValidImpactTypes: Water
 
 BikeRockets:
-	ReloadDelay: 50
+	ReloadDelay: 60
 	Range: 6c0
-	Report: BAZOOK1.AUD
-	ValidTargets: Ground, Air
+	Report: missile4.aud
+	ValidTargets: Ground, Water, Air
 	Burst: 2
-	BurstDelay: 10
+	BurstDelay: 15
 	Projectile: Missile
 		Arm: 0
 		High: yes
@@ -57,38 +57,49 @@ BikeRockets:
 		Spread: 128
 		Damage: 30
 		DeathType: 4
-		ValidTargets: Ground, Air
+		ValidTargets: Ground, Water, Air
 		Versus:
 			None: 25
 			Wood: 75
 			Light: 100
 			Heavy: 100
 			Concrete: 50
+			AirLight: 120
+			AirHeavy: 120
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
-		Explosion: small_frag
-		ImpactSound: xplos.aud
-		InvalidImpactTypes: Water
-	Warhead@4Eff: CreateEffect
+		Explosion: med_frag1
+		ImpactSound: xplomed1.aud
+		InvalidImpactTypes: Water, Air, Ground
+	Warhead@4EffWater: CreateEffect
 		Explosion: sml_splash
-		ImpactSound: splash9.aud
+		ImpactSound: ssplash2.aud
 		ExplosionPalette: effectra
 		ValidImpactTypes: Water
+	Warhead@5EffAir: CreateEffect
+		Explosion: small_building
+		ImpactSound: xplosml2.aud
+		ValidImpactTypes: Air
+	Warhead@6EffGround: CreateEffect
+		Explosion: dust
+		ImpactSound: expdirt1.aud
+		ExplosionPalette: terrain
+		ValidImpactTypes: Ground
 
 OrcaAGMissiles:
 	ReloadDelay: 12
 	Burst: 2
 	BurstDelay: 12
 	Range: 5c0
-	Report: BAZOOK1.AUD
-	ValidTargets: Ground
+	Report: bazooka1.aud
+	ValidTargets: Ground, Water
 	Projectile: Missile
 		Arm: 0
 		High: yes
 		Inaccuracy: 128
 		Image: DRAGON
-		ROT: 20
+		ROT: 2
 		Trail: smokey
 		ContrailLength: 8
 		Speed: 298
@@ -97,21 +108,22 @@ OrcaAGMissiles:
 		Spread: 128
 		Damage: 25
 		DeathType: 4
-		ValidTargets: Ground
+		ValidTargets: Ground, Water
 		Versus:
-			None: 50
+			None: 30
 			Wood: 100
 			Light: 100
 			Heavy: 75
+			Concrete: 60
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
-		Explosion: small_frag
-		ImpactSound: xplos.aud
+		Explosion: small_poof
+		ImpactSound: xplosml1.aud
 		InvalidImpactTypes: Water
 	Warhead@4Eff: CreateEffect
 		Explosion: sml_splash
-		ImpactSound: splash9.aud
+		ImpactSound: ssplash2.aud
 		ExplosionPalette: effectra
 		ValidImpactTypes: Water
 
@@ -143,11 +155,11 @@ OrcaAAMissiles:
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
-		Explosion: small_frag
-		ImpactSound: xplos.aud
+		Explosion: small_building
+		ImpactSound: xplosml2.aud
 
 MammothMissiles:
-	ReloadDelay: 45
+	ReloadDelay: 75
 	Range: 5c0
 	Report: ROCKET1.AUD
 	ValidTargets: Ground, Air
@@ -165,77 +177,85 @@ MammothMissiles:
 		RangeLimit: 35
 	Warhead@1Dam: SpreadDamage
 		Spread: 298
-		Damage: 45
+		Damage: 40
 		DeathType: 4
 		ValidTargets: Ground, Air
 		Versus:
 			None: 50
 			Wood: 75
 			Light: 100
-			Heavy: 50
+			Heavy: 40
+			Concrete: 50
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
 		Explosion: small_poof
-		ImpactSound: xplos.aud
+		ImpactSound: xplomed1.aud
 		InvalidImpactTypes: Air, AirHit, Water
 	Warhead@4EffAir: CreateEffect
 		Explosion: small_building
-		ImpactSound: xplos.aud
+		ImpactSound: xplosml2.aud
 		ValidImpactTypes: Air, AirHit
 	Warhead@5EffWater: CreateEffect
 		Explosion: sml_splash
-		ImpactSound: splash9.aud
+		ImpactSound: ssplash2.aud
 		ExplosionPalette: effectra
 		ValidImpactTypes: Water
 
 227mm:
-	ReloadDelay: 140
-	Range: 12c0
-	MinRange: 3c0
-	Burst: 4
-	BurstDelay: 4
-	Report: ROCKET1.AUD
-	ValidTargets: Ground
-	Projectile: Bullet
+	ReloadDelay: 100
+	Range: 10c0
+	MinRange: 2c0
+	Burst: 2
+	BurstDelay: 25
+	Report: missile2.aud
+	ValidTargets: Ground, Air
+	Projectile: Missile
 		Arm: 5
-		High: yes
+		High: true
 		Shadow: true
 		Inaccuracy: 853
-		Angle: 62
-		Image: DRAGON
+#		Angle: 62
+		Image: MISSILE
 		ROT: 2
 		ContrailLength: 10
 		Trail: smokey
 		Speed: 341
 	Warhead@1Dam: SpreadDamage
 		Spread: 683
-		Damage: 25
+		Damage: 75
 		DeathType: 4
 		ValidTargets: Ground
 		Versus:
-			None: 35
+			None: 100
 			Wood: 60
-			Light: 100
-			Heavy: 50
+			Light: 50
+			Heavy: 20
+			AirLight: 100
+			AirHeavy: 100
+			Concrete: 30
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
-		Explosion: med_frag
-		ImpactSound: xplos.aud
-		InvalidImpactTypes: Water
+		Explosion: large_frag
+		ImpactSound: xplomed1.aud
+		InvalidImpactTypes: Water, Air, AirHit
 	Warhead@4Eff: CreateEffect
-		Explosion: sml_splash
-		ImpactSound: splash9.aud
+		Explosion: med_splash
+		ImpactSound: ssplash1.aud
 		ExplosionPalette: effectra
 		ValidImpactTypes: Water
+	Warhead@5Eff: CreateEffect
+		Explosion: med_frag
+		ImpactSound: xplomed2.aud
+		ValidImpactTypes: Air, AirHit
 
 227mm.stnk:
-	ReloadDelay: 70
-	Range: 7c0
-	Report: ROCKET1.AUD
+	ReloadDelay: 60
+	Range: 6c0
+	Report: missile4.aud
 	Burst: 2
-	BurstDelay: 10
+	BurstDelay: 15
 	ValidTargets: Ground, Air
 	Projectile: Missile
 		Arm: 0
@@ -249,23 +269,26 @@ MammothMissiles:
 		RangeLimit: 40
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
-		Damage: 60
+		Damage: 40
 		DeathType: 4
 		ValidTargets: Ground, Air
 		Versus:
 			None: 25
 			Wood: 75
-			Light: 100
-			Heavy: 90
+			Light: 90
+			Heavy: 100
+			Concrete: 30
+			AirLight: 100
+			AirHeavy: 125
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
-		Explosion: small_frag
-		ImpactSound: xplos.aud
+		Explosion: med_frag1
+		ImpactSound: xplomed2.aud
 		InvalidImpactTypes: Water
 	Warhead@4Eff: CreateEffect
 		Explosion: sml_splash
-		ImpactSound: splash9.aud
+		ImpactSound: ssplash2.aud
 		ExplosionPalette: effectra
 		ValidImpactTypes: Water
 
@@ -274,7 +297,7 @@ BoatMissile:
 	Range: 8c0
 	Burst: 2
 	BurstDelay: 7
-	Report: ROCKET2.AUD
+	Report: missile3.aud
 	Projectile: Missile
 		Arm: 0
 		High: yes
@@ -294,27 +317,30 @@ BoatMissile:
 			Wood: 75
 			Light: 60
 			Heavy: 25
+			Concrete: 100
+			AirLight: 60
+			AirHeavy: 50
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
 		Explosion: small_poof
-		ImpactSound: xplos.aud
+		ImpactSound: xplomed1.aud
 		InvalidImpactTypes: Air, AirHit, Water
 	Warhead@4EffAir: CreateEffect
 		Explosion: small_building
-		ImpactSound: xplos.aud
+		ImpactSound: xplosml2.aud
 		ValidImpactTypes: Air, AirHit
 	Warhead@5EffWater: CreateEffect
 		Explosion: sml_splash
-		ImpactSound: splash9.aud
+		ImpactSound: ssplash2.aud
 		ExplosionPalette: effectra
 		ValidImpactTypes: Water
 
 TowerMissle:
-	ReloadDelay: 15
+	ReloadDelay: 50
 	Range: 7c0
-	Report: ROCKET2.AUD
-	ValidTargets: Ground
+	Report: missile3.aud
+	ValidTargets: Ground, Air, Water
 	Projectile: Missile
 		Arm: 0
 		High: yes
@@ -327,30 +353,32 @@ TowerMissle:
 		RangeLimit: 40
 	Warhead@1Dam: SpreadDamage
 		Spread: 683
-		Damage: 25
+		Damage: 50
 		DeathType: 3
-		ValidTargets: Ground
 		Versus:
-			None: 50
+			None: 60
 			Wood: 25
 			Light: 100
-			Heavy: 100
+			Heavy: 50
+			Concrete: 20
+			AirLight: 80
+			AirHeavy: 50
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
 		Explosion: med_frag
-		ImpactSound: xplos.aud
+		ImpactSound: xplomed2.aud
 		InvalidImpactTypes: Water
 	Warhead@4Eff: CreateEffect
 		Explosion: sml_splash
-		ImpactSound: splash9.aud
+		ImpactSound: ssplash2.aud
 		ExplosionPalette: effectra
 		ValidImpactTypes: Water
 
 SAMMissile:
 	ReloadDelay: 15
 	Range: 8c0
-	Report: ROCKET2.AUD
+	Report: missile6.aud
 	ValidTargets: Air
 	Projectile: Missile
 		Arm: 0
@@ -365,23 +393,21 @@ SAMMissile:
 		Spread: 682
 		ValidTargets: Air
 		Versus:
-			None: 100
-			Wood: 100
-			Light: 100
-			Heavy: 75
+			AirLight: 100
+			AirHeavy: 75
 		DeathType: 4
 		Damage: 30
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
 		Explosion: small_building
-		ImpactSound: xplos.aud
+		ImpactSound: xplosml2.aud
 
 HonestJohn:
 	ReloadDelay: 200
-	BurstDelay: 100
+	BurstDelay: 50
 	Burst: 2
-	Range: 14c0
+	Range: 18c0
 	MinRange: 4c0
 	Report: nukemisl.aud
 	Palette: effectra
@@ -406,6 +432,6 @@ HonestJohn:
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
-		Explosion: sml_ranapalm
+		Explosion: med_ranapalm
 		ImpactSound: flamer2.aud
 		ExplosionPalette: effectra

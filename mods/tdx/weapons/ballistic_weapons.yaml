@@ -20,41 +20,40 @@ Grenade:
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
 		Explosion: small_poof
-		ImpactSound: xplos.aud
+		ImpactSound: xplosml1.aud
 		InvalidImpactTypes: Water
 	Warhead@4Eff: CreateEffect
 		Explosion: sml_splash
-		ImpactSound: splash9.aud
+		ImpactSound: ssplash3.aud
 		ExplosionPalette: effectra
 		ValidImpactTypes: Water
 
 RPGLauncher:
-	ReloadDelay: 100
-	Range: 10c0
+	ReloadDelay: 120
+	Range: 12c0
 	MinRange: 2c0
-	Burst: 4
+	Burst: 6
 	BurstDelay: 10
-	Report: GRENLNCH.AUD
+	Report: grenlnch.aud
 	ValidTargets: Ground, Water
 	Projectile: Bullet
 		High: true
 		Shadow: true
-		Inaccuracy: 1c0
+		Inaccuracy: 1c512
 		Angle: 75
 		Image: BOMB
-#		ContrailLength: 8
 		Speed: 300
 	Warhead@1Dam: SpreadDamage
-		Spread: 512
-		Damage: 30
+		Spread: 384
+		Damage: 35
 		DeathType: 4
 		ValidTargets: Ground
 		Versus:
-			None: 90
-			Wood: 60
+			None: 50
+			Wood: 65
 			Light: 100
-			Heavy: 45
-			Concrete: 75
+			Heavy: 40
+			Concrete: 90
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -63,36 +62,36 @@ RPGLauncher:
 		InvalidImpactTypes: Water
 	Warhead@4Eff: CreateEffect
 		Explosion: sml_splash
-		ImpactSound: splash9.aud
+		ImpactSound: ssplash2.aud
 		ExplosionPalette: effectra
 		ValidImpactTypes: Water
 
 70mm:
-	ReloadDelay: 30
+	ReloadDelay: 45
 	Range: 4c0
-	Report: TNKFIRE3.AUD
+	Report: cannon3.aud
 	Projectile: Bullet
 		Image: 120MM
 		Speed: 853
 	Warhead@1Dam: SpreadDamage
-		Spread: 128
+		Spread: 85
 		Damage: 25
 		DeathType: 4
 		Versus:
-			None: 25
-			Wood: 75
+			None: 30
+			Wood: 70
 			Light: 100
-			Heavy: 100
-			Concrete: 50
+			Heavy: 80
+			Concrete: 35
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
 		Explosion: small_frag
-		ImpactSound: xplos.aud
+		ImpactSound: xplosml1.aud
 		InvalidImpactTypes: Water
 	Warhead@4Eff: CreateEffect
 		Explosion: sml_splash
-		ImpactSound: splash9.aud
+		ImpactSound: ssplash3.aud
 		ExplosionPalette: effectra
 		ValidImpactTypes: Water
 
@@ -101,7 +100,7 @@ RPGLauncher:
 	Burst: 2
 	BurstDelay: 10
 	Range: 5c0
-	Report: TNKFIRE4.AUD
+	Report: cannon4.aud
 	Projectile: Bullet
 		Image: 120MM
 		Speed: 682
@@ -111,31 +110,31 @@ RPGLauncher:
 		DeathType: 4
 		Versus:
 			None: 30
-			Wood: 65
+			Wood: 50
 			Light: 75
 			Heavy: 100
-			Concrete: 75
+			Concrete: 50
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
 		Explosion: small_frag
-		ImpactSound: xplos.aud
+		ImpactSound: xplosml1.aud
 		InvalidImpactTypes: Ground, Water
 	Warhead@4EffWater: CreateEffect
 		Explosion: sml_splash
-		ImpactSound: splash9.aud
+		ImpactSound: ssplash2.aud
 		ExplosionPalette: effectra
 		ValidImpactTypes: Water
 	Warhead@5EffDust: CreateEffect
 		Explosion: dust
-		ImpactSound: xplos.aud
+		ImpactSound: xplosml1.aud
 		ExplosionPalette: terrain
 		ValidImpactTypes: Ground
 
 105mm:
 	ReloadDelay: 50
-	Range: 4c768
-	Report: TNKFIRE4.AUD
+	Range: 5c0
+	Report: cannon5.aud
 	Projectile: Bullet
 		Image: 120MM
 		Speed: 682
@@ -145,30 +144,31 @@ RPGLauncher:
 		DeathType: 4
 		Versus:
 			None: 30
-			Wood: 75
+			Wood: 50
 			Light: 75
 			Heavy: 100
+			Concrete: 50
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
 		Explosion: small_frag
-		ImpactSound: xplos.aud
+		ImpactSound: xplosml1.aud
 		InvalidImpactTypes: Ground, Water
 	Warhead@4EffWater: CreateEffect
 		Explosion: sml_splash
-		ImpactSound: splash9.aud
+		ImpactSound: ssplash2.aud
 		ExplosionPalette: effectra
 		ValidImpactTypes: Water
 	Warhead@5EffDust: CreateEffect
 		Explosion: dust
-		ImpactSound: xplos.aud
+		ImpactSound: xplosml1.aud
 		ExplosionPalette: terrain
 		ValidImpactTypes: Ground
 
 120mm:
-	ReloadDelay: 40
-	Range: 4c768
-	Report: TNKFIRE6.AUD
+	ReloadDelay: 50
+	Range: 5c0
+	Report: cannon6.aud
 	Projectile: Bullet
 		Image: 120MM
 		Speed: 682
@@ -177,32 +177,32 @@ RPGLauncher:
 		Damage: 40
 		DeathType: 4
 		Versus:
-			None: 25
-			Wood: 100
-			Light: 100
+			None: 30
+			Wood: 60
+			Light: 75
 			Heavy: 100
 			Concrete: 50
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
-		Explosion: small_frag
-		ImpactSound: xplos.aud
+		Explosion: med_frag1
+		ImpactSound: xplosml3.aud
 		InvalidImpactTypes: Ground, Water
 	Warhead@4EffWater: CreateEffect
 		Explosion: sml_splash
-		ImpactSound: splash9.aud
+		ImpactSound: ssplash2.aud
 		ExplosionPalette: effectra
 		ValidImpactTypes: Water
 	Warhead@5EffDust: CreateEffect
 		Explosion: dust
-		ImpactSound: xplos.aud
+		ImpactSound: xplosml1.aud
 		ExplosionPalette: terrain
 		ValidImpactTypes: Ground
 
 120mmDual:
 	ReloadDelay: 40
 	Range: 4c768
-	Report: TNKFIRE6.AUD
+	Report: cannon6.aud
 	Burst: 2
 	BurstDelay: 8
 	Projectile: Bullet
@@ -213,32 +213,32 @@ RPGLauncher:
 		Damage: 40
 		DeathType: 4
 		Versus:
-			None: 25
-			Wood: 100
-			Light: 100
+			None: 30
+			Wood: 50
+			Light: 75
 			Heavy: 100
-			Concrete: 100
+			Concrete: 50
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
-		Explosion: small_frag
-		ImpactSound: xplos.aud
+		Explosion: med_frag1
+		ImpactSound: xplosml3.aud
 		InvalidImpactTypes: Ground, Water
 	Warhead@4EffWater: CreateEffect
 		Explosion: sml_splash
-		ImpactSound: splash9.aud
+		ImpactSound: ssplash2.aud
 		ExplosionPalette: effectra
 		ValidImpactTypes: Water
 	Warhead@5EffDust: CreateEffect
 		Explosion: dust
-		ImpactSound: xplos.aud
+		ImpactSound: xplosml1.aud
 		ExplosionPalette: terrain
 		ValidImpactTypes: Ground
 
 TurretGun:
-	ReloadDelay: 20
+	ReloadDelay: 30
 	Range: 6c0
-	Report: TNKFIRE6.AUD
+	Report: cannon7.aud
 	Projectile: Bullet
 		Image: 120MM
 		Speed: 853
@@ -251,20 +251,21 @@ TurretGun:
 			Wood: 25
 			Light: 100
 			Heavy: 100
+			Concrete: 30
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
-		Explosion: small_frag
-		ImpactSound: xplos.aud
+		Explosion: med_frag1
+		ImpactSound: xplosml3.aud
 		InvalidImpactTypes: Ground, Water
 	Warhead@4EffWater: CreateEffect
 		Explosion: sml_splash
-		ImpactSound: splash9.aud
+		ImpactSound: ssplash2.aud
 		ExplosionPalette: effectra
 		ValidImpactTypes: Water
 	Warhead@5EffDust: CreateEffect
 		Explosion: dust
-		ImpactSound: xplos.aud
+		ImpactSound: xplosml1.aud
 		ExplosionPalette: terrain
 		ValidImpactTypes: Ground
 
@@ -272,7 +273,7 @@ ArtilleryShell:
 	ReloadDelay: 65
 	Range: 11c0
 	MinRange: 2c896
-	Report: TNKFIRE2.AUD
+	Report: artyfire.aud
 	Projectile: Bullet
 		Speed: 204
 		High: yes
@@ -281,22 +282,23 @@ ArtilleryShell:
 		ContrailLength: 30
 		Image: 120MM
 	Warhead@1Dam: SpreadDamage
-		Spread: 341
+		Spread: 384
 		Damage: 150
 		DeathType: 3
 		Versus:
-			None: 100
+			None: 90
 			Wood: 80
 			Light: 75
 			Heavy: 50
+			Concrete: 100
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
 		Explosion: poof
-		ImpactSound: xplosml2.aud
+		ImpactSound: xploarty.aud
 		InvalidImpactTypes: Water
 	Warhead@4Eff: CreateEffect
 		Explosion: sml_splash
-		ImpactSound: splash9.aud
+		ImpactSound: ssplash1.aud
 		ExplosionPalette: effectra
 		ValidImpactTypes: Water
