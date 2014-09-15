@@ -30,3 +30,8 @@ explosion:
 	dust: dust
 		Start: 0
 		Length: *
+
+missile2:
+	idle:
+		Start: 0
+		Facings: 32

@@ -379,60 +379,33 @@ SAMMissile:
 
 HonestJohn:
 	ReloadDelay: 200
-	Range: 10c0
-	Report: ROCKET1.AUD
+	BurstDelay: 100
+	Burst: 2
+	Range: 14c0
+	MinRange: 4c0
+	Report: nukemisl.aud
+	Palette: effectra
 	Projectile: Bullet
-		Arm: 10
 		High: yes
 		Shadow: true
 		Inaccuracy: 213
-		Image: patriot
+		Image: missile2
 		Trail: smokey
-		Speed: 187
-		RangeLimit: 35
-		Angle: 88
+		Speed: 192
+		Angle: 90
 	Warhead@1Dam: SpreadDamage
 		Spread: 256
 		Damage: 100
 		DeathType: 3
 		Versus:
-			None: 90
-			Wood: 75
-			Light: 60
-			Heavy: 25
-	Warhead@2Smu: LeaveSmudge
-		SmudgeType: Crater
-	Warhead@3Eff: CreateEffect
-		Explosion: small_poof
-		ImpactSound: xplos.aud
-
-Patriot:
-	ReloadDelay: 25
-	Range: 9c0
-	MinRange: 1c0
-	Report: ROCKET2.AUD
-	ValidTargets: Air
-	Projectile: Missile
-		High: yes
-		Image: patriot
-		Trail: smokey
-		ContrailLength: 8
-		ROT: 20
-		Speed: 341
-		RangeLimit: 30
-		Angle: 88
-	Warhead@1Dam: SpreadDamage
-		Spread: 682
-		ValidTargets: Air
-		Versus:
 			None: 100
-			Wood: 100
-			Light: 100
-			Heavy: 75
-		DeathType: 4
-		Damage: 32
+			Wood: 90
+			Light: 65
+			Heavy: 25
+			Concrete: 35
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
-		Explosion: poof
-		ImpactSound: xplos.aud
+		Explosion: sml_ranapalm
+		ImpactSound: flamer2.aud
+		ExplosionPalette: effectra
