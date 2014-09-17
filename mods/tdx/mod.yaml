@@ -33,28 +33,26 @@ Packages:
 	~movies-gdi.mix
 	~movies-nod.mix
 	~movies.mix
-	~scores.mix
-	~scores2.mix
-	~transit.mix
 
 Rules:
-	mods/cnc/rules/misc.yaml
-	mods/cnc/rules/ai.yaml
+	mods/tdx/rules/ai.yaml
 	mods/tdx/rules/player.yaml
 	mods/tdx/rules/world.yaml
-	mods/cnc/rules/defaults.yaml
-	mods/cnc/rules/structures.yaml
-	mods/cnc/rules/infantry.yaml
-	mods/cnc/rules/vehicles.yaml
+	mods/tdx/rules/defaults.yaml
+	mods/tdx/rules/aircraft.yaml
+	mods/tdx/rules/structures.yaml
+	mods/tdx/rules/infantry.yaml
+	mods/tdx/rules/vehicles.yaml
+	mods/tdx/rules/tdx_aircraft.yaml
+	mods/tdx/rules/tdx_vehicles.yaml
+#
+	mods/cnc/rules/misc.yaml
 	mods/cnc/rules/trees.yaml
 	mods/cnc/rules/civilian.yaml
 	mods/cnc/rules/civilian-desert.yaml
 	mods/cnc/rules/tech.yaml
 	mods/cnc/rules/ships.yaml
-	mods/cnc/rules/aircraft.yaml
 	mods/cnc/rules/husks.yaml
-	mods/tdx/rules/aircraft.yaml
-	mods/tdx/rules/vehicles.yaml
 
 Sequences:
 	mods/cnc/sequences/structures.yaml
@@ -77,6 +75,7 @@ Chrome:
 	mods/cnc/chrome.yaml
 
 Assemblies:
+	mods/common/OpenRA.Mods.Common.dll
 	mods/ra/OpenRA.Mods.RA.dll
 	mods/cnc/OpenRA.Mods.Cnc.dll
 	mods/d2k/OpenRA.Mods.D2k.dll

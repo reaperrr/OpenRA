@@ -1,5 +1,5 @@
 Sniper:
-	Report: RAMGUN2.AUD
+	Report: silencer.aud
 	ValidTargets: Infantry
 	ReloadDelay: 40
 	Range: 6c0
@@ -12,9 +12,9 @@ Sniper:
 		ValidTargets: Infantry
 
 HighV:
-	ReloadDelay: 25
+	ReloadDelay: 40
 	Range: 6c0
-	Report: GUN8.AUD
+	Report: mgunhvy1.aud
 	Projectile: Bullet
 		Speed: 1c682
 	Warhead@1Dam: SpreadDamage
@@ -26,7 +26,11 @@ HighV:
 			Wood: 50
 			Light: 70
 			Heavy: 35
+			Concrete: 40
 	Warhead@2Eff: CreateEffect
+		Explosion: piffs
+	Warhead@3Eff: CreateEffect
+		Delay: 2
 		Explosion: piffs
 
 HeliAGGun:
@@ -35,7 +39,7 @@ HeliAGGun:
 	BurstDelay: 0
 	Range: 4c0
 	ValidTargets: Ground
-	Report: gun5.aud
+	Report: mgun10.aud
 	Projectile: Bullet
 		Speed: 1c682
 		High: True
@@ -49,16 +53,17 @@ HeliAGGun:
 			Wood: 50
 			Light: 75
 			Heavy: 25
+			Concrete: 30
 	Warhead@2Eff: CreateEffect
 		Explosion: piffs
 
 HeliAAGun:
 	ReloadDelay: 20
 	Burst: 2
-	BurstDelay: 0
+	BurstDelay: 5
 	Range: 4c0
 	ValidTargets: Air
-	Report: gun5.aud
+	Report: mgun10.aud
 	Projectile: Bullet
 		Speed: 1c682
 		High: True
@@ -72,6 +77,8 @@ HeliAAGun:
 			Wood: 50
 			Light: 50
 			Heavy: 25
+			AirLight: 75
+			AirHeavy: 50
 	Warhead@2Eff: CreateEffect
 		Explosion: piffs
 
@@ -79,7 +86,7 @@ Pistol:
 	ReloadDelay: 7
 	Range: 3c0
 	InvalidTargets: Wall
-	Report: GUN18.AUD
+	Report: pistol1.aud
 	Projectile: Bullet
 		Speed: 1c682
 	Warhead@1Dam: SpreadDamage
@@ -99,7 +106,7 @@ M16:
 	ReloadDelay: 20
 	Range: 4c0
 	InvalidTargets: Wall
-	Report: MGUN2.AUD
+	Report: minigun2.aud
 	Projectile: Bullet
 		Speed: 1c682
 	Warhead@1Dam: SpreadDamage
@@ -112,6 +119,7 @@ M16:
 			Wood: 25
 			Light: 30
 			Heavy: 10
+			Concrete: 8
 	Warhead@2Eff: CreateEffect
 		Explosion: piff
 
@@ -120,7 +128,7 @@ MachineGun:
 	Burst: 5
 	InvalidTargets: Wall
 	Range: 4c0
-	Report: MGUN11.AUD
+	Report: mgun12.aud
 	Projectile: Bullet
 		Speed: 1c682
 	Warhead@1Dam: SpreadDamage
@@ -130,7 +138,7 @@ MachineGun:
 		InvalidTargets: Wall
 		Versus:
 			None: 100
-			Wood: 20
+			Wood: 30
 			Light: 50
 			Heavy: 20
 			Concrete: 10
@@ -141,7 +149,7 @@ Vulcan:
 	ValidTargets: Ground, Water
 	ReloadDelay: 2
 	Range: 6c0
-	Report: gun5.aud
+	Report: mgun10.aud
 	Projectile: Bullet
 		Speed: 1c682
 	Warhead@1Dam: SpreadDamage
@@ -154,6 +162,7 @@ Vulcan:
 			Wood: 25
 			Light: 100
 			Heavy: 35
+			Concrete: 25
 	Warhead@2Eff: CreateEffect
 		Explosion: piffs
 

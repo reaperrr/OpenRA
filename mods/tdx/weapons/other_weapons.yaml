@@ -5,7 +5,7 @@ FlametankExplode:
 		DeathType: 5
 	Warhead@2Eff: CreateEffect
 		Explosion: big_ranapalm
-		ImpactSound: xplobig6.aud
+		ImpactSound: firebl3.aud
 		ExplosionPalette: effectra
 
 ChemtankExplode:
@@ -24,7 +24,7 @@ HeliCrash:
 		DeathType: 4
 	Warhead@2Eff: CreateEffect
 		Explosion: poof
-		ImpactSound: xplos.aud
+		ImpactSound: xplomed2.aud
 		InvalidImpactTypes: Water
 	Warhead@3Eff: CreateEffect
 		Explosion: big_splash
@@ -37,7 +37,7 @@ HeliExplode:
 		DeathType: 4
 	Warhead@2Eff: CreateEffect
 		Explosion: small_building
-		ImpactSound: xplos.aud
+		ImpactSound: xplomed1.aud
 
 UnitExplode:
 	Warhead@1Dam: SpreadDamage
@@ -51,8 +51,8 @@ UnitExplode:
 			Light: 60
 			Heavy: 25
 	Warhead@2Eff: CreateEffect
-		Explosion: poof
-		ImpactSound: xplobig6.aud
+		Explosion: big_frag
+		ImpactSound: xplobig3.aud
 
 UnitExplodeSmall:
 	Warhead@1Dam: SpreadDamage
@@ -65,8 +65,8 @@ UnitExplodeSmall:
 			Light: 60
 			Heavy: 25
 	Warhead@2Eff: CreateEffect
-		Explosion: big_frag
-		ImpactSound: xplobig4.aud
+		Explosion: med_frag
+		ImpactSound: xplomed3.aud
 
 GrenadierExplode:
 	Warhead@1Dam: SpreadDamage
@@ -80,7 +80,7 @@ GrenadierExplode:
 			Heavy: 25
 	Warhead@2Eff: CreateEffect
 		Explosion: poof
-		ImpactSound: xplosml2.aud
+		ImpactSound: xplomed5.aud
 
 Atomic:
 	ValidTargets: Ground, Air
@@ -97,7 +97,7 @@ Atomic:
 			Light: 60
 			Heavy: 50
 	Warhead@2Eff_impact: CreateEffect
-		Explosion: 6
+		Explosion: nuke_explosion
 		ImpactSound: nukexplo.aud
 	Warhead@3Dam_areanukea: SpreadDamage
 		Spread: 2c512
