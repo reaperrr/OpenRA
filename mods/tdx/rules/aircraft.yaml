@@ -21,7 +21,7 @@ TRAN:
 	Health:
 		HP: 90
 	Armor:
-		Type: Light
+		Type: AirLight
 	RevealsShroud:
 		Range: 10c0
 	RenderUnit:
@@ -63,7 +63,7 @@ HELI:
 	Health:
 		HP: 125
 	Armor:
-		Type: Light
+		Type: AirLight
 	RevealsShroud:
 		Range: 10c0
 	Armament@PRIMARY:
@@ -113,9 +113,9 @@ ORCA:
 		ROT: 4
 		Speed: 186
 	Health:
-		HP: 90
+		HP: 150
 	Armor:
-		Type: Light
+		Type: AirHeavy
 	RevealsShroud:
 		Range: 10c0
 	Armament@PRIMARY:
@@ -157,7 +157,7 @@ C17:
 	Health:
 		HP: 25
 	Armor:
-		Type: Heavy
+		Type: AirHeavy
 	RenderUnit:
 	WithShadow:
 	Cargo:
@@ -196,7 +196,7 @@ A10:
 	Health:
 		HP: 150
 	Armor:
-		Type: Heavy
+		Type: AirHeavy
 	RenderUnit:
 	WithShadow:
 	AttackBomber:
