@@ -464,7 +464,7 @@
 		TargetTypes: Ground, Wall
 	Crushable:
 		CrushClasses: wall
-		CrushSound: sandbag2.aud
+		CrushedByFriendlies: true
 	BlocksBullets:
 	LineBuild:
 		Range: 8
@@ -598,8 +598,8 @@
 	Health:
 		HP: 500
 	SoundOnDamageTransition:
-		DamagedSound: xplos.aud
-		DestroyedSound: xplobig4.aud
+		DamagedSound: xplomed1.aud
+		DestroyedSound: crmble2.aud
 	BodyOrientation:
 	LuaScriptEvents:
 	ScriptTriggers:

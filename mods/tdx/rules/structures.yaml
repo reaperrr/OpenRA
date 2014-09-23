@@ -5,7 +5,7 @@ FACT:
 		BuildPaletteOrder: 1000
 		Prerequisites: ~disabled
 	Valued:
-		Cost: 2000
+		Cost: 3000
 	Tooltip:
 		Name: Construction Yard
 		Description: Builds structures
@@ -80,7 +80,7 @@ FACT:
 NUKE:
 	Inherits: ^BaseBuilding
 	Valued:
-		Cost: 500
+		Cost: 400
 	Tooltip:
 		Name: Power Plant
 		Description: Generates power
@@ -91,10 +91,10 @@ NUKE:
 		Prerequisites: fact
 		Queue: Building.GDI, Building.Nod
 	Building:
-		Footprint: x_ xx
+		Footprint: xx xx
 		Dimensions: 2,2
 	Health:
-		HP: 500
+		HP: 600
 	RevealsShroud:
 		Range: 4c0
 	Bib:
@@ -116,10 +116,10 @@ NUK2:
 		Prerequisites: anyhq, ~techlevel.medium
 		Queue: Building.GDI, Building.Nod
 	Building:
-		Footprint: x_ xx
+		Footprint: xx xx
 		Dimensions: 2,2
 	Health:
-		HP: 700
+		HP: 800
 	RevealsShroud:
 		Range: 4c0
 	Bib:
@@ -130,7 +130,7 @@ NUK2:
 PROC:
 	Inherits: ^BaseBuilding
 	Valued:
-		Cost: 1500
+		Cost: 2000
 	Tooltip:
 		Name: Tiberium Refinery
 		Description: Processes raw Tiberium\ninto useable resources
@@ -152,7 +152,7 @@ PROC:
 	StoresResources:
 		PipColor: Green
 		PipCount: 10
-		Capacity: 2000
+		Capacity: 2500
 	Selectable:
 		Bounds: 73,72
 	CustomSellValue:
@@ -164,7 +164,7 @@ PROC:
 		Facing: 64
 	WithResources:
 	Power:
-		Amount: -50
+		Amount: -40
 
 SILO:
 	Inherits: ^BaseBuilding
@@ -458,7 +458,7 @@ HQ:
 FIX:
 	Inherits: ^BaseBuilding
 	Valued:
-		Cost: 500
+		Cost: 1000
 	Tooltip:
 		Name: Repair Facility
 		Description: Repairs vehicles
@@ -470,7 +470,7 @@ FIX:
 		Footprint: _x_ xxx _x_
 		Dimensions: 3,3
 	Health:
-		HP: 400
+		HP: 600
 	RevealsShroud:
 		Range: 5c0
 	Bib:
@@ -504,7 +504,7 @@ EYE:
 	RenderBuilding:
 		PauseOnLowPower: yes
 	Health:
-		HP: 1200
+		HP: 1000
 	RevealsShroud:
 		Range: 10c0
 	Bib:
@@ -549,7 +549,7 @@ TMPL:
 	CanPowerDown:
 	DisabledOverlay:
 	Health:
-		HP: 2000
+		HP: 1500
 	RevealsShroud:
 		Range: 6c0
 	Bib:
@@ -613,7 +613,7 @@ GUN:
 	RenderRangeCircle:
 	RenderDetectionCircle:
 	DetectCloaked:
-		Range: 3
+		Range: 2
 	Power:
 		Amount: -20
 	-MustBeDestroyed:
@@ -672,9 +672,9 @@ OBLI:
 		BuildPaletteOrder: 60
 		Prerequisites: tmpl, ~techlevel.high
 		Queue: Defence.Nod
+	Selectable:
+		Bounds: 24,48,0,-12
 	Building:
-		Footprint: _ x
-		Dimensions: 1,2
 	RequiresPower:
 	DisabledOverlay:
 	-GivesBuildableArea:
@@ -701,7 +701,7 @@ OBLI:
 	-EmitInfantryOnSell:
 	RenderDetectionCircle:
 	DetectCloaked:
-		Range: 5
+		Range: 2
 	Power:
 		Amount: -150
 	-MustBeDestroyed:
@@ -709,7 +709,7 @@ OBLI:
 GTWR:
 	Inherits: ^BaseBuilding
 	Valued:
-		Cost: 600
+		Cost: 500
 	CustomBuildTimeValue:
 		Value: 1440
 	Tooltip:
@@ -736,7 +736,7 @@ GTWR:
 		QuantizedFacings: 8
 	AutoTarget:
 	DetectCloaked:
-		Range: 3
+		Range: 2
 	RenderDetectionCircle:
 	RenderRangeCircle:
 	WithMuzzleFlash:
@@ -759,9 +759,9 @@ ATWR:
 		BuildPaletteOrder: 60
 		Prerequisites: anyhq, ~techlevel.medium
 		Queue: Defence.GDI
+	Selectable:
+		Bounds: 24,48,0,-12
 	Building:
-		Footprint: _ x
-		Dimensions: 1,2
 	RequiresPower:
 	DisabledOverlay:
 	-GivesBuildableArea:
@@ -813,6 +813,8 @@ SBAG:
 		HP: 100
 	Armor:
 		Type: Light
+	Crushable:
+		CrushSound: sandbag1.aud
 	LineBuild:
 		Range: 8
 		NodeTypes: sandbag
@@ -838,6 +840,8 @@ CYCL:
 		HP: 100
 	Armor:
 		Type: Light
+	Crushable:
+		CrushSound: wallkil2.aud
 	LineBuild:
 		Range: 8
 		NodeTypes: chain
@@ -865,9 +869,9 @@ BRIK:
 		Type: Heavy
 	Crushable:
 		CrushClasses: heavywall
-		-CrushSound:
+		CrushSound: crmble2.aud
 	SoundOnDamageTransition:
-		DestroyedSound: crumble.aud
+		DestroyedSound: crmble2.aud
 	LineBuild:
 		Range: 8
 		NodeTypes: concrete
