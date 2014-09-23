@@ -586,7 +586,7 @@ GUN:
 	Buildable:
 		BuildPaletteOrder: 45
 		Prerequisites: barracks
-		Queue: Defence.GDI, Defence.Nod
+		Queue: Defence.Nod
 	Building:
 	-GivesBuildableArea:
 	Health:
@@ -718,7 +718,7 @@ GTWR:
 	Buildable:
 		BuildPaletteOrder: 40
 		Prerequisites: barracks
-		Queue: Defence.GDI, Defence.Nod
+		Queue: Defence.GDI
 	Building:
 	-GivesBuildableArea:
 	Health:
@@ -777,11 +777,7 @@ ATWR:
 		ROT: 255
 		Offset: 128,128,-85
 	Armament@PRIMARY:
-		Weapon: TowerMissle
-		LocalOffset: 256,128,0, 256,-128,0
-		LocalYaw: -100,100
-	Armament@SECONDARY:
-		Weapon: SAMMissile
+		Weapon: TowerMissile
 		LocalOffset: 256,128,0, 256,-128,0
 		LocalYaw: -100,100
 	AttackTurreted:

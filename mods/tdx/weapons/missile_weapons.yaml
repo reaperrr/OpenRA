@@ -336,38 +336,40 @@ BoatMissile:
 		ExplosionPalette: effectra
 		ValidImpactTypes: Water
 
-TowerMissle:
-	ReloadDelay: 50
+TowerMissile:
+	ReloadDelay: 75
+	Burst: 2
+	BurstDelay: 25
 	Range: 7c0
 	Report: missile3.aud
 	ValidTargets: Ground, Air, Water
 	Projectile: Missile
 		Arm: 0
 		High: yes
-		Inaccuracy: 128
+		Inaccuracy: 768
 		Image: DRAGON
-		ROT: 20
+		ROT: 5
 		Trail: smokey
 		ContrailLength: 8
 		Speed: 298
 		RangeLimit: 40
 	Warhead@1Dam: SpreadDamage
-		Spread: 683
-		Damage: 50
+		Spread: 512
+		Damage: 60
 		DeathType: 3
 		Versus:
 			None: 60
 			Wood: 25
 			Light: 100
-			Heavy: 50
+			Heavy: 40
 			Concrete: 20
-			AirLight: 80
+			AirLight: 75
 			AirHeavy: 50
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
 		Explosion: med_frag
-		ImpactSound: xplomed2.aud
+		ImpactSound: xplobig1.aud
 		InvalidImpactTypes: Water
 	Warhead@4Eff: CreateEffect
 		Explosion: sml_splash
@@ -421,7 +423,7 @@ HonestJohn:
 		Angle: 90
 	Warhead@1Dam: SpreadDamage
 		Spread: 256
-		Damage: 100
+		Damage: 200
 		DeathType: 3
 		Versus:
 			None: 100
@@ -432,6 +434,6 @@ HonestJohn:
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
-		Explosion: med_ranapalm
+		Explosion: big_ranapalm
 		ImpactSound: flamer2.aud
 		ExplosionPalette: effectra
