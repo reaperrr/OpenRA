@@ -234,10 +234,10 @@ BigFlamer:
 
 Chemspray:
 	ReloadDelay: 70
-	Range: 3c0
+	Range: 2c512
 	Report: FLAMER2.AUD
 	Projectile: Bullet
-		Speed: 853
+		Speed: 384
 	Warhead@1Dam: SpreadDamage
 		Spread: 256
 		Damage: 80
@@ -255,14 +255,14 @@ Chemspray:
 
 BigChemspray:
 	ReloadDelay: 75
-	Range: 3c0
+	Range: 2c512
 	Report: FLAMER2.AUD
 	Projectile: Bullet
-		Speed: 1c0
+		Speed: 384
 	Burst: 2
 	BurstDelay: 25
 	Warhead@1Dam: SpreadDamage
-		Spread: 512
+		Spread: 384
 		Damage: 100
 		DeathType: 6
 		Versus:

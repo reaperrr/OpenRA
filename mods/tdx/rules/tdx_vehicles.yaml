@@ -23,9 +23,9 @@ NAPC:
 	Armament@PRIMARY:
 		Weapon: MachineGun
 		LocalOffset: 85,85,299, 85,-85,299
-#		MuzzleSequence: muzzle
+		MuzzleSequence: muzzle
 	AttackFrontal:
-#	WithMuzzleFlash:
+	WithMuzzleFlash:
 	RenderUnit:
 #	WithTurret:
 	AutoTarget:
@@ -100,7 +100,7 @@ CTNK:
 		Weapon: BigChemspray
 		LocalOffset: 512,128,42, 512,-128,42
 		MuzzleSequence: muzzle
-		MuzzleSplitFacings: 8
+		MuzzleSplitFacings: 32
 	AttackFrontal:
 	RenderUnit:
 	AutoTarget:

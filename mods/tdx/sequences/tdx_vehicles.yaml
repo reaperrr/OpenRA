@@ -48,37 +48,124 @@ ctnk:
 		Start: 0
 		Facings: 32
 		Offset: 0,2
-	muzzle0: chem-n
+	muzzle0: chem-00
 		Start: 0
 		Length: *
-		Offset: 3,4
-	muzzle1: chem-nw
+	muzzle1: chem-01
 		Start: 0
 		Length: *
-		Offset: 4,1
-	muzzle2: chem-w
+	muzzle2: chem-02
 		Start: 0
 		Length: *
-		Offset: 7,-3
-	muzzle3: chem-sw
+	muzzle3: chem-03
 		Start: 0
 		Length: *
-		Offset: 3,-6
-	muzzle4: chem-s
+	muzzle4: chem-04
 		Start: 0
 		Length: *
-		Offset: 1,-6
-	muzzle5: chem-se
+	muzzle5: chem-05
 		Start: 0
 		Length: *
-		Offset: -3,-5
-	muzzle6: chem-e
+	muzzle6: chem-06
 		Start: 0
 		Length: *
-		Offset: -6,-3
-	muzzle7: chem-ne
+	muzzle7: chem-07
 		Start: 0
 		Length: *
-		Offset: -1,0
+	muzzle8: chem-08
+		Start: 0
+		Length: *
+	muzzle9: chem-09
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle10: chem-10
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle11: chem-11
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle12: chem-12
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle13: chem-13
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle14: chem-14
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle15: chem-15
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle16: chem-16
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle17: chem-17
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle18: chem-18
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle19: chem-19
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle20: chem-20
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle21: chem-21
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle22: chem-22
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle23: chem-23
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle24: chem-24
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle25: chem-25
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle26: chem-26
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle27: chem-27
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle28: chem-28
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle29: chem-29
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle30: chem-30
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle31: chem-31
+		Start: 0
+		Length: *
+		ZOffset: 127
 	icon: ctnkicnh
 		Start: 0
