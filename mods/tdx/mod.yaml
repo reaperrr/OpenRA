@@ -1,6 +1,6 @@
 Metadata:
 	Title: Tiberian Dawn Xtended
-	Description: TDX early pre-alpha.
+	Description: TDX early pre-alpha
 	Version: {DEV_VERSION}
 	Author: Reaperrr
 
@@ -35,115 +35,118 @@ Packages:
 	~movies.mix
 
 Rules:
-	mods/tdx/rules/ai.yaml
-	mods/tdx/rules/player.yaml
-	mods/tdx/rules/world.yaml
-	mods/tdx/rules/defaults.yaml
-	mods/tdx/rules/aircraft.yaml
-	mods/tdx/rules/structures.yaml
-	mods/tdx/rules/infantry.yaml
-	mods/tdx/rules/vehicles.yaml
-	mods/tdx/rules/tdx_aircraft.yaml
-	mods/tdx/rules/tdx_vehicles.yaml
+	./mods/tdx/rules/ai.yaml
+	./mods/tdx/rules/player.yaml
+	./mods/tdx/rules/world.yaml
+	./mods/tdx/rules/defaults.yaml
+	./mods/tdx/rules/aircraft.yaml
+	./mods/tdx/rules/structures.yaml
+	./mods/tdx/rules/infantry.yaml
+	./mods/tdx/rules/vehicles.yaml
+	./mods/tdx/rules/tdx_aircraft.yaml
+	./mods/tdx/rules/tdx_vehicles.yaml
 #
-	mods/cnc/rules/misc.yaml
-	mods/cnc/rules/trees.yaml
-	mods/cnc/rules/civilian.yaml
-	mods/cnc/rules/civilian-desert.yaml
-	mods/cnc/rules/tech.yaml
-	mods/cnc/rules/ships.yaml
-	mods/cnc/rules/husks.yaml
-
-Sequences:
-	mods/tdx/sequences/structures.yaml
-	mods/tdx/sequences/vehicles.yaml
-	mods/cnc/sequences/infantry.yaml
-	mods/cnc/sequences/aircraft.yaml
-	mods/cnc/sequences/decorations.yaml
-	mods/cnc/sequences/misc.yaml
-	mods/cnc/sequences/funpark.yaml
-	mods/cnc/sequences/civilian.yaml
-	mods/cnc/sequences/campaign.yaml
-	mods/tdx/sequences/tdx_aircraft.yaml
-	mods/tdx/sequences/tdx_misc.yaml
-	mods/tdx/sequences/tdx_vehicles.yaml
-
-Cursors:
-	mods/cnc/cursors.yaml
-
-Chrome:
-	mods/cnc/chrome.yaml
-
-Assemblies:
-	mods/common/OpenRA.Mods.Common.dll
-	mods/ra/OpenRA.Mods.RA.dll
-	mods/cnc/OpenRA.Mods.Cnc.dll
-	mods/d2k/OpenRA.Mods.D2k.dll
-
-ChromeLayout:
-	mods/cnc/chrome/install.yaml
-	mods/cnc/chrome/mainmenu.yaml
-	mods/cnc/chrome/serverbrowser.yaml
-	mods/cnc/chrome/createserver.yaml
-	mods/cnc/chrome/directconnect.yaml
-	mods/cnc/chrome/lobby.yaml
-	mods/cnc/chrome/lobby-mappreview.yaml
-	mods/cnc/chrome/lobby-playerbin.yaml
-	mods/cnc/chrome/lobby-dialogs.yaml
-	mods/cnc/chrome/connection.yaml
-	mods/cnc/chrome/color-picker.yaml
-	mods/cnc/chrome/mapchooser.yaml
-	mods/cnc/chrome/replaybrowser.yaml
-	mods/cnc/chrome/ingame.yaml
-	mods/cnc/chrome/ingame-chat.yaml
-	mods/cnc/chrome/ingame-menu.yaml
-	mods/cnc/chrome/ingame-debug.yaml
-	mods/cnc/chrome/ingame-info.yaml
-	mods/cnc/chrome/ingame-infobriefing.yaml
-	mods/cnc/chrome/ingame-infoobjectives.yaml
-	mods/cnc/chrome/ingame-infostats.yaml
-	mods/cnc/chrome/ingame-leavemap.yaml
-	mods/cnc/chrome/ingame-observerstats.yaml
-	mods/cnc/chrome/music.yaml
-	mods/cnc/chrome/settings.yaml
-	mods/cnc/chrome/credits.yaml
-	mods/cnc/chrome/dialogs.yaml
-	mods/cnc/chrome/tooltips.yaml
-	mods/cnc/chrome/irc.yaml
-	mods/cnc/chrome/assetbrowser.yaml
-	mods/cnc/chrome/missionbrowser.yaml
+	./mods/cnc/rules/misc.yaml
+	./mods/cnc/rules/trees.yaml
+	./mods/cnc/rules/civilian.yaml
+	./mods/cnc/rules/civilian-desert.yaml
+	./mods/cnc/rules/tech.yaml
+	./mods/cnc/rules/ships.yaml
+	./mods/cnc/rules/husks.yaml
 
 Weapons:
-	mods/tdx/weapons/ballistic_weapons.yaml
-	mods/tdx/weapons/missile_weapons.yaml
-	mods/tdx/weapons/other_weapons.yaml
-	mods/tdx/weapons/smallarms_weapons.yaml
+	./mods/tdx/weapons/ballistic_weapons.yaml
+	./mods/tdx/weapons/missile_weapons.yaml
+	./mods/tdx/weapons/other_weapons.yaml
+	./mods/tdx/weapons/smallarms_weapons.yaml
+
+Sequences:
+	./mods/tdx/sequences/tdx_aircraft.yaml
+	./mods/tdx/sequences/tdx_misc.yaml
+	./mods/tdx/sequences/tdx_vehicles.yaml
+	./mods/tdx/sequences/structures.yaml
+	./mods/tdx/sequences/vehicles.yaml
+#
+	./mods/cnc/sequences/infantry.yaml
+	./mods/cnc/sequences/aircraft.yaml
+	./mods/cnc/sequences/decorations.yaml
+	./mods/cnc/sequences/misc.yaml
+	./mods/cnc/sequences/funpark.yaml
+	./mods/cnc/sequences/civilian.yaml
+	./mods/cnc/sequences/campaign.yaml
+
+Cursors:
+	./mods/cnc/cursors.yaml
+
+Chrome:
+	./mods/cnc/chrome.yaml
+
+Assemblies:
+	./mods/common/OpenRA.Mods.Common.dll
+	./mods/ra/OpenRA.Mods.RA.dll
+	./mods/cnc/OpenRA.Mods.Cnc.dll
+	./mods/d2k/OpenRA.Mods.D2k.dll
+
+ChromeLayout:
+	./mods/cnc/chrome/install.yaml
+	./mods/cnc/chrome/mainmenu.yaml
+	./mods/cnc/chrome/serverbrowser.yaml
+	./mods/cnc/chrome/createserver.yaml
+	./mods/cnc/chrome/directconnect.yaml
+	./mods/cnc/chrome/lobby.yaml
+	./mods/cnc/chrome/lobby-mappreview.yaml
+	./mods/cnc/chrome/lobby-playerbin.yaml
+	./mods/cnc/chrome/lobby-dialogs.yaml
+	./mods/cnc/chrome/connection.yaml
+	./mods/cnc/chrome/color-picker.yaml
+	./mods/cnc/chrome/mapchooser.yaml
+	./mods/cnc/chrome/replaybrowser.yaml
+	./mods/cnc/chrome/ingame.yaml
+	./mods/cnc/chrome/ingame-chat.yaml
+	./mods/cnc/chrome/ingame-menu.yaml
+	./mods/cnc/chrome/ingame-debug.yaml
+	./mods/cnc/chrome/ingame-info.yaml
+	./mods/cnc/chrome/ingame-infobriefing.yaml
+	./mods/cnc/chrome/ingame-infoobjectives.yaml
+	./mods/cnc/chrome/ingame-infostats.yaml
+	./mods/cnc/chrome/ingame-leavemap.yaml
+	./mods/cnc/chrome/ingame-observerstats.yaml
+	./mods/cnc/chrome/music.yaml
+	./mods/cnc/chrome/settings.yaml
+	./mods/cnc/chrome/credits.yaml
+	./mods/cnc/chrome/dialogs.yaml
+	./mods/cnc/chrome/tooltips.yaml
+	./mods/cnc/chrome/assetbrowser.yaml
+	./mods/cnc/chrome/missionbrowser.yaml
 
 Movies:
-	mods/cnc/movies-gdi.yaml
-	mods/cnc/movies-nod.yaml
+	./mods/cnc/movies-gdi.yaml
+	./mods/cnc/movies-nod.yaml
 	
 Translations:
-	mods/cnc/languages/english.yaml
+	./mods/cnc/languages/english.yaml
 
 Voices:
-	mods/cnc/voices.yaml
+	./mods/cnc/voices.yaml
 
 Notifications:
-	mods/cnc/notifications.yaml
+	./mods/cnc/notifications.yaml
 
 Music:
-	mods/tdx/music.yaml
+	./mods/tdx/music.yaml
+
+Missions:
+	./mods/cnc/missions.yaml
 
 TileSets:
-	mods/cnc/tilesets/desert.yaml
-	mods/cnc/tilesets/winter.yaml
-	mods/cnc/tilesets/snow.yaml
-	mods/cnc/tilesets/temperat.yaml
-	mods/cnc/tilesets/jungle.yaml
+	./mods/cnc/tilesets/desert.yaml
+	./mods/cnc/tilesets/winter.yaml
+	./mods/cnc/tilesets/snow.yaml
+	./mods/cnc/tilesets/temperat.yaml
+	./mods/cnc/tilesets/jungle.yaml
 
 LoadScreen: CncLoadScreen
-	Image: mods/cnc/uibits/chrome.png
+	Image: ./mods/cnc/uibits/chrome.png
 	Text: Loading
 
 ContentInstaller:
@@ -172,51 +175,39 @@ LobbyDefaults:
 	Crates: true
 	StartingUnitsClass: heavy
 	FragileAlliances: false
-	Shroud: true
-	Fog: true
+	Shroud: false
+	Fog: false
 	TechLevel: Unrestricted
 
 ChromeMetrics:
-	mods/cnc/metrics.yaml
+	./mods/cnc/metrics.yaml
 
 Fonts:
+	Small:
+		Font:./mods/common/FreeSans.ttf
+		Size:12
 	Regular:
-		Font:FreeSans.ttf
+		Font:./mods/common/FreeSans.ttf
 		Size:14
 	Bold:
-		Font:FreeSansBold.ttf
+		Font:./mods/common/FreeSansBold.ttf
 		Size:14
 	Title:
-		Font:FreeSansBold.ttf
+		Font:./mods/common/FreeSansBold.ttf
 		Size:32
 	MediumBold:
-		Font:FreeSansBold.ttf
+		Font:./mods/common/FreeSansBold.ttf
 		Size:18
 	BigBold:
-		Font:FreeSansBold.ttf
+		Font:./mods/common/FreeSansBold.ttf
 		Size:24
 	Tiny:
-		Font:FreeSans.ttf
+		Font:./mods/common/FreeSans.ttf
 		Size:10
 	TinyBold:
-		Font:FreeSansBold.ttf
+		Font:./mods/common/FreeSansBold.ttf
 		Size:10
 
-LuaScripts:
-	mods/common/lua/utils.lua
-	mods/common/lua/openra.lua
-	mods/common/lua/map.lua
-	mods/common/lua/actor.lua
-	mods/common/lua/team.lua
-	mods/common/lua/media.lua
-	mods/common/lua/mission.lua
-	mods/common/lua/reinforcements.lua
-	mods/common/lua/supportpowers.lua
-	mods/common/lua/rules.lua
-	mods/common/lua/production.lua
-	mods/common/lua/facing.lua
+SupportsMapsFrom: cnc, tdx
 
-Missions:
-	mods/cnc/missions.yaml
-
-SupportsMapsFrom: cnc
+SpriteFormats: ShpTD, TmpTD, ShpTS, TmpRA

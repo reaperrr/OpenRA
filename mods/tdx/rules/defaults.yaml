@@ -19,7 +19,6 @@
 	Chronoshiftable:
 	Passenger:
 		CargoType: Vehicle
-	IronCurtainable:
 	HiddenUnderFog:
 	GainsExperience:
 	GivesExperience:
@@ -39,7 +38,6 @@
 		CloakSound: trans1.aud
 		UncloakSound: trans1.aud
 	Huntable:
-	LuaScriptEvents:
 	ScriptTriggers:
 	GainsStatUpgrades:
 
@@ -64,7 +62,6 @@
 	Chronoshiftable:
 	Passenger:
 		CargoType: Vehicle
-	IronCurtainable:
 	HiddenUnderFog:
 	GainsExperience:
 	GivesExperience:
@@ -87,7 +84,6 @@
 		CloakSound: trans1.aud
 		UncloakSound: trans1.aud
 	Huntable:
-	LuaScriptEvents:
 	ScriptTriggers:
 	GainsStatUpgrades:
 
@@ -119,7 +115,6 @@
 	BodyOrientation:
 	UpdatesPlayerStatistics:
 	Huntable:
-	LuaScriptEvents:
 	ScriptTriggers:
 	GainsStatUpgrades:
 
@@ -180,7 +175,6 @@
 		RequiresTech: InfantryHealing
 	UpdatesPlayerStatistics:
 	Huntable:
-	LuaScriptEvents:
 	DetectCloaked:
 		Range: 1
 	ScriptTriggers:
@@ -269,7 +263,6 @@
 	AttackFrontal:
 	UpdatesPlayerStatistics:
 	Huntable:
-	LuaScriptEvents:
 	ScriptTriggers:
 	DeathSounds:
 
@@ -290,7 +283,6 @@
 	BodyOrientation:
 	Huntable:
 	AttackMove:
-	LuaScriptEvents:
 	ScriptTriggers:
 	GainsStatUpgrades:
 
@@ -317,7 +309,6 @@
 	BodyOrientation:
 	UpdatesPlayerStatistics:
 	Huntable:
-	LuaScriptEvents:
 	ScriptTriggers:
 	GainsStatUpgrades:
 
@@ -360,7 +351,6 @@
 	FrozenUnderFog:
 	UpdatesPlayerStatistics:
 	Huntable:
-	LuaScriptEvents:
 	Demolishable:
 	ScriptTriggers:
 	WithMakeAnimation:
@@ -403,7 +393,6 @@
 	BodyOrientation:
 	FrozenUnderFog:
 		StartsRevealed: true
-	LuaScriptEvents:
 	ScriptTriggers:
 	WithMakeAnimation:
 
@@ -442,13 +431,11 @@
 		RelativeToTopLeft: yes
 	Tooltip:
 		Name: Field (Destroyed)
-	BelowUnits:
 	BodyOrientation:
 	RenderBuilding:
 		Palette: terrain
 	FrozenUnderFog:
 		StartsRevealed: true
-	LuaScriptEvents:
 	ScriptTriggers:
 	WithMakeAnimation:
 
@@ -482,7 +469,6 @@
 	Guardable:
 	BodyOrientation:
 	FrozenUnderFog:
-	LuaScriptEvents:
 	ScriptTriggers:
 
 ^Tree:
@@ -507,7 +493,6 @@
 	BodyOrientation:
 	FrozenUnderFog:
 		StartsRevealed: true
-	LuaScriptEvents:
 	ScriptTriggers:
 	WithMakeAnimation:
 
@@ -526,7 +511,6 @@
 	BodyOrientation:
 	FrozenUnderFog:
 		StartsRevealed: true
-	LuaScriptEvents:
 	WithMakeAnimation:
 
 ^Rock:
@@ -545,7 +529,6 @@
 	BodyOrientation:
 	FrozenUnderFog:
 		StartsRevealed: true
-	LuaScriptEvents:
 	ScriptTriggers:
 	WithMakeAnimation:
 
@@ -569,9 +552,7 @@
 		CaptureThreshold: 1.0
 	TransformOnCapture:
 		ForceHealthPercentage: 25
-	BelowUnits:
 	BodyOrientation:
-	LuaScriptEvents:
 	DisabledOverlay:
 	ScriptTriggers:
 
@@ -583,7 +564,6 @@
 		Spins: True
 		Moves: False
 		Explosion: HeliCrash
-	-BelowUnits:
 	-Capturable:
 	-TransformOnCapture:
 	-TargetableUnit:
@@ -594,13 +574,11 @@
 	TargetableBuilding:
 		RequiresForceFire: yes
 		TargetTypes: Ground, Water
-	BelowUnits:
 	Health:
 		HP: 500
 	SoundOnDamageTransition:
 		DamagedSound: xplomed1.aud
 		DestroyedSound: crmble2.aud
 	BodyOrientation:
-	LuaScriptEvents:
 	ScriptTriggers:
 

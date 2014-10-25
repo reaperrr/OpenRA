@@ -237,7 +237,7 @@ MammothMissiles:
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
-		Explosion: large_frag
+		Explosion: big_frag
 		ImpactSound: xplomed1.aud
 		InvalidImpactTypes: Water, Air, AirHit
 	Warhead@4Eff: CreateEffect
