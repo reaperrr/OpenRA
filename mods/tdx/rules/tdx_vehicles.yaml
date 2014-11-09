@@ -18,16 +18,13 @@ NAPC:
 		Type: Heavy
 	RevealsShroud:
 		Range: 7c0
-#	Turreted:
-#		ROT: 10
 	Armament@PRIMARY:
 		Weapon: MachineGun
-		LocalOffset: 85,85,299, 85,-85,299
+		LocalOffset: 85,0,299
 		MuzzleSequence: muzzle
 	AttackFrontal:
 	WithMuzzleFlash:
 	RenderUnit:
-#	WithTurret:
 	AutoTarget:
 	Cargo:
 		Types: Infantry
