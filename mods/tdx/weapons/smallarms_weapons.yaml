@@ -39,7 +39,7 @@ HeliAGGun:
 	BurstDelay: 0
 	Range: 4c0
 	ValidTargets: Ground
-	Report: mgun10.aud
+	Report: mgunhvy2.aud
 	Projectile: Bullet
 		Speed: 1c682
 		High: True
@@ -63,7 +63,7 @@ HeliAAGun:
 	BurstDelay: 5
 	Range: 4c0
 	ValidTargets: Air
-	Report: mgun10.aud
+	Report: mgunhvy2.aud
 	Projectile: Bullet
 		Speed: 1c682
 		High: True
@@ -96,9 +96,9 @@ Pistol:
 		InvalidTargets: Wall
 		Versus:
 			None: 100
-			Wood: 50
-			Light: 50
-			Heavy: 25
+			Wood: 5
+			Light: 5
+			Heavy: 5
 	Warhead@2Eff: CreateEffect
 		Explosion: piff
 
@@ -124,16 +124,16 @@ M16:
 		Explosion: piff
 
 MachineGun:
-	ReloadDelay: 20
-	Burst: 5
+	ReloadDelay: 30
+	Burst: 3
 	InvalidTargets: Wall
 	Range: 4c0
-	Report: mgun12.aud
+	Report: mgun11.aud
 	Projectile: Bullet
 		Speed: 1c682
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
-		Damage: 15
+		Damage: 12
 		DeathType: 2
 		InvalidTargets: Wall
 		Versus:
