@@ -30,8 +30,8 @@ MCV:
 	RenderUnit:
 	MustBeDestroyed:
 	BaseBuilding:
-	LeavesHusk:
-		HuskActor: MCV.Husk
+#	LeavesHusk:
+#		HuskActor: MCV.Husk
 	-GainsExperience:
 	-Cloak:
 	Explodes:
@@ -69,8 +69,8 @@ HARV:
 		Type: Heavy
 	RevealsShroud:
 		Range: 4c0
-	LeavesHusk:
-		HuskActor: HARV.Husk
+#	LeavesHusk:
+#		HuskActor: HARV.Husk
 	-GainsExperience:
 	RenderHarvester:
 	Explodes:
@@ -109,8 +109,8 @@ APC:
 		Types: Infantry
 		MaxWeight: 5
 		PipCount: 5
-	LeavesHusk:
-		HuskActor: APC.Husk
+#	LeavesHusk:
+#		HuskActor: APC.Husk
 
 ARTY:
 	Inherits: ^Tank
@@ -146,8 +146,8 @@ ARTY:
 		Chance: 75
 	AutoTarget:
 		InitialStance: Defend
-	LeavesHusk:
-		HuskActor: ARTY.Husk
+#	LeavesHusk:
+#		HuskActor: ARTY.Husk
 
 FTNK:
 	Inherits: ^Tank
@@ -183,8 +183,8 @@ FTNK:
 	Explodes:
 		Weapon: FlametankExplode
 		EmptyWeapon: FlametankExplode
-	LeavesHusk:
-		HuskActor: FTNK.Husk
+#	LeavesHusk:
+#		HuskActor: FTNK.Husk
 
 BGGY:
 	Inherits: ^Vehicle
@@ -219,8 +219,8 @@ BGGY:
 	RenderUnit:
 	WithTurret:
 	AutoTarget:
-	LeavesHusk:
-		HuskActor: BGGY.Husk
+#	LeavesHusk:
+#		HuskActor: BGGY.Husk
 
 BIKE:
 	Inherits: ^Vehicle
@@ -257,8 +257,8 @@ BIKE:
 	RenderUnit:
 		Scale 0.75
 	AutoTarget:
-	LeavesHusk:
-		HuskActor: BIKE.Husk
+#	LeavesHusk:
+#		HuskActor: BIKE.Husk
 
 JEEP:
 	Inherits: ^Vehicle
@@ -293,8 +293,8 @@ JEEP:
 	RenderUnit:
 	WithTurret:
 	AutoTarget:
-	LeavesHusk:
-		HuskActor: JEEP.Husk
+#	LeavesHusk:
+#		HuskActor: JEEP.Husk
 
 LTNK:
 	Inherits: ^Tank
@@ -330,8 +330,8 @@ LTNK:
 	RenderUnit:
 	WithTurret:
 	AutoTarget:
-	LeavesHusk:
-		HuskActor: LTNK.Husk
+#	LeavesHusk:
+#		HuskActor: LTNK.Husk
 	Explodes:
 		Weapon: UnitExplodeSmall
 		EmptyWeapon: UnitExplodeSmall
@@ -368,8 +368,8 @@ MTNK:
 	RenderUnit:
 	WithTurret:
 	AutoTarget:
-	LeavesHusk:
-		HuskActor: MTNK.Husk
+#	LeavesHusk:
+#		HuskActor: MTNK.Husk
 	Explodes:
 		Weapon: UnitExplodeSmall
 		EmptyWeapon: UnitExplodeSmall
@@ -422,8 +422,8 @@ HTNK:
 		Ticks: 10
 		HealIfBelow: 50%
 		DamageCooldown: 200
-	LeavesHusk:
-		HuskActor: HTNK.Husk
+#	LeavesHusk:
+#		HuskActor: HTNK.Husk
 	Explodes:
 		Weapon: UnitExplodeSmall
 		EmptyWeapon: UnitExplodeSmall
@@ -462,10 +462,10 @@ MSAM:
 	AttackFrontal:
 	RenderUnit:
 	WithTurret:
-		AimSequence: aim
+		Sequence: turret-3
 	AutoTarget:
-	LeavesHusk:
-		HuskActor: MSAM.Husk
+#	LeavesHusk:
+#		HuskActor: MSAM.Husk
 
 MLRS:
 	Inherits: ^Tank
@@ -504,8 +504,8 @@ MLRS:
 		Weapon: UnitExplodeSmall
 		EmptyWeapon: UnitExplodeSmall
 	RenderRangeCircle:
-	LeavesHusk:
-		HuskActor: MLRS.Husk
+#	LeavesHusk:
+#		HuskActor: MLRS.Husk
 
 STNK:
 	Inherits: ^Vehicle
@@ -543,8 +543,8 @@ STNK:
 	AutoTarget:
 		InitialStance: HoldFire
 	TargetableUnit:
-	LeavesHusk:
-		HuskActor: STNK.Husk
+#	LeavesHusk:
+#		HuskActor: STNK.Husk
 
 MHQ:
 	Inherits: ^Vehicle
