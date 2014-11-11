@@ -103,38 +103,125 @@ ftnk:
 	idle:
 		Start: 0
 		Facings: 32
-	muzzle0: flame-n
+	muzzle0: flame-00
 		Start: 0
 		Length: *
-		Offset: 3,8
-	muzzle1: flame-nw
+	muzzle1: flame-01
 		Start: 0
 		Length: *
-		Offset: 4,6
-	muzzle2: flame-w
+	muzzle2: flame-02
 		Start: 0
 		Length: *
-		Offset: 7,2
-	muzzle3: flame-sw
+	muzzle3: flame-03
 		Start: 0
 		Length: *
-		Offset: 3,-2
-	muzzle4: flame-s
+	muzzle4: flame-04
 		Start: 0
 		Length: *
-		Offset: 1,-2
-	muzzle5: flame-se
+	muzzle5: flame-05
 		Start: 0
 		Length: *
-		Offset: -3,-1
-	muzzle6: flame-e
+	muzzle6: flame-06
 		Start: 0
 		Length: *
-		Offset: -6,2
-	muzzle7: flame-ne
+	muzzle7: flame-07
 		Start: 0
 		Length: *
-		Offset: -5,6
+	muzzle8: flame-08
+		Start: 0
+		Length: *
+	muzzle9: flame-09
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle10: flame-10
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle11: flame-11
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle12: flame-12
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle13: flame-13
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle14: flame-14
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle15: flame-15
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle16: flame-16
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle17: flame-17
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle18: flame-18
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle19: flame-19
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle20: flame-20
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle21: flame-21
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle22: flame-22
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle23: flame-23
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle24: flame-24
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle25: flame-25
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle26: flame-26
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle27: flame-27
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle28: flame-28
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle29: flame-29
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle30: flame-30
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle31: flame-31
+		Start: 0
+		Length: *
+		ZOffset: 127
 	icon: ftnkicnh
 		Start: 0
 

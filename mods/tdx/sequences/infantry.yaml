@@ -1,0 +1,1124 @@
+vice:
+	idle:
+		Start: 0
+		Length: *
+	muzzle0: chem-00
+		Start: 0
+		Length: *
+	muzzle1: chem-01
+		Start: 0
+		Length: *
+	muzzle2: chem-02
+		Start: 0
+		Length: *
+	muzzle3: chem-03
+		Start: 0
+		Length: *
+	muzzle4: chem-04
+		Start: 0
+		Length: *
+	muzzle5: chem-05
+		Start: 0
+		Length: *
+	muzzle6: chem-06
+		Start: 0
+		Length: *
+	muzzle7: chem-07
+		Start: 0
+		Length: *
+	muzzle8: chem-08
+		Start: 0
+		Length: *
+	muzzle9: chem-09
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle10: chem-10
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle11: chem-11
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle12: chem-12
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle13: chem-13
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle14: chem-14
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle15: chem-15
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle16: chem-16
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle17: chem-17
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle18: chem-18
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle19: chem-19
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle20: chem-20
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle21: chem-21
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle22: chem-22
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle23: chem-23
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle24: chem-24
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle25: chem-25
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle26: chem-26
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle27: chem-27
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle28: chem-28
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle29: chem-29
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle30: chem-30
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle31: chem-31
+		Start: 0
+		Length: *
+		ZOffset: 127
+	icon: viceicnh
+		Start: 0
+
+pvice:
+	idle:
+		Start: 0
+		Length: *
+	muzzle0: chem-00
+		Start: 0
+		Length: *
+	muzzle1: chem-01
+		Start: 0
+		Length: *
+	muzzle2: chem-02
+		Start: 0
+		Length: *
+	muzzle3: chem-03
+		Start: 0
+		Length: *
+	muzzle4: chem-04
+		Start: 0
+		Length: *
+	muzzle5: chem-05
+		Start: 0
+		Length: *
+	muzzle6: chem-06
+		Start: 0
+		Length: *
+	muzzle7: chem-07
+		Start: 0
+		Length: *
+	muzzle8: chem-08
+		Start: 0
+		Length: *
+	muzzle9: chem-09
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle10: chem-10
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle11: chem-11
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle12: chem-12
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle13: chem-13
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle14: chem-14
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle15: chem-15
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle16: chem-16
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle17: chem-17
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle18: chem-18
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle19: chem-19
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle20: chem-20
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle21: chem-21
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle22: chem-22
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle23: chem-23
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle24: chem-24
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle25: chem-25
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle26: chem-26
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle27: chem-27
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle28: chem-28
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle29: chem-29
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle30: chem-30
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle31: chem-31
+		Start: 0
+		Length: *
+		ZOffset: 127
+	icon: viceicnh
+		Start: 0
+
+e1:
+	stand:
+		Start: 0
+		Facings: 8
+	stand2:
+		Start: 8
+		Facings: 8
+	run:
+		Start: 16
+		Length: 6
+		Facings: 8
+		Tick: 100
+	shoot:
+		Start: 64
+		Length: 8
+		Facings: 8
+	prone-stand:
+		Start: 144
+		Length: 4
+		Facings: 8
+	prone-run:
+		Start: 144
+		Length: 4
+		Facings: 8
+		Tick: 100
+	# stand -> prone transition
+	liedown:
+		Start: 128
+		Length: 2
+		Facings: 8
+	# prone -> stand transition
+	standup:
+		Start: 176
+		Length: 2
+		Facings: 8
+	prone-shoot:
+		Start: 192
+		Length: 8
+		Facings: 8
+	idle1:
+		Start: 257
+		Length: 15
+		Tick: 120
+	idle2:
+		Start: 272
+		Length: 16
+		Tick: 120
+	idle3:
+		Start: 289
+		Length: 22
+		Tick: 120
+	cheer:
+		Start: 460
+		Length: 3
+		Facings: 8
+		Tick: 120
+	# Dancing
+	idle4:
+		Start: 517
+		Length: 9
+		Tick: 120
+	# Shot
+	die1:
+		Start: 381
+		Length: 9
+		Tick: 80
+	# Explode
+	die2:
+		Start: 390
+		Length: 8
+		Tick: 80
+	# Fly and explode in air
+	die3:
+		Start: 398
+		Length: 8
+		Tick: 80
+	# Fly through air squish on ground
+	die4:
+		Start: 406
+		Length: 12
+		Tick: 80
+	# Burn
+	die5:
+		Start: 418
+		Length: 18
+		Tick: 80
+	# Tib
+	die6:
+		Start: 366
+		Length: 11
+		Tick: 80
+	die-crushed: e1rot
+		Start: 16
+		Length: 4
+		Tick: 1600
+		ZOffset: -511
+	icon: e1icnh
+		Start: 0
+
+e2:
+	stand:
+		Start: 0
+		Facings: 8
+	stand2:
+		Start: 8
+		Facings: 8
+	run:
+		Start: 16
+		Length: 6
+		Facings: 8
+		Tick: 100
+	shoot:
+		Start: 64
+		Length: 20
+		Facings: 8
+	# stand -> prone transition
+	liedown:
+		Start: 224
+		Length: 2
+		Facings: 8
+	# prone -> stand transition
+	standup:
+		Start: 272
+		Length: 2
+		Facings: 8
+	prone-stand:
+		Start: 240
+		Length: 4
+		Facings: 8
+	prone-run:
+		Start: 240
+		Length: 4
+		Facings: 8
+		Tick: 100
+	prone-shoot:
+		Start: 288
+		Length: 12
+		Facings: 8
+	idle1:
+		Start: 384
+		Length: 16
+		Tick: 120
+	idle2:
+		Start: 400
+		Length: 13
+		Tick: 120
+	cheer:
+		Start: 588
+		Length: 3
+		Facings: 8
+		Tick: 120
+	# Shot
+	die1:
+		Start: 509
+		Length: 9
+		Tick: 80
+	# Explode
+	die2:
+		Start: 518
+		Length: 8
+		Tick: 80
+	# Fly and explode in air
+	die3:
+		Start: 526
+		Length: 8
+		Tick: 80
+	# Fly through air squish on ground
+	die4:
+		Start: 534
+		Length: 12
+		Tick: 80
+	# Burn
+	die5:
+		Start: 546
+		Length: 18
+		Tick: 80
+	# Tib
+	die6:
+		Start: 494
+		Length: 11
+		Tick: 80
+	die-crushed: e2rot
+		Start: 16
+		Length: 4
+		Tick: 1600
+		ZOffset: -511
+	icon: e2icnh
+		Start: 0
+
+e3:
+	stand:
+		Start: 0
+		Facings: 8
+	stand2:
+		Start: 8
+		Facings: 8
+	run:
+		Start: 16
+		Length: 6
+		Facings: 8
+		Tick: 100
+	shoot:
+		Start: 64
+		Length: 8
+		Facings: 8
+	# stand -> prone transition
+	liedown:
+		Start: 128
+		Length: 2
+		Facings: 8
+	# prone -> stand transition
+	standup:
+		Start: 176
+		Length: 2
+		Facings: 8
+	prone-stand:
+		Start: 144
+		Length: 4
+		Facings: 8
+	prone-run:
+		Start: 144
+		Length: 4
+		Facings: 8
+		Tick: 100
+	prone-shoot:
+		Start: 192
+		Length: 10
+		Facings: 8
+	idle1:
+		Start: 274
+		Length: 12
+		Tick: 120
+	idle2:
+		Start: 289
+		Length: 14
+		Tick: 120
+	cheer:
+		Start: 476
+		Length: 3
+		Facings: 8
+		Tick: 120	
+	# Shot
+	die1:
+		Start: 397
+		Length: 9
+		Tick: 80
+	# Explode
+	die2:
+		Start: 406
+		Length: 8
+		Tick: 80
+	# Fly and explode in air
+	die3:
+		Start: 414
+		Length: 8
+		Tick: 80
+	# Fly through air squish on ground
+	die4:
+		Start: 422
+		Length: 12
+		Tick: 80
+	# Burn
+	die5:
+		Start: 434
+		Length: 18
+		Tick: 80
+	# Tib
+	die6:
+		Start: 382
+		Length: 11
+		Tick: 80
+	die-crushed: e3rot
+		Start: 16
+		Length: 4
+		Tick: 1600
+		ZOffset: -511
+	icon: e3icnh
+		Start: 0
+
+e4:
+	stand:
+		Start: 0
+		Facings: 8
+	stand2:
+		Start: 8
+		Facings: 8
+	run:
+		Start: 16
+		Length: 6
+		Facings: 8
+		Tick: 100
+	shoot:
+		Start: 64
+		Length: 16
+		Facings: 8
+	# stand -> prone transition
+	liedown:
+		Start: 192
+		Length: 2
+		Facings: 8
+	# prone -> stand transition
+	standup:
+		Start: 240
+		Length: 2
+		Facings: 8
+	prone-stand:
+		Start: 208
+		Length: 4
+		Facings: 8
+	prone-run:
+		Start: 208
+		Length: 4
+		Facings: 8
+		Tick: 100
+	prone-shoot:
+		Start: 256
+		Length: 16
+		Facings: 8
+	idle1:
+		Start: 384
+		Length: 16
+		Tick: 120
+	idle2:
+		Start: 400
+		Length: 16
+		Tick: 120
+	cheer:
+		Start: 588
+		Length: 3
+		Facings: 8
+		Tick: 120	
+	# Shot
+	die1:
+		Start: 509
+		Length: 9
+		Tick: 80
+	# Explode
+	die2:
+		Start: 518
+		Length: 8
+		Tick: 80
+	# Fly and explode in air
+	die3:
+		Start: 526
+		Length: 8
+		Tick: 80
+	# Fly through air squish on ground
+	die4:
+		Start: 534
+		Length: 12
+		Tick: 80
+	# Burn
+	die5:
+		Start: 546
+		Length: 18
+		Tick: 80
+	# Tib
+	die6:
+		Start: 494
+		Length: 10
+		Tick: 80
+	die-crushed: e4rot
+		Start: 16
+		Length: 4
+		Tick: 1600
+		ZOffset: -511
+	muzzle0: flame-00
+		Start: 0
+		Length: *
+	muzzle1: flame-01
+		Start: 0
+		Length: *
+	muzzle2: flame-02
+		Start: 0
+		Length: *
+	muzzle3: flame-03
+		Start: 0
+		Length: *
+	muzzle4: flame-04
+		Start: 0
+		Length: *
+	muzzle5: flame-05
+		Start: 0
+		Length: *
+	muzzle6: flame-06
+		Start: 0
+		Length: *
+	muzzle7: flame-07
+		Start: 0
+		Length: *
+	muzzle8: flame-08
+		Start: 0
+		Length: *
+	muzzle9: flame-09
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle10: flame-10
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle11: flame-11
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle12: flame-12
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle13: flame-13
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle14: flame-14
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle15: flame-15
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle16: flame-16
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle17: flame-17
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle18: flame-18
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle19: flame-19
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle20: flame-20
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle21: flame-21
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle22: flame-22
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle23: flame-23
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle24: flame-24
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle25: flame-25
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle26: flame-26
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle27: flame-27
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle28: flame-28
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle29: flame-29
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle30: flame-30
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle31: flame-31
+		Start: 0
+		Length: *
+		ZOffset: 127
+	icon: e4icnh
+		Start: 0
+
+e5:
+	stand:
+		Start: 0
+		Facings: 8
+	stand2:
+		Start: 8
+		Facings: 8
+	run:
+		Start: 16
+		Length: 6
+		Facings: 8
+		Tick: 100
+	shoot:
+		Start: 64
+		Length: 16
+		Facings: 8
+	# stand -> prone transition
+	liedown:
+		Start: 192
+		Length: 2
+		Facings: 8
+	# prone -> stand transition
+	standup:
+		Start: 240
+		Length: 2
+		Facings: 8
+	prone-stand:
+		Start: 208
+		Length: 4
+		Facings: 8
+	prone-run:
+		Start: 208
+		Length: 4
+		Facings: 8
+		Tick: 100
+	prone-shoot:
+		Start: 256
+		Length: 16
+		Facings: 8
+	idle1:
+		Start: 384
+		Length: 16
+		Tick: 120
+	idle2:
+		Start: 400
+		Length: 16
+		Tick: 120
+	cheer:
+		Start: 588
+		Length: 3
+		Facings: 8
+		Tick: 120	
+	# Shot
+	die1:
+		Start: 509
+		Length: 9
+		Tick: 80
+	# Explode
+	die2:
+		Start: 518
+		Length: 8
+		Tick: 80
+	# Fly and explode in air
+	die3:
+		Start: 526
+		Length: 8
+		Tick: 80
+	# Fly through air squish on ground
+	die4:
+		Start: 534
+		Length: 12
+		Tick: 80
+	# Burn
+	die5:
+		Start: 546
+		Length: 18
+		Tick: 80
+	# Tib
+	die6:
+		Start: 494
+		Length: 10
+		Tick: 80
+	die-crushed: e4rot
+		Start: 16
+		Length: 4
+		Tick: 1600
+		ZOffset: -511
+	muzzle0: chem-00
+		Start: 0
+		Length: *
+	muzzle1: chem-01
+		Start: 0
+		Length: *
+	muzzle2: chem-02
+		Start: 0
+		Length: *
+	muzzle3: chem-03
+		Start: 0
+		Length: *
+	muzzle4: chem-04
+		Start: 0
+		Length: *
+	muzzle5: chem-05
+		Start: 0
+		Length: *
+	muzzle6: chem-06
+		Start: 0
+		Length: *
+	muzzle7: chem-07
+		Start: 0
+		Length: *
+	muzzle8: chem-08
+		Start: 0
+		Length: *
+	muzzle9: chem-09
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle10: chem-10
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle11: chem-11
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle12: chem-12
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle13: chem-13
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle14: chem-14
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle15: chem-15
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle16: chem-16
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle17: chem-17
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle18: chem-18
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle19: chem-19
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle20: chem-20
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle21: chem-21
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle22: chem-22
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle23: chem-23
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle24: chem-24
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle25: chem-25
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle26: chem-26
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle27: chem-27
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle28: chem-28
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle29: chem-29
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle30: chem-30
+		Start: 0
+		Length: *
+		ZOffset: 127
+	muzzle31: chem-31
+		Start: 0
+		Length: *
+		ZOffset: 127
+	icon: e5icnh
+		Start: 0
+
+e6:
+	stand:
+		Start: 0
+		Facings: 8
+	stand2:
+		Start: 8
+		Facings: 8
+	run:
+		Start: 16
+		Length: 6
+		Facings: 8
+		Tick: 100
+	# stand -> prone transition
+	liedown:
+		Start: 66
+		Length: 2
+		Facings: 8
+	# prone -> stand transition
+	standup:
+		Start: 114
+		Length: 2
+		Facings: 8
+	prone-stand:
+		Start: 82
+		Length: 4
+		Facings: 8
+	prone-run:
+		Start: 82
+		Length: 4
+		Facings: 8
+		Tick: 100
+	idle1:
+		Start: 114
+		Length: 6
+		Tick: 120
+	idle2:
+		Start: 200
+		Length: 6
+		Tick: 120
+	cheer:
+		Start: 200
+		Length: 3
+		Facings: 8
+		Tick: 120
+	# Shot
+	die1:
+		Start: 146
+		Length: 8
+		Tick: 80
+	# Explode
+	die2:
+		Start: 154
+		Length: 8
+		Tick: 80
+	# Fly and explode in air
+	die3:
+		Start: 162
+		Length: 8
+		Tick: 80
+	# Fly through air squish on ground
+	die4:
+		Start: 170
+		Length: 12
+		Tick: 80
+	# Burn
+	die5:
+		Start: 182
+		Length: 18
+		Tick: 80
+	# Tib
+	die6:
+		Start: 130
+		Length: 4
+		Tick: 80
+	die-crushed: e1rot
+		Start: 16
+		Length: 4
+		Tick: 1600
+		ZOffset: -511
+	icon: e6icnh
+		Start: 0
+
+rmbo:
+	stand:
+		Start: 0
+		Facings: 8
+	stand2:
+		Start: 8
+		Facings: 8
+	run:
+		Start: 16
+		Length: 6
+		Facings: 8
+		Tick: 100
+	shoot:
+		Start: 64
+		Length: 4
+		Facings: 8
+	# stand -> prone transition
+	liedown:
+		Start: 96
+		Length: 2
+		Facings: 8
+	# prone -> stand transition
+	standup:
+		Start: 144
+		Length: 2
+		Facings: 8
+	prone-stand:
+		Start: 112
+		Length: 4
+		Facings: 8
+	prone-run:
+		Start: 112
+		Length: 4
+		Facings: 8
+		Tick: 100
+	prone-shoot:
+		Start: 160
+		Length: 4
+		Facings: 8
+	idle1:
+		Start: 192
+		Length: 16
+		Tick: 120
+	idle2:
+		Start: 208
+		Length: 16
+		Tick: 120
+	idle3:
+		Start: 224
+		Length: 15
+		Tick: 120
+	cheer:
+		Start: 396
+		Length: 3
+		Facings: 8
+		Tick: 120
+	# Shot
+	die1:
+		Start: 318
+		Length: 8
+		Tick: 80
+	# Explode
+	die2:
+		Start: 326
+		Length: 8
+		Tick: 80
+	# Fly and explode in air
+	die3:
+		Start: 334
+		Length: 8
+		Tick: 80
+	# Fly through air squish on ground
+	die4:
+		Start: 342
+		Length: 12
+		Tick: 80
+	# Burn
+	die5:
+		Start: 354
+		Length: 18
+		Tick: 80
+	# Tib
+	die6:
+		Start: 308
+		Length: 4
+		Tick: 80
+	die-crushed: e1rot
+		Start: 16
+		Length: 4
+		Tick: 1600
+		ZOffset: -511
+	icon: rmboicnh
+		Start: 0
