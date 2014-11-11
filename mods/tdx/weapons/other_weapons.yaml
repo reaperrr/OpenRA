@@ -188,9 +188,9 @@ Flamethrower:
 	InvalidTargets: Wall
 	Report: flamer2.aud
 	Projectile: Bullet
-		Speed: 853
+		Speed: 256
 	Warhead@1Dam: SpreadDamage
-		Spread: 341
+		Spread: 299
 		Damage: 40
 		DeathType: 5
 		InvalidTargets: Wall
@@ -202,9 +202,9 @@ Flamethrower:
 			Concrete: 30
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch
-	Warhead@3Eff: CreateEffect
-		Explosion: sml_ranapalm
-		ExplosionPalette: effectra
+#	Warhead@3Eff: CreateEffect
+#		Explosion: sml_ranapalm
+#		ExplosionPalette: effectra
 
 BigFlamer:
 	ReloadDelay: 50
@@ -212,11 +212,11 @@ BigFlamer:
 	InvalidTargets: Wall
 	Report: FLAMER2.AUD
 	Projectile: Bullet
-		Speed: 853
+		Speed: 256
 	Burst: 2
 	BurstDelay: 25
 	Warhead@1Dam: SpreadDamage
-		Spread: 341
+		Spread: 384
 		Damage: 75
 		DeathType: 5
 		InvalidTargets: Wall
@@ -228,18 +228,18 @@ BigFlamer:
 			Concrete: 30
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch
-	Warhead@3Eff: CreateEffect
-		Explosion: med_ranapalm
-		ExplosionPalette: effectra
+#	Warhead@3Eff: CreateEffect
+#		Explosion: med_ranapalm
+#		ExplosionPalette: effectra
 
 Chemspray:
 	ReloadDelay: 70
 	Range: 2c512
 	Report: FLAMER2.AUD
 	Projectile: Bullet
-		Speed: 384
+		Speed: 256
 	Warhead@1Dam: SpreadDamage
-		Spread: 256
+		Spread: 341
 		Damage: 80
 		DeathType: 6
 		Versus:
@@ -250,19 +250,19 @@ Chemspray:
 			Concrete: 100
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch
-	Warhead@3Eff: CreateEffect
-		Explosion: sml_chemexpl
+#	Warhead@3Eff: CreateEffect
+#		Explosion: sml_chemexpl
 
 BigChemspray:
 	ReloadDelay: 75
 	Range: 2c512
 	Report: FLAMER2.AUD
 	Projectile: Bullet
-		Speed: 384
+		Speed: 256
 	Burst: 2
 	BurstDelay: 25
 	Warhead@1Dam: SpreadDamage
-		Spread: 384
+		Spread: 426
 		Damage: 100
 		DeathType: 6
 		Versus:
@@ -273,8 +273,8 @@ BigChemspray:
 			Concrete: 100
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch
-	Warhead@3Eff: CreateEffect
-		Explosion: med_chemexpl
+#	Warhead@3Eff: CreateEffect
+#		Explosion: med_chemexpl
 
 Napalm:
 	ValidTargets: Ground, Water
