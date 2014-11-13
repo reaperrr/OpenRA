@@ -93,7 +93,7 @@ Actors:
 		Location: 59,44
 		Owner: GDI
 	Actor5: tran
-		Location: 60,45
+		Location: 61,44
 		Owner: GDI
 	Actor6: cycl
 		Location: 64,44
@@ -341,9 +341,11 @@ Actors:
 	Actor35: gun
 		Location: 20,11
 		Owner: Nod
+		Facing: 160
 	Actor36: gun
 		Location: 16,14
 		Owner: Nod
+		Facing: 160
 	Actor41: brik
 		Location: 32,5
 		Owner: Nod
@@ -390,7 +392,7 @@ Actors:
 		Location: 67,3
 		Owner: Neutral
 	Actor108: split2
-		Location: 73,5
+		Location: 73,6
 		Owner: Neutral
 	Actor109: tc04
 		Location: 80,0
@@ -473,9 +475,11 @@ Actors:
 	Actor131: gun
 		Location: 13,16
 		Owner: Nod
+		Facing: 160
 	Actor132: gun
 		Location: 12,16
 		Owner: Nod
+		Facing: 160
 	Actor133: brik
 		Location: 9,16
 		Owner: Nod
@@ -489,7 +493,7 @@ Actors:
 		Location: 8,17
 		Owner: Neutral
 	Actor137: split3
-		Location: 13,20
+		Location: 13,21
 		Owner: Neutral
 	Actor138: v01
 		Location: 36,16
@@ -548,6 +552,7 @@ Actors:
 	Actor156: gun
 		Location: 34,23
 		Owner: Nod
+		Facing: 128
 	Actor157: sam
 		Location: 32,22
 		Owner: Nod
@@ -821,15 +826,19 @@ Actors:
 	Actor252: gun
 		Location: 53,27
 		Owner: Nod
+		Facing: 128
 	Actor253: gun
 		Location: 50,27
 		Owner: Nod
+		Facing: 128
 	Actor254: gun
 		Location: 61,27
 		Owner: Nod
+		Facing: 128
 	Actor255: gun
 		Location: 64,27
 		Owner: Nod
+		Facing: 128
 	Actor256: v03
 		Location: 68,21
 		Owner: Neutral
@@ -975,13 +984,21 @@ Actors:
 		Owner: GDI
 		Facing: 64
 	ctnk1: ctnk
-		Location: 67,22
+		Location: 66,22
 		Owner: Nod
 		Facing: 228
 	ftnk1: ftnk
 		Location: 65,20
 		Owner: Nod
 		Facing: 192
+	arty1: arty
+		Location: 52,25
+		Owner: Nod
+		Facing: 128
+	arty2: arty
+		Location: 62,25
+		Owner: Nod
+		Facing: 128
 
 Smudges:
 
@@ -990,8 +1007,8 @@ Rules:
 		-SpawnMPUnits:
 		-MPStartLocations:
 		-CrateSpawner:
-		MenuPaletteEffect:
-			Effect: Desaturated
+#		MenuPaletteEffect:
+#			Effect: Desaturated
 		PlayMusicOnMapLoad:
 			Music: map1
 			Loop: false
@@ -1005,12 +1022,19 @@ Rules:
 	BOAT:
 		Mobile:
 			Speed: 42
+		SelfHealing:
+			Ticks: 10
+			HealIfBelow: 90%
+			DamageCooldown: 0
 
 Sequences:
 
 VoxelSequences:
 
 Weapons:
+	ArtilleryShell:
+		ReloadDelay: 65
+		Range: 13c0
 
 Voices:
 

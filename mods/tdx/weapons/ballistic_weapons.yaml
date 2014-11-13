@@ -298,7 +298,7 @@ ArtilleryShell:
 		ImpactSound: xploarty.aud
 		InvalidImpactTypes: Water
 	Warhead@4Eff: CreateEffect
-		Explosion: sml_splash
-		ImpactSound: ssplash1.aud
+		Explosion: big_splash
+		ImpactSound: ssplash2.aud
 		ExplosionPalette: effectra
 		ValidImpactTypes: Water

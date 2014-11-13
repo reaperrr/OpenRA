@@ -293,10 +293,10 @@ MammothMissiles:
 		ValidImpactTypes: Water
 
 BoatMissile:
-	ReloadDelay: 35
-	Range: 8c0
+	ReloadDelay: 45
+	Range: 10c0
 	Burst: 2
-	BurstDelay: 7
+	BurstDelay: 15
 	Report: missile3.aud
 	Projectile: Missile
 		Arm: 0
@@ -323,7 +323,7 @@ BoatMissile:
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
-		Explosion: small_poof
+		Explosion: med_frag1
 		ImpactSound: xplomed1.aud
 		InvalidImpactTypes: Air, AirHit, Water
 	Warhead@4EffAir: CreateEffect
