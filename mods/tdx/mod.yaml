@@ -15,7 +15,7 @@ Folders:
 	./mods/cnc/bits
 	./mods/cnc/bits/jungle
 	./mods/cnc/bits/ss
-	./mods/ra/uibits
+#	./mods/ra/uibits
 	~^Content/cnc
 
 MapFolders:
@@ -38,6 +38,7 @@ Packages:
 Rules:
 	./mods/tdx/rules/ai.yaml
 	./mods/tdx/rules/player.yaml
+	./mods/tdx/rules/player-classic-production.yaml
 	./mods/tdx/rules/world.yaml
 	./mods/tdx/rules/defaults.yaml
 	./mods/tdx/rules/aircraft.yaml
@@ -52,7 +53,7 @@ Rules:
 	./mods/cnc/rules/trees.yaml
 	./mods/cnc/rules/civilian-desert.yaml
 	./mods/cnc/rules/tech.yaml
-	./mods/cnc/rules/ships.yaml
+	./mods/tdx/rules/ships.yaml
 	./mods/cnc/rules/husks.yaml
 
 Weapons:
@@ -85,8 +86,9 @@ Chrome:
 Assemblies:
 	./mods/common/OpenRA.Mods.Common.dll
 	./mods/ra/OpenRA.Mods.RA.dll
-	./mods/cnc/OpenRA.Mods.Cnc.dll
 	./mods/d2k/OpenRA.Mods.D2k.dll
+	./mods/cnc/OpenRA.Mods.Cnc.dll
+	./mods/ts/OpenRA.Mods.TS.dll
 
 ChromeLayout:
 	./mods/ts/chrome/install.yaml
@@ -137,7 +139,7 @@ Voices:
 	./mods/cnc/voices.yaml
 
 Notifications:
-	./mods/cnc/notifications.yaml
+	./mods/tdx/notifications.yaml
 
 Music:
 	./mods/tdx/music.yaml

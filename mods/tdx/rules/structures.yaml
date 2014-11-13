@@ -1,7 +1,7 @@
 FACT:
 	Inherits: ^BaseBuilding
 	Buildable:
-		Queue: Building.GDI, Building.Nod
+		Queue: Building
 		BuildPaletteOrder: 1000
 		Prerequisites: ~disabled
 	Valued:
@@ -20,56 +20,16 @@ FACT:
 		Range: 10c0
 	Bib:
 	Production:
-		Produces: Building.GDI, Buildings.Nod, Defence.GDI, Defence.Nod
+		Produces: Building, Defense
 	Transforms:
 		IntoActor: mcv
 		Offset: 1,1
 		Facing: 108
-	ProductionQueue@GDIBuilding:
-		Type: Building.GDI
-		Race: gdi
-		RequireOwner: false
-		Group: Building
-		BuildSpeed: .4
-		LowPowerSlowdown: 2
-		QueuedAudio: Building
-		ReadyAudio: ConstructionComplete
-	ProductionQueue@NodBuilding:
-		Type: Building.Nod
-		Race: nod
-		RequireOwner: false
-		Group: Building
-		BuildSpeed: .4
-		LowPowerSlowdown: 2
-		QueuedAudio: Building
-		ReadyAudio: ConstructionComplete
-	ProductionQueue@GDIDefense:
-		Type: Defence.GDI
-		Race: gdi
-		RequireOwner: false
-		Group: Defence
-		BuildSpeed: .4
-		LowPowerSlowdown: 3
-		QueuedAudio: Building
-		ReadyAudio: ConstructionComplete
-	ProductionQueue@NodDefense:
-		Type: Defence.Nod
-		Race: nod
-		RequireOwner: false
-		Group: Defence
-		BuildSpeed: .4
-		LowPowerSlowdown: 3
-		QueuedAudio: Building
-		ReadyAudio: ConstructionComplete
 	BaseBuilding:
-	ProductionBar@BuildingGDI:
-		ProductionType: Building.GDI
-	ProductionBar@BuildingNod:
-		ProductionType: Building.Nod
-	ProductionBar@DefenceGDI:
-		ProductionType: Defence.GDI
-	ProductionBar@DefenceNod:
-		ProductionType: Defence.Nod
+	ProductionBar@Building:
+		ProductionType: Building
+	ProductionBar@Defense:
+		ProductionType: Defense
 	BaseProvider:
 		Cooldown: 75
 		Range: 14
@@ -89,7 +49,7 @@ NUKE:
 	Buildable:
 		BuildPaletteOrder: 10
 		Prerequisites: fact
-		Queue: Building.GDI, Building.Nod
+		Queue: Building
 	Building:
 		Footprint: xx xx
 		Dimensions: 2,2
@@ -114,7 +74,7 @@ NUK2:
 	Buildable:
 		BuildPaletteOrder: 30
 		Prerequisites: anyhq, ~techlevel.medium
-		Queue: Building.GDI, Building.Nod
+		Queue: Building
 	Building:
 		Footprint: xx xx
 		Dimensions: 2,2
@@ -137,7 +97,7 @@ PROC:
 	Buildable:
 		BuildPaletteOrder: 20
 		Prerequisites: anypower
-		Queue: Building.GDI, Building.Nod
+		Queue: Building
 	Building:
 		Footprint: _x_ xxx ===
 		Dimensions: 3,3
@@ -176,7 +136,7 @@ SILO:
 	Buildable:
 		BuildPaletteOrder: 35
 		Prerequisites: proc
-		Queue: Defence.GDI, Defence.Nod
+		Queue: Defense
 	Building:
 		Footprint: xx
 		Dimensions: 2,1
@@ -212,7 +172,7 @@ PYLE:
 	Buildable:
 		BuildPaletteOrder: 40
 		Prerequisites: anypower
-		Queue: Building.GDI
+		Queue: Building
 	Building:
 		Footprint: xx xx
 		Dimensions: 2,2
@@ -229,13 +189,7 @@ PYLE:
 		SpawnOffset: 298,298,0
 		ExitCell: 1,1
 	Production:
-		Produces: Infantry.GDI
-	ProductionQueue:
-		Type: Infantry.GDI
-		Group: Infantry
-		RequireOwner: false
-		BuildSpeed: .4
-		LowPowerSlowdown: 3
+		Produces: Infantry
 	ProductionBar:
 	Power:
 		Amount: -20
@@ -252,7 +206,7 @@ HAND:
 	Buildable:
 		BuildPaletteOrder: 40
 		Prerequisites: anypower
-		Queue: Building.Nod
+		Queue: Building
 	Building:
 		Footprint: __ xx xx
 		Dimensions: 2,3
@@ -266,13 +220,7 @@ HAND:
 		SpawnOffset: 512,1024,0
 		ExitCell: 1,2
 	Production:
-		Produces: Infantry.Nod
-	ProductionQueue:
-		Type: Infantry.Nod
-		Group: Infantry
-		RequireOwner: false
-		BuildSpeed: .4
-		LowPowerSlowdown: 3
+		Produces: Infantry
 	ProductionBar:
 	Power:
 		Amount: -20
@@ -284,12 +232,16 @@ AFLD:
 	Tooltip:
 		Name: Airstrip
 		Description: Provides a dropzone\nfor vehicle reinforcements
-	ProvidesCustomPrerequisite:
+#	Production:
+#		Produces: Vehicle
+	ProvidesCustomPrerequisite@nod:
+		Prerequisite: Vehicle.Nod
+	ProvidesCustomPrerequisite@vehicle:
 		Prerequisite: vehicleproduction
 	Buildable:
 		BuildPaletteOrder: 50
 		Prerequisites: proc
-		Queue: Building.Nod
+		Queue: Building#.Nod
 	Building:
 		Footprint: xxxx xxxx
 		Dimensions: 4,2
@@ -304,15 +256,8 @@ AFLD:
 		SpawnOffset: -1024,0,0
 		ExitCell: 3,1
 	ProductionAirdrop:
-		Produces: Vehicle.Nod
+		Produces: Vehicle
 	WithDeliveryAnimation:
-	ProductionQueue:
-		Type: Vehicle.Nod
-		Group: Vehicle
-		RequireOwner: false
-		BuildSpeed: .4
-		LowPowerSlowdown: 3
-		ReadyAudio:
 	ProductionBar:
 	Power:
 		Amount: -30
@@ -324,12 +269,16 @@ WEAP:
 	Tooltip:
 		Name: Weapons Factory
 		Description: Produces vehicles
-	ProvidesCustomPrerequisite:
+	Production:
+		Produces: Vehicle
+	ProvidesCustomPrerequisite@gdi:
+		Prerequisite: Vehicle.GDI
+	ProvidesCustomPrerequisite@vehicle:
 		Prerequisite: vehicleproduction
 	Buildable:
 		BuildPaletteOrder: 50
 		Prerequisites: proc
-		Queue: Building.GDI
+		Queue: Building#.GDI
 	Building:
 		Footprint: ___ xxx ===
 		Dimensions: 3,3
@@ -345,14 +294,6 @@ WEAP:
 	Exit@1:
 		SpawnOffset: -341,-341,0
 		ExitCell: 0,2
-	Production:
-		Produces: Vehicle.GDI
-	ProductionQueue:
-		Type: Vehicle.GDI
-		RequireOwner: false
-		Group: Vehicle
-		BuildSpeed: .4
-		LowPowerSlowdown: 3
 	ProductionBar:
 	Power:
 		Amount: -30
@@ -367,7 +308,7 @@ HPAD:
 	Buildable:
 		BuildPaletteOrder: 60
 		Prerequisites: proc
-		Queue: Building.GDI, Building.Nod
+		Queue: Building
 	Building:
 		Footprint: xx xx
 		Dimensions: 2,2
@@ -378,29 +319,13 @@ HPAD:
 	Exit@1:
 		SpawnOffset: 0,-256,0
 	Production:
-		Produces: Aircraft.GDI, Aircraft.Nod
+		Produces: Aircraft
 	Reservable:
 	RepairsUnits:
 	WithRepairAnimation:
 	RallyPoint:
-	ProductionQueue@GDI:
-		Type: Aircraft.GDI
-		Race: gdi
-		Group: Aircraft
-		RequireOwner: false
-		BuildSpeed: .4
-		LowPowerSlowdown: 3
-	ProductionQueue@Nod:
-		Type: Aircraft.Nod
-		Race: nod
-		Group: Aircraft
-		RequireOwner: false
-		BuildSpeed: .4
-		LowPowerSlowdown: 3
-	ProductionBar@GDI:
-		ProductionType: Aircraft.GDI
-	ProductionBar@Nod:
-		ProductionType: Aircraft.Nod
+	ProductionBar:
+		ProductionType: Aircraft
 	Power:
 		Amount: -10
 
@@ -416,7 +341,7 @@ HQ:
 	Buildable:
 		BuildPaletteOrder: 70
 		Prerequisites: proc, ~techlevel.medium
-		Queue: Building.GDI, Building.Nod
+		Queue: Building
 	Building:
 		Footprint: x_ xx
 		Dimensions: 2,2
@@ -465,7 +390,7 @@ FIX:
 	Buildable:
 		BuildPaletteOrder: 80
 		Prerequisites: vehicleproduction
-		Queue: Building.GDI, Building.Nod
+		Queue: Building
 	Building:
 		Footprint: _x_ xxx _x_
 		Dimensions: 3,3
@@ -494,7 +419,7 @@ EYE:
 	Buildable:
 		BuildPaletteOrder: 100
 		Prerequisites: anyhq, ~techlevel.high
-		Queue: Building.GDI
+		Queue: Building
 	Building:
 		Footprint: x_ xx
 		Dimensions: 2,2
@@ -541,7 +466,7 @@ TMPL:
 	Buildable:
 		BuildPaletteOrder: 100
 		Prerequisites: anyhq, ~techlevel.high
-		Queue: Building.Nod
+		Queue: Building
 	Building:
 		Footprint: ___ xxx xxx
 		Dimensions: 3,3
@@ -585,8 +510,8 @@ GUN:
 		Description: Basic Anti-Tank base defense.\n  Strong vs Tanks, vehicles\n  Weak vs Infantry
 	Buildable:
 		BuildPaletteOrder: 45
-		Prerequisites: barracks
-		Queue: Defence.Nod
+		Prerequisites: hand
+		Queue: Defense
 	Building:
 	-GivesBuildableArea:
 	Health:
@@ -630,7 +555,7 @@ SAM:
 	Buildable:
 		BuildPaletteOrder: 50
 		Prerequisites: hand
-		Queue: Defence.Nod
+		Queue: Defense
 	Building:
 		Footprint: xx
 		Dimensions: 2,1
@@ -671,7 +596,7 @@ OBLI:
 	Buildable:
 		BuildPaletteOrder: 60
 		Prerequisites: tmpl, ~techlevel.high
-		Queue: Defence.Nod
+		Queue: Defense
 	Selectable:
 		Bounds: 24,48,0,-12
 	Building:
@@ -717,8 +642,8 @@ GTWR:
 		Description: Basic defensive structure.\n  Strong vs Infantry\n  Weak vs Tanks
 	Buildable:
 		BuildPaletteOrder: 40
-		Prerequisites: barracks
-		Queue: Defence.GDI
+		Prerequisites: pyle
+		Queue: Defense
 	Building:
 	-GivesBuildableArea:
 	Health:
@@ -758,7 +683,7 @@ ATWR:
 	Buildable:
 		BuildPaletteOrder: 60
 		Prerequisites: anyhq, ~techlevel.medium
-		Queue: Defence.GDI
+		Queue: Defense
 	Selectable:
 		Bounds: 24,48,0,-12
 	Building:
@@ -804,7 +729,7 @@ SBAG:
 	Buildable:
 		BuildPaletteOrder: 20
 		Prerequisites: fact
-		Queue: Defence.GDI
+		Queue: Defense
 	Health:
 		HP: 100
 	Armor:
@@ -831,7 +756,7 @@ CYCL:
 	Buildable:
 		BuildPaletteOrder: 20
 		Prerequisites: fact
-		Queue: Defence.Nod
+		Queue: Defense
 	Health:
 		HP: 100
 	Armor:
@@ -858,7 +783,7 @@ BRIK:
 	Buildable:
 		BuildPaletteOrder: 30
 		Prerequisites: vehicleproduction
-		Queue: Defence.GDI, Defence.Nod
+		Queue: Defense
 	Health:
 		HP: 250
 	Armor:
@@ -885,6 +810,16 @@ VEHICLEPRODUCTION:
 	Tooltip:
 		Name: Vehicle Production
 		Description: Vehicle Production
+
+Vehicle.GDI:
+	Tooltip:
+		Name: GDI Vehicle Production
+		Description: GDI Vehicle Production
+
+Vehicle.Nod:
+	Tooltip:
+		Name: Nod Vehicle Production
+		Description: Nod Vehicle Production
 
 ANYPOWER:
 	Tooltip:

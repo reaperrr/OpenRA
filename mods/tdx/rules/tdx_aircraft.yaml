@@ -8,7 +8,7 @@ HIND:
 	Buildable:
 		BuildPaletteOrder: 20
 		Prerequisites: hpad, anyhq, ~techlevel.medium
-		Queue: Aircraft.Nod
+		Queue: Aircraft
 	Selectable:
 		Bounds: 30,28
 	Helicopter:

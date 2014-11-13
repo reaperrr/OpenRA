@@ -8,7 +8,7 @@ MCV:
 	Buildable:
 		BuildPaletteOrder: 100
 		Prerequisites: anyhq, ~techlevel.medium
-		Queue: Vehicle.GDI, Vehicle.Nod
+		Queue: Vehicle
 	Selectable:
 		Priority: 4
 	Mobile:
@@ -48,7 +48,7 @@ HARV:
 	Buildable:
 		BuildPaletteOrder: 10
 		Prerequisites: proc
-		Queue: Vehicle.GDI, Vehicle.Nod
+		Queue: Vehicle
 	Selectable:
 		Priority: 7
 		Bounds: 36,36
@@ -86,7 +86,7 @@ APC:
 	Buildable:
 		BuildPaletteOrder: 30
 		Prerequisites: pyle
-		Queue: Vehicle.GDI
+		Queue: Vehicle
 	Mobile:
 		ROT: 8
 		Speed: 128
@@ -121,8 +121,8 @@ ARTY:
 		Description: Long-range artillery.\n  Strong vs Infantry, Vehicles & Buildings
 	Buildable:
 		BuildPaletteOrder: 60
-		Prerequisites: anyhq, ~techlevel.medium
-		Queue: Vehicle.Nod
+		Prerequisites: afld, anyhq, ~techlevel.medium
+		Queue: Vehicle
 	Mobile:
 		ROT: 2
 		Speed: 64
@@ -158,8 +158,8 @@ FTNK:
 		Description: Heavily armored flame-throwing vehicle.\n  Strong vs Infantry, Buildings & Vehicles\n  Weak vs Tanks
 	Buildable:
 		BuildPaletteOrder: 50
-		Prerequisites: anyhq, ~techlevel.medium
-		Queue: Vehicle.Nod
+		Prerequisites: afld, anyhq, ~techlevel.medium
+		Queue: Vehicle
 	Mobile:
 		ROT: 7
 		Speed: 99
@@ -196,7 +196,7 @@ BGGY:
 	Buildable:
 		BuildPaletteOrder: 20
 		Prerequisites: afld
-		Queue: Vehicle.Nod
+		Queue: Vehicle
 	Mobile:
 		ROT: 10
 		Speed: 170
@@ -232,7 +232,7 @@ BIKE:
 	Buildable:
 		BuildPaletteOrder: 30
 		Prerequisites: afld
-		Queue: Vehicle.Nod
+		Queue: Vehicle
 	Mobile:
 		ROT: 10
 		Speed: 213
@@ -270,7 +270,7 @@ JEEP:
 	Buildable:
 		BuildPaletteOrder: 20
 		Prerequisites: weap
-		Queue: Vehicle.GDI
+		Queue: Vehicle
 	Mobile:
 		ROT: 10
 		Speed: 156
@@ -305,8 +305,8 @@ LTNK:
 		Description: Fast, light tank.\n  Strong vs Vehicles, Tanks\n  Weak vs Infantry
 	Buildable:
 		BuildPaletteOrder: 40
-		Prerequisites: anyhq, ~techlevel.medium
-		Queue: Vehicle.Nod
+		Prerequisites: afld, anyhq, ~techlevel.medium
+		Queue: Vehicle
 	Mobile:
 		ROT: 5
 		Speed: 106
@@ -345,8 +345,8 @@ MTNK:
 		Description: General-Purpose GDI Tank.\n  Strong vs Tanks, Vehicles\n  Weak vs Infantry
 	Buildable:
 		BuildPaletteOrder: 40
-		Prerequisites: anyhq, ~techlevel.medium
-		Queue: Vehicle.GDI
+		Prerequisites: weap, anyhq, ~techlevel.medium
+		Queue: Vehicle
 	Mobile:
 		Speed: 85
 	Health:
@@ -386,7 +386,7 @@ HTNK:
 	Buildable:
 		BuildPaletteOrder: 60
 		Prerequisites: eye, ~techlevel.high
-		Queue: Vehicle.GDI
+		Queue: Vehicle
 	Mobile:
 		Crushes: wall, heavywall, crate, infantry
 		Speed: 56
@@ -439,8 +439,8 @@ MSAM:
 		Description: Long range missile launcher.\n  Strong vs infantry and aircraft
 	Buildable:
 		BuildPaletteOrder: 50
-		Prerequisites: anyhq, ~techlevel.medium
-		Queue: Vehicle.GDI
+		Prerequisites: weap, anyhq, ~techlevel.medium
+		Queue: Vehicle
 	Mobile:
 		Speed: 85
 		ROT: 4
@@ -476,8 +476,8 @@ MLRS:
 		Description: Powerful long-range napalm artillery. \n  Strong vs. infantry, light armor and light structures
 	Buildable:
 		BuildPaletteOrder: 70
-		Prerequisites: anyhq, ~techlevel.medium
-		Queue: Vehicle.Nod
+		Prerequisites: afld, anyhq, ~techlevel.medium
+		Queue: Vehicle
 	Mobile:
 		Speed: 85
 		ROT: 5
@@ -517,7 +517,7 @@ STNK:
 	Buildable:
 		BuildPaletteOrder: 90
 		Prerequisites: tmpl, ~techlevel.high
-		Queue: Vehicle.Nod
+		Queue: Vehicle
 	Mobile:
 		ROT: 10
 		Speed: 142

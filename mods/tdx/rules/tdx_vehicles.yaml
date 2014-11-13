@@ -8,7 +8,7 @@ NAPC:
 	Buildable:
 		BuildPaletteOrder: 30
 		Prerequisites: hand
-		Queue: Vehicle.Nod
+		Queue: Vehicle
 	Mobile:
 		ROT: 6
 		Speed: 128
@@ -45,7 +45,7 @@ MRPG:
 	Buildable:
 		BuildPaletteOrder: 60
 		Prerequisites: anyhq, ~techlevel.medium
-		Queue: Vehicle.GDI
+		Queue: Vehicle
 	Mobile:
 		ROT: 4
 		Speed: 112
@@ -81,8 +81,8 @@ CTNK:
 		Description: Heavily armored chemicals-spraying vehicle.\n  Strong vs Infantry, Buildings & Vehicles\n  Weak vs Tanks
 	Buildable:
 		BuildPaletteOrder: 51
-		Prerequisites: anyhq, ~techlevel.medium
-		Queue: Vehicle.Nod
+		Prerequisites: bio, ~techlevel.medium
+		Queue: Vehicle
 	Mobile:
 		ROT: 4
 		Speed: 75
@@ -120,8 +120,8 @@ T55H:
 		Description: Heavily armored Nod Tank. \nCan attack Aircraft.\n  Strong vs Buildings, Vehicles
 	Buildable:
 		BuildPaletteOrder: 60
-		Prerequisites: tmpl, ~techlevel.high
-		Queue: Vehicle.Nod
+		Prerequisites: fix, ~techlevel.high
+		Queue: Vehicle
 	Mobile:
 		Crushes: wall, crate, infantry
 		Speed: 85
