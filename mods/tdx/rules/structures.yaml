@@ -19,13 +19,19 @@ FACT:
 	RevealsShroud:
 		Range: 10c0
 	Bib:
-	Production:
-		Produces: Building, Defense
 	Transforms:
 		IntoActor: mcv
 		Offset: 1,1
 		Facing: 108
 	BaseBuilding:
+	Production:
+		Produces: Building, Defense
+	ProvidesCustomPrerequisite@gdi:
+		Race: gdi
+		Prerequisite: structures.gdi
+	ProvidesCustomPrerequisite@nod:
+		Race: nod
+		Prerequisite: structures.nod
 	ProductionBar@Building:
 		ProductionType: Building
 	ProductionBar@Defense:
@@ -171,7 +177,7 @@ PYLE:
 		Prerequisite: barracks
 	Buildable:
 		BuildPaletteOrder: 40
-		Prerequisites: anypower
+		Prerequisites: anypower, ~structures.gdi
 		Queue: Building
 	Building:
 		Footprint: xx xx
@@ -190,6 +196,11 @@ PYLE:
 		ExitCell: 1,1
 	Production:
 		Produces: Infantry
+	ProvidesCustomPrerequisite@gdi:
+		Race: gdi
+		Prerequisite: infantry.gdi
+	ProvidesCustomPrerequisite@vehprod:
+		Prerequisite: barracks
 	ProductionBar:
 	Power:
 		Amount: -20
@@ -205,7 +216,7 @@ HAND:
 		Prerequisite: barracks
 	Buildable:
 		BuildPaletteOrder: 40
-		Prerequisites: anypower
+		Prerequisites: anypower, ~structures.nod
 		Queue: Building
 	Building:
 		Footprint: __ xx xx
@@ -221,6 +232,11 @@ HAND:
 		ExitCell: 1,2
 	Production:
 		Produces: Infantry
+	ProvidesCustomPrerequisite@nod:
+		Race: nod
+		Prerequisite: infantry.nod
+	ProvidesCustomPrerequisite@vehprod:
+		Prerequisite: barracks
 	ProductionBar:
 	Power:
 		Amount: -20
@@ -232,15 +248,9 @@ AFLD:
 	Tooltip:
 		Name: Airstrip
 		Description: Provides a dropzone\nfor vehicle reinforcements
-#	Production:
-#		Produces: Vehicle
-	ProvidesCustomPrerequisite@nod:
-		Prerequisite: Vehicle.Nod
-	ProvidesCustomPrerequisite@vehicle:
-		Prerequisite: vehicleproduction
 	Buildable:
 		BuildPaletteOrder: 50
-		Prerequisites: proc
+		Prerequisites: proc, ~structures.nod
 		Queue: Building#.Nod
 	Building:
 		Footprint: xxxx xxxx
@@ -257,6 +267,11 @@ AFLD:
 		ExitCell: 3,1
 	ProductionAirdrop:
 		Produces: Vehicle
+	ProvidesCustomPrerequisite@nod:
+		Race: nod
+		Prerequisite: vehicles.nod
+	ProvidesCustomPrerequisite@vehprod:
+		Prerequisite: vehicleproduction
 	WithDeliveryAnimation:
 	ProductionBar:
 	Power:
@@ -269,15 +284,9 @@ WEAP:
 	Tooltip:
 		Name: Weapons Factory
 		Description: Produces vehicles
-	Production:
-		Produces: Vehicle
-	ProvidesCustomPrerequisite@gdi:
-		Prerequisite: Vehicle.GDI
-	ProvidesCustomPrerequisite@vehicle:
-		Prerequisite: vehicleproduction
 	Buildable:
 		BuildPaletteOrder: 50
-		Prerequisites: proc
+		Prerequisites: proc, ~structures.gdi
 		Queue: Building#.GDI
 	Building:
 		Footprint: ___ xxx ===
@@ -294,6 +303,13 @@ WEAP:
 	Exit@1:
 		SpawnOffset: -341,-341,0
 		ExitCell: 0,2
+	Production:
+		Produces: Vehicle
+	ProvidesCustomPrerequisite@gdi:
+		Race: gdi
+		Prerequisite: vehicles.gdi
+	ProvidesCustomPrerequisite@vehprod:
+		Prerequisite: vehicleproduction
 	ProductionBar:
 	Power:
 		Amount: -30
@@ -320,6 +336,18 @@ HPAD:
 		SpawnOffset: 0,-256,0
 	Production:
 		Produces: Aircraft
+	ProvidesCustomPrerequisite@gdi:
+		Race: gdi
+		Prerequisite: aircraft.gdi
+	ProvidesCustomPrerequisite@nod:
+		Race: nod
+		Prerequisite: aircraft.nod
+	ProvidesCustomPrerequisite@gdistructure:
+		RequiresPrerequisites: structures.gdi
+		Prerequisite: aircraft.gdi
+	ProvidesCustomPrerequisite@nodstructure:
+		RequiresPrerequisites: structures.nod
+		Prerequisite: aircraft.nod
 	Reservable:
 	RepairsUnits:
 	WithRepairAnimation:
@@ -418,7 +446,7 @@ EYE:
 		Prerequisite: anyhq
 	Buildable:
 		BuildPaletteOrder: 100
-		Prerequisites: anyhq, ~techlevel.high
+		Prerequisites: anyhq, ~structures.gdi, ~techlevel.high
 		Queue: Building
 	Building:
 		Footprint: x_ xx
@@ -465,7 +493,7 @@ TMPL:
 		Prerequisite: anyhq
 	Buildable:
 		BuildPaletteOrder: 100
-		Prerequisites: anyhq, ~techlevel.high
+		Prerequisites: anyhq, ~structures.nod, ~techlevel.high
 		Queue: Building
 	Building:
 		Footprint: ___ xxx xxx
@@ -510,7 +538,7 @@ GUN:
 		Description: Basic Anti-Tank base defense.\n  Strong vs Tanks, vehicles\n  Weak vs Infantry
 	Buildable:
 		BuildPaletteOrder: 45
-		Prerequisites: hand
+		Prerequisites: hand, ~structures.nod
 		Queue: Defense
 	Building:
 	-GivesBuildableArea:
@@ -554,7 +582,7 @@ SAM:
 		Description: Anti-Aircraft base defense.\n  Strong vs Aircraft\n  Cannot target Ground units.
 	Buildable:
 		BuildPaletteOrder: 50
-		Prerequisites: hand
+		Prerequisites: hand, ~structures.nod
 		Queue: Defense
 	Building:
 		Footprint: xx
@@ -595,7 +623,7 @@ OBLI:
 		Description: Advanced base defense. \nRequires power to operate.\n  Strong vs all Ground units\n  Cannot target Aircraft
 	Buildable:
 		BuildPaletteOrder: 60
-		Prerequisites: tmpl, ~techlevel.high
+		Prerequisites: tmpl, ~structures.nod, ~techlevel.high
 		Queue: Defense
 	Selectable:
 		Bounds: 24,48,0,-12
@@ -642,7 +670,7 @@ GTWR:
 		Description: Basic defensive structure.\n  Strong vs Infantry\n  Weak vs Tanks
 	Buildable:
 		BuildPaletteOrder: 40
-		Prerequisites: pyle
+		Prerequisites: pyle, ~structures.gdi
 		Queue: Defense
 	Building:
 	-GivesBuildableArea:
@@ -682,7 +710,7 @@ ATWR:
 		Description: All-purpose defensive structure.\n  Strong vs Aircraft, Tanks\n  Weak vs Infantry
 	Buildable:
 		BuildPaletteOrder: 60
-		Prerequisites: anyhq, ~techlevel.medium
+		Prerequisites: anyhq, ~structures.gdi, ~techlevel.medium
 		Queue: Defense
 	Selectable:
 		Bounds: 24,48,0,-12
@@ -810,16 +838,6 @@ VEHICLEPRODUCTION:
 	Tooltip:
 		Name: Vehicle Production
 		Description: Vehicle Production
-
-Vehicle.GDI:
-	Tooltip:
-		Name: GDI Vehicle Production
-		Description: GDI Vehicle Production
-
-Vehicle.Nod:
-	Tooltip:
-		Name: Nod Vehicle Production
-		Description: Nod Vehicle Production
 
 ANYPOWER:
 	Tooltip:

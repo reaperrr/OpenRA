@@ -7,7 +7,7 @@ HIND:
 		Description: Helicopter Gunship with Chaingun.\n  Strong vs Infantry, Light Vehicles\n  Weak vs Tanks
 	Buildable:
 		BuildPaletteOrder: 20
-		Prerequisites: hpad, anyhq, ~techlevel.medium
+		Prerequisites: hpad, anyhq, ~aircraft.nod, ~techlevel.medium
 		Queue: Aircraft
 	Selectable:
 		Bounds: 30,28

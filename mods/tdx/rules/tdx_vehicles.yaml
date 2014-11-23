@@ -7,7 +7,7 @@ NAPC:
 		Description: Armed infantry transport. \nCan attack Aircraft.\n  Strong vs Vehicles\n  Weak vs Infantry
 	Buildable:
 		BuildPaletteOrder: 30
-		Prerequisites: hand
+		Prerequisites: hand, ~vehicles.nod
 		Queue: Vehicle
 	Mobile:
 		ROT: 6
@@ -44,7 +44,7 @@ MRPG:
 		Description: Long-range artillery.\n  Strong vs Infantry, Vehicles & Buildings
 	Buildable:
 		BuildPaletteOrder: 60
-		Prerequisites: anyhq, ~techlevel.medium
+		Prerequisites: anyhq, ~vehicles.gdi, ~techlevel.medium
 		Queue: Vehicle
 	Mobile:
 		ROT: 4
@@ -81,7 +81,7 @@ CTNK:
 		Description: Heavily armored chemicals-spraying vehicle.\n  Strong vs Infantry, Buildings & Vehicles\n  Weak vs Tanks
 	Buildable:
 		BuildPaletteOrder: 51
-		Prerequisites: bio, ~techlevel.medium
+		Prerequisites: bio, ~vehicles.nod, ~techlevel.high
 		Queue: Vehicle
 	Mobile:
 		ROT: 4
@@ -120,7 +120,7 @@ T55H:
 		Description: Heavily armored Nod Tank. \nCan attack Aircraft.\n  Strong vs Buildings, Vehicles
 	Buildable:
 		BuildPaletteOrder: 60
-		Prerequisites: fix, ~techlevel.high
+		Prerequisites: fix, ~vehicles.nod, ~techlevel.high
 		Queue: Vehicle
 	Mobile:
 		Crushes: wall, crate, infantry

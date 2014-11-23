@@ -85,7 +85,7 @@ APC:
 		Description: Armed infantry transport.\n  Strong vs Infantry
 	Buildable:
 		BuildPaletteOrder: 30
-		Prerequisites: pyle
+		Prerequisites: pyle, ~vehicles.gdi
 		Queue: Vehicle
 	Mobile:
 		ROT: 8
@@ -121,7 +121,7 @@ ARTY:
 		Description: Long-range artillery.\n  Strong vs Infantry, Vehicles & Buildings
 	Buildable:
 		BuildPaletteOrder: 60
-		Prerequisites: afld, anyhq, ~techlevel.medium
+		Prerequisites: anyhq, ~vehicles.nod, ~techlevel.medium
 		Queue: Vehicle
 	Mobile:
 		ROT: 2
@@ -158,7 +158,7 @@ FTNK:
 		Description: Heavily armored flame-throwing vehicle.\n  Strong vs Infantry, Buildings & Vehicles\n  Weak vs Tanks
 	Buildable:
 		BuildPaletteOrder: 50
-		Prerequisites: afld, anyhq, ~techlevel.medium
+		Prerequisites: anyhq, ~vehicles.nod, ~techlevel.medium
 		Queue: Vehicle
 	Mobile:
 		ROT: 7
@@ -195,7 +195,7 @@ BGGY:
 		Description: Fast scout & anti-infantry vehicle.\n  Strong vs Infantry\n  Weak vs Tanks
 	Buildable:
 		BuildPaletteOrder: 20
-		Prerequisites: afld
+		Prerequisites: ~vehicles.nod
 		Queue: Vehicle
 	Mobile:
 		ROT: 10
@@ -231,7 +231,7 @@ BIKE:
 		Description: Fast scout vehicle, armed with \nrockets. \nCan attack Aircraft.\n  Strong vs Vehicles, Tanks\n  Weak vs Infantry
 	Buildable:
 		BuildPaletteOrder: 30
-		Prerequisites: afld
+		Prerequisites: ~vehicles.nod
 		Queue: Vehicle
 	Mobile:
 		ROT: 10
@@ -269,7 +269,7 @@ JEEP:
 		Description: Fast scout & anti-infantry vehicle.\n  Strong vs Infantry\n  Weak vs Tanks
 	Buildable:
 		BuildPaletteOrder: 20
-		Prerequisites: weap
+		Prerequisites: ~vehicles.gdi
 		Queue: Vehicle
 	Mobile:
 		ROT: 10
@@ -305,7 +305,7 @@ LTNK:
 		Description: Fast, light tank.\n  Strong vs Vehicles, Tanks\n  Weak vs Infantry
 	Buildable:
 		BuildPaletteOrder: 40
-		Prerequisites: afld, anyhq, ~techlevel.medium
+		Prerequisites: anyhq, ~vehicles.nod, ~techlevel.medium
 		Queue: Vehicle
 	Mobile:
 		ROT: 5
@@ -345,7 +345,7 @@ MTNK:
 		Description: General-Purpose GDI Tank.\n  Strong vs Tanks, Vehicles\n  Weak vs Infantry
 	Buildable:
 		BuildPaletteOrder: 40
-		Prerequisites: weap, anyhq, ~techlevel.medium
+		Prerequisites: anyhq, ~vehicles.gdi, ~techlevel.medium
 		Queue: Vehicle
 	Mobile:
 		Speed: 85
@@ -385,7 +385,7 @@ HTNK:
 		Description: Heavily armored GDI Tank. \nCan attack Aircraft.\n  Strong vs Everything
 	Buildable:
 		BuildPaletteOrder: 60
-		Prerequisites: eye, ~techlevel.high
+		Prerequisites: eye, ~vehicles.gdi, ~techlevel.high
 		Queue: Vehicle
 	Mobile:
 		Crushes: wall, heavywall, crate, infantry
@@ -439,7 +439,7 @@ MSAM:
 		Description: Long range missile launcher.\n  Strong vs infantry and aircraft
 	Buildable:
 		BuildPaletteOrder: 50
-		Prerequisites: weap, anyhq, ~techlevel.medium
+		Prerequisites: anyhq, ~vehicles.gdi, ~techlevel.medium
 		Queue: Vehicle
 	Mobile:
 		Speed: 85
@@ -476,7 +476,7 @@ MLRS:
 		Description: Powerful long-range napalm artillery. \n  Strong vs. infantry, light armor and light structures
 	Buildable:
 		BuildPaletteOrder: 70
-		Prerequisites: afld, anyhq, ~techlevel.medium
+		Prerequisites: anyhq, ~vehicles.nod, ~techlevel.medium
 		Queue: Vehicle
 	Mobile:
 		Speed: 85
@@ -516,7 +516,7 @@ STNK:
 		Description: Missile tank that can cloak. \nCan attack Aircraft. \nHas weak armor. Can be spotted by infantry.\n  Strong vs Vehicles, Tanks\n  Weak vs Infantry.
 	Buildable:
 		BuildPaletteOrder: 90
-		Prerequisites: tmpl, ~techlevel.high
+		Prerequisites: tmpl, ~vehicles.nod, ~techlevel.high
 		Queue: Vehicle
 	Mobile:
 		ROT: 10
