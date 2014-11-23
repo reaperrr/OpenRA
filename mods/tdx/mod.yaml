@@ -92,7 +92,7 @@ Assemblies:
 
 ChromeLayout:
 	./mods/ts/chrome/install.yaml
-	./mods/ts/chrome/ingame.yaml
+	./mods/tdx/chrome/ingame.yaml
 	./mods/ra/chrome/ingame-chat.yaml
 	./mods/ra/chrome/ingame-diplomacy.yaml
 	./mods/ra/chrome/ingame-fmvplayer.yaml
@@ -104,7 +104,7 @@ ChromeLayout:
 	./mods/ra/chrome/ingame-infostats.yaml
 	./mods/ra/chrome/ingame-observer.yaml
 	./mods/ra/chrome/ingame-observerstats.yaml
-	./mods/ts/chrome/ingame-player.yaml
+	./mods/tdx/chrome/ingame-player.yaml
 	./mods/ra/chrome/ingame-debug.yaml
 	./mods/ra/chrome/ingame-leavemap.yaml
 	./mods/tdx/chrome/mainmenu.yaml
