@@ -8,14 +8,13 @@ Folders:
 	.
 	./mods/tdx
 	./mods/tdx/bits
+	./mods/tdx/bits/cnc
 	./mods/tdx/bits/tdx_aud
 	./mods/tdx/uibits
 	~^Content/tdx
 	./mods/cnc
-	./mods/cnc/bits
 	./mods/cnc/bits/jungle
 	./mods/cnc/bits/ss
-#	./mods/ra/uibits
 	~^Content/cnc
 
 MapFolders:

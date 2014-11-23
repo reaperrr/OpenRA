@@ -1,0 +1,255 @@
+Selectable: True
+
+MapFormat: 6
+
+RequiresMod: cnc
+
+Title: The Hourglass
+
+Description: A Quicky ;)
+
+Author: Dan9550
+
+Tileset: SNOW
+
+MapSize: 48,96
+
+Bounds: 4,4,40,88
+
+UseAsShellmap: False
+
+Type: Conquest
+
+Options:
+
+Players:
+	PlayerReference@Neutral:
+		Name: Neutral
+		OwnsWorld: True
+		NonCombatant: True
+		Race: gdi
+	PlayerReference@Multi0:
+		Name: Multi0
+		Playable: True
+		Race: Random
+		Enemies: Creeps
+	PlayerReference@Multi1:
+		Name: Multi1
+		Playable: True
+		Race: Random
+		Enemies: Creeps
+	PlayerReference@Creeps:
+		Name: Creeps
+		NonCombatant: True
+		Race: gdi
+		Enemies: Multi0, Multi1
+
+Actors:
+	Actor0: splitblue
+		Location: 24,46
+		Owner: Neutral
+	Actor1: split2
+		Location: 18,62
+		Owner: Neutral
+	Actor2: split2
+		Location: 29,62
+		Owner: Neutral
+	Actor3: split2
+		Location: 18,30
+		Owner: Neutral
+	Actor4: split2
+		Location: 29,30
+		Owner: Neutral
+	Actor6: split3
+		Location: 42,4
+		Owner: Neutral
+	Actor5: split3
+		Location: 5,4
+		Owner: Neutral
+	Actor7: split3
+		Location: 42,89
+		Owner: Neutral
+	Actor8: split3
+		Location: 5,89
+		Owner: Neutral
+	Actor9: v01
+		Location: 42,35
+		Owner: Neutral
+	Actor10: v03
+		Location: 42,43
+		Owner: Neutral
+	Actor11: tc05
+		Location: 35,36
+		Owner: Neutral
+	Actor12: v08
+		Location: 40,42
+		Owner: Neutral
+	Actor13: v05
+		Location: 36,40
+		Owner: Neutral
+	Actor14: v14
+		Location: 36,41
+		Owner: Neutral
+	Actor15: v14
+		Location: 37,41
+		Owner: Neutral
+	Actor16: v12
+		Location: 35,38
+		Owner: Neutral
+	Actor17: bio
+		Location: 31,44
+		Owner: Neutral
+	Actor18: brik
+		Location: 31,42
+		Owner: Neutral
+	Actor19: brik
+		Location: 30,42
+		Owner: Neutral
+	Actor20: brik
+		Location: 29,42
+		Owner: Neutral
+	Actor22: brik
+		Location: 29,44
+		Owner: Neutral
+	Actor21: brik
+		Location: 29,43
+		Owner: Neutral
+	Actor23: brik
+		Location: 30,47
+		Owner: Neutral
+	Actor24: brik
+		Location: 30,48
+		Owner: Neutral
+	Actor25: brik
+		Location: 29,47
+		Owner: Neutral
+	Actor26: brik
+		Location: 29,46
+		Owner: Neutral
+	Actor27: brik
+		Location: 30,49
+		Owner: Neutral
+	Actor28: brik
+		Location: 31,49
+		Owner: Neutral
+	Actor29: brik
+		Location: 32,49
+		Owner: Neutral
+	Actor31: c2
+		Location: 43,41
+		Owner: Neutral
+	Actor30: c1
+		Location: 41,44
+		Owner: Neutral
+	Actor32: hosp
+		Location: 41,39
+		Owner: Neutral
+	Actor33: t15
+		Location: 41,27
+		Owner: Neutral
+	Actor34: t14
+		Location: 35,33
+		Owner: Neutral
+	Actor35: vice
+		Location: 30,44
+		Owner: Creeps
+	Actor36: vice
+		Location: 27,48
+		Owner: Creeps
+	Actor37: vice
+		Location: 20,41
+		Owner: Creeps
+	Actor38: c4
+		Location: 39,40
+		Owner: Neutral
+	Actor39: c8
+		Location: 43,36
+		Owner: Neutral
+	Actor40: c10
+		Location: 41,35
+		Owner: Neutral
+	Actor43: v19
+		Location: 11,45
+		Owner: Neutral
+	Actor42: v19
+		Location: 5,48
+		Owner: Neutral
+	Actor41: v19
+		Location: 7,52
+		Owner: Neutral
+	Actor44: t13
+		Location: 10,55
+		Owner: Neutral
+	Actor45: t03
+		Location: 10,51
+		Owner: Neutral
+	Actor46: t17
+		Location: 8,63
+		Owner: Neutral
+	Actor47: t01
+		Location: 40,20
+		Owner: Neutral
+	Actor48: t01
+		Location: 33,27
+		Owner: Neutral
+	Actor49: tc04
+		Location: 43,50
+		Owner: Neutral
+	Actor50: tc01
+		Location: 36,54
+		Owner: Neutral
+	Actor51: t17
+		Location: 41,63
+		Owner: Neutral
+	Actor52: t03
+		Location: 5,42
+		Owner: Neutral
+	Actor53: t13
+		Location: 12,34
+		Owner: Neutral
+	Actor54: t17
+		Location: 4,29
+		Owner: Neutral
+	Actor55: tc04
+		Location: 3,28
+		Owner: Neutral
+	Actor56: tc02
+		Location: 7,18
+		Owner: Neutral
+	Actor57: t15
+		Location: 7,37
+		Owner: Neutral
+	Actor58: t15
+		Location: 9,25
+		Owner: Neutral
+	Actor59: t14
+		Location: 7,75
+		Owner: Neutral
+	Actor60: t14
+		Location: 8,74
+		Owner: Neutral
+	Actor61: t03
+		Location: 8,75
+		Owner: Neutral
+	Actor62: mpspawn
+		Location: 23,82
+		Owner: Neutral
+	Actor63: mpspawn
+		Location: 23,12
+		Owner: Neutral
+
+Smudges:
+
+Rules:
+
+Sequences:
+
+VoxelSequences:
+
+Weapons:
+
+Voices:
+
+Notifications:
+
+Translations:

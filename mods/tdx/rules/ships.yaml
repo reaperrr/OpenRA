@@ -36,10 +36,6 @@ LST:
 		Cost: 300
 	Tooltip:
 		Name: Landing Craft
-	Buildable:
-		Queue: Vehicle
-		BuildPaletteOrder: 1000
-		Prerequisites: ~disabled
 	Mobile:
 		Crushes: crate
 		TerrainSpeeds:

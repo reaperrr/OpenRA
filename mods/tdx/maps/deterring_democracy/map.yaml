@@ -1,0 +1,198 @@
+Selectable: True
+
+MapFormat: 6
+
+RequiresMod: cnc
+
+Title: Deterring Democracy
+
+Description: Based on "East vs. West" by Paul Chote
+
+Author: Psydev
+
+Tileset: WINTER
+
+MapSize: 96,56
+
+Bounds: 7,2,78,52
+
+UseAsShellmap: False
+
+Type: Conquest
+
+Options:
+
+Players:
+	PlayerReference@Neutral:
+		Name: Neutral
+		OwnsWorld: True
+		NonCombatant: True
+		Race: gdi
+	PlayerReference@Multi0:
+		Name: Multi0
+		Playable: True
+		Race: Random
+		Enemies: Creeps
+	PlayerReference@Multi1:
+		Name: Multi1
+		Playable: True
+		Race: Random
+		Enemies: Creeps
+	PlayerReference@Creeps:
+		Name: Creeps
+		NonCombatant: True
+		Race: gdi
+		Enemies: Multi0, Multi1
+
+Actors:
+	Actor11: v05
+		Location: 40,32
+		Owner: Neutral
+	Actor2: splitblue
+		Location: 46,52
+		Owner: Neutral
+	Actor6: splitblue
+		Location: 45,16
+		Owner: Neutral
+	Actor7: splitblue
+		Location: 46,39
+		Owner: Neutral
+	Actor0: splitblue
+		Location: 45,3
+		Owner: Neutral
+	Actor39: tc04
+		Location: 49,16
+		Owner: Neutral
+	Actor34: t16
+		Location: 48,35
+		Owner: Neutral
+	Actor30: t14
+		Location: 49,33
+		Owner: Neutral
+	Actor24: tc02
+		Location: 42,36
+		Owner: Neutral
+	Actor25: tc04
+		Location: 41,37
+		Owner: Neutral
+	Actor26: t02
+		Location: 41,35
+		Owner: Neutral
+	Actor29: t11
+		Location: 49,35
+		Owner: Neutral
+	Actor27: t10
+		Location: 42,34
+		Owner: Neutral
+	Actor28: t11
+		Location: 41,33
+		Owner: Neutral
+	Actor5: split2
+		Location: 69,7
+		Owner: Neutral
+	Actor32: tc02
+		Location: 48,37
+		Owner: Neutral
+	Actor35: tc04
+		Location: 49,38
+		Owner: Neutral
+	Actor36: v17
+		Location: 43,22
+		Owner: Neutral
+	Actor45: v16
+		Location: 43,21
+		Owner: Neutral
+	Actor17: t11
+		Location: 41,15
+		Owner: Neutral
+	Actor50: tc02
+		Location: 41,16
+		Owner: Neutral
+	Actor19: tc02
+		Location: 50,15
+		Owner: Neutral
+	Actor54: tc04
+		Location: 47,16
+		Owner: Neutral
+	Actor38: tc02
+		Location: 49,19
+		Owner: Neutral
+	Actor56: tc01
+		Location: 41,18
+		Owner: Neutral
+	Actor60: v06
+		Location: 41,20
+		Owner: Neutral
+	Actor62: v17
+		Location: 42,22
+		Owner: Neutral
+	Actor66: v11
+		Location: 48,21
+		Owner: Neutral
+	Actor65: v17
+		Location: 41,22
+		Owner: Neutral
+	Actor63: v16
+		Location: 41,21
+		Owner: Neutral
+	Actor64: v03
+		Location: 49,21
+		Owner: Neutral
+	Actor61: v16
+		Location: 42,21
+		Owner: Neutral
+	Actor1: split2
+		Location: 82,22
+		Owner: Neutral
+	Actor9: splitblue
+		Location: 9,51
+		Owner: Neutral
+	Actor16: splitblue
+		Location: 82,4
+		Owner: Neutral
+	Actor14: split2
+		Location: 80,44
+		Owner: Neutral
+	Actor8: v06
+		Location: 50,32
+		Owner: Neutral
+	Actor10: split2
+		Location: 21,48
+		Owner: Neutral
+	Actor18: mpspawn
+		Location: 13,28
+		Owner: Neutral
+	Actor22: splitblue
+		Location: 9,4
+		Owner: Neutral
+	Actor31: t02
+		Location: 40,36
+		Owner: Neutral
+	Actor3: split2
+		Location: 9,33
+		Owner: Neutral
+	Actor12: split2
+		Location: 12,12
+		Owner: Neutral
+	Actor13: mpspawn
+		Location: 78,27
+		Owner: Neutral
+	Actor4: splitblue
+		Location: 82,51
+		Owner: Neutral
+
+Smudges:
+
+Rules:
+
+Sequences:
+
+VoxelSequences:
+
+Weapons:
+
+Voices:
+
+Notifications:
+
+Translations:
