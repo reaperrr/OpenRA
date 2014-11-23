@@ -335,7 +335,7 @@ HPAD:
 	Exit@1:
 		SpawnOffset: 0,-256,0
 	Production:
-		Produces: Aircraft
+		Produces: Aircraft, Helicopter
 	ProvidesCustomPrerequisite@gdi:
 		Race: gdi
 		Prerequisite: aircraft.gdi
