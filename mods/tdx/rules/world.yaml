@@ -9,6 +9,7 @@ World:
 		Widget: INGAME_ROOT
 	MenuPaletteEffect:
 		MenuEffect: Desaturated
+	ChooseBuildTabOnSelect:
 	CloakPaletteEffect:
 	ScreenShaker:
 	NukePaletteEffect:
@@ -92,7 +93,7 @@ World:
 		Name: Nod
 		Race: nod
 	ProductionQueueFromSelection:
-		ProductionTabsWidget: PRODUCTION_TABS
+		ProductionPaletteWidget: PRODUCTION_PALETTE
 	DomainIndex:
 	SmudgeLayer@SCORCH:
 		Type: Scorch
