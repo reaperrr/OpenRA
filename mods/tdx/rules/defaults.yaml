@@ -16,7 +16,6 @@
 	TargetableUnit:
 		TargetTypes: Ground, Vehicle
 	Repairable:
-	Chronoshiftable:
 	Passenger:
 		CargoType: Vehicle
 	HiddenUnderFog:
@@ -32,7 +31,8 @@
 	BodyOrientation:
 	UpdatesPlayerStatistics:
 	Cloak:
-		RequiresUpgrade: cloak
+		UpgradeTypes: cloak
+		UpgradeMinEnabledLevel: 1
 		InitialDelay: 15
 		CloakDelay: 90
 		CloakSound: trans1.aud
@@ -59,7 +59,6 @@
 	TargetableUnit:
 		TargetTypes: Ground, Vehicle
 	Repairable:
-	Chronoshiftable:
 	Passenger:
 		CargoType: Vehicle
 	HiddenUnderFog:
@@ -78,7 +77,8 @@
 	BodyOrientation:
 	UpdatesPlayerStatistics:
 	Cloak:
-		RequiresUpgrade: cloak
+		UpgradeTypes: cloak
+		UpgradeMinEnabledLevel: 1
 		InitialDelay: 15
 		CloakDelay: 90
 		CloakSound: trans1.aud
