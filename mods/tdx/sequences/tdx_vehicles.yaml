@@ -7,9 +7,33 @@ t55h:
 		Start: 32
 		Facings: 32
 		Offset: 0,2
-	muzzle: gunfire2
+#	muzzle: gunfire2
+#		Start: 0
+#		Length: 5
+	muzzle0: cann-n
 		Start: 0
-		Length: 5
+		Length: *
+	muzzle1: cann-nw
+		Start: 0
+		Length: *
+	muzzle2: cann-w
+		Start: 0
+		Length: *
+	muzzle3: cann-sw
+		Start: 0
+		Length: *
+	muzzle4: cann-s
+		Start: 0
+		Length: *
+	muzzle5: cann-se
+		Start: 0
+		Length: *
+	muzzle6: cann-e
+		Start: 0
+		Length: *
+	muzzle7: cann-ne
+		Start: 0
+		Length: *
 	icon: t55hicnh
 		Start: 0
 

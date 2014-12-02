@@ -137,12 +137,14 @@ T55H:
 		ROT: 4
 	Armament@PRIMARY:
 		Weapon: 100mmDual
-		LocalOffset: 700,120,256, 700,-120,256
+		LocalOffset: 821,85,171, 821,-85,171
 		Recoil: 85
 		RecoilRecovery: 42
 		MuzzleSequence: muzzle
-	AttackTurreted:
+		MuzzleSplitFacings: 8
 	WithMuzzleFlash:
+		SplitFacings: true
+	AttackTurreted:
 	RenderUnit:
 	WithTurret:
 	AutoTarget:
