@@ -141,7 +141,7 @@ T55H:
 		Recoil: 85
 		RecoilRecovery: 42
 		MuzzleSequence: muzzle
-		MuzzleSplitFacings: 8
+		MuzzleSplitFacings: 16
 	WithMuzzleFlash:
 		SplitFacings: true
 	AttackTurreted:
