@@ -38,10 +38,10 @@ bggy:
 		Start: 0
 
 mtnk:
-	idle:
+	idle: mtnk2
 		Start: 0
 		Facings: 32
-	turret:
+	turret: mtnk2
 		Start: 32
 		Facings: 32
 	muzzle: gunfire2
