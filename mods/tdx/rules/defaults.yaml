@@ -40,6 +40,7 @@
 	Huntable:
 	ScriptTriggers:
 	GainsStatUpgrades:
+	MustBeDestroyed:
 
 ^Tank:
 	AppearsOnRadar:
@@ -86,6 +87,7 @@
 	Huntable:
 	ScriptTriggers:
 	GainsStatUpgrades:
+	MustBeDestroyed:
 
 ^Helicopter:
 	AppearsOnRadar:
@@ -117,6 +119,7 @@
 	Huntable:
 	ScriptTriggers:
 	GainsStatUpgrades:
+	MustBeDestroyed:
 
 ^Infantry:
 	AppearsOnRadar:
@@ -187,6 +190,7 @@
 		DeathSound: Poisoned
 		DeathTypes: 6
 	GainsStatUpgrades:
+	MustBeDestroyed:
 
 ^CivInfantry:
 	Inherits: ^Infantry
@@ -358,6 +362,7 @@
 ^BaseBuilding:
 	Inherits: ^Building
 	MustBeDestroyed:
+		RequiredForShortGame: true
 	RepairableBuilding:
 		RepairPercent: 40
 		RepairStep: 14
