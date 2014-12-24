@@ -1,6 +1,4 @@
-Selectable: False
-
-MapFormat: 6
+MapFormat: 7
 
 RequiresMod: cnc
 
@@ -10,17 +8,17 @@ Description: Nod is moving to capture and hold a civilian town.\n\nYour mission 
 
 Author: Westwood Studios
 
-PreviewVideo: gdi4a.vqa
-
 Tileset: TEMPERAT
 
 MapSize: 64,64
 
 Bounds: 14,14,48,44
 
-UseAsShellmap: False
+Visibility: MissionSelector
 
 Type: Campaign
+
+Videos:
 
 Options:
 	Crates: False

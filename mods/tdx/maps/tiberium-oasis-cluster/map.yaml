@@ -1,6 +1,4 @@
-Selectable: True
-
-MapFormat: 6
+MapFormat: 7
 
 RequiresMod: cnc
 
@@ -14,9 +12,11 @@ MapSize: 104,168
 
 Bounds: 17,6,83,152
 
-UseAsShellmap: False
+Visibility: Lobby
 
 Type: Conquest
+
+Videos:
 
 Options:
 

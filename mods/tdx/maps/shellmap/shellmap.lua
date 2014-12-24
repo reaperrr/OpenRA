@@ -11,7 +11,7 @@ end
 WorldLoaded = function()
 	viewportOrigin = Camera.Position
 	LoadTransport(lst1, "mrpg")
-	LoadTransport(lst2, "htnk")
+	LoadTransport(lst2, "htnk2")
 	LoadTransport(lst3, "mtnk")
 	local units = { boat1, boat2, boat3, boat4, lst1, lst2, lst3}
 	for i, unit in ipairs(units) do

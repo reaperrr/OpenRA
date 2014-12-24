@@ -1,6 +1,4 @@
-Selectable: False
-
-MapFormat: 6
+MapFormat: 7
 
 RequiresMod: cnc
 
@@ -10,17 +8,17 @@ Description: Nod has captured classified GDI property.\n\nYou must find and retr
 
 Author: Westwood Studios
 
-PreviewVideo: gdi4b.vqa
-
 Tileset: TEMPERAT
 
 MapSize: 64,64
 
 Bounds: 7,24,51,36
 
-UseAsShellmap: False
+Visibility: MissionSelector
 
 Type: Campaign
+
+Videos:
 
 Options:
 	Cheats: False

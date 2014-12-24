@@ -1,6 +1,4 @@
-Selectable: False
-
-MapFormat: 6
+MapFormat: 7
 
 RequiresMod: cnc
 
@@ -10,17 +8,17 @@ Description: Defend your position, deploy the MCV, then build a sizable force to
 
 Author: Westwood Studios
 
-PreviewVideo: gdi2.vqa
-
 Tileset: TEMPERAT
 
 MapSize: 64,64
 
 Bounds: 31,31,31,31
 
-UseAsShellmap: False
+Visibility: MissionSelector
 
 Type: Campaign
+
+Videos:
 
 Options:
 	Crates: False

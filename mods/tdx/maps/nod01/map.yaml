@@ -1,6 +1,4 @@
-Selectable: False
-
-MapFormat: 6
+MapFormat: 7
 
 RequiresMod: cnc
 
@@ -10,17 +8,17 @@ Description: In order for the Brotherhood to gain a foothold, we must begin by e
 
 Author: Westwood Studios
 
-PreviewVideo: nod1.vqa
-
 Tileset: DESERT
 
 MapSize: 64,64
 
 Bounds: 21,14,37,24
 
-UseAsShellmap: False
+Visibility: MissionSelector
 
 Type: Campaign
+
+Videos:
 
 Options:
 	Crates: False
