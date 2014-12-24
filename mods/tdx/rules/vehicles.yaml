@@ -433,6 +433,59 @@ HTNK:
 	Selectable:
 		Bounds: 34,34,0,-3
 
+HTNK2:
+	Inherits: ^Tank
+	Valued:
+		Cost: 1750
+	Tooltip:
+		Name: Mammoth Tank X66-2
+		Description: Heavily armored GDI Tank. \nCan attack Aircraft.\n  Strong vs Everything
+	Buildable:
+		BuildPaletteOrder: 60
+		Prerequisites: eye, ~vehicles.gdi, ~techlevel.high
+		Queue: Vehicle
+	Mobile:
+		Crushes: wall, heavywall, crate, infantry
+		Speed: 56
+		ROT: 3
+	Health:
+		HP: 900
+		Radius: 598
+	Armor:
+		Type: Heavy
+	RevealsShroud:
+		Range: 6c0
+	Turreted:
+		ROT: 3
+	Armament@PRIMARY:
+		Weapon: 120mmDual
+		LocalOffset: 900,180,340, 900,-180,340
+		Recoil: 170
+		RecoilRecovery: 42
+		MuzzleSequence: muzzle
+		MuzzleSplitFacings: 16
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: MammothMissiles
+		LocalOffset: -85,384,340, -85,-384,340
+		LocalYaw: -100, 100
+		Recoil: 10
+	AttackTurreted:
+	WithMuzzleFlash:
+		SplitFacings: true
+	RenderUnit:
+	WithTurret:
+	AutoTarget:
+	SelfHealing:
+		Ticks: 10
+		HealIfBelow: 50%
+		DamageCooldown: 200
+	Explodes:
+		Weapon: UnitExplodeSmall
+		EmptyWeapon: UnitExplodeSmall
+	Selectable:
+		Bounds: 34,34,0,-1
+
 MSAM:
 	Inherits: ^Tank
 	Valued:

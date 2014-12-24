@@ -126,6 +126,64 @@ htnk:
 	icon: htnkicnh
 		Start: 0
 
+htnk2:
+	idle:
+		Start: 0
+		Facings: 32
+	turret:
+		Start: 32
+		Facings: 32
+	muzzle0: cann-n
+		Start: 0
+		Length: *
+	muzzle1: cann-nnw
+		Start: 0
+		Length: *
+	muzzle2: cann-nw
+		Start: 0
+		Length: *
+	muzzle3: cann-nww
+		Start: 0
+		Length: *
+	muzzle4: cann-w
+		Start: 0
+		Length: *
+	muzzle5: cann-sww
+		Start: 0
+		Length: *
+	muzzle6: cann-sw
+		Start: 0
+		Length: *
+	muzzle7: cann-ssw
+		Start: 0
+		Length: *
+	muzzle8: cann-s
+		Start: 0
+		Length: *
+	muzzle9: cann-sse
+		Start: 0
+		Length: *
+	muzzle10: cann-se
+		Start: 0
+		Length: *
+	muzzle11: cann-see
+		Start: 0
+		Length: *
+	muzzle12: cann-e
+		Start: 0
+		Length: *
+	muzzle13: cann-nee
+		Start: 0
+		Length: *
+	muzzle14: cann-ne
+		Start: 0
+		Length: *
+	muzzle15: cann-nne
+		Start: 0
+		Length: *
+	icon: htnkicnh
+		Start: 0
+
 jeep:
 	idle:
 		Start: 0
