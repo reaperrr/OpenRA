@@ -47,12 +47,12 @@ Rules:
 	./mods/tdx/rules/tdx_aircraft.yaml
 	./mods/tdx/rules/tdx_vehicles.yaml
 	./mods/tdx/rules/civilian.yaml
+	./mods/tdx/rules/ships.yaml
 #
 	./mods/cnc/rules/misc.yaml
 	./mods/cnc/rules/trees.yaml
 	./mods/cnc/rules/civilian-desert.yaml
 	./mods/cnc/rules/tech.yaml
-	./mods/tdx/rules/ships.yaml
 	./mods/cnc/rules/husks.yaml
 
 Weapons:
@@ -85,10 +85,7 @@ Chrome:
 
 Assemblies:
 	./mods/common/OpenRA.Mods.Common.dll
-	./mods/ra/OpenRA.Mods.RA.dll
-	./mods/d2k/OpenRA.Mods.D2k.dll
 	./mods/cnc/OpenRA.Mods.Cnc.dll
-	./mods/ts/OpenRA.Mods.TS.dll
 
 ChromeLayout:
 	./mods/ts/chrome/install.yaml
@@ -127,22 +124,18 @@ ChromeLayout:
 	./mods/ra/chrome/assetbrowser.yaml
 	./mods/ra/chrome/missionbrowser.yaml
 	./mods/ra/chrome/confirmation-dialogs.yaml
-
-Movies:
-	./mods/cnc/movies-gdi.yaml
-	./mods/cnc/movies-nod.yaml
 	
 Translations:
 	./mods/cnc/languages/english.yaml
 
 Voices:
-	./mods/cnc/voices.yaml
+	./mods/cnc/audio/voices.yaml
 
 Notifications:
-	./mods/tdx/notifications.yaml
+	./mods/tdx/audio/notifications.yaml
 
 Music:
-	./mods/tdx/music.yaml
+	./mods/tdx/audio/music.yaml
 
 Missions:
 	./mods/cnc/missions.yaml
@@ -220,3 +213,11 @@ Fonts:
 SupportsMapsFrom: cnc, tdx
 
 SpriteFormats: ShpTD, TmpTD, ShpTS, TmpRA
+
+SpriteSequenceFormat: TilesetSpecificSpriteSequence
+	TilesetExtensions:
+		TEMPERAT: .tem
+		WINTER: .win
+		SNOW: .sno
+		DESERT: .des
+		JUNGLE: .jun
