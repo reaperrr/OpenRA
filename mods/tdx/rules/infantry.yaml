@@ -18,8 +18,8 @@ E1:
 		Weapon: M16
 	AttackFrontal:
 	WithInfantryBody:
-		IdleSequences: idle1,idle2,idle3,idle4
-		StandSequences: stand, stand2
+		IdleSequences: idle1,idle2,idle4
+		StandSequences: stand
 
 E2:
 	Inherits: ^Infantry
@@ -45,7 +45,7 @@ E2:
 	AttackFrontal:
 	WithInfantryBody:
 		IdleSequences: idle1,idle2
-		StandSequences: stand, stand2
+		StandSequences: stand
 	Explodes:
 		Weapon: GrenadierExplode
 		EmptyWeapon: GrenadierExplode
@@ -76,7 +76,7 @@ E3:
 	AttackFrontal:
 	WithInfantryBody:
 		IdleSequences: idle1,idle2
-		StandSequences: stand, stand2
+		StandSequences: stand,stand2
 
 E4:
 	Inherits: ^Infantry
@@ -106,7 +106,7 @@ E4:
 		SplitFacings: true
 	WithInfantryBody:
 		IdleSequences: idle1,idle2
-		StandSequences: stand, stand2
+		StandSequences: stand
 
 E5:
 	Inherits: ^Infantry
@@ -142,7 +142,7 @@ E5:
 	-PoisonedByTiberium:
 	WithInfantryBody:
 		IdleSequences: idle1,idle2
-		StandSequences: stand, stand2
+		StandSequences: stand
 
 E6:
 	Inherits: ^Infantry
@@ -169,7 +169,7 @@ E6:
 	-AutoTarget:
 	WithInfantryBody:
 		IdleSequences: idle1,idle2
-		StandSequences: stand, stand2
+		StandSequences: stand
 	-GainsExperience:
 
 RMBO:
@@ -203,7 +203,7 @@ RMBO:
 	AttackFrontal:
 	WithInfantryBody:
 		IdleSequences: idle1,idle2,idle3
-		StandSequences: stand, stand2
+		StandSequences: stand,stand2
 	AnnounceOnBuild:
 	AnnounceOnKill:
 

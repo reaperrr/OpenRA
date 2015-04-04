@@ -155,6 +155,8 @@
 		SpeedModifier: 60
 	RenderSprites:
 	WithInfantryBody:
+		MinIdleWaitTicks: 100
+		MaxIdleWaitTicks: 200
 	WithDeathAnimation:
 	AttackMove:
 	Passenger:
@@ -168,7 +170,7 @@
 	SpawnViceroid:
 		Probability: 10
 	Crushable:
-		WarnProbability: 67
+		WarnProbability: 50
 		CrushSound: squish2.aud
 	CombatDebugOverlay:
 	Guard:
@@ -237,9 +239,6 @@
 		HP: 1000
 	Armor:
 		Type: Wood
-	Buildable:
-		Queue: Biolab
-		BuildPaletteOrder: 50
 	Valued:
 		Cost: 1000
 	Tooltip:
