@@ -1009,6 +1009,18 @@ Rules:
 		-CrateSpawner:
 		LuaScript:
 			Scripts: shellmap.lua
+		WorldPaletteEffect:
+			DayNightCycle: true
+			InitialEffect: Day
+			MorningDayTransitionLength: 250
+			DayLength: 250
+			DayEveningTransitionLength: 250
+			EveningNightTransitionLength: 250
+			NightLength: 250
+			NightMorningTransitionLength: 250
+			DaylightFactorRed: 110
+			DaylightFactorGreen: 115
+			DaylightFactorBlue: 115
 	LST:
 		Mobile:
 			Speed: 42
