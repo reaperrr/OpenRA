@@ -1007,23 +1007,14 @@ Rules:
 		-SpawnMPUnits:
 		-MPStartLocations:
 		-CrateSpawner:
-		PlayMusicOnMapLoad:
-			Music: map1
-			Loop: false
 		LuaScript:
 			Scripts: shellmap.lua
-		LoadWidgetAtGameStart:
-			Widget: MAINMENU
 	LST:
 		Mobile:
 			Speed: 42
 	BOAT:
 		Mobile:
 			Speed: 42
-		SelfHealing:
-			Ticks: 10
-			HealIfBelow: 90%
-			DamageCooldown: 0
 
 Sequences:
 
@@ -1032,7 +1023,7 @@ VoxelSequences:
 Weapons:
 	ArtilleryShell:
 		ReloadDelay: 65
-		Range: 13c0
+		Range: 14c512
 
 Voices:
 

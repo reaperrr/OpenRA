@@ -10,19 +10,24 @@ end
 
 WorldLoaded = function()
 	viewportOrigin = Camera.Position
-	LoadTransport(lst1, "mrpg")
-	LoadTransport(lst2, "htnk2")
-	LoadTransport(lst3, "mtnk")
+	LoadTransport(lst1, "htnk2")
+	LoadTransport(lst2, "mcv")
+	LoadTransport(lst3, "mrpg")
 	local units = { boat1, boat2, boat3, boat4, lst1, lst2, lst3}
 	for i, unit in ipairs(units) do
 		LoopTrack(unit, CPos.New(8, unit.Location.Y), CPos.New(87, unit.Location.Y))
 	end
+	PlayMusic()
 end
 
 LoopTrack = function(actor, left, right)
 	actor.ScriptedMove(left)
 	actor.Teleport(right)
 	actor.CallFunc(function() LoopTrack(actor, left, right) end)
+end
+
+PlayMusic = function()
+	Media.PlayMusic("map1", PlayMusic)
 end
 
 LoadTransport = function(transport, passenger)
