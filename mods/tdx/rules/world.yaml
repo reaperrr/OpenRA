@@ -6,10 +6,9 @@ World:
 	ScreenMap:
 	ActorMap:
 	LoadWidgetAtGameStart:
-		Widget: INGAME_ROOT
+#		Widget: INGAME_ROOT
 	MenuPaletteEffect:
 		MenuEffect: Desaturated
-	ChooseBuildTabOnSelect:
 	CloakPaletteEffect:
 	ScreenShaker:
 	NukePaletteEffect:

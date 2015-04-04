@@ -150,7 +150,8 @@
 		TargetTypes: Ground, Infantry
 	TakeCover:
 		SpeedModifier: 60
-	RenderInfantry:
+	RenderSprites:
+	WithInfantryBody:
 	WithDeathAnimation:
 	AttackMove:
 	Passenger:
@@ -170,12 +171,16 @@
 	Guard:
 	Guardable:
 	BodyOrientation:
-	SelfHealing:
+	SelfHealing@HOSPITAL:
 		Step: 5
 		Ticks: 100
 		HealIfBelow: 1
 		DamageCooldown: 125
-		RequiresTech: InfantryHealing
+		UpgradeTypes: hospitalheal
+		UpgradeMinEnabledLevel: 1
+	GlobalUpgradable:
+		Upgrades: hospitalheal
+		Prerequisites: hosp
 	UpdatesPlayerStatistics:
 	Huntable:
 	DetectCloaked:
@@ -337,6 +342,7 @@
 		DestroyedSound: crumble.aud
 	RenderBuilding:
 	WithBuildingExplosion:
+		Delay: 1
 	EmitInfantryOnSell:
 		ActorTypes: e6,e1
 	GivesExperience:
@@ -366,7 +372,9 @@
 	RepairableBuilding:
 		RepairPercent: 40
 		RepairStep: 14
-	DeadBuildingState:
+	WithDeathAnimation:
+		DeathSequence: dead
+		UseDeathTypeSuffix: false
 	GivesBuildableArea:
 	EngineerRepairable:
 	Sellable:
@@ -382,6 +390,7 @@
 	Building:
 	Tooltip:
 		Name: Civilian Building
+		GenericVisibility: None
 	FrozenUnderFog:
 		StartsRevealed: true
 
@@ -395,6 +404,7 @@
 		RelativeToTopLeft: yes
 	Tooltip:
 		Name: Civilian Building (Destroyed)
+		GenericVisibility: None
 	BodyOrientation:
 	FrozenUnderFog:
 		StartsRevealed: true
@@ -436,6 +446,7 @@
 		RelativeToTopLeft: yes
 	Tooltip:
 		Name: Field (Destroyed)
+		GenericVisibility: None
 	BodyOrientation:
 	RenderBuilding:
 		Palette: terrain
@@ -457,7 +468,7 @@
 	Crushable:
 		CrushClasses: wall
 		CrushedByFriendlies: true
-	BlocksBullets:
+	BlocksProjectiles:
 	LineBuild:
 		Range: 8
 		NodeTypes: wall
@@ -491,7 +502,9 @@
 		RelativeToTopLeft: yes
 	Health:
 		HP: 500
-	DeadBuildingState:
+	WithDeathAnimation:
+		DeathSequence: dead
+		UseDeathTypeSuffix: false
 	Armor:
 		Type: Wood
 	AutoTargetIgnore:
