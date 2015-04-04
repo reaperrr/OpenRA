@@ -100,7 +100,7 @@ E4:
 		LocalOffset: 341,0,256
 		FireDelay: 3
 		MuzzleSequence: muzzle
-		MuzzleSplitFacings: 32
+		MuzzleSplitFacings: 8
 	AttackFrontal:
 	WithMuzzleFlash:
 		SplitFacings: true
@@ -135,7 +135,7 @@ E5:
 		LocalOffset: 341,0,256
 		FireDelay: 3
 		MuzzleSequence: muzzle
-		MuzzleSplitFacings: 32
+		MuzzleSplitFacings: 8
 	AttackFrontal:
 	WithMuzzleFlash:
 		SplitFacings: true
@@ -255,4 +255,3 @@ RAPT:
 		Description: Bipedal with enlarged sickle-shaped claw on each hindfoot
 	Armament:
 		Weapon: claw
-

@@ -1,13 +1,16 @@
 mcv:
 	idle:
-		Start: 0
 		Facings: 32
-	icon: mcvicnh
-		Start: 0
+	icon: mcvicnh.tem
+		AddExtension: False
+
+mcv.destroyed:
+	idle: mcv
+		Facings: 32
+		ZOffset: -512
 
 harv:
 	idle:
-		Start: 0
 		Facings: 32
 	harvest:
 		Start: 32
@@ -15,92 +18,74 @@ harv:
 		Facings: 8
 		Tick: 60
 	dock: harvdump
-		Start: 0
 		Length: 7
 	dock-loop: harvdump
 		Start: 7
-		Length: 1
-	icon: harvicnh
-		Start: 0
+	icon: harvicnh.tem
+		AddExtension: False
+
+harv.destroyed:
+	idle: harv
+		Facings: 32
+		ZOffset: -512
 
 bggy:
 	idle:
-		Start: 0
 		Facings: 32
 	turret:
 		Start: 32
 		Facings: 32
 	muzzle: minigun
-		Start: 0
 		Length: 6
 		Facings: 8
-	icon: bggyicnh
-		Start: 0
+	icon: bggyicnh.tem
+		AddExtension: False
 
 mtnk:
 	idle: mtnk2
-		Start: 0
 		Facings: 32
 	turret: mtnk2
 		Start: 32
 		Facings: 32
 #	muzzle: gunfire2
-#		Start: 0
 #		Length: *
 	muzzle0: cann-n
-		Start: 0
 		Length: *
 	muzzle1: cann-nnw
-		Start: 0
 		Length: *
 	muzzle2: cann-nw
-		Start: 0
 		Length: *
 	muzzle3: cann-nww
-		Start: 0
 		Length: *
 	muzzle4: cann-w
-		Start: 0
 		Length: *
 	muzzle5: cann-sww
-		Start: 0
 		Length: *
 	muzzle6: cann-sw
-		Start: 0
 		Length: *
 	muzzle7: cann-ssw
-		Start: 0
 		Length: *
 	muzzle8: cann-s
-		Start: 0
 		Length: *
 	muzzle9: cann-sse
-		Start: 0
 		Length: *
 	muzzle10: cann-se
-		Start: 0
 		Length: *
 	muzzle11: cann-see
-		Start: 0
 		Length: *
 	muzzle12: cann-e
-		Start: 0
 		Length: *
 	muzzle13: cann-nee
-		Start: 0
 		Length: *
 	muzzle14: cann-ne
-		Start: 0
 		Length: *
 	muzzle15: cann-nne
-		Start: 0
 		Length: *
-	icon: mtnkicnh
-		Start: 0
+	icon: mtnkicnh.tem
+		AddExtension: False
 
 ltnk:
 	idle:
-		Start: 0
 		Facings: 32
 		Offset: 1,0
 	turret:
@@ -108,242 +93,135 @@ ltnk:
 		Facings: 32
 		Offset: 1,0
 	muzzle: gunfire2
-		Start: 0
 		Length: *
-	icon: ltnkicnh
-		Start: 0
+	icon: ltnkicnh.tem
+		AddExtension: False
 
 htnk:
 	idle:
-		Start: 0
 		Facings: 32
 	turret:
 		Start: 32
 		Facings: 32
 	muzzle: gunfire2
-		Start: 0
 		Length: *
-	icon: htnkicnh
-		Start: 0
-
-htnk2:
-	idle:
-		Start: 0
-		Facings: 32
-	turret:
-		Start: 32
-		Facings: 32
-	muzzle0: cann-n
-		Start: 0
-		Length: *
-	muzzle1: cann-nnw
-		Start: 0
-		Length: *
-	muzzle2: cann-nw
-		Start: 0
-		Length: *
-	muzzle3: cann-nww
-		Start: 0
-		Length: *
-	muzzle4: cann-w
-		Start: 0
-		Length: *
-	muzzle5: cann-sww
-		Start: 0
-		Length: *
-	muzzle6: cann-sw
-		Start: 0
-		Length: *
-	muzzle7: cann-ssw
-		Start: 0
-		Length: *
-	muzzle8: cann-s
-		Start: 0
-		Length: *
-	muzzle9: cann-sse
-		Start: 0
-		Length: *
-	muzzle10: cann-se
-		Start: 0
-		Length: *
-	muzzle11: cann-see
-		Start: 0
-		Length: *
-	muzzle12: cann-e
-		Start: 0
-		Length: *
-	muzzle13: cann-nee
-		Start: 0
-		Length: *
-	muzzle14: cann-ne
-		Start: 0
-		Length: *
-	muzzle15: cann-nne
-		Start: 0
-		Length: *
-	icon: htnkicnh
-		Start: 0
+	icon: htnkicnh.tem
+		AddExtension: False
 
 jeep:
 	idle:
-		Start: 0
 		Facings: 32
 	turret:
 		Start: 32
 		Facings: 32
 	muzzle: minigun
-		Start: 0
 		Length: 6
 		Facings: 8
-	icon: jeepicnh
-		Start: 0
+	icon: jeepicnh.tem
+		AddExtension: False
 
 bike:
 	idle:
-		Start: 0
 		Facings: 32
-	icon: bikeicnh
-		Start: 0
+	icon: bikeicnh.tem
+		AddExtension: False
 
 ftnk:
 	idle:
-		Start: 0
 		Facings: 32
 	muzzle0: flame-00
-		Start: 0
 		Length: *
 	muzzle1: flame-01
-		Start: 0
 		Length: *
 	muzzle2: flame-02
-		Start: 0
 		Length: *
 	muzzle3: flame-03
-		Start: 0
 		Length: *
 	muzzle4: flame-04
-		Start: 0
 		Length: *
 	muzzle5: flame-05
-		Start: 0
 		Length: *
 	muzzle6: flame-06
-		Start: 0
 		Length: *
 	muzzle7: flame-07
-		Start: 0
 		Length: *
 	muzzle8: flame-08
-		Start: 0
 		Length: *
 	muzzle9: flame-09
-		Start: 0
 		Length: *
 		ZOffset: 127
 	muzzle10: flame-10
-		Start: 0
 		Length: *
 		ZOffset: 127
 	muzzle11: flame-11
-		Start: 0
 		Length: *
 		ZOffset: 127
 	muzzle12: flame-12
-		Start: 0
 		Length: *
 		ZOffset: 127
 	muzzle13: flame-13
-		Start: 0
 		Length: *
 		ZOffset: 127
 	muzzle14: flame-14
-		Start: 0
 		Length: *
 		ZOffset: 127
 	muzzle15: flame-15
-		Start: 0
 		Length: *
 		ZOffset: 127
 	muzzle16: flame-16
-		Start: 0
 		Length: *
 		ZOffset: 127
 	muzzle17: flame-17
-		Start: 0
 		Length: *
 		ZOffset: 127
 	muzzle18: flame-18
-		Start: 0
 		Length: *
 		ZOffset: 127
 	muzzle19: flame-19
-		Start: 0
 		Length: *
 		ZOffset: 127
 	muzzle20: flame-20
-		Start: 0
 		Length: *
 		ZOffset: 127
 	muzzle21: flame-21
-		Start: 0
 		Length: *
 		ZOffset: 127
 	muzzle22: flame-22
-		Start: 0
 		Length: *
 		ZOffset: 127
 	muzzle23: flame-23
-		Start: 0
 		Length: *
 		ZOffset: 127
 	muzzle24: flame-24
-		Start: 0
 		Length: *
 		ZOffset: 127
 	muzzle25: flame-25
-		Start: 0
 		Length: *
-		ZOffset: 127
 	muzzle26: flame-26
-		Start: 0
 		Length: *
-		ZOffset: 127
 	muzzle27: flame-27
-		Start: 0
 		Length: *
-		ZOffset: 127
 	muzzle28: flame-28
-		Start: 0
 		Length: *
-		ZOffset: 127
 	muzzle29: flame-29
-		Start: 0
 		Length: *
-		ZOffset: 127
 	muzzle30: flame-30
-		Start: 0
 		Length: *
-		ZOffset: 127
 	muzzle31: flame-31
-		Start: 0
 		Length: *
-		ZOffset: 127
-	icon: ftnkicnh
-		Start: 0
+	icon: ftnkicnh.tem
+		AddExtension: False
 
 mhq:
 	idle:
-		Start: 0
 		Facings: 32
 	spinner:
 		Start: 32
 		Length: 32
 	icon: mhqicnh
-		Start: 0
 
 msam:
 	idle:
-		Start: 0
 		Facings: 32
 	turret:
 		Start: 32
@@ -354,12 +232,11 @@ msam:
 	turret-3:
 		Start: 64
 		Facings: 32
-	icon: msamicnh
-		Start: 0
+	icon: msamicnh.tem
+		AddExtension: False
 
 mlrs:
 	idle:
-		Start: 0
 		Facings: 32
 	turret:
 		Start: 32
@@ -370,32 +247,27 @@ mlrs:
 	turret-3:
 		Start: 96
 		Facings: 32
-	icon: mlrsicnh
-		Start: 0
+	icon: mlrsicnh.tem
+		AddExtension: False
 
 stnk:
 	idle:
-		Start: 0
 		Facings: 32
-	icon: stnkicnh
-		Start: 0
+	icon: stnkicnh.tem
+		AddExtension: False
 
 arty:
 	idle:
-		Start: 0
 		Facings: 32
 	muzzle: gunfire2
-		Start: 0
 		Length: *
-	icon: artyicnh
-		Start: 0
+	icon: artyicnh.tem
+		AddExtension: False
 
 apc:
 	idle:
-		Start: 0
 		Facings: 32
 	muzzle: minigun
-		Start: 0
 		Length: 6
 		Facings: 8
 	close:
@@ -403,5 +275,5 @@ apc:
 		Length: 3
 	unload:
 		Start: 32
-	icon: apcicnh
-		Start: 0
+	icon: apcicnh.tem
+		AddExtension: False

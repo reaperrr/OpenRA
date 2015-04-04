@@ -144,7 +144,6 @@ ARTY:
 	Explodes:
 		Weapon: UnitExplode
 		EmptyWeapon: UnitExplode
-		Chance: 75
 	AutoTarget:
 		InitialStance: Defend
 #	LeavesHusk:
@@ -624,4 +623,3 @@ MHQ:
 	Explodes:
 		Weapon: UnitExplodeSmall
 		EmptyWeapon: UnitExplodeSmall
-

@@ -62,16 +62,16 @@ Weapons:
 	./mods/tdx/weapons/smallarms_weapons.yaml
 
 Sequences:
-	./mods/tdx/sequences/tdx_aircraft.yaml
-	./mods/tdx/sequences/tdx_misc.yaml
-	./mods/tdx/sequences/tdx_vehicles.yaml
-	./mods/tdx/sequences/structures.yaml
-	./mods/tdx/sequences/vehicles.yaml
-	./mods/tdx/sequences/infantry.yaml
+	./mods/tdx/sequences/tdx-aircraft.yaml
+	./mods/tdx/sequences/tdx-explosions.yaml
+	./mods/tdx/sequences/tdx-misc.yaml
+	./mods/tdx/sequences/tdx-vehicles.yaml
+	./mods/tdx/sequences/cnc-structures.yaml
+	./mods/tdx/sequences/cnc-vehicles.yaml
+	./mods/tdx/sequences/cnc-infantry.yaml
 #
 	./mods/cnc/sequences/aircraft.yaml
 	./mods/cnc/sequences/decorations.yaml
-	./mods/cnc/sequences/misc.yaml
 	./mods/cnc/sequences/funpark.yaml
 	./mods/cnc/sequences/civilian.yaml
 	./mods/cnc/sequences/campaign.yaml

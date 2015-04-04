@@ -1,258 +1,115 @@
 vice:
+	Defaults: 
+		Length: *
 	idle:
-		Start: 0
-		Length: *
 	muzzle0: chem-00
-		Start: 0
-		Length: *
 	muzzle1: chem-01
-		Start: 0
-		Length: *
 	muzzle2: chem-02
-		Start: 0
-		Length: *
 	muzzle3: chem-03
-		Start: 0
-		Length: *
 	muzzle4: chem-04
-		Start: 0
-		Length: *
 	muzzle5: chem-05
-		Start: 0
-		Length: *
 	muzzle6: chem-06
-		Start: 0
-		Length: *
 	muzzle7: chem-07
-		Start: 0
-		Length: *
 	muzzle8: chem-08
-		Start: 0
-		Length: *
 	muzzle9: chem-09
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle10: chem-10
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle11: chem-11
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle12: chem-12
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle13: chem-13
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle14: chem-14
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle15: chem-15
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle16: chem-16
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle17: chem-17
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle18: chem-18
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle19: chem-19
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle20: chem-20
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle21: chem-21
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle22: chem-22
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle23: chem-23
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle24: chem-24
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle25: chem-25
-		Start: 0
-		Length: *
-		ZOffset: 127
 	muzzle26: chem-26
-		Start: 0
-		Length: *
-		ZOffset: 127
 	muzzle27: chem-27
-		Start: 0
-		Length: *
-		ZOffset: 127
 	muzzle28: chem-28
-		Start: 0
-		Length: *
-		ZOffset: 127
 	muzzle29: chem-29
-		Start: 0
-		Length: *
-		ZOffset: 127
 	muzzle30: chem-30
-		Start: 0
-		Length: *
-		ZOffset: 127
 	muzzle31: chem-31
-		Start: 0
-		Length: *
-		ZOffset: 127
 	icon: viceicnh
-		Start: 0
+		Length: 1
 
 pvice:
+	Defaults: 
+		Length: *
 	idle:
-		Start: 0
-		Length: *
 	muzzle0: chem-00
-		Start: 0
-		Length: *
 	muzzle1: chem-01
-		Start: 0
-		Length: *
 	muzzle2: chem-02
-		Start: 0
-		Length: *
 	muzzle3: chem-03
-		Start: 0
-		Length: *
 	muzzle4: chem-04
-		Start: 0
-		Length: *
 	muzzle5: chem-05
-		Start: 0
-		Length: *
 	muzzle6: chem-06
-		Start: 0
-		Length: *
 	muzzle7: chem-07
-		Start: 0
-		Length: *
 	muzzle8: chem-08
-		Start: 0
-		Length: *
 	muzzle9: chem-09
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle10: chem-10
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle11: chem-11
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle12: chem-12
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle13: chem-13
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle14: chem-14
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle15: chem-15
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle16: chem-16
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle17: chem-17
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle18: chem-18
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle19: chem-19
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle20: chem-20
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle21: chem-21
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle22: chem-22
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle23: chem-23
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle24: chem-24
-		Start: 0
-		Length: *
 		ZOffset: 127
 	muzzle25: chem-25
-		Start: 0
-		Length: *
-		ZOffset: 127
 	muzzle26: chem-26
-		Start: 0
-		Length: *
-		ZOffset: 127
 	muzzle27: chem-27
-		Start: 0
-		Length: *
-		ZOffset: 127
 	muzzle28: chem-28
-		Start: 0
-		Length: *
-		ZOffset: 127
 	muzzle29: chem-29
-		Start: 0
-		Length: *
-		ZOffset: 127
 	muzzle30: chem-30
-		Start: 0
-		Length: *
-		ZOffset: 127
 	muzzle31: chem-31
-		Start: 0
-		Length: *
-		ZOffset: 127
 	icon: viceicnh
-		Start: 0
+		Length: 1
 
 e1:
 	stand:
-		Start: 0
 		Facings: 8
 	stand2:
 		Start: 8
@@ -346,12 +203,11 @@ e1:
 		Length: 4
 		Tick: 1600
 		ZOffset: -511
-	icon: e1icnh
-		Start: 0
+	icon: e1icnh.tem
+		AddExtension: False
 
 e2:
 	stand:
-		Start: 0
 		Facings: 8
 	stand2:
 		Start: 8
@@ -436,12 +292,11 @@ e2:
 		Length: 4
 		Tick: 1600
 		ZOffset: -511
-	icon: e2icnh
-		Start: 0
+	icon: e2icnh.tem
+		AddExtension: False
 
 e3:
 	stand:
-		Start: 0
 		Facings: 8
 	stand2:
 		Start: 8
@@ -526,12 +381,11 @@ e3:
 		Length: 4
 		Tick: 1600
 		ZOffset: -511
-	icon: e3icnh
-		Start: 0
+	icon: e3icnh.tem
+		AddExtension: False
 
 e4:
 	stand:
-		Start: 0
 		Facings: 8
 	stand2:
 		Start: 8
@@ -616,131 +470,35 @@ e4:
 		Length: 4
 		Tick: 1600
 		ZOffset: -511
-	muzzle0: flame-00
-		Start: 0
+	muzzle0: flame-n
 		Length: *
-	muzzle1: flame-01
-		Start: 0
+		Offset: 1,6
+	muzzle1: flame-nw
 		Length: *
-	muzzle2: flame-02
-		Start: 0
+		Offset: 8,7
+	muzzle2: flame-w
 		Length: *
-	muzzle3: flame-03
-		Start: 0
+		Offset: 8,2
+	muzzle3: flame-sw
 		Length: *
-	muzzle4: flame-04
-		Start: 0
+		Offset: 7,-2
+	muzzle4: flame-s
 		Length: *
-	muzzle5: flame-05
-		Start: 0
+		Offset: 1,-2
+	muzzle5: flame-se
 		Length: *
-	muzzle6: flame-06
-		Start: 0
+		Offset: -5,-2
+	muzzle6: flame-e
 		Length: *
-	muzzle7: flame-07
-		Start: 0
+		Offset: -7,2
+	muzzle7: flame-ne
 		Length: *
-	muzzle8: flame-08
-		Start: 0
-		Length: *
-	muzzle9: flame-09
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle10: flame-10
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle11: flame-11
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle12: flame-12
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle13: flame-13
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle14: flame-14
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle15: flame-15
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle16: flame-16
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle17: flame-17
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle18: flame-18
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle19: flame-19
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle20: flame-20
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle21: flame-21
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle22: flame-22
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle23: flame-23
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle24: flame-24
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle25: flame-25
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle26: flame-26
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle27: flame-27
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle28: flame-28
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle29: flame-29
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle30: flame-30
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle31: flame-31
-		Start: 0
-		Length: *
-		ZOffset: 127
-	icon: e4icnh
-		Start: 0
+		Offset: -7,8
+	icon: e4icnh.tem
+		AddExtension: False
 
 e5:
 	stand:
-		Start: 0
 		Facings: 8
 	stand2:
 		Start: 8
@@ -825,131 +583,35 @@ e5:
 		Length: 4
 		Tick: 1600
 		ZOffset: -511
-	muzzle0: chem-00
-		Start: 0
+	muzzle0: chem-n
 		Length: *
-	muzzle1: chem-01
-		Start: 0
+		Offset: 1,2
+	muzzle1: chem-nw
 		Length: *
-	muzzle2: chem-02
-		Start: 0
+		Offset: 8,2
+	muzzle2: chem-w
 		Length: *
-	muzzle3: chem-03
-		Start: 0
+		Offset: 8,-3
+	muzzle3: chem-sw
 		Length: *
-	muzzle4: chem-04
-		Start: 0
+		Offset: 7,-6
+	muzzle4: chem-s
 		Length: *
-	muzzle5: chem-05
-		Start: 0
+		Offset: 1,-6
+	muzzle5: chem-se
 		Length: *
-	muzzle6: chem-06
-		Start: 0
+		Offset: -5,-6
+	muzzle6: chem-e
 		Length: *
-	muzzle7: chem-07
-		Start: 0
+		Offset: -7,-3
+	muzzle7: chem-ne
 		Length: *
-	muzzle8: chem-08
-		Start: 0
-		Length: *
-	muzzle9: chem-09
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle10: chem-10
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle11: chem-11
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle12: chem-12
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle13: chem-13
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle14: chem-14
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle15: chem-15
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle16: chem-16
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle17: chem-17
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle18: chem-18
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle19: chem-19
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle20: chem-20
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle21: chem-21
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle22: chem-22
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle23: chem-23
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle24: chem-24
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle25: chem-25
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle26: chem-26
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle27: chem-27
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle28: chem-28
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle29: chem-29
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle30: chem-30
-		Start: 0
-		Length: *
-		ZOffset: 127
-	muzzle31: chem-31
-		Start: 0
-		Length: *
-		ZOffset: 127
-	icon: e5icnh
-		Start: 0
+		Offset: -3,2
+	icon: e5icnh.tem
+		AddExtension: False
 
 e6:
 	stand:
-		Start: 0
 		Facings: 8
 	stand2:
 		Start: 8
@@ -1026,12 +688,11 @@ e6:
 		Length: 4
 		Tick: 1600
 		ZOffset: -511
-	icon: e6icnh
-		Start: 0
+	icon: e6icnh.tem
+		AddExtension: False
 
 rmbo:
 	stand:
-		Start: 0
 		Facings: 8
 	stand2:
 		Start: 8
@@ -1120,5 +781,5 @@ rmbo:
 		Length: 4
 		Tick: 1600
 		ZOffset: -511
-	icon: rmboicnh
-		Start: 0
+	icon: rmboicnh.tem
+		AddExtension: False
