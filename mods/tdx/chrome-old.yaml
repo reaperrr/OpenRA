@@ -1,322 +1,118 @@
-sidebar-allies: chrome.png
-	background-top: 0,167,238,290
-	background-iconrow: 0,457,238,47
-	background-bottom: 0,504,238,8
-	background-supportoverlay: 184,118,64,48
+chrome-gdi: chrome-gdi.png
+	specialbin-top: 0,0,30,51
+	specialbin-middle: 0,51,30,51
+	specialbin-bottom: 0,153,30,39
+	moneybin: 192,0,320,32
+	tooltip-bg: 0,288,272,136
+	radar: 297,31,210,222
 
-sidebar-button-allies: chrome.png
-	background: 59,31,22,22
-	border-r: 81,31,3,22
-	border-l: 56,31,3,22
-	border-b: 59,53,22,3
-	border-t: 59,28,22,3
-	corner-tl: 56,28,3,3
-	corner-tr: 81,28,3,3
-	corner-bl: 56,53,3,3
-	corner-br: 81,53,3,3
-sidebar-button-allies-hover: chrome.png
-	background: 59,3,22,22
-	border-r: 81,3,3,22
-	border-l: 56,3,3,22
-	border-b: 59,25,22,3
-	border-t: 59,0,22,3
-	corner-tl: 56,0,3,3
-	corner-tr: 81,0,3,3
-	corner-bl: 56,25,3,3
-	corner-br: 81,25,3,3
-sidebar-button-allies-pressed: chrome.png
-	background: 59,31,22,22
-	border-r: 81,31,3,22
-	border-l: 56,31,3,22
-	border-b: 59,53,22,3
-	border-t: 59,28,22,3
-	corner-tl: 56,28,3,3
-	corner-tr: 81,28,3,3
-	corner-bl: 56,53,3,3
-	corner-br: 81,53,3,3
-sidebar-button-allies-highlighted: chrome.png
-	background: 87,31,22,22
-	border-r: 109,31,3,22
-	border-l: 84,31,3,22
-	border-b: 87,53,22,3
-	border-t: 87,28,22,3
-	corner-tl: 84,28,3,3
-	corner-tr: 109,28,3,3
-	corner-bl: 84,53,3,3
-	corner-br: 109,53,3,3
-sidebar-button-allies-highlighted-hover: chrome.png
-	background: 87,3,22,22
-	border-r: 109,3,3,22
-	border-l: 84,3,3,22
-	border-b: 87,25,22,3
-	border-t: 87,0,22,3
-	corner-tl: 84,0,3,3
-	corner-tr: 109,0,3,3
-	corner-bl: 84,25,3,3
-	corner-br: 109,25,3,3
-sidebar-button-allies-highlighted-pressed: chrome.png
-	background: 87,31,22,22
-	border-r: 109,31,3,22
-	border-l: 84,31,3,22
-	border-b: 87,53,22,3
-	border-t: 87,28,22,3
-	corner-tl: 84,28,3,3
-	corner-tr: 109,28,3,3
-	corner-bl: 84,53,3,3
-	corner-br: 109,53,3,3
-sidebar-button-allies-disabled: chrome.png
-	background: 171,3,22,22
-	border-r: 193,3,3,22
-	border-l: 168,3,3,22
-	border-b: 171,25,22,3
-	border-t: 171,0,22,3
-	corner-tl: 168,0,3,3
-	corner-tr: 193,0,3,3
-	corner-bl: 168,25,3,3
-	corner-br: 193,25,3,3
-sidebar-button-allies-highlighted-disabled: chrome.png
-	background: 171,3,22,22
-	border-r: 193,3,3,22
-	border-l: 168,3,3,22
-	border-b: 171,25,22,3
-	border-t: 171,0,22,3
-	corner-tl: 168,0,3,3
-	corner-tr: 193,0,3,3
-	corner-bl: 168,25,3,3
-	corner-br: 193,25,3,3
+power-gdi: chrome-gdi.png
+	power-indicator: 187,4,4,7
 
-sidebar-soviet: chrome.png
-	background-top: 274,167,238,290
-	background-iconrow: 274,457,238,47
-	background-bottom: 274,504,238,8
-	background-supportoverlay: 249,118,64,48
+palette-gdi: chrome-gdi.png
+	top: 297,288,201,9
+	dock-top: 498,274,14,23
+	bottom: 297,489,201,9
+	dock-bottom: 498,489,14,23
+	bg-0: 297,297,201,48
+	dock-0: 498,297,14,48
+	bg-1: 297,345,201,48
+	dock-1: 498,345,14,48
+	bg-2: 297,393,201,48
+	dock-2: 498,393,14,48
+	bg-3: 297,441,201,48
+	dock-3: 498,441,14,48
 
-sidebar-button-soviet: chrome.png
-	background: 3,31,22,22
-	border-r: 25,31,3,22
-	border-l: 0,31,3,22
-	border-b: 3,53,22,3
-	border-t: 3,28,22,3
-	corner-tl: 0,28,3,3
-	corner-tr: 25,28,3,3
-	corner-bl: 0,53,3,3
-	corner-br: 25,53,3,3
-sidebar-button-soviet-hover: chrome.png
-	background: 3,3,22,22
-	border-r: 25,3,3,22
-	border-l: 0,3,3,22
-	border-b: 3,25,22,3
-	border-t: 3,0,22,3
-	corner-tl: 0,0,3,3
-	corner-tr: 25,0,3,3
-	corner-bl: 0,25,3,3
-	corner-br: 25,25,3,3
-sidebar-button-soviet-pressed: chrome.png
-	background: 3,31,22,22
-	border-r: 25,31,3,22
-	border-l: 0,31,3,22
-	border-b: 3,53,22,3
-	border-t: 3,28,22,3
-	corner-tl: 0,28,3,3
-	corner-tr: 25,28,3,3
-	corner-bl: 0,53,3,3
-	corner-br: 25,53,3,3
-sidebar-button-soviet-highlighted: chrome.png
-	background: 31,31,22,22
-	border-r: 53,31,3,22
-	border-l: 28,31,3,22
-	border-b: 31,53,22,3
-	border-t: 31,28,22,3
-	corner-tl: 28,28,3,3
-	corner-tr: 53,28,3,3
-	corner-bl: 28,53,3,3
-	corner-br: 53,53,3,3
-sidebar-button-soviet-highlighted-hover: chrome.png
-	background: 31,3,22,22
-	border-r: 53,3,3,22
-	border-l: 28,3,3,22
-	border-b: 31,25,22,3
-	border-t: 31,0,22,3
-	corner-tl: 28,0,3,3
-	corner-tr: 53,0,3,3
-	corner-bl: 28,25,3,3
-	corner-br: 53,25,3,3
-sidebar-button-soviet-highlighted-pressed: chrome.png
-	background: 31,31,22,22
-	border-r: 53,31,3,22
-	border-l: 28,31,3,22
-	border-b: 31,53,22,3
-	border-t: 31,28,22,3
-	corner-tl: 28,28,3,3
-	corner-tr: 53,28,3,3
-	corner-bl: 28,53,3,3
-	corner-br: 53,53,3,3
-sidebar-button-soviet-disabled: chrome.png
-	background: 171,3,22,22
-	border-r: 193,3,3,22
-	border-l: 168,3,3,22
-	border-b: 171,25,22,3
-	border-t: 171,0,22,3
-	corner-tl: 168,0,3,3
-	corner-tr: 193,0,3,3
-	corner-bl: 168,25,3,3
-	corner-br: 193,25,3,3
-sidebar-button-soviet-highlighted-disabled: chrome.png
-	background: 171,3,22,22
-	border-r: 193,3,3,22
-	border-l: 168,3,3,22
-	border-b: 171,25,22,3
-	border-t: 171,0,22,3
-	corner-tl: 168,0,3,3
-	corner-tr: 193,0,3,3
-	corner-bl: 168,25,3,3
-	corner-br: 193,25,3,3
+digits-gdi: chrome-gdi.png
+	0: 32,0,13,17
+	1: 45,0,13,17
+	2: 58,0,13,17
+	3: 71,0,13,17
+	4: 84,0,13,17
+	5: 97,0,13,17
+	6: 110,0,13,17
+	7: 123,0,13,17
+	8: 136,0,13,17
+	9: 149,0,13,17
 
-sidebar-bits: chrome.png
-	production-tooltip-time: 416, 80, 16, 16
-	production-tooltip-power: 432, 80, 16, 16
-	production-tooltip-cost: 448, 80, 16, 16
-	production-iconoverlay: 314,118,238,48
+chrome-nod: chrome-nod.png
+	specialbin-top: 0,0,30,51
+	specialbin-middle: 0,51,30,51
+	specialbin-bottom: 0,153,30,39
+	moneybin: 192,0,320,32
+	tooltip-bg: 0,288,272,136
+	radar: 297,31,210,222
 
-power-icons: chrome.png
-	power-normal: 350,0,12,18
-	power-critical: 363,0,12,18
+power-nod: chrome-nod.png
+	power-indicator: 187,4,4,7
 
-production-icons: chrome.png
-	building: 384,0,16,16
-	building-disabled: 384,16,16,16
-	building-alert: 384,32,16,16
-	defense: 400,0,16,16
-	defense-disabled: 400,16,16,16
-	defense-alert: 400,32,16,16
-	infantry: 416,0,16,16
-	infantry-disabled: 416,16,16,16
-	infantry-alert: 416,32,16,16
-	vehicle: 432,0,16,16
-	vehicle-disabled: 432,16,16,16
-	vehicle-alert: 432,32,16,16
-	aircraft: 448,0,16,16
-	aircraft-disabled: 448,16,16,16
-	aircraft-alert: 448,32,16,16
-	ship: 496,48,16,16
-	ship-disabled: 496,64,16,16
-	ship-alert: 496,80,16,16
+palette-nod: chrome-nod.png
+	top: 297,288,201,9
+	dock-top: 498,274,14,23
+	bottom: 297,489,201,9
+	dock-bottom: 498,489,14,23
+	bg-0: 297,297,201,48
+	dock-0: 498,297,14,48
+	bg-1: 297,345,201,48
+	dock-1: 498,345,14,48
+	bg-2: 297,393,201,48
+	dock-2: 498,393,14,48
+	bg-3: 297,441,201,48
+	dock-3: 498,441,14,48
 
-order-icons: chrome.png
-	options: 480,0,16,16
-	options-disabled: 480,16,16,16
-	options-active: 480,32,16,16
-	debug: 351,48,16,16
-	debug-disabled: 351,64,16,16
-	debug-active: 351,80,16,16
-	diplomacy: 464,48,16,16
-	diplomacy-disabled: 464,64,16,16
-	diplomacy-active: 464,80,16,16
-	sell: 496,0,16,16
-	sell-disabled: 496,16,16,16
-	sell-active: 496,32,16,16
-	repair: 384,48,16,16
-	repair-disabled: 384,64,16,16
-	repair-active: 384,80,16,16
-	beacon: 400,48,16,16
-	beacon-disabled: 400,64,16,16
-	beacon-active: 400,80,16,16
-	power: 480,48,16,16
-	power-disabled: 480,64,16,16
-	power-active: 480,80,16,16
-	stats: 368,48,16,16
-	stats-disabled: 368,64,16,16
-	stats-active: 368,80,16,16
+digits-nod: chrome-nod.png
+	0: 32,0,13,17
+	1: 45,0,13,17
+	2: 58,0,13,17
+	3: 71,0,13,17
+	4: 84,0,13,17
+	5: 97,0,13,17
+	6: 110,0,13,17
+	7: 123,0,13,17
+	8: 136,0,13,17
+	9: 149,0,13,17
 
-sidebar-observer: chrome.png
-	background: 512,167,238,287
-	replay-bottom: 512,454,238,40
-	observer-bottom: 512,495,238,8
+tabs-selected: tabs.png
+	gdi-Building: 0,0,27,41
+	gdi-Defense: 0,40,27,41
+	gdi-Infantry: 0,80,27,41
+	gdi-Vehicle: 0,120,27,41
+	gdi-Aircraft: 0,160,27,41
+	gdi-Ship: 0,200,27,41
+	nod-Building: 80,0,27,41
+	nod-Defense: 80,40,27,41
+	nod-Infantry: 80,80,27,41
+	nod-Vehicle: 80,120,27,41
+	nod-Aircraft: 80,160,27,41
+	nod-Ship: 80,200,27,41
 
-sidebar-button-observershroud: chrome.png
-sidebar-button-observershroud-pressed: chrome.png
-sidebar-button-observershroud-hover: chrome.png
+tabs-ready: tabs.png
+	gdi-Building: 27,0,27,41
+	gdi-Defense: 27,40,27,41
+	gdi-Infantry: 27,80,27,41
+	gdi-Vehicle: 27,120,27,41
+	gdi-Aircraft: 27,160,27,41
+	gdi-Ship: 27,200,27,41
+	nod-Building: 107,0,27,41
+	nod-Defense: 107,40,27,41
+	nod-Infantry: 107,80,27,41
+	nod-Vehicle: 107,120,27,41
+	nod-Aircraft: 107,160,27,41
+	nod-Ship: 107,200,27,41
 
-sidebar-button-observer: chrome.png
-	background: 117,33,18,18
-	border-r: 135,33,5,18
-	border-l: 112,33,5,18
-	border-b: 117,51,18,5
-	border-t: 117,28,18,5
-	corner-tl: 112,28,5,5
-	corner-tr: 135,28,5,5
-	corner-bl: 112,51,5,5
-	corner-br: 135,51,5,5
-sidebar-button-observer-hover: chrome.png
-	background: 117,5,18,18
-	border-r: 135,5,5,18
-	border-l: 112,5,5,18
-	border-b: 117,23,18,5
-	border-t: 117,0,18,5
-	corner-tl: 112,0,5,5
-	corner-tr: 135,0,5,5
-	corner-bl: 112,23,5,5
-	corner-br: 135,23,5,5
-sidebar-button-observer-pressed: chrome.png
-	background: 117,33,18,18
-	border-r: 135,33,5,18
-	border-l: 112,33,5,18
-	border-b: 117,51,18,5
-	border-t: 117,28,18,5
-	corner-tl: 112,28,5,5
-	corner-tr: 135,28,5,5
-	corner-bl: 112,51,5,5
-	corner-br: 135,51,5,5
-sidebar-button-observer-highlighted: chrome.png
-	background: 145,33,18,18
-	border-r: 163,33,5,18
-	border-l: 140,33,5,18
-	border-b: 145,51,18,5
-	border-t: 145,28,18,5
-	corner-tl: 140,28,5,5
-	corner-tr: 163,28,5,5
-	corner-bl: 140,51,5,5
-	corner-br: 163,51,5,5
-sidebar-button-observer-highlighted-hover: chrome.png
-	background: 145,5,18,18
-	border-r: 163,5,5,18
-	border-l: 140,5,5,18
-	border-b: 145,23,18,5
-	border-t: 145,0,18,5
-	corner-tl: 140,0,5,5
-	corner-tr: 163,0,5,5
-	corner-bl: 140,23,5,5
-	corner-br: 163,23,5,5
-sidebar-button-observer-highlighted-pressed: chrome.png
-	background: 33,33,18,18
-	border-r: 51,33,5,18
-	border-l: 28,33,5,18
-	border-b: 33,51,18,5
-	border-t: 33,28,18,5
-	corner-tl: 28,28,5,5
-	corner-tr: 51,28,5,5
-	corner-bl: 28,51,5,5
-	corner-br: 51,51,5,5
-sidebar-button-observer-disabled: chrome.png
-	background: 173,5,18,18
-	border-r: 191,5,5,18
-	border-l: 168,5,5,18
-	border-b: 173,23,18,5
-	border-t: 173,0,18,5
-	corner-tl: 168,0,5,5
-	corner-tr: 191,0,5,5
-	corner-bl: 168,23,5,5
-	corner-br: 191,23,5,5
-sidebar-button-observer-highlighted-disabled: chrome.png
-	background: 173,5,18,18
-	border-r: 191,5,5,18
-	border-l: 168,5,5,18
-	border-b: 173,23,18,5
-	border-t: 173,0,18,5
-	corner-tl: 168,0,5,5
-	corner-tr: 191,0,5,5
-	corner-bl: 168,23,5,5
-	corner-br: 191,23,5,5
+tabs-normal: tabs.png
+	gdi-Building: 54,0,27,41
+	gdi-Defense: 54,40,27,41
+	gdi-Infantry: 54,80,27,41
+	gdi-Vehicle: 54,120,27,41
+	gdi-Aircraft: 54,160,27,41
+	gdi-Ship: 54,200,27,41
+	nod-Building: 134,0,27,41
+	nod-Defense: 134,40,27,41
+	nod-Infantry: 134,80,27,41
+	nod-Vehicle: 134,120,27,41
+	nod-Aircraft: 134,160,27,41
+	nod-Ship: 134,200,27,41
 
 observer-scrollpanel-button: dialog.png
 	background: 769,257,126,126
@@ -395,19 +191,19 @@ observer-scrollitem-hover: dialog.png
 	corner-bl: 768,383,1,1
 	corner-br: 895,383,1,1
 
-# Used for the main menu frame
+# Used for the menu
 dialog: dialog.png
 	background: 0,0,480,480
-	border-r: 489,0,9,192
-	border-l: 480,0,9,192
-	border-b: 0,489,191,9
-	border-t: 0,480,191,9
-	corner-tl: 191,480,9,9
-	corner-tr: 200,480,9,9
-	corner-bl: 191,489,9,9
-	corner-br: 200,489,9,9
+	border-r: 483,0,9,153
+	border-l: 481,0,9,153
+	border-b: 0,483,153,9
+	border-t: 0,481,153,9
+	corner-tl: 393,481,21,21
+	corner-tr: 415,481,21,21
+	corner-bl: 437,481,21,21
+	corner-br: 459,481,21,21
 
-# Used for Music and Map selection (normal button)
+# Same as a normal button 
 dialog2: dialog.png
 	background: 513,1,126,126
 	border-r: 639,1,1,126
@@ -419,7 +215,7 @@ dialog2: dialog.png
 	corner-bl: 512,127,1,1
 	corner-br: 639,127,1,1
 
-# It's a Container, used in various places, like Hotkeys, ColorPicker, Asset Browser frames (looks like a pressed button)
+# Same as a pressed button 
 dialog3: dialog.png
 	background: 641,1,126,126
 	border-r: 767,1,1,126
@@ -431,8 +227,8 @@ dialog3: dialog.png
 	corner-bl: 640,127,1,1
 	corner-br: 767,127,1,1
 
-# Used for tooltips and the video player
-dialog4: dialog.png
+# Same as the half transparent frame used in the Asset Browser
+dialog4: dialog-ts.png
 	background: 517,392,54,54
 	border-t: 517,387,54,6
 	border-b: 517,446,54,6
@@ -468,9 +264,23 @@ strategic: strategic.png
 	enemy_owned: 32,32,32,32
 	player_owned: 96,0,32,32
 
+order-icons: buttons.png
+	sell: 0,0,34,28
+	sell-disabled: 68,0,34,28
+	sell-active: 34,0,34,28
+	repair: 0,28,34,28
+	repair-disabled: 68,28,34,28
+	repair-active: 34,28,34,28
+	power: 0,56,34,28
+	power-disabled: 68,56,34,28
+	power-active: 34,56,34,28
+	beacon: 0,84,34,28
+	beacon-disabled: 68,84,34,28
+	beacon-active: 34,84,34,28
+
 flags: buttons.png
-	nod: 0,112,30,15
 	gdi: 30,112,30,15
+	nod: 0,112,30,15
 	random: 60,112,30,15
 	spectator: 60,112,30,15
 
@@ -549,7 +359,7 @@ button-pressed: dialog.png
 	corner-bl: 640,127,1,1
 	corner-br: 767,127,1,1
 
-# 50% grey (disabled button)
+# 10% darker than a normal button
 button-disabled: dialog.png
 	background: 513,257,126,126
 	border-r: 639,257,1,126
@@ -608,8 +418,8 @@ button-highlighted-disabled: dialog.png
 	corner-tr: 895,128,1,1
 	corner-bl: 768,255,1,1
 	corner-br: 895,255,1,1
-	
-# vivid red - Used for the Battlefields News button
+
+# vivid color - Used for the Battlefields News button
 newsbutton: dialog.png
 	background: 513,1,126,126
 	border-r: 639,1,1,126
@@ -736,7 +546,6 @@ scrollpanel-bg: dialog.png
 	corner-bl: 640,127,1,1
 	corner-br: 767,127,1,1
 
-
 # A copy of dialog2 (normal button)
 scrollpanel-button: dialog.png
 	background: 513,1,126,126
@@ -786,21 +595,21 @@ scrollpanel-button-disabled: dialog.png
 	corner-br: 639,127,1,1
 
 slider: dialog.png
-	tick: 512,1,2,4
+	tick: 512,1,1,4
 
 # A copy of dialog3 (pressed button)
 slider-track: dialog.png
-	background: 513,1,126,126
-	border-r: 639,1,1,126
-	border-l: 512,1,1,126
-	border-b: 513,127,126,1
-	border-t: 513,0,126,1
-	corner-tl: 512,0,1,1
-	corner-tr: 639,0,1,1
-	corner-bl: 512,127,1,1
-	corner-br: 639,127,1,1
+	background: 641,1,126,126
+	border-r: 767,1,1,126
+	border-l: 640,1,1,126
+	border-b: 641,127,126,1
+	border-t: 641,0,126,1
+	corner-tl: 640,0,1,1
+	corner-tr: 767,0,1,1
+	corner-bl: 640,127,1,1
+	corner-br: 767,127,1,1
 	
-# A copy of dialog2 (normal button)
+	# A copy of dialog2 (normal button)
 slider-thumb: dialog.png
 	background: 513,1,126,126
 	border-r: 639,1,1,126
@@ -847,7 +656,7 @@ slider-thumb-disabled: dialog.png
 	corner-tr: 639,0,1,1
 	corner-bl: 512,127,1,1
 	corner-br: 639,127,1,1
-
+	
 # A copy of dialog3 (pressed button)
 checkbox: dialog.png
 	background: 641,1,126,126
@@ -861,10 +670,10 @@ checkbox: dialog.png
 	corner-br: 767,127,1,1
 
 checkbox-bits: buttons.png
-	checked: 100,157,16,16
-	checked-disabled: 100,173,16,16
-	crossed: 116,157,16,16
-	crossed-disabled: 116,173,16,16
+	checked: 0,157,16,16
+	checked-disabled: 0,173,16,16
+	crossed: 16,157,16,16
+	crossed-disabled: 16,173,16,16
 
 checkbox-hover: dialog.png
 	background: 641,129,126,126
@@ -877,7 +686,7 @@ checkbox-hover: dialog.png
 	corner-bl: 640,255,1,1
 	corner-br: 767,255,1,1
 
-# Same as button-disabled-pressed
+# Same as a button-disabled-pressed
 checkbox-disabled: dialog.png
 	background: 641,257,126,126
 	border-r: 767,257,1,126
@@ -889,7 +698,7 @@ checkbox-disabled: dialog.png
 	corner-bl: 640,383,1,1
 	corner-br: 767,383,1,1
 
-# Same as button-highlighted-pressed
+# Same as a button-highlighted-pressed
 checkbox-highlighted: dialog.png
 	background: 897,1,126,126
 	border-r: 1023,1,1,126
@@ -939,6 +748,9 @@ scrollheader-selected: dialog.png
 
 logos: loadscreen.png
 	logo: 0,0,256,256
+
+titlelogo: titlelogo.png
+	titlelogo: 0,0,512,256
 
 mainmenu-border: dialog.png
 	background: 688,427,40,40

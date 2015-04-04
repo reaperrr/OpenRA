@@ -88,39 +88,39 @@ Assemblies:
 	./mods/cnc/OpenRA.Mods.Cnc.dll
 
 ChromeLayout:
-	./mods/ts/chrome/install.yaml
-	./mods/tdx/chrome/ingame.yaml
+	./mods/ra/chrome/install.yaml
+	./mods/ra/chrome/ingame.yaml
 	./mods/ra/chrome/ingame-chat.yaml
 	./mods/ra/chrome/ingame-diplomacy.yaml
 	./mods/ra/chrome/ingame-fmvplayer.yaml
-	./mods/d2k/chrome/ingame-menu.yaml
+	./mods/ra/chrome/ingame-menu.yaml
 	./mods/ra/chrome/ingame-info.yaml
 	./mods/ra/chrome/ingame-infoscripterror.yaml
 	./mods/ra/chrome/ingame-infobriefing.yaml
 	./mods/ra/chrome/ingame-infoobjectives.yaml
 	./mods/ra/chrome/ingame-infostats.yaml
-	./mods/d2k/chrome/ingame-observer.yaml
+	./mods/ra/chrome/ingame-observer.yaml
 	./mods/ra/chrome/ingame-observerstats.yaml
-	./mods/tdx/chrome/ingame-player.yaml
+	./mods/ra/chrome/ingame-player.yaml
 	./mods/ra/chrome/ingame-debug.yaml
-	./mods/d2k/chrome/ingame-leavemap.yaml
+	./mods/ra/chrome/ingame-leavemap.yaml
 	./mods/tdx/chrome/mainmenu.yaml
 	./mods/ra/chrome/settings.yaml
 	./mods/ra/chrome/credits.yaml
 	./mods/ra/chrome/lobby.yaml
 	./mods/ra/chrome/lobby-mappreview.yaml
-	./mods/d2k/chrome/lobby-playerbin.yaml
+	./mods/ra/chrome/lobby-playerbin.yaml
 	./mods/ra/chrome/lobby-dialogs.yaml
-	./mods/d2k/chrome/color-picker.yaml
+	./mods/ra/chrome/color-picker.yaml
 	./mods/ra/chrome/map-chooser.yaml
 	./mods/ra/chrome/create-server.yaml
 	./mods/ra/chrome/serverbrowser.yaml
 	./mods/ra/chrome/connection.yaml
 	./mods/ra/chrome/directconnect.yaml
 	./mods/ra/chrome/replaybrowser.yaml
-	./mods/d2k/chrome/dropdowns.yaml
+	./mods/ra/chrome/dropdowns.yaml
 	./mods/ra/chrome/musicplayer.yaml
-	./mods/d2k/chrome/tooltips.yaml
+	./mods/ra/chrome/tooltips.yaml
 	./mods/ra/chrome/assetbrowser.yaml
 	./mods/ra/chrome/missionbrowser.yaml
 	./mods/ra/chrome/confirmation-dialogs.yaml
@@ -147,7 +147,7 @@ TileSets:
 	./mods/cnc/tilesets/temperat.yaml
 	./mods/cnc/tilesets/jungle.yaml
 
-LoadScreen: DefaultLoadScreen
+LoadScreen: LogoStripeLoadScreen
 	Image: ./mods/tdx/uibits/loadscreen.png
 	Text: Loading
 
