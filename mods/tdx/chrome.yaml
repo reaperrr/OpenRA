@@ -1,10 +1,10 @@
-sidebar-allies: chrome.png
+sidebar-gdi: chrome.png
 	background-top: 0,167,238,290
 	background-iconrow: 0,457,238,47
 	background-bottom: 0,504,238,8
 	background-supportoverlay: 184,118,64,48
 
-sidebar-button-allies: chrome.png
+sidebar-button-gdi: chrome.png
 	background: 59,31,22,22
 	border-r: 81,31,3,22
 	border-l: 56,31,3,22
@@ -14,7 +14,7 @@ sidebar-button-allies: chrome.png
 	corner-tr: 81,28,3,3
 	corner-bl: 56,53,3,3
 	corner-br: 81,53,3,3
-sidebar-button-allies-hover: chrome.png
+sidebar-button-gdi-hover: chrome.png
 	background: 59,3,22,22
 	border-r: 81,3,3,22
 	border-l: 56,3,3,22
@@ -24,7 +24,7 @@ sidebar-button-allies-hover: chrome.png
 	corner-tr: 81,0,3,3
 	corner-bl: 56,25,3,3
 	corner-br: 81,25,3,3
-sidebar-button-allies-pressed: chrome.png
+sidebar-button-gdi-pressed: chrome.png
 	background: 59,31,22,22
 	border-r: 81,31,3,22
 	border-l: 56,31,3,22
@@ -34,7 +34,7 @@ sidebar-button-allies-pressed: chrome.png
 	corner-tr: 81,28,3,3
 	corner-bl: 56,53,3,3
 	corner-br: 81,53,3,3
-sidebar-button-allies-highlighted: chrome.png
+sidebar-button-gdi-highlighted: chrome.png
 	background: 87,31,22,22
 	border-r: 109,31,3,22
 	border-l: 84,31,3,22
@@ -44,7 +44,7 @@ sidebar-button-allies-highlighted: chrome.png
 	corner-tr: 109,28,3,3
 	corner-bl: 84,53,3,3
 	corner-br: 109,53,3,3
-sidebar-button-allies-highlighted-hover: chrome.png
+sidebar-button-gdi-highlighted-hover: chrome.png
 	background: 87,3,22,22
 	border-r: 109,3,3,22
 	border-l: 84,3,3,22
@@ -54,7 +54,7 @@ sidebar-button-allies-highlighted-hover: chrome.png
 	corner-tr: 109,0,3,3
 	corner-bl: 84,25,3,3
 	corner-br: 109,25,3,3
-sidebar-button-allies-highlighted-pressed: chrome.png
+sidebar-button-gdi-highlighted-pressed: chrome.png
 	background: 87,31,22,22
 	border-r: 109,31,3,22
 	border-l: 84,31,3,22
@@ -64,7 +64,7 @@ sidebar-button-allies-highlighted-pressed: chrome.png
 	corner-tr: 109,28,3,3
 	corner-bl: 84,53,3,3
 	corner-br: 109,53,3,3
-sidebar-button-allies-disabled: chrome.png
+sidebar-button-gdi-disabled: chrome.png
 	background: 171,3,22,22
 	border-r: 193,3,3,22
 	border-l: 168,3,3,22
@@ -74,7 +74,7 @@ sidebar-button-allies-disabled: chrome.png
 	corner-tr: 193,0,3,3
 	corner-bl: 168,25,3,3
 	corner-br: 193,25,3,3
-sidebar-button-allies-highlighted-disabled: chrome.png
+sidebar-button-gdi-highlighted-disabled: chrome.png
 	background: 171,3,22,22
 	border-r: 193,3,3,22
 	border-l: 168,3,3,22
@@ -85,13 +85,13 @@ sidebar-button-allies-highlighted-disabled: chrome.png
 	corner-bl: 168,25,3,3
 	corner-br: 193,25,3,3
 
-sidebar-soviet: chrome.png
+sidebar-nod: chrome.png
 	background-top: 274,167,238,290
 	background-iconrow: 274,457,238,47
 	background-bottom: 274,504,238,8
 	background-supportoverlay: 249,118,64,48
 
-sidebar-button-soviet: chrome.png
+sidebar-button-nod: chrome.png
 	background: 3,31,22,22
 	border-r: 25,31,3,22
 	border-l: 0,31,3,22
@@ -101,7 +101,7 @@ sidebar-button-soviet: chrome.png
 	corner-tr: 25,28,3,3
 	corner-bl: 0,53,3,3
 	corner-br: 25,53,3,3
-sidebar-button-soviet-hover: chrome.png
+sidebar-button-nod-hover: chrome.png
 	background: 3,3,22,22
 	border-r: 25,3,3,22
 	border-l: 0,3,3,22
@@ -111,7 +111,7 @@ sidebar-button-soviet-hover: chrome.png
 	corner-tr: 25,0,3,3
 	corner-bl: 0,25,3,3
 	corner-br: 25,25,3,3
-sidebar-button-soviet-pressed: chrome.png
+sidebar-button-nod-pressed: chrome.png
 	background: 3,31,22,22
 	border-r: 25,31,3,22
 	border-l: 0,31,3,22
@@ -121,7 +121,7 @@ sidebar-button-soviet-pressed: chrome.png
 	corner-tr: 25,28,3,3
 	corner-bl: 0,53,3,3
 	corner-br: 25,53,3,3
-sidebar-button-soviet-highlighted: chrome.png
+sidebar-button-nod-highlighted: chrome.png
 	background: 31,31,22,22
 	border-r: 53,31,3,22
 	border-l: 28,31,3,22
@@ -131,7 +131,7 @@ sidebar-button-soviet-highlighted: chrome.png
 	corner-tr: 53,28,3,3
 	corner-bl: 28,53,3,3
 	corner-br: 53,53,3,3
-sidebar-button-soviet-highlighted-hover: chrome.png
+sidebar-button-nod-highlighted-hover: chrome.png
 	background: 31,3,22,22
 	border-r: 53,3,3,22
 	border-l: 28,3,3,22
@@ -141,7 +141,7 @@ sidebar-button-soviet-highlighted-hover: chrome.png
 	corner-tr: 53,0,3,3
 	corner-bl: 28,25,3,3
 	corner-br: 53,25,3,3
-sidebar-button-soviet-highlighted-pressed: chrome.png
+sidebar-button-nod-highlighted-pressed: chrome.png
 	background: 31,31,22,22
 	border-r: 53,31,3,22
 	border-l: 28,31,3,22
@@ -151,7 +151,7 @@ sidebar-button-soviet-highlighted-pressed: chrome.png
 	corner-tr: 53,28,3,3
 	corner-bl: 28,53,3,3
 	corner-br: 53,53,3,3
-sidebar-button-soviet-disabled: chrome.png
+sidebar-button-nod-disabled: chrome.png
 	background: 171,3,22,22
 	border-r: 193,3,3,22
 	border-l: 168,3,3,22
@@ -161,7 +161,7 @@ sidebar-button-soviet-disabled: chrome.png
 	corner-tr: 193,0,3,3
 	corner-bl: 168,25,3,3
 	corner-br: 193,25,3,3
-sidebar-button-soviet-highlighted-disabled: chrome.png
+sidebar-button-nod-highlighted-disabled: chrome.png
 	background: 171,3,22,22
 	border-r: 193,3,3,22
 	border-l: 168,3,3,22
@@ -396,16 +396,27 @@ observer-scrollitem-hover: dialog.png
 	corner-br: 895,383,1,1
 
 # Used for the main menu frame
+#dialog: dialog.png
+#	background: 0,0,480,480
+#	border-r: 489,0,9,192
+#	border-l: 480,0,9,192
+#	border-b: 0,489,191,9
+#	border-t: 0,480,191,9
+#	corner-tl: 191,480,9,9
+#	corner-tr: 200,480,9,9
+#	corner-bl: 191,489,9,9
+#	corner-br: 200,489,9,9
+
 dialog: dialog.png
 	background: 0,0,480,480
-	border-r: 489,0,9,192
-	border-l: 480,0,9,192
-	border-b: 0,489,191,9
-	border-t: 0,480,191,9
-	corner-tl: 191,480,9,9
-	corner-tr: 200,480,9,9
-	corner-bl: 191,489,9,9
-	corner-br: 200,489,9,9
+	border-r: 483,0,9,153
+	border-l: 481,0,9,153
+	border-b: 0,483,153,9
+	border-t: 0,481,153,9
+	corner-tl: 393,481,21,21
+	corner-tr: 415,481,21,21
+	corner-bl: 437,481,21,21
+	corner-br: 459,481,21,21
 
 # Used for Music and Map selection (normal button)
 dialog2: dialog.png
@@ -432,7 +443,7 @@ dialog3: dialog.png
 	corner-br: 767,127,1,1
 
 # Used for tooltips and the video player
-dialog4: dialog.png
+dialog4: dialog-ts.png
 	background: 517,392,54,54
 	border-t: 517,387,54,6
 	border-b: 517,446,54,6
@@ -471,7 +482,7 @@ strategic: strategic.png
 flags: buttons.png
 	nod: 0,112,30,15
 	gdi: 30,112,30,15
-	random: 60,112,30,15
+	Random: 60,112,30,15
 	spectator: 60,112,30,15
 
 music: musicplayer.png
@@ -861,10 +872,10 @@ checkbox: dialog.png
 	corner-br: 767,127,1,1
 
 checkbox-bits: buttons.png
-	checked: 100,157,16,16
-	checked-disabled: 100,173,16,16
-	crossed: 116,157,16,16
-	crossed-disabled: 116,173,16,16
+	checked: 0,157,16,16
+	checked-disabled: 0,173,16,16
+	crossed: 16,157,16,16
+	crossed-disabled: 16,173,16,16
 
 checkbox-hover: dialog.png
 	background: 641,129,126,126
@@ -939,6 +950,9 @@ scrollheader-selected: dialog.png
 
 logos: loadscreen.png
 	logo: 0,0,256,256
+
+titlelogo: titlelogo.png
+	titlelogo: 0,0,512,256
 
 mainmenu-border: dialog.png
 	background: 688,427,40,40
