@@ -83,6 +83,7 @@ Assemblies:
 	./mods/common/OpenRA.Mods.Common.dll
 	./mods/ra/OpenRA.Mods.RA.dll
 	./mods/cnc/OpenRA.Mods.Cnc.dll
+	./mods/tdx/OpenRA.Mods.TDX.dll
 	
 Translations:
 	./mods/cnc/languages/english.yaml

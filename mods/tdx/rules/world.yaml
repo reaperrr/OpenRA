@@ -6,14 +6,19 @@ World:
 	ScreenMap:
 	ActorMap:
 	LoadWidgetAtGameStart:
-#		Widget: INGAME_ROOT
 	MenuPaletteEffect:
 		MenuEffect: Desaturated
+	WorldPaletteEffect:
+		ExcludePalettes: flashyeffectra, flashyeffect, cursor, chrome, colorpicker, fog, shroud
+		DayNightCycle: true
+		InitialEffect: Morning
+		DayLength: 1500
+		NightLength: 1500
 	CloakPaletteEffect:
 	ScreenShaker:
 	NukePaletteEffect:
 	WaterPaletteRotation:
-		ExcludePalettes: effect, effectra, raplayer
+		ExcludePalettes: flashyeffectra, flashyeffect, effect, effectra, raplayer
 	BuildingInfluence:
 	BridgeLayer:
 		Bridges: bridge1, bridge2, bridge3, bridge4
@@ -40,8 +45,16 @@ World:
 		Name: effect
 		Filename: temperat.pal
 		ShadowIndex: 4
+	PaletteFromFile@flashyeffect:
+		Name: flashyeffect
+		Filename: temperat.pal
+		ShadowIndex: 4
 	PaletteFromFile@effectra:
 		Name: effectra
+		Filename: ra.pal
+		ShadowIndex: 4
+	PaletteFromFile@flashyeffectra:
+		Name: flashyeffectra
 		Filename: ra.pal
 		ShadowIndex: 4
 	PaletteFromFile@colorpicker:
