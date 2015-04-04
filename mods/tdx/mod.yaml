@@ -81,7 +81,7 @@ Cursors:
 
 Chrome:
 	./mods/tdx/chrome.yaml
-	./mods/tdx/chrome2.yaml
+#	./mods/tdx/chrome2.yaml
 
 Assemblies:
 	./mods/common/OpenRA.Mods.Common.dll
