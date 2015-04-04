@@ -155,3 +155,4 @@ T55H:
 		EmptyWeapon: UnitExplodeSmall
 	Selectable:
 		Bounds: 28,28,0,-1
+

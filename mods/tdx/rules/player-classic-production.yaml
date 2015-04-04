@@ -33,3 +33,4 @@ Player:
 		LowPowerSlowdown: 3
 		SpeedUp: True
 		RequireOwner: false
+

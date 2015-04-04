@@ -302,3 +302,4 @@ ArtilleryShell:
 		ImpactSound: ssplash2.aud
 		ExplosionPalette: effectra
 		ValidImpactTypes: Water
+

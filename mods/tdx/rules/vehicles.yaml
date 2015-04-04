@@ -255,7 +255,7 @@ BIKE:
 		LocalOffset: -128,-170,170, -128,170,170
 	AttackFrontal:
 	RenderUnit:
-		Scale 0.75
+		Scale: 0.75
 	AutoTarget:
 #	LeavesHusk:
 #		HuskActor: BIKE.Husk
@@ -623,3 +623,4 @@ MHQ:
 	Explodes:
 		Weapon: UnitExplodeSmall
 		EmptyWeapon: UnitExplodeSmall
+
