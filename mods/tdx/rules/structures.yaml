@@ -113,7 +113,11 @@ PROC:
 		Range: 6c0
 	Bib:
 	Refinery:
+		DockAngle: 112
 		DockOffset: 0,2
+		IsDragRequired: True
+		DragOffset: -640,341,0
+		DragLength: 12
 		TickRate: 15
 	StoresResources:
 		PipColor: Green
@@ -562,7 +566,7 @@ GUN:
 	WithMuzzleFlash:
 	AutoTarget:
 	-RenderBuilding:
-	-DeadBuildingState:
+	-WithDeathAnimation:
 	RenderRangeCircle:
 	RenderDetectionCircle:
 	DetectCloaked:

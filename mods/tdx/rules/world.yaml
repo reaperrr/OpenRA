@@ -32,6 +32,10 @@ World:
 		Filename: temperat.pal
 		ShadowIndex: 3
 		AllowModifiers: false
+	PaletteFromFile@beaconposter:
+		Name: beaconposter
+		Filename: temperat.pal
+		ShadowIndex: 3
 	PaletteFromFile@effect:
 		Name: effect
 		Filename: temperat.pal
@@ -85,6 +89,10 @@ World:
 		FogVariants: typea, typeb, typec, typed
 		OverrideFullShroud: full
 		OverrideFullFog: full
+	Country@Random:
+		Name: Any
+		Race: Random
+		RandomRaceMembers: gdi, nod
 	Country@gdi:
 		Name: GDI
 		Race: gdi
@@ -114,7 +122,7 @@ World:
 		Name: Tiberium
 		PipColor: Green
 		AllowedTerrainTypes: Clear,Road
-		AllowUnderActors: false
+		AllowUnderActors: true
 	FixedColorPalette@BlueTiberium:
 		Base: terrain
 		Name: bluetiberium
@@ -131,8 +139,9 @@ World:
 		Name: BlueTiberium
 		PipColor: Blue
 		AllowedTerrainTypes: Clear,Road
-		AllowUnderActors: false
+		AllowUnderActors: true
 	PathfinderDebugOverlay:
+	TerrainGeometryOverlay:
 	SpawnMapActors:
 	MPStartLocations:
 	CreateMPPlayers:

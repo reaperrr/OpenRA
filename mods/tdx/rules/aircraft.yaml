@@ -37,8 +37,8 @@ TRAN:
 		Types: Infantry
 		MaxWeight: 10
 		PipCount: 10
-	LeavesHusk:
-		HuskActor: TRAN.Husk
+#	LeavesHusk:
+#		HuskActor: TRAN.Husk
 	Explodes:
 		Weapon: HeliExplode
 		EmptyWeapon: HeliExplode
@@ -89,8 +89,8 @@ HELI:
 		Offset: 0,0,85
 	WithMuzzleFlash:
 	WithShadow:
-	LeavesHusk:
-		HuskActor: HELI.Husk
+#	LeavesHusk:
+#		HuskActor: HELI.Husk
 	AutoTarget:
 	Explodes:
 		Weapon: HeliExplode
@@ -136,8 +136,8 @@ ORCA:
 		ResetOnFire: False
 	RenderUnit:
 	WithShadow:
-	LeavesHusk:
-		HuskActor: ORCA.Husk
+#	LeavesHusk:
+#		HuskActor: ORCA.Husk
 	AutoTarget:
 	Explodes:
 		Weapon: HeliExplode

@@ -2,6 +2,7 @@ Player:
 	PlaceBuilding:
 	TechTree:
 	SupportPowerManager:
+	GlobalUpgradeManager:
 	ScriptTriggers:
 	MissionObjectives:
 	ConquestVictoryConditions:

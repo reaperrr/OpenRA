@@ -41,6 +41,7 @@
 	ScriptTriggers:
 	GainsStatUpgrades:
 	MustBeDestroyed:
+	UpgradeManager:
 
 ^Tank:
 	AppearsOnRadar:
@@ -88,6 +89,7 @@
 	ScriptTriggers:
 	GainsStatUpgrades:
 	MustBeDestroyed:
+	UpgradeManager:
 
 ^Helicopter:
 	AppearsOnRadar:
@@ -120,6 +122,7 @@
 	ScriptTriggers:
 	GainsStatUpgrades:
 	MustBeDestroyed:
+	UpgradeManager:
 
 ^Infantry:
 	AppearsOnRadar:
@@ -181,6 +184,7 @@
 	GlobalUpgradable:
 		Upgrades: hospitalheal
 		Prerequisites: hosp
+	UpgradeManager:
 	UpdatesPlayerStatistics:
 	Huntable:
 	DetectCloaked:
