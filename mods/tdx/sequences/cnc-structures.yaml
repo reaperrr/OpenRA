@@ -561,6 +561,22 @@ bio.husk:
 	idle: bio
 		Start: 2
 
+biolab.nod:
+	idle: bio
+	damaged-idle: bio
+		Start: 1
+	dead: bio
+		Start: 2
+		Tick: 800
+	make: biomake
+		Length: *
+		Tick: 80
+	bib: bib3
+		UseTilesetExtension: true
+		Length: *
+	icon: bioicnh.shp
+		AddExtension: False
+
 miss:
 	idle:
 		Offset: 0,-1

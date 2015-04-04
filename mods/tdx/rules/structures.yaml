@@ -531,6 +531,30 @@ TMPL:
 	Power:
 		Amount: -150
 
+biolab.nod:
+	Inherits: ^BaseBuilding
+	Valued:
+		Cost: 800
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+	Tooltip:
+		Name: Biological Lab
+		Description: Provides biological research. \nUnlocks Chem. Warrior & Chem Tank.
+	Buildable:
+		BuildPaletteOrder: 100
+		Prerequisites: anyhq, ~structures.nod, ~techlevel.high
+		Queue: Building
+	CanPowerDown:
+	DisabledOverlay:
+	Health:
+		HP: 800
+	RevealsShroud:
+		Range: 4c0
+	Bib:
+	Power:
+		Amount: -40
+
 GUN:
 	Inherits: ^BaseBuilding
 	Valued:

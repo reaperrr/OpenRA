@@ -117,7 +117,7 @@ E5:
 		Description: Advanced general-purpose infantry.\n  Strong vs all Ground units
 	Buildable:
 		BuildPaletteOrder: 50
-		Prerequisites: tmpl, ~infantry.nod, ~techlevel.high
+		Prerequisites: biolab.nod, ~infantry.nod, ~techlevel.high
 		Queue: Infantry
 	Selectable:
 		Bounds: 12,17,0,-6

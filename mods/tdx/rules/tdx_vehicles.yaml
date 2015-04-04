@@ -81,7 +81,7 @@ CTNK:
 		Description: Heavily armored chemicals-spraying vehicle.\n  Strong vs Infantry, Buildings & Vehicles\n  Weak vs Tanks
 	Buildable:
 		BuildPaletteOrder: 51
-		Prerequisites: bio, ~vehicles.nod, ~techlevel.high
+		Prerequisites: biolab.nod, ~vehicles.nod, ~techlevel.high
 		Queue: Vehicle
 	Mobile:
 		ROT: 4
@@ -117,7 +117,7 @@ T55H:
 		Cost: 1000
 	Tooltip:
 		Name: Scorpion Tank
-		Description: Heavily armored Nod Tank. \nCan attack Aircraft.\n  Strong vs Buildings, Vehicles
+		Description: Heavily armored Nod Tank.\n  Strong vs Buildings, Vehicles
 	Buildable:
 		BuildPaletteOrder: 60
 		Prerequisites: fix, ~vehicles.nod, ~techlevel.high
