@@ -1,6 +1,6 @@
 Metadata:
 	Title: Tiberian Dawn Xtended
-	Description: TDX early pre-alpha
+	Description: TDX early alpha
 	Version: {DEV_VERSION}
 	Author: Reaperrr
 
@@ -10,9 +10,8 @@ Folders:
 	./mods/tdx/bits
 	./mods/tdx/bits/cnc
 	./mods/tdx/bits/tdx_aud
-	./mods/tdx/uibits
+	./mods/tdx/ui/uibits
 	~^Content/tdx
-	./mods/cnc
 	./mods/cnc/bits/jungle
 	./mods/cnc/bits/ss
 	~^Content/cnc
@@ -56,10 +55,11 @@ Rules:
 	./mods/cnc/rules/husks.yaml
 
 Weapons:
-	./mods/tdx/weapons/ballistic_weapons.yaml
-	./mods/tdx/weapons/missile_weapons.yaml
-	./mods/tdx/weapons/other_weapons.yaml
-	./mods/tdx/weapons/smallarms_weapons.yaml
+	./mods/tdx/weapons/ballistic.yaml
+	./mods/tdx/weapons/missiles.yaml
+	./mods/tdx/weapons/other-weapons.yaml
+	./mods/tdx/weapons/smallarms.yaml
+	./mods/tdx/weapons/superweapons.yaml
 
 Sequences:
 	./mods/tdx/sequences/tdx-aircraft.yaml
@@ -79,52 +79,10 @@ Sequences:
 Cursors:
 	./mods/cnc/cursors.yaml
 
-Chrome:
-	./mods/tdx/chrome.yaml
-#	./mods/tdx/chrome2.yaml
-
 Assemblies:
 	./mods/common/OpenRA.Mods.Common.dll
 	./mods/ra/OpenRA.Mods.RA.dll
 	./mods/cnc/OpenRA.Mods.Cnc.dll
-
-ChromeLayout:
-	./mods/ra/chrome/install.yaml
-	./mods/ra/chrome/ingame.yaml
-	./mods/ra/chrome/ingame-chat.yaml
-	./mods/ra/chrome/ingame-diplomacy.yaml
-	./mods/ra/chrome/ingame-fmvplayer.yaml
-	./mods/ra/chrome/ingame-menu.yaml
-	./mods/ra/chrome/ingame-info.yaml
-	./mods/ra/chrome/ingame-infoscripterror.yaml
-	./mods/ra/chrome/ingame-infobriefing.yaml
-	./mods/ra/chrome/ingame-infoobjectives.yaml
-	./mods/ra/chrome/ingame-infostats.yaml
-	./mods/ra/chrome/ingame-observer.yaml
-	./mods/ra/chrome/ingame-observerstats.yaml
-	./mods/ra/chrome/ingame-player.yaml
-	./mods/ra/chrome/ingame-debug.yaml
-	./mods/ra/chrome/ingame-leavemap.yaml
-	./mods/tdx/chrome/mainmenu.yaml
-	./mods/ra/chrome/settings.yaml
-	./mods/ra/chrome/credits.yaml
-	./mods/ra/chrome/lobby.yaml
-	./mods/ra/chrome/lobby-mappreview.yaml
-	./mods/ra/chrome/lobby-playerbin.yaml
-	./mods/ra/chrome/lobby-dialogs.yaml
-	./mods/ra/chrome/color-picker.yaml
-	./mods/ra/chrome/map-chooser.yaml
-	./mods/ra/chrome/create-server.yaml
-	./mods/ra/chrome/serverbrowser.yaml
-	./mods/ra/chrome/connection.yaml
-	./mods/ra/chrome/directconnect.yaml
-	./mods/ra/chrome/replaybrowser.yaml
-	./mods/ra/chrome/dropdowns.yaml
-	./mods/ra/chrome/musicplayer.yaml
-	./mods/ra/chrome/tooltips.yaml
-	./mods/ra/chrome/assetbrowser.yaml
-	./mods/ra/chrome/missionbrowser.yaml
-	./mods/ra/chrome/confirmation-dialogs.yaml
 	
 Translations:
 	./mods/cnc/languages/english.yaml
@@ -148,9 +106,91 @@ TileSets:
 	./mods/cnc/tilesets/temperat.yaml
 	./mods/cnc/tilesets/jungle.yaml
 
+SupportsMapsFrom: cnc, tdx
+
+SpriteFormats: ShpTD, TmpTD, ShpTS, TmpRA
+
+SpriteSequenceFormat: TilesetSpecificSpriteSequence
+	TilesetExtensions:
+		TEMPERAT: .tem
+		WINTER: .win
+		SNOW: .sno
+		DESERT: .des
+		JUNGLE: .jun
+
 LoadScreen: LogoStripeLoadScreen
-	Image: ./mods/tdx/uibits/loadscreen.png
+	Image: ./mods/tdx/ui/uibits/loadscreen.png
 	Text: Loading
+
+Fonts:
+	Small:
+		Font:./mods/common/FreeSans.ttf
+		Size:12
+	Regular:
+		Font:./mods/common/FreeSans.ttf
+		Size:14
+	Bold:
+		Font:./mods/common/FreeSansBold.ttf
+		Size:14
+	Title:
+		Font:./mods/common/FreeSansBold.ttf
+		Size:32
+	MediumBold:
+		Font:./mods/common/FreeSansBold.ttf
+		Size:18
+	BigBold:
+		Font:./mods/common/FreeSansBold.ttf
+		Size:24
+	Tiny:
+		Font:./mods/common/FreeSans.ttf
+		Size:10
+	TinyBold:
+		Font:./mods/common/FreeSansBold.ttf
+		Size:10
+
+ChromeMetrics:
+	./mods/tdx/ui/metrics.yaml
+
+Chrome:
+	./mods/tdx/ui/chrome.yaml
+
+ChromeLayout:
+	./mods/ra/chrome/install.yaml
+	./mods/ra/chrome/ingame.yaml
+	./mods/ra/chrome/ingame-chat.yaml
+	./mods/ra/chrome/ingame-diplomacy.yaml
+	./mods/ra/chrome/ingame-fmvplayer.yaml
+	./mods/ra/chrome/ingame-menu.yaml
+	./mods/ra/chrome/ingame-info.yaml
+	./mods/ra/chrome/ingame-infoscripterror.yaml
+	./mods/ra/chrome/ingame-infobriefing.yaml
+	./mods/ra/chrome/ingame-infoobjectives.yaml
+	./mods/ra/chrome/ingame-infostats.yaml
+	./mods/ra/chrome/ingame-observer.yaml
+	./mods/ra/chrome/ingame-observerstats.yaml
+	./mods/tdx/ui/chrome/ingame-player.yaml
+	./mods/ra/chrome/ingame-debug.yaml
+	./mods/ra/chrome/ingame-leavemap.yaml
+	./mods/tdx/ui/chrome/mainmenu.yaml
+	./mods/ra/chrome/settings.yaml
+	./mods/ra/chrome/credits.yaml
+	./mods/ra/chrome/lobby.yaml
+	./mods/ra/chrome/lobby-mappreview.yaml
+	./mods/ra/chrome/lobby-playerbin.yaml
+	./mods/ra/chrome/lobby-dialogs.yaml
+	./mods/ra/chrome/color-picker.yaml
+	./mods/ra/chrome/map-chooser.yaml
+	./mods/ra/chrome/create-server.yaml
+	./mods/ra/chrome/serverbrowser.yaml
+	./mods/ra/chrome/connection.yaml
+	./mods/ra/chrome/directconnect.yaml
+	./mods/ra/chrome/replaybrowser.yaml
+	./mods/ra/chrome/dropdowns.yaml
+	./mods/ra/chrome/musicplayer.yaml
+	./mods/ra/chrome/tooltips.yaml
+	./mods/ra/chrome/assetbrowser.yaml
+	./mods/ra/chrome/missionbrowser.yaml
+	./mods/ra/chrome/confirmation-dialogs.yaml
 
 ContentInstaller:
 	TestFiles: conquer.mix, desert.mix, sounds.mix, speech.mix, temperat.mix, tempicnh.mix, winter.mix
@@ -181,44 +221,3 @@ LobbyDefaults:
 	Shroud: false
 	Fog: false
 	TechLevel: Unrestricted
-
-ChromeMetrics:
-	./mods/tdx/metrics.yaml
-
-Fonts:
-	Small:
-		Font:./mods/common/FreeSans.ttf
-		Size:12
-	Regular:
-		Font:./mods/common/FreeSans.ttf
-		Size:14
-	Bold:
-		Font:./mods/common/FreeSansBold.ttf
-		Size:14
-	Title:
-		Font:./mods/common/FreeSansBold.ttf
-		Size:32
-	MediumBold:
-		Font:./mods/common/FreeSansBold.ttf
-		Size:18
-	BigBold:
-		Font:./mods/common/FreeSansBold.ttf
-		Size:24
-	Tiny:
-		Font:./mods/common/FreeSans.ttf
-		Size:10
-	TinyBold:
-		Font:./mods/common/FreeSansBold.ttf
-		Size:10
-
-SupportsMapsFrom: cnc, tdx
-
-SpriteFormats: ShpTD, TmpTD, ShpTS, TmpRA
-
-SpriteSequenceFormat: TilesetSpecificSpriteSequence
-	TilesetExtensions:
-		TEMPERAT: .tem
-		WINTER: .win
-		SNOW: .sno
-		DESERT: .des
-		JUNGLE: .jun
