@@ -32,5 +32,4 @@ explosion:
 	med_splash: h2o_exp2
 	big_splash: h2o_exp1
 	dust: dust
-		BlendMode: Translucency25
 	med_frag1: frag1m
