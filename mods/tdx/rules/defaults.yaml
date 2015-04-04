@@ -258,8 +258,7 @@
 		TargetTypes: Ground, Infantry
 	HiddenUnderFog:
 	GivesExperience:
-	RenderInfantry:
-		Palette: terrain
+	WithInfantryBody:
 	WithDeathAnimation:
 		UseDeathTypeSuffix: false
 	EditorAppearance:
@@ -274,6 +273,8 @@
 	Huntable:
 	ScriptTriggers:
 	DeathSounds:
+	RenderSprites:
+		Palette: terrain
 
 ^Plane:
 	AppearsOnRadar:
@@ -338,8 +339,8 @@
 		BuildSounds: constru2.aud, hvydoor1.aud
 		TerrainTypes: Clear,Road
 	SoundOnDamageTransition:
-		DamagedSound: xplos.aud
-		DestroyedSound: crumble.aud
+		DamagedSounds: xplos.aud
+		DestroyedSounds: crumble.aud
 	RenderBuilding:
 	WithBuildingExplosion:
 		Delay: 1
@@ -595,8 +596,8 @@
 	Health:
 		HP: 500
 	SoundOnDamageTransition:
-		DamagedSound: xplomed1.aud
-		DestroyedSound: crmble2.aud
+		DamagedSounds: xplomed1.aud
+		DestroyedSounds: crmble2.aud
 	BodyOrientation:
 	ScriptTriggers:
 

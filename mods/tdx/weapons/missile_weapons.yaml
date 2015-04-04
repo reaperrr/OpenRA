@@ -5,10 +5,10 @@ Rockets:
 	ValidTargets: Ground, Water, Air
 	Projectile: Missile
 		Arm: 0
-		High: yes
+		Blockable: false
 		Inaccuracy: 128
 		Image: DRAGON
-		ROT: 15
+		RateOfTurn: 15
 		Trail: smokey
 		ContrailLength: 8
 		Speed: 298
@@ -45,10 +45,10 @@ BikeRockets:
 	BurstDelay: 15
 	Projectile: Missile
 		Arm: 0
-		High: yes
+		Blockable: false
 		Inaccuracy: 128
 		Image: DRAGON
-		ROT: 10
+		RateOfTurn: 10
 		Trail: smokey
 		ContrailLength: 8
 		Speed: 213
@@ -96,10 +96,10 @@ OrcaAGMissiles:
 	ValidTargets: Ground, Water
 	Projectile: Missile
 		Arm: 0
-		High: yes
+		Blockable: false
 		Inaccuracy: 128
 		Image: DRAGON
-		ROT: 2
+		RateOfTurn: 2
 		Trail: smokey
 		ContrailLength: 8
 		Speed: 298
@@ -136,10 +136,10 @@ OrcaAAMissiles:
 	ValidTargets: Air
 	Projectile: Missile
 		Arm: 0
-		High: yes
+		Blockable: false
 		Inaccuracy: 128
 		Image: DRAGON
-		ROT: 20
+		RateOfTurn: 20
 		Trail: smokey
 		ContrailLength: 8
 		Speed: 298
@@ -167,10 +167,10 @@ MammothMissiles:
 	BurstDelay: 15
 	Projectile: Missile
 		Arm: 0
-		High: yes
+		Blockable: false
 		Inaccuracy: 128
 		Image: DRAGON
-		ROT: 20
+		RateOfTurn: 20
 		Trail: smokey
 		ContrailLength: 8
 		Speed: 341
@@ -212,12 +212,12 @@ MammothMissiles:
 	ValidTargets: Ground, Air
 	Projectile: Missile
 		Arm: 5
-		High: true
+		Blockable: false
 		Shadow: true
 		Inaccuracy: 853
 #		Angle: 62
 		Image: MISSILE
-		ROT: 2
+		RateOfTurn: 2
 		ContrailLength: 10
 		Trail: smokey
 		Speed: 341
@@ -259,10 +259,10 @@ MammothMissiles:
 	ValidTargets: Ground, Air
 	Projectile: Missile
 		Arm: 0
-		High: yes
+		Blockable: false
 		Inaccuracy: 213
 		Image: DRAGON
-		ROT: 10
+		RateOfTurn: 10
 		Trail: smokey
 		ContrailLength: 8
 		Speed: 213
@@ -300,10 +300,10 @@ BoatMissile:
 	Report: missile3.aud
 	Projectile: Missile
 		Arm: 0
-		High: yes
+		Blockable: false
 		Inaccuracy: 213
 		Image: DRAGON
-		ROT: 10
+		RateOfTurn: 10
 		Trail: smokey
 		ContrailLength: 8
 		Speed: 170
@@ -345,10 +345,10 @@ TowerMissile:
 	ValidTargets: Ground, Air, Water
 	Projectile: Missile
 		Arm: 0
-		High: yes
+		Blockable: false
 		Inaccuracy: 768
 		Image: DRAGON
-		ROT: 5
+		RateOfTurn: 5
 		Trail: smokey
 		ContrailLength: 8
 		Speed: 298
@@ -384,9 +384,9 @@ SAMMissile:
 	ValidTargets: Air
 	Projectile: Missile
 		Arm: 0
-		High: yes
+		Blockable: false
 		Image: MISSILE
-		ROT: 20
+		RateOfTurn: 20
 		Speed: 426
 		RangeLimit: 35
 		Trail: smokey
@@ -412,15 +412,15 @@ HonestJohn:
 	Range: 18c0
 	MinRange: 4c0
 	Report: nukemisl.aud
-	Palette: effectra
 	Projectile: Bullet
-		High: yes
+		Blockable: false
 		Shadow: true
 		Inaccuracy: 213
 		Image: missile2
 		Trail: smokey
 		Speed: 192
 		Angle: 90
+		Palette: effectra
 	Warhead@1Dam: SpreadDamage
 		Spread: 256
 		Damage: 200

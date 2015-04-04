@@ -3,7 +3,7 @@ Grenade:
 	Range: 4c0
 	Projectile: Bullet
 		Speed: 119
-		High: yes
+		Blockable: false
 		Angle: 62
 		Inaccuracy: 213
 		Image: BOMB
@@ -37,7 +37,7 @@ RPGLauncher:
 	Report: grenlnch.aud
 	ValidTargets: Ground, Water
 	Projectile: Bullet
-		High: true
+		Blockable: false
 		Shadow: true
 		Inaccuracy: 1c512
 		Angle: 75
@@ -276,7 +276,7 @@ ArtilleryShell:
 	Report: artyfire.aud
 	Projectile: Bullet
 		Speed: 204
-		High: yes
+		Blockable: false
 		Angle: 56
 		Inaccuracy: 1c256
 		ContrailLength: 30

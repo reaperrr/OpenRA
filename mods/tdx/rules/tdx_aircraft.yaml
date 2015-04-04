@@ -32,12 +32,13 @@ HIND:
 		MuzzleSequence: muzzle
 	AttackHeli:
 		FacingTolerance: 20
-	LimitedAmmo:
+	AmmoPool:
 		Ammo: 10
 		PipCount: 5
-	Reloads:
-		Count: 10
-		Period: 200
+		SelfReloads: true
+		ReloadCount: 10
+		SelfReloadTicks: 200
+		ResetOnFire: False
 	RenderUnit:
 		PlayerPalette: raplayer
 	WithRotor:

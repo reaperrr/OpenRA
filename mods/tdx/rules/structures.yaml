@@ -112,7 +112,7 @@ PROC:
 	RevealsShroud:
 		Range: 6c0
 	Bib:
-	TiberiumRefinery:
+	Refinery:
 		DockOffset: 0,2
 		TickRate: 15
 	StoresResources:
@@ -820,7 +820,7 @@ BRIK:
 		CrushClasses: heavywall
 		CrushSound: crmble2.aud
 	SoundOnDamageTransition:
-		DestroyedSound: crmble2.aud
+		DestroyedSounds: crmble2.aud
 	LineBuild:
 		Range: 8
 		NodeTypes: concrete
