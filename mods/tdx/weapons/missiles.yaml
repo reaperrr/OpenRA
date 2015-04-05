@@ -383,12 +383,12 @@ SAMMissile:
 	Report: missile6.aud
 	ValidTargets: Air
 	Projectile: Missile
-		Arm: 0
+		Arm: 2
 		Blockable: false
 		Image: MISSILE
-		RateOfTurn: 20
+		RateOfTurn: 5
 		Speed: 426
-		RangeLimit: 35
+		RangeLimit: 75
 		Trail: smokey
 		ContrailLength: 8
 	Warhead@1Dam: SpreadDamage
