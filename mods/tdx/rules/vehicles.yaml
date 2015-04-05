@@ -102,6 +102,7 @@ APC:
 		Weapon: MachineGun
 		LocalOffset: 128,0,213
 		MuzzleSequence: muzzle
+		MuzzlePalette: flashyeffect
 	WithMuzzleFlash:
 	AttackFrontal:
 	RenderUnit:
@@ -138,6 +139,7 @@ ARTY:
 		Weapon: ArtilleryShell
 		LocalOffset: 624,0,208
 		MuzzleSequence: muzzle
+		MuzzlePalette: flashyeffect
 	AttackFrontal:
 	WithMuzzleFlash:
 	RenderUnit:
@@ -175,6 +177,7 @@ FTNK:
 		LocalOffset: 512,128,42, 512,-128,42
 		MuzzleSequence: muzzle
 		MuzzleSplitFacings: 32
+		MuzzlePalette: flashyeffect
 	AttackFrontal:
 	RenderUnit:
 	AutoTarget:
@@ -214,6 +217,7 @@ BGGY:
 		Weapon: MachineGun
 		LocalOffset: 171,0,43
 		MuzzleSequence: muzzle
+		MuzzlePalette: flashyeffect
 	AttackTurreted:
 	WithMuzzleFlash:
 	RenderUnit:
@@ -288,6 +292,7 @@ JEEP:
 		Weapon: MachineGun
 		LocalOffset: 171,0,85
 		MuzzleSequence: muzzle
+		MuzzlePalette: flashyeffect
 	AttackTurreted:
 	WithMuzzleFlash:
 	RenderUnit:
@@ -325,6 +330,7 @@ LTNK:
 		RecoilRecovery: 17
 		LocalOffset: 720,0,90
 		MuzzleSequence: muzzle
+		MuzzlePalette: flashyeffect
 	AttackTurreted:
 	WithMuzzleFlash:
 	RenderUnit:
@@ -364,6 +370,7 @@ MTNK:
 		LocalOffset: 768,0,0
 		MuzzleSequence: muzzle
 		MuzzleSplitFacings: 16
+		MuzzlePalette: flashyeffect
 	AttackTurreted:
 	WithMuzzleFlash:
 		SplitFacings: true
@@ -408,13 +415,13 @@ HTNK:
 		Recoil: 170
 		RecoilRecovery: 42
 		MuzzleSequence: muzzle
+		MuzzlePalette: flashyeffect
 	Armament@SECONDARY:
 		Name: secondary
 		Weapon: MammothMissiles
 		LocalOffset: -85,384,340, -85,-384,340
 		LocalYaw: -100, 100
 		Recoil: 10
-		MuzzleSequence: muzzle
 	AttackTurreted:
 	WithMuzzleFlash:
 	RenderUnit:
@@ -463,6 +470,7 @@ HTNK2:
 		RecoilRecovery: 42
 		MuzzleSequence: muzzle
 		MuzzleSplitFacings: 16
+		MuzzlePalette: flashyeffect
 	Armament@SECONDARY:
 		Name: secondary
 		Weapon: MammothMissiles

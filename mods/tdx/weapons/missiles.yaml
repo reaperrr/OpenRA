@@ -30,6 +30,7 @@ Rockets:
 		Explosion: small_poof
 		ImpactSound: xplosml3.aud
 		InvalidImpactTypes: Water
+		ExplosionPalette: flashyeffect
 	Warhead@4Eff: CreateEffect
 		Explosion: sml_splash
 		ImpactSound: ssplash3.aud
@@ -72,6 +73,7 @@ BikeRockets:
 		Explosion: med_frag1
 		ImpactSound: xplomed1.aud
 		InvalidImpactTypes: Water, Air, Ground
+		ExplosionPalette: flashyeffect
 	Warhead@4EffWater: CreateEffect
 		Explosion: sml_splash
 		ImpactSound: ssplash2.aud
@@ -81,6 +83,7 @@ BikeRockets:
 		Explosion: small_building
 		ImpactSound: xplosml2.aud
 		ValidImpactTypes: Air
+		ExplosionPalette: flashyeffect
 	Warhead@6EffGround: CreateEffect
 		Explosion: dust
 		ImpactSound: expdirt1.aud
@@ -121,6 +124,7 @@ OrcaAGMissiles:
 		Explosion: small_poof
 		ImpactSound: xplosml1.aud
 		InvalidImpactTypes: Water
+		ExplosionPalette: flashyeffect
 	Warhead@4Eff: CreateEffect
 		Explosion: sml_splash
 		ImpactSound: ssplash2.aud
@@ -157,6 +161,7 @@ OrcaAAMissiles:
 	Warhead@3Eff: CreateEffect
 		Explosion: small_building
 		ImpactSound: xplosml2.aud
+		ExplosionPalette: flashyeffect
 
 MammothMissiles:
 	ReloadDelay: 75
@@ -192,10 +197,12 @@ MammothMissiles:
 		Explosion: small_poof
 		ImpactSound: xplomed1.aud
 		InvalidImpactTypes: Air, AirHit, Water
+		ExplosionPalette: flashyeffect
 	Warhead@4EffAir: CreateEffect
 		Explosion: small_building
 		ImpactSound: xplosml2.aud
 		ValidImpactTypes: Air, AirHit
+		ExplosionPalette: flashyeffect
 	Warhead@5EffWater: CreateEffect
 		Explosion: sml_splash
 		ImpactSound: ssplash2.aud
@@ -240,6 +247,7 @@ MammothMissiles:
 		Explosion: big_frag
 		ImpactSound: xplomed1.aud
 		InvalidImpactTypes: Water, Air, AirHit
+		ExplosionPalette: flashyeffect
 	Warhead@4Eff: CreateEffect
 		Explosion: med_splash
 		ImpactSound: ssplash1.aud
@@ -249,6 +257,7 @@ MammothMissiles:
 		Explosion: med_frag
 		ImpactSound: xplomed2.aud
 		ValidImpactTypes: Air, AirHit
+		ExplosionPalette: flashyeffect
 
 227mm.stnk:
 	ReloadDelay: 60
@@ -286,6 +295,7 @@ MammothMissiles:
 		Explosion: med_frag1
 		ImpactSound: xplomed2.aud
 		InvalidImpactTypes: Water
+		ExplosionPalette: flashyeffect
 	Warhead@4Eff: CreateEffect
 		Explosion: sml_splash
 		ImpactSound: ssplash2.aud
@@ -326,10 +336,12 @@ BoatMissile:
 		Explosion: med_frag1
 		ImpactSound: xplomed1.aud
 		InvalidImpactTypes: Air, AirHit, Water
+		ExplosionPalette: flashyeffect
 	Warhead@4EffAir: CreateEffect
 		Explosion: small_building
 		ImpactSound: xplosml2.aud
 		ValidImpactTypes: Air, AirHit
+		ExplosionPalette: flashyeffect
 	Warhead@5EffWater: CreateEffect
 		Explosion: sml_splash
 		ImpactSound: ssplash2.aud
@@ -371,6 +383,7 @@ TowerMissile:
 		Explosion: med_frag
 		ImpactSound: xplobig1.aud
 		InvalidImpactTypes: Water
+		ExplosionPalette: flashyeffect
 	Warhead@4Eff: CreateEffect
 		Explosion: sml_splash
 		ImpactSound: ssplash2.aud
@@ -404,6 +417,7 @@ SAMMissile:
 	Warhead@3Eff: CreateEffect
 		Explosion: small_building
 		ImpactSound: xplosml2.aud
+		ExplosionPalette: flashyeffect
 
 HonestJohn:
 	ReloadDelay: 200
@@ -436,5 +450,5 @@ HonestJohn:
 	Warhead@3Eff: CreateEffect
 		Explosion: big_ranapalm
 		ImpactSound: flamer2.aud
-		ExplosionPalette: effectra
+		ExplosionPalette: flashyeffectra
 

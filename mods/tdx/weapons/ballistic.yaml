@@ -22,6 +22,7 @@ Grenade:
 		Explosion: small_poof
 		ImpactSound: xplosml1.aud
 		InvalidImpactTypes: Water
+		ExplosionPalette: flashyeffect
 	Warhead@4Eff: CreateEffect
 		Explosion: sml_splash
 		ImpactSound: ssplash3.aud
@@ -60,6 +61,7 @@ RPGLauncher:
 		Explosion: small_poof
 		ImpactSound: xplomed1.aud
 		InvalidImpactTypes: Water
+		ExplosionPalette: flashyeffect
 	Warhead@4Eff: CreateEffect
 		Explosion: sml_splash
 		ImpactSound: ssplash2.aud
@@ -73,6 +75,7 @@ RPGLauncher:
 	Projectile: Bullet
 		Image: 120MM
 		Speed: 853
+		Palette: flashyeffect
 	Warhead@1Dam: SpreadDamage
 		Spread: 85
 		Damage: 25
@@ -89,6 +92,7 @@ RPGLauncher:
 		Explosion: small_frag
 		ImpactSound: xplosml1.aud
 		InvalidImpactTypes: Water
+		ExplosionPalette: flashyeffect
 	Warhead@4Eff: CreateEffect
 		Explosion: sml_splash
 		ImpactSound: ssplash3.aud
@@ -104,6 +108,7 @@ RPGLauncher:
 	Projectile: Bullet
 		Image: 120MM
 		Speed: 682
+		Palette: flashyeffect
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
 		Damage: 30
@@ -120,6 +125,7 @@ RPGLauncher:
 		Explosion: small_frag
 		ImpactSound: xplosml1.aud
 		InvalidImpactTypes: Ground, Water
+		ExplosionPalette: flashyeffect
 	Warhead@4EffWater: CreateEffect
 		Explosion: sml_splash
 		ImpactSound: ssplash2.aud
@@ -138,6 +144,7 @@ RPGLauncher:
 	Projectile: Bullet
 		Image: 120MM
 		Speed: 682
+		Palette: flashyeffect
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
 		Damage: 30
@@ -154,6 +161,7 @@ RPGLauncher:
 		Explosion: small_frag
 		ImpactSound: xplosml1.aud
 		InvalidImpactTypes: Ground, Water
+		ExplosionPalette: flashyeffect
 	Warhead@4EffWater: CreateEffect
 		Explosion: sml_splash
 		ImpactSound: ssplash2.aud
@@ -172,6 +180,7 @@ RPGLauncher:
 	Projectile: Bullet
 		Image: 120MM
 		Speed: 682
+		Palette: flashyeffect
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
 		Damage: 40
@@ -188,6 +197,7 @@ RPGLauncher:
 		Explosion: med_frag1
 		ImpactSound: xplosml3.aud
 		InvalidImpactTypes: Ground, Water
+		ExplosionPalette: flashyeffect
 	Warhead@4EffWater: CreateEffect
 		Explosion: sml_splash
 		ImpactSound: ssplash2.aud
@@ -224,6 +234,7 @@ RPGLauncher:
 		Explosion: med_frag1
 		ImpactSound: xplosml3.aud
 		InvalidImpactTypes: Ground, Water
+		ExplosionPalette: flashyeffect
 	Warhead@4EffWater: CreateEffect
 		Explosion: sml_splash
 		ImpactSound: ssplash2.aud
@@ -242,6 +253,7 @@ TurretGun:
 	Projectile: Bullet
 		Image: 120MM
 		Speed: 853
+		Palette: flashyeffect
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
 		Damage: 40
@@ -258,6 +270,7 @@ TurretGun:
 		Explosion: med_frag1
 		ImpactSound: xplosml3.aud
 		InvalidImpactTypes: Ground, Water
+		ExplosionPalette: flashyeffect
 	Warhead@4EffWater: CreateEffect
 		Explosion: sml_splash
 		ImpactSound: ssplash2.aud
@@ -281,6 +294,7 @@ ArtilleryShell:
 		Inaccuracy: 1c256
 		ContrailLength: 30
 		Image: 120MM
+		Palette: flashyeffect
 	Warhead@1Dam: SpreadDamage
 		Spread: 384
 		Damage: 150
@@ -297,6 +311,7 @@ ArtilleryShell:
 		Explosion: poof
 		ImpactSound: xploarty.aud
 		InvalidImpactTypes: Water
+		ExplosionPalette: flashyeffect
 	Warhead@4Eff: CreateEffect
 		Explosion: big_splash
 		ImpactSound: ssplash2.aud

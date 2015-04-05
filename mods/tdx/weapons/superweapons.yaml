@@ -16,6 +16,7 @@ Atomic:
 	Warhead@2Eff_impact: CreateEffect
 		Explosion: nuke_explosion
 		ImpactSound: nukexplo.aud
+		ExplosionPalette: flashyeffect
 	Warhead@3Dam_areanukea: SpreadDamage
 #		Spread: 2c512
 		Range: 1c0, 2c1, 3c1, 4c1, 5c1, 6c0
