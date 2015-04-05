@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Traits\WithTurretReload.cs" />
     <Compile Include="Traits\WorldPaletteEffect.cs" />
   </ItemGroup>
   <ItemGroup>

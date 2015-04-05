@@ -557,10 +557,15 @@ MLRS:
 	Armament:
 		Weapon: HonestJohn
 		LocalOffset: 0,-171,0, 0,171,0
+	AmmoPool:
+		Ammo: 2
+		ReloadCount: 1
+		PipCount: 0
+		SelfReloads: true
+		SelfReloadTicks: 200
 	AttackTurreted:
 	RenderUnit:
-	WithTurret:
-		AimSequence: aim
+	WithTurretReload:
 	AutoTarget:
 		InitialStance: Defend
 	Explodes:

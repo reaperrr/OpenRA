@@ -241,10 +241,10 @@ mlrs:
 	turret:
 		Start: 32
 		Facings: 32
-	turret-2:
+	turret-halfreloaded:
 		Start: 64
 		Facings: 32
-	turret-3:
+	turret-empty:
 		Start: 96
 		Facings: 32
 	icon: mlrsicnh.tem
