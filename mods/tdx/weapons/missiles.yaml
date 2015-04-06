@@ -420,7 +420,7 @@ SAMMissile:
 		ExplosionPalette: flashyeffect
 
 HonestJohn:
-	ReloadDelay: 200
+	ReloadDelay: 50
 	BurstDelay: 50
 	Burst: 2
 	Range: 18c0

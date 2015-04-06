@@ -556,8 +556,10 @@ MLRS:
 		AlignWhenIdle: true
 	Armament:
 		Weapon: HonestJohn
-		LocalOffset: 0,-171,0, 0,171,0
+		AmmoPoolName: ammo
+		LocalOffset: 0,171,0, 0,-171,0
 	AmmoPool:
+		Name: ammo
 		Ammo: 2
 		ReloadCount: 1
 		PipCount: 0
@@ -566,6 +568,8 @@ MLRS:
 	AttackTurreted:
 	RenderUnit:
 	WithTurretReload:
+		ReloadStages: 2
+		AmmoPoolName: ammo
 	AutoTarget:
 		InitialStance: Defend
 	Explodes:

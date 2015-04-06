@@ -238,13 +238,13 @@ msam:
 mlrs:
 	idle:
 		Facings: 32
-	turret:
+	turret2:
 		Start: 32
 		Facings: 32
-	turret-halfreloaded:
+	turret1:
 		Start: 64
 		Facings: 32
-	turret-empty:
+	turret0:
 		Start: 96
 		Facings: 32
 	icon: mlrsicnh.tem
