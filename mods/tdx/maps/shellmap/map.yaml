@@ -991,7 +991,7 @@ Actors:
 		Location: 65,20
 		Owner: Nod
 		Facing: 192
-	arty1: arty
+	arty1: mlrs
 		Location: 52,25
 		Owner: Nod
 		Facing: 128
