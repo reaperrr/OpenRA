@@ -135,6 +135,7 @@ ORCA:
 		SelfReloadTicks: 100
 		ResetOnFire: False
 	RenderUnit:
+	Hovers:
 	WithShadow:
 #	LeavesHusk:
 #		HuskActor: ORCA.Husk

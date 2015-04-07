@@ -66,11 +66,11 @@ Sequences:
 	./mods/tdx/sequences/tdx-explosions.yaml
 	./mods/tdx/sequences/tdx-misc.yaml
 	./mods/tdx/sequences/tdx-vehicles.yaml
+	./mods/tdx/sequences/cnc-aircraft.yaml
 	./mods/tdx/sequences/cnc-structures.yaml
 	./mods/tdx/sequences/cnc-vehicles.yaml
 	./mods/tdx/sequences/cnc-infantry.yaml
 #
-	./mods/cnc/sequences/aircraft.yaml
 	./mods/cnc/sequences/decorations.yaml
 	./mods/cnc/sequences/funpark.yaml
 	./mods/cnc/sequences/civilian.yaml
