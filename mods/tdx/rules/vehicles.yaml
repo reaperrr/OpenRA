@@ -284,7 +284,7 @@ JEEP:
 	Armor:
 		Type: Light
 	RevealsShroud:
-		Range: 8c0
+		Range: 7c0
 	Turreted:
 		ROT: 10
 		Offset: -85,0,128
@@ -418,7 +418,7 @@ HTNK:
 		MuzzlePalette: flashyeffect
 	Armament@SECONDARY:
 		Name: secondary
-		Weapon: MammothMissiles
+		Weapon: MammothTusk
 		LocalOffset: -85,384,340, -85,-384,340
 		LocalYaw: -100, 100
 		Recoil: 10
@@ -608,7 +608,7 @@ STNK:
 		CloakSound: trans1.aud
 		UncloakSound: trans1.aud
 	Armament:
-		Weapon: 227mm.stnk
+		Weapon: Dragon
 		LocalOffset: 213,43,128, 213,-43,128
 	AttackFrontal:
 	RenderUnit:

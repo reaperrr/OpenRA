@@ -70,7 +70,7 @@ E3:
 	AutoTarget:
 		ScanRadius: 6
 	Armament:
-		Weapon: Rockets
+		Weapon: Bazooka
 		LocalOffset: 256,43,341
 		FireDelay: 5
 	AttackFrontal:

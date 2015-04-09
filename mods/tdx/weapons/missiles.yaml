@@ -1,18 +1,17 @@
-Rockets:
+Bazooka:
 	ReloadDelay: 50
 	Range: 6c0
 	Report: bazooka1.aud
 	ValidTargets: Ground, Water, Air
 	Projectile: Missile
-		Arm: 0
+		Arm: 1
 		Blockable: false
 		Inaccuracy: 128
 		Image: DRAGON
 		RateOfTurn: 15
 		Trail: smokey
-		ContrailLength: 8
 		Speed: 298
-		RangeLimit: 20
+		RangeLimit: 30
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
 		Damage: 30
@@ -21,7 +20,7 @@ Rockets:
 		Versus:
 			None: 30
 			Wood: 65
-			Light: 100
+			Light: 75
 			Heavy: 100
 			Concrete: 25
 	Warhead@2Smu: LeaveSmudge
@@ -43,7 +42,7 @@ BikeRockets:
 	Report: missile4.aud
 	ValidTargets: Ground, Water, Air
 	Burst: 2
-	BurstDelay: 15
+	BurstDelay: 25
 	Projectile: Missile
 		Arm: 0
 		Blockable: false
@@ -51,7 +50,6 @@ BikeRockets:
 		Image: DRAGON
 		RateOfTurn: 10
 		Trail: smokey
-		ContrailLength: 8
 		Speed: 213
 		RangeLimit: 30
 	Warhead@1Dam: SpreadDamage
@@ -61,11 +59,11 @@ BikeRockets:
 		ValidTargets: Ground, Water, Air
 		Versus:
 			None: 25
-			Wood: 75
-			Light: 100
+			Wood: 60
+			Light: 75
 			Heavy: 100
-			Concrete: 50
-			AirLight: 120
+			Concrete: 40
+			AirLight: 100
 			AirHeavy: 120
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
@@ -104,9 +102,8 @@ OrcaAGMissiles:
 		Image: DRAGON
 		RateOfTurn: 2
 		Trail: smokey
-		ContrailLength: 8
 		Speed: 298
-		RangeLimit: 30
+		RangeLimit: 50
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
 		Damage: 25
@@ -132,22 +129,21 @@ OrcaAGMissiles:
 		ValidImpactTypes: Water
 
 OrcaAAMissiles:
-	ReloadDelay: 12
+	ReloadDelay: 24
 	Burst: 2
 	BurstDelay: 12
 	Range: 5c0
 	Report: BAZOOK1.AUD
 	ValidTargets: Air
 	Projectile: Missile
-		Arm: 0
+		Arm: 2
 		Blockable: false
 		Inaccuracy: 128
 		Image: DRAGON
-		RateOfTurn: 20
+		RateOfTurn: 10
 		Trail: smokey
-		ContrailLength: 8
 		Speed: 298
-		RangeLimit: 30
+		RangeLimit: 50
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
 		Damage: 25
@@ -163,7 +159,7 @@ OrcaAAMissiles:
 		ImpactSound: xplosml2.aud
 		ExplosionPalette: flashyeffect
 
-MammothMissiles:
+MammothTusk:
 	ReloadDelay: 75
 	Range: 5c0
 	Report: ROCKET1.AUD
@@ -171,26 +167,27 @@ MammothMissiles:
 	Burst: 2
 	BurstDelay: 15
 	Projectile: Missile
-		Arm: 0
+		Arm: 2
 		Blockable: false
 		Inaccuracy: 128
 		Image: DRAGON
-		RateOfTurn: 20
+		RateOfTurn: 10
 		Trail: smokey
-		ContrailLength: 8
-		Speed: 341
+		Speed: 213
 		RangeLimit: 35
 	Warhead@1Dam: SpreadDamage
 		Spread: 298
-		Damage: 40
+		Damage: 50
 		DeathType: 4
 		ValidTargets: Ground, Air
 		Versus:
 			None: 50
 			Wood: 75
 			Light: 100
-			Heavy: 40
+			Heavy: 30
 			Concrete: 50
+			AirLight: 75
+			AirHeavy: 45
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -301,7 +298,7 @@ MammothMissiles:
 		ValidImpactTypes: Air, AirHit
 		ExplosionPalette: flashyeffect
 
-227mm.stnk:
+Dragon:
 	ReloadDelay: 60
 	Range: 6c0
 	Report: missile4.aud
@@ -309,18 +306,17 @@ MammothMissiles:
 	BurstDelay: 15
 	ValidTargets: Ground, Air
 	Projectile: Missile
-		Arm: 0
+		Arm: 2
 		Blockable: false
 		Inaccuracy: 213
 		Image: DRAGON
 		RateOfTurn: 10
 		Trail: smokey
-		ContrailLength: 8
 		Speed: 213
 		RangeLimit: 40
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
-		Damage: 40
+		Damage: 30
 		DeathType: 4
 		ValidTargets: Ground, Air
 		Versus:
@@ -351,13 +347,12 @@ BoatMissile:
 	BurstDelay: 15
 	Report: missile3.aud
 	Projectile: Missile
-		Arm: 0
+		Arm: 2
 		Blockable: false
 		Inaccuracy: 213
 		Image: DRAGON
 		RateOfTurn: 10
 		Trail: smokey
-		ContrailLength: 8
 		Speed: 170
 		RangeLimit: 60
 	Warhead@1Dam: SpreadDamage
@@ -398,14 +393,13 @@ TowerMissile:
 	Report: missile3.aud
 	ValidTargets: Ground, Air, Water
 	Projectile: Missile
-		Arm: 0
+		Arm: 2
 		Blockable: false
 		Inaccuracy: 768
 		Image: DRAGON
 		RateOfTurn: 5
 		Trail: smokey
-		ContrailLength: 8
-		Speed: 298
+		Speed: 272
 		RangeLimit: 40
 	Warhead@1Dam: SpreadDamage
 		Spread: 512
@@ -442,7 +436,8 @@ SAMMissile:
 		Blockable: false
 		Image: MISSILE
 		RateOfTurn: 5
-		Speed: 426
+		Speed: 384
+		CloseEnough: 384
 		RangeLimit: 75
 		Trail: smokey
 		ContrailLength: 8
@@ -493,4 +488,3 @@ HonestJohn:
 		Explosion: big_ranapalm
 		ImpactSound: flamer2.aud
 		ExplosionPalette: flashyeffectra
-
