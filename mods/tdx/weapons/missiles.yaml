@@ -216,18 +216,18 @@ MammothMissiles:
 	Burst: 2
 	BurstDelay: 25
 	Report: missile2.aud
-	ValidTargets: Ground, Air
-	Projectile: Missile
+	ValidTargets: Ground#, Air
+	Projectile: BallisticMissile
 		Arm: 5
-		Blockable: false
+#		Blockable: false
 		Shadow: true
 		Inaccuracy: 853
-#		Angle: 62
+		Angle: 62
 		Image: MISSILE
 		RateOfTurn: 2
 		ContrailLength: 10
 		Trail: smokey
-		Speed: 341
+		Speed: 171
 	Warhead@1Dam: SpreadDamage
 		Spread: 683
 		Damage: 75
