@@ -1033,7 +1033,7 @@ Sequences:
 VoxelSequences:
 
 Weapons:
-	ArtilleryShell:
+	155mm:
 		ReloadDelay: 65
 		Range: 14c512
 

@@ -136,7 +136,7 @@ ARTY:
 	RevealsShroud:
 		Range: 8c0
 	Armament:
-		Weapon: ArtilleryShell
+		Weapon: 155mm
 		LocalOffset: 624,0,208
 		MuzzleSequence: muzzle
 		MuzzlePalette: flashyeffect

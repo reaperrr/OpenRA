@@ -7,6 +7,7 @@ Grenade:
 		Angle: 62
 		Inaccuracy: 213
 		Image: BOMB
+		Shadow: true
 	Warhead@1Dam: SpreadDamage
 		Spread: 341
 		Damage: 50
@@ -282,7 +283,7 @@ TurretGun:
 		ExplosionPalette: terrain
 		ValidImpactTypes: Ground
 
-ArtilleryShell:
+155mm:
 	ReloadDelay: 65
 	Range: 11c0
 	MinRange: 2c896
@@ -292,9 +293,9 @@ ArtilleryShell:
 		Blockable: false
 		Angle: 56
 		Inaccuracy: 1c256
-		ContrailLength: 30
 		Image: 120MM
 		Palette: flashyeffect
+		Shadow: true
 	Warhead@1Dam: SpreadDamage
 		Spread: 384
 		Damage: 150
