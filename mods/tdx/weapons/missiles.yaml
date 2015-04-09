@@ -212,27 +212,69 @@ MammothMissiles:
 227mm:
 	ReloadDelay: 100
 	Range: 10c0
-	MinRange: 2c0
+	MinRange: 3c0
 	Burst: 2
 	BurstDelay: 25
 	Report: missile2.aud
-	ValidTargets: Ground#, Air
+	ValidTargets: Ground
 	Projectile: BallisticMissile
-		Arm: 5
-#		Blockable: false
+		Arm: 3
 		Shadow: true
 		Inaccuracy: 853
 		Angle: 62
 		Image: MISSILE
 		RateOfTurn: 2
-		ContrailLength: 10
 		Trail: smokey
-		Speed: 171
+		Speed: 256
 	Warhead@1Dam: SpreadDamage
 		Spread: 683
 		Damage: 75
 		DeathType: 4
 		ValidTargets: Ground
+		Versus:
+			Wood: 65
+			Light: 50
+			Heavy: 20
+			Concrete: 30
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Crater
+	Warhead@3Eff: CreateEffect
+		Explosion: big_frag
+		ImpactSound: xplomed1.aud
+		InvalidImpactTypes: Water, Air, AirHit
+		ExplosionPalette: flashyeffect
+	Warhead@4Eff: CreateEffect
+		Explosion: med_splash
+		ImpactSound: ssplash1.aud
+		ExplosionPalette: effectra
+		ValidImpactTypes: Water
+	Warhead@5Eff: CreateEffect
+		Explosion: med_frag
+		ImpactSound: xplomed2.aud
+		ValidImpactTypes: Air, AirHit
+		ExplosionPalette: flashyeffect
+
+227mmAA:
+	ReloadDelay: 100
+	Range: 10c0
+	MinRange: 2c0
+	Burst: 2
+	BurstDelay: 25
+	Report: missile2.aud
+	ValidTargets: Air
+	Projectile: Missile
+		Arm: 5
+		Shadow: true
+		Inaccuracy: 768
+		Image: MISSILE
+		RateOfTurn: 4
+		Trail: smokey
+		Speed: 256
+	Warhead@1Dam: SpreadDamage
+		Spread: 683
+		Damage: 75
+		DeathType: 4
+		ValidTargets: Air
 		Versus:
 			None: 100
 			Wood: 60

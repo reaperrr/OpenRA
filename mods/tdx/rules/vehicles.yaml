@@ -514,14 +514,14 @@ MSAM:
 	RevealsShroud:
 		Range: 8c0
 	Turreted:
-		ROT: 255
+		ROT: 10
 		Offset: -256,0,128
 	Armament@PRIMARY:
 		Weapon: 227mm
-		LocalOffset: 213,128,0, 213,-128,0
+		LocalOffset: 213,128,128, 213,-128,128
 	Armament@SECONDARY:
-		Weapon: 227mm
-		LocalOffset: 213,-128,0, 213,128,0
+		Weapon: 227mmAA
+		LocalOffset: 213,-128,128, 213,128,128
 	AttackFrontal:
 	RenderUnit:
 	WithTurret:
