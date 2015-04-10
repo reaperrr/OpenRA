@@ -27,7 +27,7 @@ LoopTrack = function(actor, left, right)
 end
 
 PlayMusic = function()
-	Media.PlayMusic("map1", PlayMusic)
+	Media.PlayMusic("linefire_b", PlayMusic)
 end
 
 LoadTransport = function(transport, passenger)
