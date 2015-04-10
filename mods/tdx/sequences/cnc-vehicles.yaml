@@ -42,9 +42,9 @@ bggy:
 		AddExtension: False
 
 mtnk:
-	idle: mtnk2
+	idle:
 		Facings: 32
-	turret: mtnk2
+	turret:
 		Start: 32
 		Facings: 32
 #	muzzle: gunfire2

@@ -61,45 +61,34 @@ mtnk2:
 		Length: 1
 
 htnk2:
+	Defaults:
+		Length: *
 	idle:
 		Facings: 32
+		Length: 1
 	turret:
 		Start: 32
 		Facings: 32
+		Length: 1
 	muzzle0: cann-n
-		Length: *
 	muzzle1: cann-nnw
-		Length: *
 	muzzle2: cann-nw
-		Length: *
 	muzzle3: cann-nww
-		Length: *
 	muzzle4: cann-w
-		Length: *
 	muzzle5: cann-sww
-		Length: *
 	muzzle6: cann-sw
-		Length: *
 	muzzle7: cann-ssw
-		Length: *
 	muzzle8: cann-s
-		Length: *
 	muzzle9: cann-sse
-		Length: *
 	muzzle10: cann-se
-		Length: *
 	muzzle11: cann-see
-		Length: *
 	muzzle12: cann-e
-		Length: *
 	muzzle13: cann-nee
-		Length: *
 	muzzle14: cann-ne
-		Length: *
 	muzzle15: cann-nne
-		Length: *
 	icon: htnkicnh.tem
 		AddExtension: False
+		Length: 1
 
 mrpg:
 	idle:
