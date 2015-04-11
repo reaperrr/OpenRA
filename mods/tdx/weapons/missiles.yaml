@@ -34,12 +34,12 @@ Bazooka:
 		ImpactSound: xplosml3.aud
 		InvalidImpactTypes: Water
 		ExplosionPalette: flashyeffect
-	Warhead@3Eff: CreateEffect
+	Warhead@4Eff: CreateEffect
 		Explosion: small_building
 		ImpactSound: xplosml3.aud
 		ValidImpactTypes: Air, AirHit
 		ExplosionPalette: flashyeffect
-	Warhead@4Eff: CreateEffect
+	Warhead@5Eff: CreateEffect
 		Explosion: sml_splash
 		ImpactSound: ssplash3.aud
 		ExplosionPalette: effectra
