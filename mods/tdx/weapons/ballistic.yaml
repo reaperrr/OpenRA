@@ -289,7 +289,7 @@ TurretGun:
 	MinRange: 2c896
 	Report: artyfire.aud
 	Projectile: Bullet
-		Speed: 204
+		Speed: 256
 		Blockable: false
 		Angle: 56
 		Inaccuracy: 1c256
@@ -304,7 +304,7 @@ TurretGun:
 			None: 90
 			Wood: 80
 			Light: 75
-			Heavy: 50
+			Heavy: 30
 			Concrete: 100
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
