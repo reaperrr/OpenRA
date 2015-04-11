@@ -315,7 +315,7 @@ TurretGun:
 		ExplosionPalette: flashyeffect
 	Warhead@4Eff: CreateEffect
 		Explosion: big_splash
-		ImpactSound: ssplash2.aud
+		ImpactSound: ssplash1.aud
 		ExplosionPalette: effectra
 		ValidImpactTypes: Water
 
