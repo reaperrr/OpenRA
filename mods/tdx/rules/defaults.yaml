@@ -229,6 +229,8 @@
 		Notification: CivilianKilled
 		NotifyAll: true
 	ScaredyCat:
+	WithInfantryBody:
+		IdleSequences: idle1, beg-for-mercy, idle1, idle1, idle1 #otherwise beg-for-mercy would be played too often
 	Crushable:
 		CrushSound: squish2.aud
 

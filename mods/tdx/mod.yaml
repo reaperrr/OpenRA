@@ -70,10 +70,10 @@ Sequences:
 	./mods/tdx/sequences/cnc-structures.yaml
 	./mods/tdx/sequences/cnc-vehicles.yaml
 	./mods/tdx/sequences/cnc-infantry.yaml
+	./mods/tdx/sequences/cnc-civilian.yaml
 #
 	./mods/cnc/sequences/decorations.yaml
 	./mods/cnc/sequences/funpark.yaml
-	./mods/cnc/sequences/civilian.yaml
 	./mods/cnc/sequences/campaign.yaml
 
 Cursors:
