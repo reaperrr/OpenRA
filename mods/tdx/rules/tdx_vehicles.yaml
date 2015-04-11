@@ -20,11 +20,13 @@ NAPC:
 		Range: 7c0
 	Armament@PRIMARY:
 		Weapon: MachineGun
-		LocalOffset: 85,0,299
+		LocalOffset: 256,0,171
 		MuzzleSequence: muzzle
 		MuzzlePalette: flashyeffect
+		MuzzleSplitFacings: 16
 	AttackFrontal:
 	WithMuzzleFlash:
+		SplitFacings: true
 	RenderUnit:
 	AutoTarget:
 	Cargo:

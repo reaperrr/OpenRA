@@ -712,15 +712,17 @@ GTWR:
 		Weapon: HighV
 		LocalOffset: 256,0,256
 		MuzzleSequence: muzzle
+		MuzzleSplitFacings: 16
 	AttackTurreted:
 	BodyOrientation:
-		QuantizedFacings: 8
+		QuantizedFacings: 16
 	AutoTarget:
 	DetectCloaked:
 		Range: 2
 	RenderDetectionCircle:
 	RenderRangeCircle:
 	WithMuzzleFlash:
+		SplitFacings: true
 	Turreted:
 		ROT: 255
 	Power:

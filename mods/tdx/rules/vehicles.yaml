@@ -103,7 +103,9 @@ APC:
 		LocalOffset: 128,0,213
 		MuzzleSequence: muzzle
 		MuzzlePalette: flashyeffect
+		MuzzleSplitFacings: 16
 	WithMuzzleFlash:
+		SplitFacings: true
 	AttackFrontal:
 	RenderUnit:
 	AutoTarget:
@@ -218,8 +220,10 @@ BGGY:
 		LocalOffset: 171,0,43
 		MuzzleSequence: muzzle
 		MuzzlePalette: flashyeffect
+		MuzzleSplitFacings: 16
 	AttackTurreted:
 	WithMuzzleFlash:
+		SplitFacings: true
 	RenderUnit:
 	WithTurret:
 	AutoTarget:
@@ -293,8 +297,10 @@ JEEP:
 		LocalOffset: 171,0,85
 		MuzzleSequence: muzzle
 		MuzzlePalette: flashyeffect
+		MuzzleSplitFacings: 16
 	AttackTurreted:
 	WithMuzzleFlash:
+		SplitFacings: true
 	RenderUnit:
 	WithTurret:
 	AutoTarget:

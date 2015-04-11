@@ -70,11 +70,15 @@ HELI:
 		Weapon: HeliAGGun
 		LocalOffset: 128,-213,-85, 128,213,-85
 		MuzzleSequence: muzzle
+		MuzzleSplitFacings: 16
+		MuzzlePalette: flashyeffect
 	Armament@SECONDARY:
 		Name: secondary
 		Weapon: HeliAAGun
 		LocalOffset: 128,-213,-85, 128,213,-85
 		MuzzleSequence: muzzle
+		MuzzleSplitFacings: 16
+		MuzzlePalette: flashyeffect
 	AttackHeli:
 		FacingTolerance: 20
 	AmmoPool:
@@ -88,6 +92,7 @@ HELI:
 	WithRotor:
 		Offset: 0,0,85
 	WithMuzzleFlash:
+		SplitFacings: true
 	WithShadow:
 #	LeavesHusk:
 #		HuskActor: HELI.Husk
