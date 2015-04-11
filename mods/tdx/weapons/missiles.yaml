@@ -3,15 +3,19 @@ Bazooka:
 	Range: 6c0
 	Report: bazooka1.aud
 	ValidTargets: Ground, Water, Air
-	Projectile: Missile
+	Projectile: BallisticMissile
+		Angle: 15
+		MaximumPitch: 20
+		Shadow: true
 		Arm: 1
+		LockOnProbability: 75
 		Blockable: false
 		Inaccuracy: 128
 		Image: DRAGON
 		RateOfTurn: 15
 		Trail: smokey
-		Speed: 298
-		RangeLimit: 30
+		Speed: 256
+		RangeLimit: 40
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
 		Damage: 30
@@ -30,6 +34,11 @@ Bazooka:
 		ImpactSound: xplosml3.aud
 		InvalidImpactTypes: Water
 		ExplosionPalette: flashyeffect
+	Warhead@3Eff: CreateEffect
+		Explosion: small_building
+		ImpactSound: xplosml3.aud
+		ValidImpactTypes: Air, AirHit
+		ExplosionPalette: flashyeffect
 	Warhead@4Eff: CreateEffect
 		Explosion: sml_splash
 		ImpactSound: ssplash3.aud
@@ -42,16 +51,20 @@ BikeRockets:
 	Report: missile4.aud
 	ValidTargets: Ground, Water, Air
 	Burst: 2
-	BurstDelay: 25
-	Projectile: Missile
-		Arm: 0
+	BurstDelay: 15
+	Projectile: BallisticMissile
+		Angle: 15
+		MaximumPitch: 20
+		Shadow: true
+		Arm: 1
+		LockOnProbability: 75
 		Blockable: false
 		Inaccuracy: 128
 		Image: DRAGON
 		RateOfTurn: 10
 		Trail: smokey
-		Speed: 213
-		RangeLimit: 30
+		Speed: 256
+		RangeLimit: 45
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
 		Damage: 30
@@ -95,14 +108,18 @@ OrcaAGMissiles:
 	Range: 5c0
 	Report: bazooka1.aud
 	ValidTargets: Ground, Water
-	Projectile: Missile
-		Arm: 0
+	Projectile: BallisticMissile
+		Angle: 15
+		MaximumPitch: 20
+		Shadow: true
+		Arm: 1
+		LockOnProbability: 75
 		Blockable: false
 		Inaccuracy: 128
 		Image: DRAGON
 		RateOfTurn: 2
 		Trail: smokey
-		Speed: 298
+		Speed: 256
 		RangeLimit: 50
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
@@ -135,8 +152,12 @@ OrcaAAMissiles:
 	Range: 5c0
 	Report: BAZOOK1.AUD
 	ValidTargets: Air
-	Projectile: Missile
+	Projectile: BallisticMissile
+		Angle: 15
+		MaximumPitch: 20
+		Shadow: true
 		Arm: 2
+		LockOnProbability: 75
 		Blockable: false
 		Inaccuracy: 128
 		Image: DRAGON
@@ -163,11 +184,15 @@ MammothTusk:
 	ReloadDelay: 75
 	Range: 5c0
 	Report: ROCKET1.AUD
-	ValidTargets: Ground, Air
+	ValidTargets: Ground, Water, Air
 	Burst: 2
 	BurstDelay: 15
-	Projectile: Missile
+	Projectile: BallisticMissile
+		Angle: 15
+		MaximumPitch: 20
+		Shadow: true
 		Arm: 2
+		LockOnProbability: 75
 		Blockable: false
 		Inaccuracy: 128
 		Image: DRAGON
@@ -179,7 +204,7 @@ MammothTusk:
 		Spread: 298
 		Damage: 50
 		DeathType: 4
-		ValidTargets: Ground, Air
+		ValidTargets: Ground, Water, Air
 		Versus:
 			None: 50
 			Wood: 75
@@ -213,12 +238,14 @@ MammothTusk:
 	Burst: 2
 	BurstDelay: 25
 	Report: missile2.aud
-	ValidTargets: Ground
+	ValidTargets: Ground, Water
 	Projectile: BallisticMissile
-		Arm: 3
+		Arm: 2
+		LockOnProbability: 0
 		Shadow: true
 		Inaccuracy: 853
-		Angle: 62
+		Angle: 65
+		MaximumPitch: 15
 		Image: MISSILE
 		RateOfTurn: 2
 		Trail: smokey
@@ -227,7 +254,7 @@ MammothTusk:
 		Spread: 683
 		Damage: 75
 		DeathType: 4
-		ValidTargets: Ground
+		ValidTargets: Ground, Water
 		Versus:
 			Wood: 65
 			Light: 50
@@ -259,8 +286,11 @@ MammothTusk:
 	BurstDelay: 25
 	Report: missile2.aud
 	ValidTargets: Air
-	Projectile: Missile
-		Arm: 5
+	Projectile: BallisticMissile
+		Angle: 15
+		MaximumPitch: 20
+		Arm: 3
+		LockOnProbability: 60
 		Shadow: true
 		Inaccuracy: 768
 		Image: MISSILE
@@ -304,21 +334,25 @@ Dragon:
 	Report: missile4.aud
 	Burst: 2
 	BurstDelay: 15
-	ValidTargets: Ground, Air
-	Projectile: Missile
+	ValidTargets: Ground, Water, Air
+	Projectile: BallisticMissile
+		Angle: 20
+		MaximumPitch: 20
+		Shadow: true
 		Arm: 2
+		LockOnProbability: 90
 		Blockable: false
 		Inaccuracy: 213
 		Image: DRAGON
 		RateOfTurn: 10
 		Trail: smokey
 		Speed: 213
-		RangeLimit: 40
+		RangeLimit: 50
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
-		Damage: 30
+		Damage: 35
 		DeathType: 4
-		ValidTargets: Ground, Air
+		ValidTargets: Ground, Water, Air
 		Versus:
 			None: 25
 			Wood: 75
@@ -346,8 +380,12 @@ BoatMissile:
 	Burst: 2
 	BurstDelay: 15
 	Report: missile3.aud
-	Projectile: Missile
+	Projectile: BallisticMissile
+		Angle: 15
+		MaximumPitch: 20
+		Shadow: true
 		Arm: 2
+		LockOnProbability: 75
 		Blockable: false
 		Inaccuracy: 213
 		Image: DRAGON
@@ -356,7 +394,7 @@ BoatMissile:
 		Speed: 170
 		RangeLimit: 60
 	Warhead@1Dam: SpreadDamage
-		Spread: 256
+		Spread: 384
 		Damage: 60
 		DeathType: 3
 		Versus:
@@ -392,15 +430,19 @@ TowerMissile:
 	Range: 7c0
 	Report: missile3.aud
 	ValidTargets: Ground, Air, Water
-	Projectile: Missile
+	Projectile: BallisticMissile
+		Angle: 20
+		MaximumPitch: 20
+		Shadow: true
 		Arm: 2
+		LockOnProbability: 75
 		Blockable: false
 		Inaccuracy: 768
 		Image: DRAGON
 		RateOfTurn: 5
 		Trail: smokey
-		Speed: 272
-		RangeLimit: 40
+		Speed: 256
+		RangeLimit: 60
 	Warhead@1Dam: SpreadDamage
 		Spread: 512
 		Damage: 60
@@ -436,11 +478,10 @@ SAMMissile:
 		Blockable: false
 		Image: MISSILE
 		RateOfTurn: 5
-		Speed: 384
+		Speed: 341
 		CloseEnough: 384
 		RangeLimit: 75
 		Trail: smokey
-		ContrailLength: 8
 	Warhead@1Dam: SpreadDamage
 		Spread: 682
 		ValidTargets: Air
