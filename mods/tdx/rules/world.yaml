@@ -32,6 +32,10 @@ World:
 		Name: raplayer
 		Filename: ra.pal
 		ShadowIndex: 4
+	PaletteFromFile@player:
+		Name: player
+		Filename: snow.pal
+		ShadowIndex: 4
 	PaletteFromFile@chrome:
 		Name: chrome
 		Filename: temperat.pal
