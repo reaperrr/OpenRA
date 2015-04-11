@@ -11,7 +11,7 @@ World:
 	WorldPaletteEffect:
 		ExcludePalettes: flashyeffectra, flashyeffect, cursor, chrome, colorpicker, fog, shroud
 		DayNightCycle: true
-		InitialEffect: Morning
+		InitialEffect: Day
 		DayLength: 1500
 		NightLength: 1500
 	CloakPaletteEffect:
