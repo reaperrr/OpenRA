@@ -99,7 +99,7 @@ CTNK:
 		Range: 5c0
 	Armament:
 		Weapon: BigChemspray
-		LocalOffset: 512,128,42, 512,-128,42
+		LocalOffset: 768,128,42, 768,-128,42
 		MuzzleSequence: muzzle
 		MuzzleSplitFacings: 32
 	AttackFrontal:
