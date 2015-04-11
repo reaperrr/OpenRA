@@ -277,6 +277,8 @@ AFLD:
 	ProvidesCustomPrerequisite@vehprod:
 		Prerequisite: vehicleproduction
 	WithDeliveryAnimation:
+	WithIdleOverlay@DISH:
+		Sequence: idle-dish
 	ProductionBar:
 	Power:
 		Amount: -30
