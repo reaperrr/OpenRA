@@ -94,6 +94,7 @@ silo:
 			WINTER: TEMPERAT
 			JUNGLE: TEMPERAT
 			SNOW: TEMPERAT
+			CARIBIC: DESERT
 		Length: *
 		Offset: 0,1
 	icon: siloicnh.tem
@@ -288,6 +289,7 @@ fix:
 			WINTER: TEMPERAT
 			JUNGLE: TEMPERAT
 			SNOW: TEMPERAT
+			CARIBIC: DESERT
 		Length: *
 		Offset: 0,-9
 	icon: fixicnh.tem
@@ -357,6 +359,7 @@ obli:
 			WINTER: TEMPERAT
 			JUNGLE: TEMPERAT
 			SNOW: TEMPERAT
+			CARIBIC: DESERT
 		Length: *
 		Offset: -1,-3
 	icon: obliicnh.tem
@@ -426,6 +429,7 @@ gun:
 			WINTER: TEMPERAT
 			JUNGLE: TEMPERAT
 			SNOW: TEMPERAT
+			CARIBIC: DESERT
 		Length: *
 		Offset: -1,-1
 	icon: gunicnh.tem
@@ -528,6 +532,7 @@ gtwr:
 			WINTER: TEMPERAT
 			JUNGLE: TEMPERAT
 			SNOW: TEMPERAT
+			CARIBIC: DESERT
 		Length: *
 		Offset: 0,-2
 	icon: gtwricnh.tem
@@ -556,6 +561,7 @@ atwr:
 			WINTER: TEMPERAT
 			JUNGLE: TEMPERAT
 			SNOW: TEMPERAT
+			CARIBIC: DESERT
 		Length: *
 		Offset: -3,0
 	icon: atwricnh.tem
@@ -580,6 +586,7 @@ hosp:
 			WINTER: TEMPERAT
 			JUNGLE: TEMPERAT
 			SNOW: TEMPERAT
+			CARIBIC: DESERT
 		Length: *
 		Offset: 0,1
 
@@ -592,6 +599,7 @@ hosp.husk:
 			WINTER: TEMPERAT
 			JUNGLE: TEMPERAT
 			SNOW: TEMPERAT
+			CARIBIC: DESERT
 		Length: *
 		Offset: 0,1
 
@@ -639,6 +647,7 @@ miss:
 			WINTER: TEMPERAT
 			JUNGLE: TEMPERAT
 			SNOW: TEMPERAT
+			CARIBIC: DESERT
 		Length: *
 		Offset: 0,1
 	icon: missicnh
@@ -652,5 +661,6 @@ miss.husk:
 			WINTER: TEMPERAT
 			JUNGLE: TEMPERAT
 			SNOW: TEMPERAT
+			CARIBIC: DESERT
 		Length: *
 		Offset: 0,1

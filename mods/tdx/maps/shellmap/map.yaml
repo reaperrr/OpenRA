@@ -1,12 +1,12 @@
 MapFormat: 7
 
-RequiresMod: cnc
+RequiresMod: tdx
 
 Title: shellmap
 
-Description: CNC Shellmap
+Description: TDX Shellmap
 
-Author: Chris Forbes
+Author: Chris Forbes/Reaperrr
 
 Tileset: WINTER
 

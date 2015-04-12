@@ -129,33 +129,22 @@ xcrated:
 		ZOffset: -511
 
 crate-effects:
+	Defaults:
+		Length: *
 	airstrike: deviator
-		Length: *
 	nuke: missile2
-		Length: *
 	dollar: dollar
-		Length: *
 	reveal-map: radarcrate
-		Length: *
 	hide-map: empulse
-		Length: *
 	heal: healcrate
-		Length: *
 	mine: mine
-		Length: *
 	redskull: rapid
-		Length: *
 	cloak: cloakcrate
-		Length: *
 	levelup: levelup
-		Length: *
 		Tick: 200
 	firepowerup: firepowercrate
-		Length: *
 	armorup: armorcrate
-		Length: *
 	speedup: speedcrate
-		Length: *
 
 atomicup:
 	idle:
@@ -214,6 +203,7 @@ overlay:
 	build-valid-temperat:
 	build-valid-winter:
 	build-valid-jungle:
+	build-valid-caribic:
 	build-invalid:
 		Start: 1
 	target-select:

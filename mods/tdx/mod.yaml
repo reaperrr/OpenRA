@@ -1,6 +1,6 @@
 Metadata:
 	Title: Tiberian Dawn Xtended
-	Description: TDX early alpha
+	Description: TDX alpha 20150412
 	Version: {DEV_VERSION}
 	Author: Reaperrr
 
@@ -8,6 +8,7 @@ Folders:
 	.
 	./mods/tdx
 	./mods/tdx/bits
+	./mods/tdx/bits/caribic
 	./mods/tdx/bits/cnc
 	./mods/tdx/bits/tdx_aud
 	./mods/tdx/ui/uibits
@@ -47,12 +48,11 @@ Rules:
 	./mods/tdx/rules/tdx_vehicles.yaml
 	./mods/tdx/rules/civilian.yaml
 	./mods/tdx/rules/ships.yaml
-#
-	./mods/cnc/rules/misc.yaml
-	./mods/cnc/rules/trees.yaml
-	./mods/cnc/rules/civilian-desert.yaml
-	./mods/cnc/rules/tech.yaml
-	./mods/cnc/rules/husks.yaml
+	./mods/tdx/rules/misc.yaml
+	./mods/tdx/rules/trees.yaml
+	./mods/tdx/rules/civilian-desert.yaml
+	./mods/tdx/rules/tech.yaml
+	./mods/tdx/rules/husks.yaml
 
 Weapons:
 	./mods/tdx/weapons/ballistic.yaml
@@ -71,8 +71,8 @@ Sequences:
 	./mods/tdx/sequences/cnc-vehicles.yaml
 	./mods/tdx/sequences/cnc-infantry.yaml
 	./mods/tdx/sequences/cnc-civilian.yaml
+	./mods/tdx/sequences/cnc-decorations.yaml
 #
-	./mods/cnc/sequences/decorations.yaml
 	./mods/cnc/sequences/funpark.yaml
 	./mods/cnc/sequences/campaign.yaml
 
@@ -106,6 +106,7 @@ TileSets:
 	./mods/cnc/tilesets/snow.yaml
 	./mods/cnc/tilesets/temperat.yaml
 	./mods/cnc/tilesets/jungle.yaml
+	./mods/tdx/tilesets/caribic.yaml
 
 SupportsMapsFrom: cnc, tdx
 
@@ -118,6 +119,7 @@ SpriteSequenceFormat: TilesetSpecificSpriteSequence
 		SNOW: .sno
 		DESERT: .des
 		JUNGLE: .jun
+		CARIBIC: .car
 
 LoadScreen: LogoStripeLoadScreen
 	Image: ./mods/tdx/ui/uibits/loadscreen.png
