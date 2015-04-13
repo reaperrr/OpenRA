@@ -26,24 +26,28 @@ fact:
 	icon: facticnh
 
 nuke:
-	idle:
+	Defaults: 
+		Offset: 0,-12
+	idle: nuk1
 		Length: 4
 		Tick: 1000
-	damaged-idle:
+	damaged-idle: nuk1
 		Start: 4
 		Length: 4
 		Tick: 1000
-	dead:
+	dead: nuk1
 		Start: 8
 		Tick: 800
-	make: nukemake
+	make: nuk1make
 		Length: *
 		Tick: 80
 	bib: bib3
 		UseTilesetExtension: true
 		Length: *
+		Offset: 0,0
 	icon: nukeicnh.tem
 		AddExtension: False
+		Offset: 0,0
 
 proc:
 	idle:
@@ -218,24 +222,28 @@ hq:
 		AddExtension: False
 
 nuk2:
-	idle:
+	Defaults: 
+		Offset: 0,-12
+	idle: nuk3
 		Length: 4
 		Tick: 1000
-	damaged-idle:
+	damaged-idle: nuk3
 		Start: 4
 		Length: 4
 		Tick: 1000
-	dead:
+	dead: nuk3
 		Start: 8
 		Tick: 800
-	make: nuk2make
+	make: nuk3make
 		Length: *
 		Tick: 80
 	bib: bib3
+		Offset: 0,0
 		UseTilesetExtension: true
 		Length: *
 	icon: nuk2icnh.tem
 		AddExtension: False
+		Offset: 0,0
 
 hpad:
 	idle:
