@@ -32,7 +32,7 @@ Bazooka:
 	Warhead@3Eff: CreateEffect
 		Explosion: small_poof
 		ImpactSound: xplosml3.aud
-		InvalidImpactTypes: Water
+		InvalidImpactTypes: Water, Air, AirHit
 		ExplosionPalette: flashyeffect
 	Warhead@4Eff: CreateEffect
 		Explosion: small_building
@@ -431,21 +431,22 @@ TowerMissile:
 	Report: missile3.aud
 	ValidTargets: Ground, Air, Water
 	Projectile: BallisticMissile
-		Angle: 20
+		Angle: 30
 		MaximumPitch: 20
 		Shadow: true
-		Arm: 2
-		LockOnProbability: 75
+		Arm: 3
 		Blockable: false
 		Inaccuracy: 768
 		Image: DRAGON
 		RateOfTurn: 5
 		Trail: smokey
 		Speed: 256
-		RangeLimit: 60
+		CloseEnough: 341
+		RangeLimit: 50
 	Warhead@1Dam: SpreadDamage
 		Spread: 512
 		Damage: 60
+		ValidTargets: Ground, Water, Air
 		DeathType: 3
 		Versus:
 			None: 60
