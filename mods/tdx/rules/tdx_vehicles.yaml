@@ -151,7 +151,6 @@ T55H:
 		SplitFacings: true
 	AttackTurreted:
 	RenderUnit:
-		PlayerPalette: staticplayer
 	WithTurret:
 	AutoTarget:
 #	LeavesHusk:

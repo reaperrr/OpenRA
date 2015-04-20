@@ -44,7 +44,6 @@ HIND:
 		SelfReloadTicks: 200
 		ResetOnFire: False
 	RenderUnit:
-		PlayerPalette: raplayer
 	WithRotor:
 		Offset: 0,0,85
 	WithMuzzleFlash:
@@ -70,6 +69,5 @@ HIND.Husk:
 		Offset: 0,0,85
 	RenderUnit:
 		Image: hind
-		PlayerPalette: raplayer
 	WithShadow:
 
