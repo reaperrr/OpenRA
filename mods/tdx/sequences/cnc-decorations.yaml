@@ -28,10 +28,10 @@ split3:
 		Start: 54
 
 piraship:
+	Defaults:
+		AddExtension: false
+		Offset: 2, -10
 	idle: piraship.car
-		AddExtension: false
-	damaged-idle: piraship.car
-		AddExtension: false
 
 rock1:
 	idle: rock1.des
