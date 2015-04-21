@@ -4,8 +4,7 @@ Bazooka:
 	Report: bazooka1.aud
 	ValidTargets: Ground, Water, Air
 	Projectile: BallisticMissile
-		Angle: 15
-		MaximumPitch: 20
+		Angle: 20
 		Shadow: true
 		Arm: 1
 		LockOnProbability: 75
@@ -53,8 +52,7 @@ BikeRockets:
 	Burst: 2
 	BurstDelay: 15
 	Projectile: BallisticMissile
-		Angle: 15
-		MaximumPitch: 20
+		Angle: 30
 		Shadow: true
 		Arm: 1
 		LockOnProbability: 75
@@ -109,8 +107,7 @@ OrcaAGMissiles:
 	Report: bazooka1.aud
 	ValidTargets: Ground, Water
 	Projectile: BallisticMissile
-		Angle: 15
-		MaximumPitch: 20
+		Angle: 30
 		Shadow: true
 		Arm: 1
 		LockOnProbability: 75
@@ -154,7 +151,6 @@ OrcaAAMissiles:
 	ValidTargets: Air
 	Projectile: BallisticMissile
 		Angle: 15
-		MaximumPitch: 20
 		Shadow: true
 		Arm: 2
 		LockOnProbability: 75
@@ -188,8 +184,7 @@ MammothTusk:
 	Burst: 2
 	BurstDelay: 15
 	Projectile: BallisticMissile
-		Angle: 15
-		MaximumPitch: 20
+		Angle: 30
 		Shadow: true
 		Arm: 2
 		LockOnProbability: 75
@@ -245,7 +240,6 @@ MammothTusk:
 		Shadow: true
 		Inaccuracy: 853
 		Angle: 65
-		MaximumPitch: 15
 		Image: MISSILE
 		RateOfTurn: 2
 		Trail: smokey
@@ -288,7 +282,6 @@ MammothTusk:
 	ValidTargets: Air
 	Projectile: BallisticMissile
 		Angle: 15
-		MaximumPitch: 20
 		Arm: 3
 		LockOnProbability: 60
 		Shadow: true
@@ -336,8 +329,7 @@ Dragon:
 	BurstDelay: 15
 	ValidTargets: Ground, Water, Air
 	Projectile: BallisticMissile
-		Angle: 20
-		MaximumPitch: 20
+		Angle: 30
 		Shadow: true
 		Arm: 2
 		LockOnProbability: 90
@@ -381,8 +373,7 @@ BoatMissile:
 	BurstDelay: 15
 	Report: missile3.aud
 	Projectile: BallisticMissile
-		Angle: 15
-		MaximumPitch: 20
+		Angle: 30
 		Shadow: true
 		Arm: 2
 		LockOnProbability: 75
@@ -432,7 +423,6 @@ TowerMissile:
 	ValidTargets: Ground, Air, Water
 	Projectile: BallisticMissile
 		Angle: 30
-		MaximumPitch: 20
 		Shadow: true
 		Arm: 3
 		Blockable: false
