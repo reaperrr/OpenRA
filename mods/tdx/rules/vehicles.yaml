@@ -260,7 +260,7 @@ BIKE:
 		Range: 7c0
 	Armament:
 		Weapon: BikeRockets
-		LocalOffset: -128,-170,170, -128,170,170
+		LocalOffset: -128,-171,171, -128,171,171
 	AttackFrontal:
 	RenderUnit:
 		Scale: 0.75
@@ -418,10 +418,11 @@ HTNK:
 		ROT: 3
 	Armament@PRIMARY:
 		Weapon: 120mmDual
-		LocalOffset: 900,180,340, 900,-180,340
+		LocalOffset: 939,128,298, 939,-128,298
 		Recoil: 170
 		RecoilRecovery: 42
 		MuzzleSequence: muzzle
+		MuzzleSplitFacings: 16
 		MuzzlePalette: flashyeffect
 	Armament@SECONDARY:
 		Name: secondary
@@ -431,6 +432,7 @@ HTNK:
 		Recoil: 10
 	AttackTurreted:
 	WithMuzzleFlash:
+		SplitFacings: true
 	RenderUnit:
 		Image: htnk2
 	WithTurret:
@@ -472,10 +474,10 @@ MSAM:
 		Offset: -256,0,128
 	Armament@PRIMARY:
 		Weapon: 227mm
-		LocalOffset: 213,128,128, 213,-128,128
+		LocalOffset: 213,128,171, 213,-128,171
 	Armament@SECONDARY:
 		Weapon: 227mmAA
-		LocalOffset: 213,-128,128, 213,128,128
+		LocalOffset: 213,-128,171, 213,128,171
 	AttackFrontal:
 	RenderUnit:
 	WithTurret:
@@ -563,7 +565,7 @@ STNK:
 		UncloakSound: trans1.aud
 	Armament:
 		Weapon: Dragon
-		LocalOffset: 213,43,128, 213,-43,128
+		LocalOffset: 213,43,171, 213,-43,171
 	AttackFrontal:
 	RenderUnit:
 	AutoTarget:
