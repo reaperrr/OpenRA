@@ -260,6 +260,18 @@ V18.Husk:
 	EditorTilesetFilter:
 		ExcludeTilesets: DESERT
 
+piraship:
+	Inherits: ^CivBuilding
+	Building:
+		Footprint: xx
+		Dimensions: 2,1
+	Tooltip:
+		Name: Broken Pirate Ship
+	RenderBuilding:
+		Palette: terrain
+	EditorTilesetFilter:
+		RequireTilesets: CARIBIC
+
 ARCO:
 	Inherits: ^CivBuilding
 	Building:

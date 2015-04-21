@@ -394,6 +394,8 @@
 	Armor:
 		Type: Wood
 	Building:
+	RenderBuilding:
+		Palette: terrain
 	Tooltip:
 		Name: Civilian Building
 		GenericVisibility: None
@@ -406,6 +408,7 @@
 		Dimensions: 1,1
 		Footprint: x
 	RenderBuilding:
+		Palette: terrain
 	EditorAppearance:
 		RelativeToTopLeft: yes
 	Tooltip:
