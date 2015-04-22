@@ -18,7 +18,7 @@ World:
 	ScreenShaker:
 	NukePaletteEffect:
 	WaterPaletteRotation:
-		ExcludePalettes: flashyeffectra, flashyeffect, effect, effectra, raplayer
+		ExcludePalettes: flashyeffectra, flashyeffect, effect, effectra, raplayer, staticplayer
 	BuildingInfluence:
 	BridgeLayer:
 		Bridges: bridge1, bridge2, bridge3, bridge4

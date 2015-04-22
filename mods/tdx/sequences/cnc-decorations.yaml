@@ -256,7 +256,7 @@ t08:
 	Defaults:
 		UseTilesetExtension: true
 		TilesetOverrides:
-			CARIBIC: DESERT
+			CARIBIC: JUNGLE
 	idle:
 	damaged-idle:
 		Start: 1
