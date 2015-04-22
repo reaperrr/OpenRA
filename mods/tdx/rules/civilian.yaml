@@ -429,8 +429,11 @@ C9:
 
 C10:
 	Inherits: ^CivInfantry
+
+moebius:
+	Inherits: ^CivInfantry
 	Selectable:
-		Voice: CivilianFemaleVoice
+		Voice: MoebiusVoice
 
 VICE:
 	AppearsOnRadar:

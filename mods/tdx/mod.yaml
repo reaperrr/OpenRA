@@ -89,7 +89,7 @@ Translations:
 	./mods/cnc/languages/english.yaml
 
 Voices:
-	./mods/cnc/audio/voices.yaml
+	./mods/tdx/audio/voices.yaml
 
 Notifications:
 	./mods/tdx/audio/notifications.yaml
