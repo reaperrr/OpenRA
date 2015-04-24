@@ -123,7 +123,7 @@ ORCA:
 	Armor:
 		Type: AirHeavy
 	RevealsShroud:
-		Range: 10c0
+		Range: 7c0
 	Armament@PRIMARY:
 		Weapon: OrcaAGMissiles
 		LocalOffset: 427,-171,-213, 427,171,-213
@@ -139,7 +139,7 @@ ORCA:
 		ReloadCount: 2
 		SelfReloadTicks: 100
 		ResetOnFire: False
-	RenderUnit:
+	RenderUnitFlying:
 	Hovers:
 	WithShadow:
 #	LeavesHusk:
