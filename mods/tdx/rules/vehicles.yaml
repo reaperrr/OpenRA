@@ -113,6 +113,9 @@ APC:
 		Types: Infantry
 		MaxWeight: 5
 		PipCount: 5
+	Explodes:
+		Weapon: UnitExplodeSmall
+		EmptyWeapon: UnitExplodeSmall
 #	LeavesHusk:
 #		HuskActor: APC.Husk
 
@@ -227,6 +230,9 @@ BGGY:
 	RenderUnit:
 	WithTurret:
 	AutoTarget:
+	Explodes:
+		Weapon: UnitExplodeSmall
+		EmptyWeapon: UnitExplodeSmall
 #	LeavesHusk:
 #		HuskActor: BGGY.Husk
 
@@ -265,6 +271,9 @@ BIKE:
 	RenderUnit:
 		Scale: 0.75
 	AutoTarget:
+	Explodes:
+		Weapon: UnitExplodeSmall
+		EmptyWeapon: UnitExplodeSmall
 #	LeavesHusk:
 #		HuskActor: BIKE.Husk
 
@@ -304,6 +313,9 @@ JEEP:
 	RenderUnit:
 	WithTurret:
 	AutoTarget:
+	Explodes:
+		Weapon: UnitExplodeSmall
+		EmptyWeapon: UnitExplodeSmall
 #	LeavesHusk:
 #		HuskActor: JEEP.Husk
 
@@ -483,6 +495,9 @@ MSAM:
 	WithTurret:
 		Sequence: turret-3
 	AutoTarget:
+	Explodes:
+		Weapon: UnitExplode
+		EmptyWeapon: UnitExplode
 #	LeavesHusk:
 #		HuskActor: MSAM.Husk
 
@@ -529,8 +544,8 @@ MLRS:
 	AutoTarget:
 		InitialStance: Defend
 	Explodes:
-		Weapon: UnitExplodeSmall
-		EmptyWeapon: UnitExplodeSmall
+		Weapon: FlametankExplode
+		EmptyWeapon: FlametankExplode
 	RenderRangeCircle:
 #	LeavesHusk:
 #		HuskActor: MLRS.Husk
@@ -571,6 +586,9 @@ STNK:
 	AutoTarget:
 		InitialStance: HoldFire
 	TargetableUnit:
+	Explodes:
+		Weapon: UnitExplodeSmall
+		EmptyWeapon: UnitExplodeSmall
 #	LeavesHusk:
 #		HuskActor: STNK.Husk
 
