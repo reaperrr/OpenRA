@@ -1,6 +1,6 @@
 Metadata:
 	Title: Tiberian Dawn Xtended
-	Description: TDX alpha 20150412
+	Description: TDX alpha 20150425
 	Version: {DEV_VERSION}
 	Author: Reaperrr
 
@@ -10,11 +10,11 @@ Folders:
 	./mods/tdx/bits
 	./mods/tdx/bits/caribic
 	./mods/tdx/bits/cnc
+	./mods/tdx/bits/jungle
+	./mods/tdx/bits/ss
 	./mods/tdx/bits/tdx_aud
 	./mods/tdx/ui/uibits
 	~^Content/tdx
-	./mods/cnc/bits/jungle
-	./mods/cnc/bits/ss
 	~^Content/cnc
 
 MapFolders:
@@ -35,10 +35,10 @@ Packages:
 	~movies.mix
 
 Rules:
+	./mods/tdx/rules/world.yaml
 	./mods/tdx/rules/ai.yaml
 	./mods/tdx/rules/player.yaml
 	./mods/tdx/rules/player-classic-production.yaml
-	./mods/tdx/rules/world.yaml
 	./mods/tdx/rules/defaults.yaml
 	./mods/tdx/rules/aircraft.yaml
 	./mods/tdx/rules/structures.yaml
@@ -72,12 +72,11 @@ Sequences:
 	./mods/tdx/sequences/cnc-infantry.yaml
 	./mods/tdx/sequences/cnc-civilian.yaml
 	./mods/tdx/sequences/cnc-decorations.yaml
-#
-	./mods/cnc/sequences/funpark.yaml
-	./mods/cnc/sequences/campaign.yaml
+	./mods/tdx/sequences/cnc-funpark.yaml
+	./mods/tdx/sequences/cnc-campaign.yaml
 
 Cursors:
-	./mods/cnc/cursors.yaml
+	./mods/tdx/cursors.yaml
 
 Assemblies:
 	./mods/common/OpenRA.Mods.Common.dll
@@ -86,7 +85,7 @@ Assemblies:
 	./mods/tdx/OpenRA.Mods.TDX.dll
 	
 Translations:
-	./mods/cnc/languages/english.yaml
+	./mods/tdx/languages/english.yaml
 
 Voices:
 	./mods/tdx/audio/voices.yaml
@@ -98,14 +97,14 @@ Music:
 	./mods/tdx/audio/music.yaml
 
 Missions:
-	./mods/cnc/missions.yaml
+	./mods/tdx/missions.yaml
 
 TileSets:
-	./mods/cnc/tilesets/desert.yaml
-	./mods/cnc/tilesets/winter.yaml
-	./mods/cnc/tilesets/snow.yaml
-	./mods/cnc/tilesets/temperat.yaml
-	./mods/cnc/tilesets/jungle.yaml
+	./mods/tdx/tilesets/desert.yaml
+	./mods/tdx/tilesets/winter.yaml
+	./mods/tdx/tilesets/snow.yaml
+	./mods/tdx/tilesets/temperat.yaml
+	./mods/tdx/tilesets/jungle.yaml
 	./mods/tdx/tilesets/caribic.yaml
 
 SupportsMapsFrom: cnc, tdx
