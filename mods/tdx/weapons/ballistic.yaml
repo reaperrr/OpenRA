@@ -1,5 +1,5 @@
 Grenade:
-	ReloadDelay: 50
+	ReloadDelay: 60
 	Range: 4c0
 	Projectile: Bullet
 		Speed: 119
@@ -9,14 +9,16 @@ Grenade:
 		Image: BOMB
 		Shadow: true
 	Warhead@1Dam: SpreadDamage
-		Spread: 341
+		Spread: 256
+		Falloff: 100, 60, 30, 15, 0
 		Damage: 50
 		DeathType: 3
 		Versus:
-			None: 100
+			None: 75
 			Wood: 50
 			Light: 75
 			Heavy: 35
+			AirHeavy: 45
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -46,16 +48,19 @@ RPGLauncher:
 		Image: BOMB
 		Speed: 300
 	Warhead@1Dam: SpreadDamage
-		Spread: 384
+		Spread: 256
+		Falloff: 100, 60, 30, 15, 0
 		Damage: 35
 		DeathType: 4
-		ValidTargets: Ground
+		ValidTargets: Ground, Water
 		Versus:
 			None: 50
 			Wood: 65
-			Light: 100
-			Heavy: 40
-			Concrete: 90
+			Light: 75
+			Heavy: 50
+			Concrete: 100
+#			AirLight: 100
+			AirHeavy: 50
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -70,7 +75,7 @@ RPGLauncher:
 		ValidImpactTypes: Water
 
 70mm:
-	ReloadDelay: 45
+	ReloadDelay: 50
 	Range: 4c0
 	Report: cannon3.aud
 	Projectile: Bullet
@@ -79,14 +84,17 @@ RPGLauncher:
 		Palette: flashyeffect
 	Warhead@1Dam: SpreadDamage
 		Spread: 85
+		Falloff: 100, 50, 25, 12, 0
 		Damage: 25
 		DeathType: 4
 		Versus:
-			None: 30
-			Wood: 70
-			Light: 100
-			Heavy: 80
+			None: 35
+			Wood: 75
+#			Light: 100
+			Heavy: 75
 			Concrete: 35
+#			AirLight: 100
+			AirHeavy: 75
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -112,14 +120,17 @@ RPGLauncher:
 		Palette: flashyeffect
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
+		Falloff: 100, 40, 20, 10, 0
 		Damage: 30
 		DeathType: 4
 		Versus:
-			None: 30
+			None: 25
 			Wood: 50
 			Light: 75
-			Heavy: 100
+#			Heavy: 100
 			Concrete: 50
+			AirLight: 75
+#			AirHeavy: 100
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -139,7 +150,7 @@ RPGLauncher:
 		ValidImpactTypes: Ground
 
 105mm:
-	ReloadDelay: 50
+	ReloadDelay: 60
 	Range: 5c0
 	Report: cannon5.aud
 	Projectile: Bullet
@@ -148,14 +159,17 @@ RPGLauncher:
 		Palette: flashyeffect
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
+		Falloff: 100, 40, 20, 10, 0
 		Damage: 30
 		DeathType: 4
 		Versus:
-			None: 30
+			None: 25
 			Wood: 50
 			Light: 75
-			Heavy: 100
+#			Heavy: 100
 			Concrete: 50
+			AirLight: 75
+#			AirHeavy: 100
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -175,23 +189,26 @@ RPGLauncher:
 		ValidImpactTypes: Ground
 
 120mm:
-	ReloadDelay: 50
+	ReloadDelay: 60
 	Range: 5c0
-	Report: cannon6.aud
+	Report: cannon5.aud
 	Projectile: Bullet
 		Image: 120MM
 		Speed: 682
 		Palette: flashyeffect
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
+		Falloff: 100, 40, 20, 10, 0
 		Damage: 40
 		DeathType: 4
 		Versus:
 			None: 30
 			Wood: 60
 			Light: 75
-			Heavy: 100
+#			Heavy: 100
 			Concrete: 50
+			AirLight: 75
+#			AirHeavy: 100
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -211,24 +228,27 @@ RPGLauncher:
 		ValidImpactTypes: Ground
 
 120mmDual:
-	ReloadDelay: 40
-	Range: 4c768
+	ReloadDelay: 75
+	Range: 5c0
 	Report: cannon6.aud
 	Burst: 2
-	BurstDelay: 8
+	BurstDelay: 15
 	Projectile: Bullet
 		Image: 120MM
 		Speed: 682
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
+		Falloff: 100, 40, 20, 10, 0
 		Damage: 40
 		DeathType: 4
 		Versus:
-			None: 30
+			None: 25
 			Wood: 50
 			Light: 75
-			Heavy: 100
+#			Heavy: 100
 			Concrete: 50
+			AirLight: 75
+#			AirHeavy: 100
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -248,7 +268,7 @@ RPGLauncher:
 		ValidImpactTypes: Ground
 
 TurretGun:
-	ReloadDelay: 30
+	ReloadDelay: 50
 	Range: 6c0
 	Report: cannon7.aud
 	Projectile: Bullet
@@ -257,13 +277,14 @@ TurretGun:
 		Palette: flashyeffect
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
+		Falloff: 100, 40, 20, 10, 0
 		Damage: 40
 		DeathType: 4
 		Versus:
-			None: 20
+			None: 25
 			Wood: 25
-			Light: 100
-			Heavy: 100
+#			Light: 100
+#			Heavy: 100
 			Concrete: 30
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
@@ -285,27 +306,30 @@ TurretGun:
 
 155mm:
 	ReloadDelay: 65
-	Range: 11c0
-	MinRange: 2c896
+	Range: 10c0
+	MinRange: 2c640
 	Report: artyfire.aud
 	Projectile: Bullet
 		Speed: 256
 		Blockable: false
 		Angle: 56
-		Inaccuracy: 1c256
+#		Inaccuracy: 1c256
 		Image: 120MM
 		Palette: flashyeffect
 		Shadow: true
 	Warhead@1Dam: SpreadDamage
-		Spread: 384
-		Damage: 150
+		Spread: 256
+		Falloff: 100, 60, 30, 15, 0
+		Damage: 300#150
 		DeathType: 3
 		Versus:
-			None: 90
-			Wood: 80
-			Light: 75
-			Heavy: 30
-			Concrete: 100
+			None: 80
+			Wood: 75
+			Light: 90
+#			Heavy: 50
+#			Concrete: 100
+			AirLight: 80
+			AirHeavy: 60
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect

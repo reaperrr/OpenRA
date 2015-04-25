@@ -6,25 +6,27 @@ Sniper:
 	Projectile: Bullet
 		Speed: 1c682
 	Warhead@1Dam: SpreadDamage
-		Spread: 42
+		Spread: 43
+		Falloff: 100, 50, 0
 		Damage: 100
 		DeathType: 2
 		ValidTargets: Infantry
 
 HighV:
-	ReloadDelay: 40
+	ReloadDelay: 50
 	Range: 6c0
 	Report: mgunhvy1.aud
 	Projectile: Bullet
 		Speed: 1c682
 	Warhead@1Dam: SpreadDamage
-		Spread: 683
+		Spread: 512
+		Falloff: 100, 50, 0
 		Damage: 30
 		DeathType: 2
 		Versus:
 			None: 100
-			Wood: 50
-			Light: 70
+			Wood: 40
+			Light: 75
 			Heavy: 35
 			Concrete: 40
 	Warhead@2Eff: CreateEffect
@@ -37,6 +39,7 @@ HeliAGGun:
 	ReloadDelay: 20
 	Burst: 2
 	BurstDelay: 0
+	MinRange: 0c640
 	Range: 4c0
 	ValidTargets: Ground
 	Report: mgunhvy2.aud
@@ -45,6 +48,7 @@ HeliAGGun:
 		Blockable: false
 	Warhead@1Dam: SpreadDamage
 		Spread: 256
+		Falloff: 100, 50, 25, 0
 		Damage: 20
 		DeathType: 2
 		ValidTargets: Ground
@@ -62,6 +66,7 @@ HeliAAGun:
 	Burst: 2
 	BurstDelay: 5
 	Range: 4c0
+	MinRange: 0c640
 	ValidTargets: Air
 	Report: mgunhvy2.aud
 	Projectile: Bullet
@@ -69,6 +74,7 @@ HeliAAGun:
 		Blockable: false
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
+		Falloff: 100, 50, 25, 0
 		Damage: 20
 		DeathType: 2
 		ValidTargets: Air
@@ -91,6 +97,7 @@ Pistol:
 		Speed: 1c682
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
+		Falloff: 100, 50, 0
 		Damage: 1
 		DeathType: 2
 		InvalidTargets: Wall
@@ -99,6 +106,9 @@ Pistol:
 			Wood: 5
 			Light: 5
 			Heavy: 5
+			Concrete: 5
+			AirLight: 5
+			AirHeavy: 5
 	Warhead@2Eff: CreateEffect
 		Explosion: piff
 
@@ -111,15 +121,16 @@ M16:
 		Speed: 1c682
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
+		Falloff: 100, 50, 0
 		Damage: 15
 		DeathType: 2
 		InvalidTargets: Wall
 		Versus:
 			None: 100
-			Wood: 25
-			Light: 30
-			Heavy: 10
-			Concrete: 8
+			Wood: 30
+			Light: 40
+			Heavy: 20
+			Concrete: 10
 	Warhead@2Eff: CreateEffect
 		Explosion: piff
 
@@ -133,7 +144,8 @@ MachineGun:
 		Speed: 1c682
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
-		Damage: 12
+		Falloff: 100, 50, 25, 0
+		Damage: 10
 		DeathType: 2
 		InvalidTargets: Wall
 		Versus:
@@ -153,13 +165,14 @@ Vulcan:
 	Projectile: Bullet
 		Speed: 1c682
 	Warhead@1Dam: SpreadDamage
-		Spread: 426
+		Spread: 341
+		Falloff: 100, 50, 25, 0
 		Damage: 100
 		DeathType: 2
 		ValidTargets: Ground, Water
 		Versus:
 			None: 100
-			Wood: 25
+			Wood: 30
 			Light: 100
 			Heavy: 35
 			Concrete: 25

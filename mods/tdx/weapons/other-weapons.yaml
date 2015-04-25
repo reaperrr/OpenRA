@@ -1,8 +1,18 @@
 FlametankExplode:
 	Warhead@1Dam: SpreadDamage
-		Spread: 1c0
+		Spread: 768
 		Damage: 100
 		DeathType: 5
+		Falloff: 100, 50, 0
+		InvalidTargets: Wall
+		Versus:
+			None: 100
+			Wood: 100
+			Light: 65
+			Heavy: 25
+			Concrete: 30
+			AirLight: 65
+			AirHeavy: 35
 	Warhead@2Eff: CreateEffect
 		Explosion: big_ranapalm
 		ImpactSound: firebl3.aud
@@ -10,9 +20,18 @@ FlametankExplode:
 
 ChemtankExplode:
 	Warhead@1Dam: SpreadDamage
-		Spread: 1c512
 		Damage: 150
 		DeathType: 6
+		Spread: 512
+		Falloff: 100, 60, 30, 0
+		Versus:
+			None: 100
+			Wood: 90
+			Light: 75
+			Heavy: 40
+			Concrete: 100
+			AirLight: 75
+			AirHeavy: 45
 	Warhead@2Eff: CreateEffect
 		Explosion: big_chemexpl
 		ImpactSound: xplobig6.aud
@@ -20,6 +39,7 @@ ChemtankExplode:
 HeliCrash:
 	Warhead@1Dam: SpreadDamage
 		Spread: 426
+		Falloff: 100, 50, 0
 		Damage: 40
 		DeathType: 4
 	Warhead@2Eff: CreateEffect
@@ -43,15 +63,17 @@ HeliExplode:
 
 UnitExplode:
 	Warhead@1Dam: SpreadDamage
-		Spread: 426
-		Damage: 50
-		Falloff: 1000, 368, 135, 50, 18, 7, 0
+		Spread: 384
+		Damage: 500
+		Falloff: 100, 40, 16, 6, 2, 0
 		DeathType: 4
 		Versus:
 			None: 90
 			Wood: 75
 			Light: 60
 			Heavy: 25
+			AirLight: 60
+			AirHeavy: 30
 	Warhead@2Eff: CreateEffect
 		Explosion: big_frag
 		ImpactSound: xplobig3.aud
@@ -60,6 +82,7 @@ UnitExplode:
 UnitExplodeSmall:
 	Warhead@1Dam: SpreadDamage
 		Spread: 426
+		Falloff: 100, 40, 16, 6, 2, 0
 		Damage: 40
 		DeathType: 4
 		Versus:
@@ -67,6 +90,8 @@ UnitExplodeSmall:
 			Wood: 75
 			Light: 60
 			Heavy: 25
+			AirLight: 60
+			AirHeavy: 30
 	Warhead@2Eff: CreateEffect
 		Explosion: med_frag
 		ImpactSound: xplomed3.aud
@@ -82,13 +107,53 @@ GrenadierExplode:
 			Wood: 75
 			Light: 60
 			Heavy: 25
+			AirLight: 60
+			AirHeavy: 30
 	Warhead@2Eff: CreateEffect
 		Explosion: poof
 		ImpactSound: xplomed5.aud
 		ExplosionPalette: flashyeffect
 
+FlamethrowerExplode:
+	Warhead@1Dam: SpreadDamage
+		Spread: 384
+		Damage: 50
+		DeathType: 5
+		Falloff: 100, 50, 0
+		InvalidTargets: Wall
+		Versus:
+			None: 100
+			Wood: 100
+			Light: 65
+			Heavy: 25
+			Concrete: 30
+			AirLight: 65
+			AirHeavy: 25
+	Warhead@2Eff: CreateEffect
+		Explosion: sml_ranapalm
+		ImpactSound: firebl3.aud
+		ExplosionPalette: flashyeffectra
+
+ChemWarriorExplode:
+	Warhead@1Dam: SpreadDamage
+		Damage: 50
+		DeathType: 6
+		Spread: 256
+		Falloff: 100, 60, 30, 0
+		Versus:
+			None: 100
+			Wood: 90
+			Light: 75
+			Heavy: 40
+			Concrete: 100
+			AirLight: 75
+			AirHeavy: 40
+	Warhead@2Eff: CreateEffect
+		Explosion: sml_chemexpl
+		ImpactSound: flamer2.aud
+
 Flamethrower:
-	ReloadDelay: 55
+	ReloadDelay: 50
 	Range: 2c512
 	InvalidTargets: Wall
 	Report: flamer2.aud
@@ -96,7 +161,8 @@ Flamethrower:
 		Speed: 256
 	Warhead@1Dam: SpreadDamage
 		Spread: 299
-		Damage: 40
+		Falloff: 100, 50, 25, 12, 6, 0
+		Damage: 50
 		DeathType: 5
 		InvalidTargets: Wall
 		Versus:
@@ -105,6 +171,8 @@ Flamethrower:
 			Light: 65
 			Heavy: 20
 			Concrete: 30
+			AirLight: 65
+			AirHeavy: 30
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch
 #	Warhead@3Eff: CreateEffect
@@ -122,6 +190,7 @@ BigFlamer:
 	BurstDelay: 25
 	Warhead@1Dam: SpreadDamage
 		Spread: 384
+		Falloff: 100, 50, 25, 12, 6, 0
 		Damage: 75
 		DeathType: 5
 		InvalidTargets: Wall
@@ -131,6 +200,8 @@ BigFlamer:
 			Light: 65
 			Heavy: 25
 			Concrete: 30
+			AirLight: 65
+			AirHeavy: 35
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch
 #	Warhead@3Eff: CreateEffect
@@ -145,14 +216,17 @@ Chemspray:
 		Speed: 256
 	Warhead@1Dam: SpreadDamage
 		Spread: 341
+		Falloff: 100, 60, 30, 15, 0
 		Damage: 80
 		DeathType: 6
 		Versus:
 			None: 100
 			Wood: 75
 			Light: 75
-			Heavy: 50
+			Heavy: 40
 			Concrete: 100
+			AirLight: 75
+			AirHeavy: 45
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch
 #	Warhead@3Eff: CreateEffect
@@ -168,14 +242,17 @@ BigChemspray:
 	BurstDelay: 25
 	Warhead@1Dam: SpreadDamage
 		Spread: 426
+		Falloff: 100, 60, 30, 15, 0
 		Damage: 100
 		DeathType: 6
 		Versus:
 			None: 100
 			Wood: 90
 			Light: 75
-			Heavy: 30
+			Heavy: 40
 			Concrete: 100
+			AirLight: 75
+			AirHeavy: 45
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch
 #	Warhead@3Eff: CreateEffect
@@ -190,9 +267,9 @@ Napalm:
 	Projectile: GravityBomb
 		Image: BOMBLET
 	Warhead@1Dam: SpreadDamage
-		Spread: 341
+		Spread: 384
 		Damage: 30
-		Falloff: 1000, 368, 135, 50, 18, 7, 0
+		Falloff: 100, 50, 25, 12, 0
 		DeathType: 5
 		ValidTargets: Ground, Water
 		Versus:
@@ -201,6 +278,8 @@ Napalm:
 			Light: 90
 			Heavy: 30
 			Concrete: 25
+			AirLight: 90
+			AirHeavy: 45
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch
 	Warhead@3Eff: CreateEffect

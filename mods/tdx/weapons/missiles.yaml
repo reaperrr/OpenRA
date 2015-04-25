@@ -1,22 +1,24 @@
 Bazooka:
 	ReloadDelay: 50
-	Range: 6c0
+	Range: 5c0
+	MinRange: 0c512
 	Report: bazooka1.aud
 	ValidTargets: Ground, Water, Air
 	Projectile: BallisticMissile
-		Angle: 20
+		Angle: 25
 		Shadow: true
 		Arm: 1
 		LockOnProbability: 75
 		Blockable: false
 		Inaccuracy: 128
 		Image: DRAGON
-		RateOfTurn: 15
+		RateOfTurn: 10
 		Trail: smokey
 		Speed: 256
 		RangeLimit: 40
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
+		Falloff: 100, 50, 25, 12, 0
 		Damage: 30
 		DeathType: 4
 		ValidTargets: Ground, Water, Air
@@ -24,8 +26,10 @@ Bazooka:
 			None: 30
 			Wood: 65
 			Light: 75
-			Heavy: 100
+#			Heavy: 100
 			Concrete: 25
+#			AirLight: 100
+#			AirHeavy: 100
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -47,10 +51,11 @@ Bazooka:
 BikeRockets:
 	ReloadDelay: 60
 	Range: 6c0
+	MinRange: 0c512
 	Report: missile4.aud
 	ValidTargets: Ground, Water, Air
 	Burst: 2
-	BurstDelay: 15
+	BurstDelay: 20
 	Projectile: BallisticMissile
 		Angle: 30
 		Shadow: true
@@ -65,6 +70,7 @@ BikeRockets:
 		RangeLimit: 45
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
+		Falloff: 100, 50, 25, 12, 0
 		Damage: 30
 		DeathType: 4
 		ValidTargets: Ground, Water, Air
@@ -72,10 +78,10 @@ BikeRockets:
 			None: 25
 			Wood: 60
 			Light: 75
-			Heavy: 100
-			Concrete: 40
-			AirLight: 100
-			AirHeavy: 120
+#			Heavy: 100
+			Concrete: 30
+#			AirLight: 100
+#			AirHeavy: 100
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -100,17 +106,18 @@ BikeRockets:
 		ValidImpactTypes: Ground
 
 OrcaAGMissiles:
-	ReloadDelay: 12
+	ReloadDelay: 25
 	Burst: 2
-	BurstDelay: 12
+	BurstDelay: 10
 	Range: 5c0
+	MinRange: 0c512
 	Report: bazooka1.aud
 	ValidTargets: Ground, Water
 	Projectile: BallisticMissile
 		Angle: 30
 		Shadow: true
 		Arm: 1
-		LockOnProbability: 75
+		LockOnProbability: 80
 		Blockable: false
 		Inaccuracy: 128
 		Image: DRAGON
@@ -120,15 +127,18 @@ OrcaAGMissiles:
 		RangeLimit: 50
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
-		Damage: 25
+		Falloff: 100, 56, 28, 14, 0
+		Damage: 30
 		DeathType: 4
 		ValidTargets: Ground, Water
 		Versus:
-			None: 30
-			Wood: 100
-			Light: 100
-			Heavy: 75
-			Concrete: 60
+			None: 25
+			Wood: 75
+#			Light: 100
+#			Heavy: 100
+			Concrete: 50
+#			AirLight: 100
+#			AirHeavy: 100
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -147,6 +157,7 @@ OrcaAAMissiles:
 	Burst: 2
 	BurstDelay: 12
 	Range: 5c0
+	MinRange: 0c512
 	Report: BAZOOK1.AUD
 	ValidTargets: Air
 	Projectile: BallisticMissile
@@ -163,12 +174,13 @@ OrcaAAMissiles:
 		RangeLimit: 50
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
+		Falloff: 100, 56, 28, 14, 0
 		Damage: 25
 		DeathType: 4
 		ValidTargets: Air
 		Versus:
-			Light: 75
-			Heavy: 50
+			AirLight: 75
+			AirHeavy: 50
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -177,8 +189,9 @@ OrcaAAMissiles:
 		ExplosionPalette: flashyeffect
 
 MammothTusk:
-	ReloadDelay: 75
+	ReloadDelay: 90
 	Range: 5c0
+	MinRange: 0c512
 	Report: ROCKET1.AUD
 	ValidTargets: Ground, Water, Air
 	Burst: 2
@@ -187,7 +200,7 @@ MammothTusk:
 		Angle: 30
 		Shadow: true
 		Arm: 2
-		LockOnProbability: 75
+		LockOnProbability: 70
 		Blockable: false
 		Inaccuracy: 128
 		Image: DRAGON
@@ -196,18 +209,19 @@ MammothTusk:
 		Speed: 213
 		RangeLimit: 35
 	Warhead@1Dam: SpreadDamage
-		Spread: 298
+		Spread: 256
+		Falloff: 100, 75, 50, 35, 20, 0
 		Damage: 50
 		DeathType: 4
 		ValidTargets: Ground, Water, Air
 		Versus:
 			None: 50
-			Wood: 75
+			Wood: 65
 			Light: 100
-			Heavy: 30
-			Concrete: 50
+			Heavy: 25
+			Concrete: 30
 			AirLight: 75
-			AirHeavy: 45
+			AirHeavy: 40
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -231,12 +245,12 @@ MammothTusk:
 	Range: 10c0
 	MinRange: 3c0
 	Burst: 2
-	BurstDelay: 25
+	BurstDelay: 20
 	Report: missile2.aud
 	ValidTargets: Ground, Water
 	Projectile: BallisticMissile
 		Arm: 2
-		LockOnProbability: 0
+		LockOnProbability: 50
 		Shadow: true
 		Inaccuracy: 853
 		Angle: 65
@@ -245,15 +259,19 @@ MammothTusk:
 		Trail: smokey
 		Speed: 256
 	Warhead@1Dam: SpreadDamage
-		Spread: 683
+		Spread: 341
+		Falloff: 100, 80, 60, 40, 20, 0
 		Damage: 75
 		DeathType: 4
 		ValidTargets: Ground, Water
 		Versus:
-			Wood: 65
+#			None: 100
+			Wood: 90
 			Light: 50
-			Heavy: 20
+			Heavy: 25
 			Concrete: 30
+			AirLight: 75
+			AirHeavy: 50
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -291,18 +309,19 @@ MammothTusk:
 		Trail: smokey
 		Speed: 256
 	Warhead@1Dam: SpreadDamage
-		Spread: 683
+		Spread: 384
+		Falloff: 100, 75, 50, 25, 0
 		Damage: 75
 		DeathType: 4
 		ValidTargets: Air
 		Versus:
-			None: 100
-			Wood: 60
-			Light: 50
+#			None: 100
+			Wood: 30
+			Light: 30
 			Heavy: 20
-			AirLight: 100
-			AirHeavy: 100
-			Concrete: 30
+#			AirLight: 100
+#			AirHeavy: 100
+			Concrete: 20
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -324,6 +343,7 @@ MammothTusk:
 Dragon:
 	ReloadDelay: 60
 	Range: 6c0
+	MinRange: 0c512
 	Report: missile4.aud
 	Burst: 2
 	BurstDelay: 15
@@ -339,9 +359,10 @@ Dragon:
 		RateOfTurn: 10
 		Trail: smokey
 		Speed: 213
-		RangeLimit: 50
+		RangeLimit: 60
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
+		Falloff: 100, 50, 25, 12, 0
 		Damage: 35
 		DeathType: 4
 		ValidTargets: Ground, Water, Air
@@ -349,10 +370,10 @@ Dragon:
 			None: 25
 			Wood: 75
 			Light: 90
-			Heavy: 100
+#			Heavy: 100
 			Concrete: 30
-			AirLight: 100
-			AirHeavy: 125
+#			AirLight: 100
+#			AirHeavy: 100
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -369,6 +390,7 @@ Dragon:
 BoatMissile:
 	ReloadDelay: 45
 	Range: 10c0
+	MinRange: 1c512
 	Burst: 2
 	BurstDelay: 15
 	Report: missile3.aud
@@ -376,16 +398,17 @@ BoatMissile:
 		Angle: 30
 		Shadow: true
 		Arm: 2
-		LockOnProbability: 75
+		LockOnProbability: 65
 		Blockable: false
-		Inaccuracy: 213
+		Inaccuracy: 768
 		Image: DRAGON
-		RateOfTurn: 10
+		RateOfTurn: 3
 		Trail: smokey
 		Speed: 170
 		RangeLimit: 60
 	Warhead@1Dam: SpreadDamage
 		Spread: 384
+		Falloff: 100, 75, 50, 30, 15, 0
 		Damage: 60
 		DeathType: 3
 		Versus:
@@ -393,7 +416,7 @@ BoatMissile:
 			Wood: 75
 			Light: 60
 			Heavy: 25
-			Concrete: 100
+#			Concrete: 100
 			AirLight: 60
 			AirHeavy: 50
 	Warhead@2Smu: LeaveSmudge
@@ -417,8 +440,9 @@ BoatMissile:
 TowerMissile:
 	ReloadDelay: 75
 	Burst: 2
-	BurstDelay: 25
+	BurstDelay: 20
 	Range: 7c0
+	MinRange: 0c768
 	Report: missile3.aud
 	ValidTargets: Ground, Air, Water
 	Projectile: BallisticMissile
@@ -434,14 +458,15 @@ TowerMissile:
 		CloseEnough: 341
 		RangeLimit: 50
 	Warhead@1Dam: SpreadDamage
-		Spread: 512
+		Range: 0, 513, 769, 1c1, 1c257, 1c768
+		Falloff: 100, 80, 60, 40, 20, 0
 		Damage: 60
 		ValidTargets: Ground, Water, Air
 		DeathType: 3
 		Versus:
 			None: 60
 			Wood: 25
-			Light: 100
+#			Light: 100
 			Heavy: 40
 			Concrete: 20
 			AirLight: 75
@@ -462,6 +487,7 @@ TowerMissile:
 SAMMissile:
 	ReloadDelay: 15
 	Range: 8c0
+	MinRange: 0c512
 	Report: missile6.aud
 	ValidTargets: Air
 	Projectile: Missile
@@ -474,10 +500,11 @@ SAMMissile:
 		RangeLimit: 75
 		Trail: smokey
 	Warhead@1Dam: SpreadDamage
-		Spread: 682
+		Range: 0, 384, 512, 768, 1c0
+		Falloff: 100, 100, 60, 30, 0
 		ValidTargets: Air
 		Versus:
-			AirLight: 100
+#			AirLight: 100
 			AirHeavy: 75
 		DeathType: 4
 		Damage: 30
@@ -492,7 +519,7 @@ HonestJohn:
 	ReloadDelay: 50
 	BurstDelay: 50
 	Burst: 2
-	Range: 18c0
+	Range: 16c0
 	MinRange: 4c0
 	Report: nukemisl.aud
 	Projectile: Bullet
@@ -505,15 +532,18 @@ HonestJohn:
 		Angle: 90
 		Palette: effectra
 	Warhead@1Dam: SpreadDamage
-		Spread: 256
+		Range: 0, 385, 513, 769, 1c1, 1c513, 2c0
+		Falloff: 100, 100, 80, 48, 24, 12, 0
 		Damage: 200
-		DeathType: 3
+		DeathType: 5
 		Versus:
-			None: 100
-			Wood: 90
+#			None: 100
+			Wood: 110
 			Light: 65
 			Heavy: 25
 			Concrete: 35
+			AirLight: 65
+			AirHeavy: 35
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
