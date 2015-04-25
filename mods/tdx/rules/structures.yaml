@@ -46,7 +46,7 @@ FACT:
 NUKE:
 	Inherits: ^BaseBuilding
 	Valued:
-		Cost: 400
+		Cost: 300
 	Tooltip:
 		Name: Power Plant
 		Description: Generates power
@@ -71,7 +71,7 @@ NUKE:
 NUK2:
 	Inherits: ^BaseBuilding
 	Valued:
-		Cost: 800
+		Cost: 600
 	Tooltip:
 		Name: Advanced Power Plant
 		Description: Provides more power, cheaper than the \nstandard Power Plant
@@ -154,14 +154,14 @@ SILO:
 	Health:
 		HP: 400
 	RevealsShroud:
-		Range: 4c0
+		Range: 3c0
 	Bib:
 		HasMinibib: Yes
 	RenderBuildingSilo:
 	StoresResources:
 		PipCount: 10
 		PipColor: Green
-		Capacity: 2000
+		Capacity: 3000
 	Selectable:
 		Bounds: 49,30
 	-RenderBuilding:
@@ -173,7 +173,7 @@ SILO:
 PYLE:
 	Inherits: ^BaseBuilding
 	Valued:
-		Cost: 500
+		Cost: 300
 	Tooltip:
 		Name: Barracks
 		Description: Trains infantry
@@ -187,7 +187,7 @@ PYLE:
 		Footprint: xx xx
 		Dimensions: 2,2
 	Health:
-		HP: 500
+		HP: 600
 	RevealsShroud:
 		Range: 5c0
 	Bib:
@@ -212,7 +212,7 @@ PYLE:
 HAND:
 	Inherits: ^BaseBuilding
 	Valued:
-		Cost: 500
+		Cost: 300
 	Tooltip:
 		Name: Hand of Nod
 		Description: Trains infantry
@@ -226,7 +226,7 @@ HAND:
 		Footprint: __ xx xx
 		Dimensions: 2,3
 	Health:
-		HP: 500
+		HP: 600
 	RevealsShroud:
 		Range: 5c0
 	Bib:
@@ -255,7 +255,7 @@ AFLD:
 	Buildable:
 		BuildPaletteOrder: 50
 		Prerequisites: proc, ~structures.nod
-		Queue: Building#.Nod
+		Queue: Building
 	Building:
 		Footprint: xxxx xxxx
 		Dimensions: 4,2
@@ -293,12 +293,12 @@ WEAP:
 	Buildable:
 		BuildPaletteOrder: 50
 		Prerequisites: proc, ~structures.gdi
-		Queue: Building#.GDI
+		Queue: Building
 	Building:
 		Footprint: ___ xxx ===
 		Dimensions: 3,3
 	Health:
-		HP: 1000
+		HP: 800
 	RevealsShroud:
 		Range: 4c0
 	Bib:
@@ -335,7 +335,7 @@ HPAD:
 		Footprint: xx xx
 		Dimensions: 2,2
 	Health:
-		HP: 500
+		HP: 600
 	RevealsShroud:
 		Range: 5c0
 	Exit@1:
@@ -392,7 +392,7 @@ HQ:
 	ProvidesRadar:
 	RenderDetectionCircle:
 	DetectCloaked:
-		Range: 5
+		Range: 3
 	AirstrikePower:
 		Prerequisites: ~techlevel.superweapons
 		Icon: airstrike
@@ -444,7 +444,7 @@ FIX:
 EYE:
 	Inherits: ^BaseBuilding
 	Valued:
-		Cost: 1800
+		Cost: 2750
 	Tooltip:
 		Name: Advanced Communications Center
 		Description: Provides radar & Orbital Ion Cannon support power. \nUnlocks Mammoth Tank & Commando.  \nRequires power to operate.
@@ -491,7 +491,7 @@ EYE:
 TMPL:
 	Inherits: ^BaseBuilding
 	Valued:
-		Cost: 2000
+		Cost: 3000
 	Tooltip:
 		Name: Temple of Nod
 		Description: Provides Nuclear Strike support power. \nUnlocks Stealth Tank, Chem. Warrior & Obelisk of Light.  \nRequires power to operate.
@@ -536,21 +536,21 @@ TMPL:
 biolab.nod:
 	Inherits: ^BaseBuilding
 	Valued:
-		Cost: 800
+		Cost: 1000
 	Building:
 		Footprint: xx xx
 		Dimensions: 2,2
 	Tooltip:
 		Name: Biological Lab
-		Description: Provides biological research. \nUnlocks Chem. Warrior & Chem Tank.
+		Description: Provides biological research. \nUnlocks Chem Warrior & Chem Tank.
 	Buildable:
-		BuildPaletteOrder: 100
+		BuildPaletteOrder: 85
 		Prerequisites: anyhq, ~structures.nod, ~techlevel.high
 		Queue: Building
 	CanPowerDown:
 	DisabledOverlay:
 	Health:
-		HP: 800
+		HP: 750
 	RevealsShroud:
 		Range: 4c0
 	Bib:
@@ -562,7 +562,7 @@ GUN:
 	Valued:
 		Cost: 600
 	CustomBuildTimeValue:
-		Value: 1440
+		Value: 900
 	Tooltip:
 		Name: Turret
 		Description: Basic Anti-Tank base defense.\n  Strong vs Tanks, vehicles\n  Weak vs Infantry
@@ -606,7 +606,7 @@ SAM:
 	Valued:
 		Cost: 750
 	CustomBuildTimeValue:
-		Value: 2160
+		Value: 1000
 	Tooltip:
 		Name: SAM Site
 		Description: Anti-Aircraft base defense.\n  Strong vs Aircraft\n  Cannot target Ground units.
@@ -647,7 +647,7 @@ OBLI:
 	Valued:
 		Cost: 1500
 	CustomBuildTimeValue:
-		Value: 3120
+		Value: 2250
 	Tooltip:
 		Name: Obelisk of Light
 		Description: Advanced base defense. \nRequires power to operate.\n  Strong vs all Ground units\n  Cannot target Aircraft
@@ -694,7 +694,7 @@ GTWR:
 	Valued:
 		Cost: 500
 	CustomBuildTimeValue:
-		Value: 1440
+		Value: 750
 	Tooltip:
 		Name: Guard Tower
 		Description: Basic defensive structure.\n  Strong vs Infantry\n  Weak vs Tanks
@@ -734,9 +734,9 @@ GTWR:
 ATWR:
 	Inherits: ^BaseBuilding
 	Valued:
-		Cost: 1000
+		Cost: 1200
 	CustomBuildTimeValue:
-		Value: 2880
+		Value: 1800
 	Tooltip:
 		Name: Advanced Guard Tower
 		Description: All-purpose defensive structure.\n  Strong vs Aircraft, Tanks\n  Weak vs Infantry
@@ -786,7 +786,7 @@ SBAG:
 		Name: Sandbag Barrier
 		Description: Stops infantry & light vehicles. \nCan be crushed by tanks.
 	Buildable:
-		BuildPaletteOrder: 20
+		BuildPaletteOrder: 19
 		Prerequisites: fact
 		Queue: Defense
 	Health:

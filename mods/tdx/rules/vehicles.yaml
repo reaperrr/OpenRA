@@ -60,9 +60,9 @@ HARV:
 		LoadTicksPerBale: 12
 		UnloadTicksPerBale: 6
 		SearchFromProcRadius: 24
-		SearchFromOrderRadius: 12
+		SearchFromOrderRadius: 16
 	Mobile:
-		Speed: 85
+		Speed: 75
 	Health:
 		HP: 600
 		Radius: 512
@@ -90,7 +90,7 @@ APC:
 		Queue: Vehicle
 	Mobile:
 		ROT: 8
-		Speed: 128
+		Speed: 150
 	Health:
 		HP: 200
 		Radius: 384
@@ -166,7 +166,7 @@ FTNK:
 		Queue: Vehicle
 	Mobile:
 		ROT: 7
-		Speed: 99
+		Speed: 105
 	Health:
 		HP: 300
 		Radius: 384
@@ -204,14 +204,14 @@ BGGY:
 		Queue: Vehicle
 	Mobile:
 		ROT: 10
-		Speed: 170
+		Speed: 150
 	Health:
 		HP: 125
 		Radius: 300
 	Armor:
 		Type: Light
 	RevealsShroud:
-		Range: 8c0
+		Range: 7c0
 	Turreted:
 		ROT: 10
 		Offset: -43,0,128
@@ -243,21 +243,21 @@ BIKE:
 		Queue: Vehicle
 	Mobile:
 		ROT: 10
-		Speed: 213
+		Speed: 200
 		TerrainSpeeds:
-			Clear: 70
-			Rough: 40
+			Clear: 80
+			Rough: 50
 			Road: 100
-			Tiberium: 40
-			BlueTiberium: 40
-			Beach: 70
+			Tiberium: 50
+			BlueTiberium: 50
+			Beach: 80
 	Health:
 		HP: 160
 		Radius: 256
 	Armor:
 		Type: None
 	RevealsShroud:
-		Range: 7c0
+		Range: 6c0
 	Armament:
 		Weapon: BikeRockets
 		LocalOffset: -128,-171,171, -128,171,171
@@ -281,7 +281,7 @@ JEEP:
 		Queue: Vehicle
 	Mobile:
 		ROT: 10
-		Speed: 156
+		Speed: 150
 	Health:
 		HP: 150
 		Radius: 300
@@ -320,20 +320,20 @@ LTNK:
 		Queue: Vehicle
 	Mobile:
 		ROT: 5
-		Speed: 106
+		Speed: 105
 	Health:
-		HP: 330
+		HP: 315
 		Radius: 341
 	Armor:
 		Type: Heavy
 	RevealsShroud:
 		Range: 6c0
 	Turreted:
-		ROT: 6
+		ROT: 5
 	Armament:
 		Weapon: 70mm
 		Recoil: 85
-		RecoilRecovery: 17
+		RecoilRecovery: 21
 		LocalOffset: 720,0,90
 		MuzzleSequence: muzzle
 		MuzzlePalette: flashyeffect
@@ -360,7 +360,7 @@ MTNK:
 		Prerequisites: anyhq, ~vehicles.gdi, ~techlevel.medium
 		Queue: Vehicle
 	Mobile:
-		Speed: 85
+		Speed: 90
 	Health:
 		HP: 400
 	Armor:
@@ -405,7 +405,7 @@ HTNK:
 		Queue: Vehicle
 	Mobile:
 		Crushes: wall, heavywall, crate, infantry
-		Speed: 56
+		Speed: 60
 		ROT: 3
 	Health:
 		HP: 800
@@ -461,7 +461,7 @@ MSAM:
 		Prerequisites: anyhq, ~vehicles.gdi, ~techlevel.medium
 		Queue: Vehicle
 	Mobile:
-		Speed: 85
+		Speed: 90
 		ROT: 4
 	Health:
 		HP: 120
@@ -498,7 +498,7 @@ MLRS:
 		Prerequisites: anyhq, ~vehicles.nod, ~techlevel.medium
 		Queue: Vehicle
 	Mobile:
-		Speed: 85
+		Speed: 90
 		ROT: 5
 	Health:
 		HP: 120
@@ -586,7 +586,7 @@ MHQ:
 	Armor:
 		Type: Light
 	Mobile:
-		Speed: 85
+		Speed: 90
 	RevealsShroud:
 		Range: 6c0
 	RenderUnit:

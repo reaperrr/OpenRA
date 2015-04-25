@@ -107,7 +107,7 @@ ORCA:
 		Cost: 1200
 	Tooltip:
 		Name: Orca
-		Description: Helicopter Gunship with AG Missiles.\n  Strong vs Buildings, Tanks\n  Weak vs Infantry
+		Description: VTOL Gunship with AG Missiles.\n  Strong vs Buildings, Tanks\n  Weak vs Infantry
 	Buildable:
 		BuildPaletteOrder: 20
 		Prerequisites: hpad, anyhq, ~vehicles.gdi, ~techlevel.medium

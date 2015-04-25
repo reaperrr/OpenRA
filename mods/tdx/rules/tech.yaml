@@ -51,20 +51,20 @@ BIO:
 		Dimensions: 2,2
 	Tooltip:
 		Name: Biological Lab
-	Exit@1:
-		SpawnOffset: 0,-426,0
-		ExitCell: 0,-1
-	Production:
-		Produces: Biolab
-	ProductionQueue:
-		Type: Biolab
-		Group: Infantry
-		RequireOwner: false
-		BuildSpeed: .4
-		LowPowerSlowdown: 3
-	ProductionBar:
-	RallyPoint:
-		RallyPoint: -1,-1
+#	Exit@1:
+#		SpawnOffset: 0,-426,0
+#		ExitCell: 0,-1
+#	Production:
+#		Produces: Biolab
+#	ProductionQueue:
+#		Type: Biolab
+#		Group: Infantry
+#		RequireOwner: false
+#		BuildSpeed: .4
+#		LowPowerSlowdown: 3
+#	ProductionBar:
+#	RallyPoint:
+#		RallyPoint: -1,-1
 	LeavesHusk:
 		HuskActor: BIO.Husk
 
