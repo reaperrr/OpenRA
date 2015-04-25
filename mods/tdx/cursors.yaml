@@ -1,5 +1,6 @@
 Palettes:
 	cursor: cursor.pal
+	racursor: racursor.pal
 
 Cursors:
 	mouse2.shp: cursor
@@ -177,4 +178,12 @@ Cursors:
 			Length: 8
 		attackoutsiderange-minimap:
 			Start: 8
+
+	nopower.shp: racursor
+		powerdown-blocked:
+			Start: 0
+			Length: 1
+		powerdown:
+			Start: 1
+			Length: 3
 
