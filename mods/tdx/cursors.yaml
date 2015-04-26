@@ -131,7 +131,6 @@ Cursors:
 		move-blocked-minimap:
 			Start: 25
 			Length: 1
-
 	mouse5.shp: cursor
 		guard:
 			Start: 0
@@ -139,7 +138,6 @@ Cursors:
 		guard-minimap:
 			Start: 8
 			Length: 8
-
 	mouse6.shp: cursor
 		goldwrench:
 			Start: 0
@@ -171,14 +169,12 @@ Cursors:
 		enter-blocked-minimap:
 			Start: 17
 			Length: 1
-
 	mouse7.shp: cursor
 		attackoutsiderange:
 			Start: 0
 			Length: 8
 		attackoutsiderange-minimap:
 			Start: 8
-
 	nopower.shp: racursor
 		powerdown-blocked:
 			Start: 0
@@ -186,4 +182,11 @@ Cursors:
 		powerdown:
 			Start: 1
 			Length: 3
+	ramouse.shp: racursor
+		heal:
+			Start: 160
+			Length: 4
+		heal-minimap:
+			Start: 194
+			Length: 1
 

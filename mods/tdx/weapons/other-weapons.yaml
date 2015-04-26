@@ -354,6 +354,25 @@ Heal:
 		Damage: -1
 		PreventProne: yes
 
+MedicHeal:
+	ReloadDelay: 50
+	Range: 4c0
+	Report: heal2.aud
+	Projectile: Bullet
+		Speed: 1c682
+	Warhead@1Dam: SpreadDamage
+		Spread: 213
+		Falloff: 100, 0
+		Damage: -80
+		DeathType: 1
+		Versus:
+			Wood: 0
+			Light: 0
+			Heavy: 0
+			Concrete: 0
+	Warhead@3Eff: CreateEffect
+		ImpactSound: heal2.aud
+
 Tail:
 	ReloadDelay: 30
 	Range: 1c0

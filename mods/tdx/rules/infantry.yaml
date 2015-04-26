@@ -172,6 +172,45 @@ E6:
 		StandSequences: stand
 	-GainsExperience:
 
+MEDI:
+	Inherits: ^Infantry
+	Valued:
+		Cost: 400
+	Tooltip:
+		Name: Medic
+		Description: Heals nearby infantry.\n  Strong vs Nothing\n  Weak vs Everything
+	Buildable:
+		BuildPaletteOrder: 35
+		Prerequisites: pyle, ~infantry.gdi, ~techlevel.medium
+		Queue: Infantry
+	Selectable:
+		Bounds: 12,17,0,-6
+		Voices: MedicVoice
+	Mobile:
+		Speed: 56
+	Health:
+		HP: 60
+	Armament:
+		Weapon: MedicHeal
+	AttackMedic:
+		Cursor: heal
+		OutsideRangeCursor: heal
+	WithRangeCircle:
+		Range: 3c0
+		Type: medicheal
+	UpgradeActorsNear:
+		Upgrades: medicheal
+		Range: 3c0
+		AffectsParent: true
+	Passenger:
+		PipType: Blue
+	-AutoTarget:
+	WithInfantryBody:
+		IdleSequences: idle1,idle2
+		StandSequences: stand
+		AttackSequence: heal
+	-GainsExperience:
+
 RMBO:
 	Inherits: ^Infantry
 	Valued:

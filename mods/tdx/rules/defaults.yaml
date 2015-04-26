@@ -155,8 +155,8 @@
 		SpeedModifier: 60
 	RenderSprites:
 	WithInfantryBody:
-		MinIdleWaitTicks: 100
-		MaxIdleWaitTicks: 200
+		MinIdleWaitTicks: 80
+		MaxIdleWaitTicks: 240
 	WithDeathAnimation:
 	AttackMove:
 	Passenger:
@@ -186,6 +186,13 @@
 	GlobalUpgradable:
 		Upgrades: hospitalheal
 		Prerequisites: hosp
+	SelfHealing@MEDIC:
+		Step: 5
+		Ticks: 50
+		HealIfBelow: 1
+		DamageCooldown: 25
+		UpgradeTypes: medicheal
+		UpgradeMinEnabledLevel: 1
 	UpgradeManager:
 	UpdatesPlayerStatistics:
 	Huntable:

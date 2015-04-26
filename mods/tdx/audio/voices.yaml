@@ -46,6 +46,15 @@ MoebiusVoice:
 		Zapped: nuyell3
 		Poisoned: nuyell12
 
+MedicVoice:
+	Voices:
+		Select: mrespon1,myessir1
+		Move: maffirm1,mmovout1
+		Die: nuyell1,nuyell4,nuyell5,nuyell6
+		Burned: yell1
+		Zapped: nuyell3
+		Poisoned: nuyell12
+
 CommandoVoice:
 	Voices:
 		Select: yeah1,yes1,yo1
