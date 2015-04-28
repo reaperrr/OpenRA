@@ -17,9 +17,6 @@ E1:
 	Armament:
 		Weapon: M16
 	AttackFrontal:
-	WithInfantryBody:
-		IdleSequences: idle1,idle2,idle4
-		StandSequences: stand
 
 E2:
 	Inherits: ^Infantry
@@ -43,9 +40,6 @@ E2:
 		LocalOffset: 0,0,427
 		FireDelay: 15
 	AttackFrontal:
-	WithInfantryBody:
-		IdleSequences: idle1,idle2
-		StandSequences: stand
 	Explodes:
 		Weapon: GrenadierExplode
 		EmptyWeapon: GrenadierExplode
@@ -74,8 +68,7 @@ E3:
 		LocalOffset: 256,43,341
 		FireDelay: 5
 	AttackFrontal:
-	WithInfantryBody:
-		IdleSequences: idle1,idle2
+	WithInfantryBodyTDX:
 		StandSequences: stand,stand2
 
 E4:
@@ -104,9 +97,6 @@ E4:
 	AttackFrontal:
 	WithMuzzleFlash:
 		SplitFacings: true
-	WithInfantryBody:
-		IdleSequences: idle1,idle2
-		StandSequences: stand
 
 E5:
 	Inherits: ^Infantry
@@ -140,9 +130,6 @@ E5:
 	WithMuzzleFlash:
 		SplitFacings: true
 	-PoisonedByTiberium:
-	WithInfantryBody:
-		IdleSequences: idle1,idle2
-		StandSequences: stand
 
 E6:
 	Inherits: ^Infantry
@@ -167,9 +154,6 @@ E6:
 	Captures:
 		CaptureTypes: building, husk
 	-AutoTarget:
-	WithInfantryBody:
-		IdleSequences: idle1,idle2
-		StandSequences: stand
 	-GainsExperience:
 
 MEDI:
@@ -205,9 +189,7 @@ MEDI:
 	Passenger:
 		PipType: Blue
 	-AutoTarget:
-	WithInfantryBody:
-		IdleSequences: idle1,idle2
-		StandSequences: stand
+	WithInfantryBodyTDX:
 		AttackSequence: heal
 	-GainsExperience:
 
@@ -240,7 +222,7 @@ RMBO:
 	Armament:
 		Weapon: Sniper
 	AttackFrontal:
-	WithInfantryBody:
+	WithInfantryBodyTDX:
 		IdleSequences: idle1,idle2,idle3
 		StandSequences: stand,stand2
 	AnnounceOnBuild:
