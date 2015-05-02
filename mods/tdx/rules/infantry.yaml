@@ -64,8 +64,6 @@ E3:
 		LocalOffset: 256,43,341
 		FireDelay: 5
 	AttackFrontal:
-	WithInfantryBodyTDX:
-		StandSequences: stand,stand2
 
 E4:
 	Inherits: ^Infantry
@@ -178,6 +176,7 @@ MEDI:
 	Passenger:
 		PipType: Blue
 	-AutoTarget:
+	TakeCover:
 	WithInfantryBodyTDX:
 		AttackSequence: heal
 	-GainsExperience:
@@ -210,9 +209,9 @@ RMBO:
 	Armament:
 		Weapon: Sniper
 	AttackFrontal:
+	TakeCover:
 	WithInfantryBodyTDX:
 		IdleSequences: idle1,idle2,idle3
-		StandSequences: stand,stand2
 	AnnounceOnBuild:
 	AnnounceOnKill:
 
