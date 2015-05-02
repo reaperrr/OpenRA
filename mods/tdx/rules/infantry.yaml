@@ -8,8 +8,6 @@ E1:
 	Buildable:
 		BuildPaletteOrder: 10
 		Queue: Infantry
-	Selectable:
-		Bounds: 12,17,0,-6
 	Mobile:
 		Speed: 56
 	Health:
@@ -29,8 +27,6 @@ E2:
 		BuildPaletteOrder: 40
 		Prerequisites: pyle, ~infantry.gdi, ~techlevel.medium
 		Queue: Infantry
-	Selectable:
-		Bounds: 12,17,0,-6
 	Mobile:
 		Speed: 71
 	Health:
@@ -82,8 +78,6 @@ E4:
 		BuildPaletteOrder: 40
 		Prerequisites: hand, ~infantry.nod, ~techlevel.medium
 		Queue: Infantry
-	Selectable:
-		Bounds: 12,17,0,-6
 	Mobile:
 		Speed: 56
 	Health:
@@ -109,8 +103,6 @@ E5:
 		BuildPaletteOrder: 50
 		Prerequisites: biolab.nod, ~infantry.nod, ~techlevel.high
 		Queue: Infantry
-	Selectable:
-		Bounds: 12,17,0,-6
 	Mobile:
 		Speed: 56
 		TerrainSpeeds:
@@ -141,8 +133,6 @@ E6:
 	Buildable:
 		BuildPaletteOrder: 30
 		Queue: Infantry
-	Selectable:
-		Bounds: 12,17,0,-6
 	Mobile:
 		Speed: 56
 	Health:
@@ -168,7 +158,6 @@ MEDI:
 		Prerequisites: pyle, ~infantry.gdi, ~techlevel.medium
 		Queue: Infantry
 	Selectable:
-		Bounds: 12,17,0,-6
 		Voices: MedicVoice
 	Mobile:
 		Speed: 56
@@ -205,7 +194,6 @@ RMBO:
 		Prerequisites: eye, ~infantry.gdi, ~techlevel.high
 		Queue: Infantry
 	Selectable:
-		Bounds: 12,17,0,-6
 		Voice: CommandoVoice
 	Mobile:
 		Speed: 71
