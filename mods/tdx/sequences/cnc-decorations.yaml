@@ -66,6 +66,7 @@ tc04:
 		UseTilesetExtension: true
 		TilesetOverrides:
 			DESERT: TEMPERAT
+			CARIBIC: TEMPERAT
 	idle:
 	damaged-idle:
 		Start: 1
@@ -79,6 +80,7 @@ tc05:
 		UseTilesetExtension: true
 		TilesetOverrides:
 			DESERT: TEMPERAT
+			CARIBIC: TEMPERAT
 	idle:
 	damaged-idle:
 		Start: 1
@@ -92,6 +94,7 @@ tc03:
 		UseTilesetExtension: true
 		TilesetOverrides:
 			DESERT: TEMPERAT
+			CARIBIC: TEMPERAT
 	idle:
 	damaged-idle:
 		Start: 1
@@ -105,6 +108,7 @@ tc02:
 		UseTilesetExtension: true
 		TilesetOverrides:
 			DESERT: TEMPERAT
+			CARIBIC: TEMPERAT
 	idle:
 	damaged-idle:
 		Start: 1
@@ -118,6 +122,7 @@ tc01:
 		UseTilesetExtension: true
 		TilesetOverrides:
 			DESERT: TEMPERAT
+			CARIBIC: TEMPERAT
 	idle:
 	damaged-idle:
 		Start: 1
@@ -143,8 +148,8 @@ t17:
 		TilesetOverrides:
 			DESERT: TEMPERAT
 	idle:
-	damaged-idle:
-		Start: 1
+#	damaged-idle:
+#		Start: 1
 	dead:
 		Start: 2
 		Length: 8
@@ -156,12 +161,12 @@ t16:
 		TilesetOverrides:
 			DESERT: TEMPERAT
 	idle:
-	damaged-idle:
-		Start: 1
-	dead:
-		Start: 2
-		Length: 8
-		Tick: 80
+#	damaged-idle:
+#		Start: 1
+#	dead:
+#		Start: 2
+#		Length: 8
+#		Tick: 80
 
 t15:
 	Defaults:
@@ -169,11 +174,11 @@ t15:
 		TilesetOverrides:
 			DESERT: TEMPERAT
 	idle:
-	damaged-idle:
-		Start: 1
+#	damaged-idle:
+#		Start: 1
 	dead:
 		Start: 2
-		Length: 8
+		Length: 9
 		Tick: 80
 
 t14:
@@ -182,9 +187,11 @@ t14:
 		TilesetOverrides:
 			DESERT: TEMPERAT
 	idle:
-	damaged-idle:
-		Start: 1
-	dead:
+#	damaged-idle:
+#		Start: 1
+	dead: t18.des
+		UseTilesetExtension: false
+		AddExtension: false
 		Start: 2
 		Length: 8
 		Tick: 80
@@ -195,8 +202,8 @@ t13:
 		TilesetOverrides:
 			DESERT: TEMPERAT
 	idle:
-	damaged-idle:
-		Start: 1
+#	damaged-idle:
+#		Start: 1
 	dead:
 		Start: 2
 		Length: 8
@@ -208,8 +215,8 @@ t12:
 		TilesetOverrides:
 			DESERT: TEMPERAT
 	idle:
-	damaged-idle:
-		Start: 1
+#	damaged-idle:
+#		Start: 1
 	dead:
 		Start: 2
 		Length: 8
@@ -221,11 +228,11 @@ t11:
 		TilesetOverrides:
 			DESERT: TEMPERAT
 	idle:
-	damaged-idle:
-		Start: 1
+#	damaged-idle:
+#		Start: 1
 	dead:
 		Start: 2
-		Length: 8
+		Length: 9
 		Tick: 80
 
 t10:
@@ -234,8 +241,8 @@ t10:
 		TilesetOverrides:
 			DESERT: TEMPERAT
 	idle:
-	damaged-idle:
-		Start: 1
+#	damaged-idle:
+#		Start: 1
 	dead:
 		Start: 2
 		Length: 8
@@ -255,12 +262,12 @@ t09:
 t08:
 	Defaults:
 		UseTilesetExtension: true
-		TilesetOverrides:
-			CARIBIC: JUNGLE
 	idle:
-	damaged-idle:
-		Start: 1
-	dead:
+#	damaged-idle:
+#		Start: 1
+	dead: t08.des
+		UseTilesetExtension: false
+		AddExtension: false
 		Start: 2
 		Length: 8
 		Tick: 80
@@ -271,12 +278,12 @@ t07:
 		TilesetOverrides:
 			DESERT: TEMPERAT
 	idle:
-	damaged-idle:
-		Start: 1
-	dead:
-		Start: 2
-		Length: 8
-		Tick: 80
+#	damaged-idle:
+#		Start: 1
+#	dead:
+#		Start: 2
+#		Length: 8
+#		Tick: 80
 
 t06:
 	Defaults:
@@ -284,12 +291,12 @@ t06:
 		TilesetOverrides:
 			DESERT: TEMPERAT
 	idle:
-	damaged-idle:
-		Start: 1
-	dead:
-		Start: 2
-		Length: 8
-		Tick: 80
+#	damaged-idle:
+#		Start: 1
+#	dead:
+#		Start: 2
+#		Length: 8
+#		Tick: 80
 
 t05:
 	Defaults:
@@ -297,23 +304,27 @@ t05:
 		TilesetOverrides:
 			DESERT: TEMPERAT
 	idle:
-	damaged-idle:
-		Start: 1
-	dead:
-		Start: 2
-		Length: 8
-		Tick: 80
+#	damaged-idle:
+#		Start: 1
+#	dead:
+#		Start: 2
+#		Length: 8
+#		Tick: 80
 
 t04:
 	Defaults:
-		AddExtension: false
-	idle: t04.des
-	damaged-idle: t04.des
-		Start: 1
-	dead: t04.des
-		Start: 2
-		Length: 8
-		Tick: 80
+		UseTilesetExtension: true
+		TilesetOverrides:
+			TEMPERAT: CARIBIC
+			WINTER: CARIBIC
+			SNOW: CARIBIC
+	idle: t04
+#	damaged-idle: t04
+#		Start: 1
+#	dead: t04
+#		Start: 2
+#		Length: 8
+#		Tick: 80
 
 t03:
 	Defaults:
@@ -321,8 +332,8 @@ t03:
 		TilesetOverrides:
 			DESERT: TEMPERAT
 	idle:
-	damaged-idle:
-		Start: 1
+#	damaged-idle:
+#		Start: 1
 	dead:
 		Start: 2
 		Length: 8
@@ -334,12 +345,12 @@ t02:
 		TilesetOverrides:
 			DESERT: TEMPERAT
 	idle:
-	damaged-idle:
-		Start: 1
-	dead:
-		Start: 2
-		Length: 8
-		Tick: 80
+#	damaged-idle:
+#		Start: 1
+#	dead:
+#		Start: 2
+#		Length: 8
+#		Tick: 80
 
 t01:
 	Defaults:
@@ -347,12 +358,12 @@ t01:
 		TilesetOverrides:
 			DESERT: TEMPERAT
 	idle:
-	damaged-idle:
-		Start: 1
-	dead:
-		Start: 2
-		Length: 8
-		Tick: 80
+#	damaged-idle:
+#		Start: 1
+#	dead:
+#		Start: 2
+#		Length: 8
+#		Tick: 80
 
 v01:
 	Defaults:

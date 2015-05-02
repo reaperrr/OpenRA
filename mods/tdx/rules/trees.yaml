@@ -69,11 +69,13 @@ T01:
 	Inherits: ^Tree
 	EditorTilesetFilter:
 		ExcludeTilesets: DESERT
+	-WithDeathAnimation:
 
 T02:
 	Inherits: ^Tree
 	EditorTilesetFilter:
 		ExcludeTilesets: DESERT
+	-WithDeathAnimation:
 
 T03:
 	Inherits: ^Tree
@@ -82,21 +84,25 @@ T03:
 
 T04:
 	Inherits: ^Tree
+	-WithDeathAnimation:
 
 T05:
 	Inherits: ^Tree
 	EditorTilesetFilter:
 		ExcludeTilesets: DESERT
+	-WithDeathAnimation:
 
 T06:
 	Inherits: ^Tree
 	EditorTilesetFilter:
 		ExcludeTilesets: DESERT
+	-WithDeathAnimation:
 
 T07:
 	Inherits: ^Tree
 	EditorTilesetFilter:
 		ExcludeTilesets: DESERT
+	-WithDeathAnimation:
 
 T08:
 	Inherits: ^Tree
@@ -151,6 +157,7 @@ T16:
 	Inherits: ^Tree
 	EditorTilesetFilter:
 		ExcludeTilesets: DESERT
+	-WithDeathAnimation:
 
 T17:
 	Inherits: ^Tree
@@ -159,6 +166,8 @@ T17:
 
 T18:
 	Inherits: ^Tree
+	EditorTilesetFilter:
+		RequireTilesets: DESERT
 
 TC01:
 	Inherits: ^Tree
@@ -166,7 +175,7 @@ TC01:
 		Footprint: ___ xx_
 		Dimensions: 3,2
 	EditorTilesetFilter:
-		ExcludeTilesets: DESERT
+		ExcludeTilesets: DESERT, CARIBIC
 
 TC02:
 	Inherits: ^Tree
@@ -174,7 +183,7 @@ TC02:
 		Footprint: _x_ xx_
 		Dimensions: 3,2
 	EditorTilesetFilter:
-		ExcludeTilesets: DESERT
+		ExcludeTilesets: DESERT, CARIBIC
 
 TC03:
 	Inherits: ^Tree
@@ -182,7 +191,7 @@ TC03:
 		Footprint: _x_ xx_
 		Dimensions: 3,2
 	EditorTilesetFilter:
-		ExcludeTilesets: DESERT
+		ExcludeTilesets: DESERT, CARIBIC
 
 TC04:
 	Inherits: ^Tree
@@ -190,7 +199,7 @@ TC04:
 		Footprint: ____ xxx_ x___
 		Dimensions: 4,3
 	EditorTilesetFilter:
-		ExcludeTilesets: DESERT
+		ExcludeTilesets: DESERT, CARIBIC
 
 TC05:
 	Inherits: ^Tree
@@ -198,5 +207,5 @@ TC05:
 		Footprint: __x_ xxx_ _xx_
 		Dimensions: 4,3
 	EditorTilesetFilter:
-		ExcludeTilesets: DESERT
+		ExcludeTilesets: DESERT, CARIBIC
 
