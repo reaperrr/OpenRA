@@ -17,7 +17,7 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.TDX.Traits
 {
-	public class WithInfantryBodyTDXInfo : RenderSpritesInfo, ITraitInfo, IQuantizeBodyOrientationInfo, IRenderActorPreviewSpritesInfo, ILegacyEditorRenderInfo, Requires<IMoveInfo>
+	public class WithInfantryBodyTDXInfo : ITraitInfo, IQuantizeBodyOrientationInfo, IRenderActorPreviewSpritesInfo, ILegacyEditorRenderInfo, Requires<IMoveInfo>, Requires<RenderSpritesInfo>
 	{
 		public readonly int MinIdleWaitTicks = 30;
 		public readonly int MaxIdleWaitTicks = 110;
@@ -26,7 +26,7 @@ namespace OpenRA.Mods.TDX.Traits
 		public readonly string[] IdleSequences = { };
 		public readonly string[] StandSequences = { "stand" };
 
-		public override object Create(ActorInitializer init) { return new WithInfantryBodyTDX(init, this); }
+		public object Create(ActorInitializer init) { return new WithInfantryBodyTDX(init, this); }
 
 		public IEnumerable<IActorPreview> RenderPreviewSprites(ActorPreviewInitializer init, RenderSpritesInfo rs, string image, int facings, PaletteReference p)
 		{
@@ -46,8 +46,13 @@ namespace OpenRA.Mods.TDX.Traits
 			return sequenceProvider.GetSequence(rsi.GetImage(ai, sequenceProvider, race), StandSequences.First()).Facings;
 		}
 
-		public string EditorPalette { get { return Palette; } }
-		public string EditorImage(ActorInfo actor, SequenceProvider sequenceProvider, string race) { return GetImage(actor, sequenceProvider, race); }
+		// HACK, too lazy to figure out how to get the palette properly
+		public string EditorPalette { get { return "terrain"; } }
+		public string EditorImage(ActorInfo actor, SequenceProvider sequenceProvider, string race)
+		{
+			var rsi = actor.Traits.Get<RenderSpritesInfo>();
+			return rsi.GetImage(actor, sequenceProvider, race);
+		}
 	}
 
 	public class WithInfantryBodyTDX : ITick, INotifyAttack, INotifyIdle
