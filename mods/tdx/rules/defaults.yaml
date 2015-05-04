@@ -371,6 +371,7 @@
 	RenderBuilding:
 	WithBuildingExplosion:
 		Delay: 1
+		Palette: flashyeffect
 	EmitInfantryOnSell:
 		ActorTypes: e6,e1
 	GivesExperience:
