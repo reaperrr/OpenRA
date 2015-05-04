@@ -52,7 +52,7 @@ HELI:
 		Description: Helicopter Gunship with Chainguns.\n  Strong vs Infantry, Light Vehicles\n  Weak vs Tanks
 	Buildable:
 		BuildPaletteOrder: 20
-		Prerequisites: hpad, anyhq, ~aircraft.nod, ~techlevel.medium
+		Prerequisites: ~disabled #hpad, anyhq, ~aircraft.nod, ~techlevel.medium
 		Queue: Aircraft
 	Selectable:
 		Bounds: 30,24

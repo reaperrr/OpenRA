@@ -328,7 +328,7 @@ LTNK:
 		Description: Fast, light tank.\n  Strong vs Vehicles, Tanks\n  Weak vs Infantry
 	Buildable:
 		BuildPaletteOrder: 40
-		Prerequisites: anyhq, ~vehicles.nod, ~techlevel.medium
+		Prerequisites: ~vehicles.nod, ~techlevel.medium
 		Queue: Vehicle
 	Mobile:
 		ROT: 5
@@ -369,7 +369,7 @@ MTNK:
 		Description: General-Purpose GDI Tank.\n  Strong vs Tanks, Vehicles\n  Weak vs Infantry
 	Buildable:
 		BuildPaletteOrder: 40
-		Prerequisites: anyhq, ~vehicles.gdi, ~techlevel.medium
+		Prerequisites: ~vehicles.gdi, ~techlevel.medium
 		Queue: Vehicle
 	Mobile:
 		Speed: 90
@@ -412,7 +412,7 @@ HTNK:
 		Name: Mammoth Tank
 		Description: Heavily armored GDI Tank. \nCan attack Aircraft.\n  Strong vs Everything
 	Buildable:
-		BuildPaletteOrder: 60
+		BuildPaletteOrder: 90
 		Prerequisites: eye, ~vehicles.gdi, ~techlevel.high
 		Queue: Vehicle
 	Mobile:
@@ -558,7 +558,7 @@ STNK:
 		Name: Wheel of Ezekiel#Stealth Tank
 		Description: Missile tank that can cloak. \nCan attack Aircraft. \nHas weak armor. Can be spotted by infantry.\n  Strong vs Vehicles, Tanks\n  Weak vs Infantry.
 	Buildable:
-		BuildPaletteOrder: 90
+		BuildPaletteOrder: 95
 		Prerequisites: tmpl, ~vehicles.nod, ~techlevel.high
 		Queue: Vehicle
 	Mobile:

@@ -79,19 +79,19 @@ MRPG:
 CTNK:
 	Inherits: ^Tank
 	Valued:
-		Cost: 900
+		Cost: 1100
 	Tooltip:
 		Name: Chem Tank
 		Description: Heavily armored chemicals-spraying vehicle.\n  Strong vs Infantry, Buildings & Vehicles\n  Weak vs Tanks
 	Buildable:
-		BuildPaletteOrder: 51
-		Prerequisites: biolab.nod, ~vehicles.nod, ~techlevel.high
+		BuildPaletteOrder: 99
+		Prerequisites: biolab.nod, tmpl, ~vehicles.nod, ~techlevel.high
 		Queue: Vehicle
 	Mobile:
 		ROT: 4
 		Speed: 75
 	Health:
-		HP: 520
+		HP: 575
 		Radius: 512
 	Armor:
 		Type: Heavy
@@ -124,14 +124,14 @@ T55H:
 		Description: Heavily armored Nod Tank.\n  Strong vs Buildings, Vehicles
 	Buildable:
 		BuildPaletteOrder: 60
-		Prerequisites: fix, ~vehicles.nod, ~techlevel.high
+		Prerequisites: anyhq, ~vehicles.nod, ~techlevel.high
 		Queue: Vehicle
 	Mobile:
 		Crushes: wall, crate, infantry
 		Speed: 85
 		ROT: 4
 	Health:
-		HP: 480
+		HP: 450
 		Radius: 512
 	Armor:
 		Type: Heavy
