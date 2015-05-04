@@ -20,8 +20,8 @@
 		CargoType: Vehicle
 	HiddenUnderFog:
 	GainsExperience:
-		ChevronPalette: effectra
-		LevelUpPalette: effectra
+		ChevronPalette: flashyeffectra
+		LevelUpPalette: flashyeffectra
 	GivesExperience:
 	DrawLineToTarget:
 	ActorLostNotification:
@@ -67,8 +67,8 @@
 		CargoType: Vehicle
 	HiddenUnderFog:
 	GainsExperience:
-		ChevronPalette: effectra
-		LevelUpPalette: effectra
+		ChevronPalette: flashyeffectra
+		LevelUpPalette: flashyeffectra
 	GivesExperience:
 	DrawLineToTarget:
 	ActorLostNotification:
@@ -110,8 +110,8 @@
 		LandWhenIdle: false
 	HiddenUnderFog:
 	GainsExperience:
-		ChevronPalette: effectra
-		LevelUpPalette: effectra
+		ChevronPalette: flashyeffectra
+		LevelUpPalette: flashyeffectra
 	GivesExperience:
 	DrawLineToTarget:
 	ActorLostNotification:
@@ -173,8 +173,8 @@
 	HiddenUnderFog:
 	PoisonedByTiberium:
 	GainsExperience:
-		ChevronPalette: effectra
-		LevelUpPalette: effectra
+		ChevronPalette: flashyeffectra
+		LevelUpPalette: flashyeffectra
 	GivesExperience:
 	DrawLineToTarget:
 	ActorLostNotification:
@@ -309,8 +309,8 @@
 		TargetTypes: Air
 	HiddenUnderFog:
 	GainsExperience:
-		ChevronPalette: effectra
-		LevelUpPalette: effectra
+		ChevronPalette: flashyeffectra
+		LevelUpPalette: flashyeffectra
 	GivesExperience:
 	DrawLineToTarget:
 	ActorLostNotification:
@@ -334,8 +334,8 @@
 		TargetTypes: Ground, Water
 	HiddenUnderFog:
 	GainsExperience:
-		ChevronPalette: effectra
-		LevelUpPalette: effectra
+		ChevronPalette: flashyeffectra
+		LevelUpPalette: flashyeffectra
 	GivesExperience:
 	DrawLineToTarget:
 	ActorLostNotification:
