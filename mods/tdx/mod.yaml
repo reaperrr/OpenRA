@@ -216,10 +216,10 @@ ServerTraits:
 	ColorValidator
 
 LobbyDefaults:
-	AllowCheats: true
+	AllowCheats: false
 	Crates: true
 	StartingUnitsClass: heavy
 	FragileAlliances: false
-	Shroud: false
-	Fog: false
+	Shroud: true
+	Fog: true
 	TechLevel: Unrestricted
