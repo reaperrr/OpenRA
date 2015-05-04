@@ -178,7 +178,7 @@ t15:
 #		Start: 1
 	dead:
 		Start: 2
-		Length: 9
+		Length: 8
 		Tick: 80
 
 t14:
@@ -232,7 +232,7 @@ t11:
 #		Start: 1
 	dead:
 		Start: 2
-		Length: 9
+		Length: 8
 		Tick: 80
 
 t10:
