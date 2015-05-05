@@ -15,7 +15,6 @@ Folders:
 	./mods/tdx/bits/tdx_aud
 	./mods/tdx/ui/uibits
 	~^Content/tdx
-	~^Content/cnc
 
 MapFolders:
 	./mods/tdx/maps: System
@@ -30,6 +29,7 @@ Packages:
 	winter.mix
 	desert.mix
 	snow.mix
+	~tdx-scores.mix:CRC32
 	~movies-gdi.mix
 	~movies-nod.mix
 	~movies.mix
@@ -157,7 +157,7 @@ Chrome:
 	./mods/tdx/ui/chrome.yaml
 
 ChromeLayout:
-	./mods/ra/chrome/install.yaml
+	./mods/tdx/ui/chrome/install.yaml
 	./mods/ra/chrome/ingame.yaml
 	./mods/ra/chrome/ingame-chat.yaml
 	./mods/ra/chrome/ingame-diplomacy.yaml
@@ -188,25 +188,25 @@ ChromeLayout:
 	./mods/ra/chrome/directconnect.yaml
 	./mods/ra/chrome/replaybrowser.yaml
 	./mods/ra/chrome/dropdowns.yaml
-	./mods/ra/chrome/musicplayer.yaml
+	./mods/tdx/ui/chrome/musicplayer.yaml
 	./mods/ra/chrome/tooltips.yaml
 	./mods/ra/chrome/assetbrowser.yaml
 	./mods/ra/chrome/missionbrowser.yaml
 	./mods/ra/chrome/confirmation-dialogs.yaml
 
 ContentInstaller:
+	MenuWidget: INSTALL_PANEL
+	MusicMenuWidget: INSTALL_MUSIC_PANEL
 	TestFiles: conquer.mix, desert.mix, sounds.mix, speech.mix, temperat.mix, tempicnh.mix, winter.mix
-	InstallerBackgroundWidget: INSTALL_BACKGROUND
-	InstallerMenuWidget: INSTALL_PANEL
-	FilesToCopy: CONQUER.MIX, DESERT.MIX, SCORES.MIX, SOUNDS.MIX, TEMPERAT.MIX, WINTER.MIX
+	FilesToCopy: CONQUER.MIX, DESERT.MIX, SOUNDS.MIX, TEMPERAT.MIX, WINTER.MIX
 	FilesToExtract: speech.mix, tempicnh.mix, transit.mix
 	PackageMirrorList: http://www.openra.net/packages/cnc-mirrors.txt
 	DiskTestFiles: conquer.mix, desert.mix, install/setup.z
 	PackageToExtractFromCD: install/setup.z
 	ExtractFilesFromCD: speech.mix, tempicnh.mix, transit.mix
-	CopyFilesFromCD: conquer.mix, desert.mix, general.mix, scores.mix, sounds.mix, temperat.mix, winter.mix
-	ShippedSoundtracks: 2
-	MusicPackageMirrorList: http://www.openra.net/packages/cnc-music-mirrors.txt
+	CopyFilesFromCD: conquer.mix, desert.mix, general.mix, sounds.mix, temperat.mix, winter.mix
+	ShippedSoundtracks: 1
+	MusicPackageMirrorList: http://tdx.ppmsite.com/tdx-music-mirrors.txt
 
 ServerTraits:
 	LobbyCommands
