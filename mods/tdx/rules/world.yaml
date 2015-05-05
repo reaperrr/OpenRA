@@ -9,7 +9,7 @@ World:
 	MenuPaletteEffect:
 		MenuEffect: Desaturated
 	WorldPaletteEffect:
-		ExcludePalettes: flashyeffectra, flashyeffect, cursor, chrome, colorpicker, fog, shroud
+		ExcludePalettes: flashyeffectra, flashyeffect, cursor, chrome, colorpicker, fog, shroud, shadow
 		DayNightCycle: true
 		InitialEffect: Day
 		DayLength: 1500
