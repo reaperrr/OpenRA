@@ -36,15 +36,15 @@ namespace OpenRA.Mods.TDX.Traits
 		public readonly int MorningFactorRed = 75;
 		public readonly int MorningFactorGreen = 85;
 		public readonly int MorningFactorBlue = 85;
-		
+
 		public readonly int DaylightFactorRed = 100;
 		public readonly int DaylightFactorGreen = 100;
 		public readonly int DaylightFactorBlue = 100;
-		
+
 		public readonly int EveningFactorRed = 85;
 		public readonly int EveningFactorGreen = 60;
 		public readonly int EveningFactorBlue = 75;
-		
+
 		public readonly int NightFactorRed = 35;
 		public readonly int NightFactorGreen = 45;
 		public readonly int NightFactorBlue = 60;
@@ -144,7 +144,7 @@ namespace OpenRA.Mods.TDX.Traits
 		{
 			if (remainingFrames > 0)
 				remainingFrames--;
-				
+
 			if (!dayNightCycle)
 				return;
 
@@ -206,7 +206,7 @@ namespace OpenRA.Mods.TDX.Traits
 			{
 				if (Info.ExcludePalettes.Contains(kvp.Key))
 					continue;
-					
+
 				var pal = kvp.Value;
 
 				for (var x = 0; x < Palette.Size; x++)

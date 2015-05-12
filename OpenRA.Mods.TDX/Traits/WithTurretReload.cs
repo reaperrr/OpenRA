@@ -97,7 +97,7 @@ namespace OpenRA.Mods.TDX.Traits
 			var initialAmmo = ammoPool.Info.InitialAmmo;
 			var ammo = ammoPool.Info.Ammo;
 			var initialAmmoStage = initialAmmo >= 0 && initialAmmo != ammo ? initialAmmo : ammo;
-			
+
 			if (ammoPool != null && reloadStages < 0)
 				ammoSuffix = initialAmmoStage.ToString();
 			if (ammoPool != null && reloadStages >= 0)

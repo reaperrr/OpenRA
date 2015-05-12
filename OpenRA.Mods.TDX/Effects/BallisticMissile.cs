@@ -35,8 +35,8 @@ namespace OpenRA.Mods.TDX.Effects
 		public readonly WAngle Angle = WAngle.Zero;
 		[Desc("How many ticks before this missile is armed and can explode.")]
 		public readonly int Arm = 0;
-//		[Desc("Is the missile blocked by actors with BlocksProjectiles: trait.")]
-//		public readonly bool Blockable = true;
+		[Desc("Is the missile blocked by actors with BlocksProjectiles: trait.")]
+		public readonly bool Blockable = true;
 		[Desc("Maximum offset at the maximum range")]
 		public readonly WRange Inaccuracy = WRange.Zero;
 		[Desc("Probability of locking onto and following target.")]
@@ -57,8 +57,8 @@ namespace OpenRA.Mods.TDX.Effects
 		public readonly int ContrailDelay = 1;
 		[Desc("Should missile targeting be thrown off by nearby actors with JamsMissiles.")]
 		public readonly bool Jammable = true;
-//		[Desc("Explodes when leaving the following terrain type, e.g., Water for torpedoes.")]
-//		public readonly string BoundToTerrainType = "";
+		[Desc("Explodes when leaving the following terrain type, e.g., Water for torpedoes.")]
+		public readonly string BoundToTerrainType = "";
 		[Desc("Explodes when inside this proximity radius to target.",
 			"Note: If this value is lower than the missile speed, this check might",
 			"not trigger fast enough, causing the missile to fly past the target.")]
@@ -102,7 +102,6 @@ namespace OpenRA.Mods.TDX.Effects
 
 			pos = args.Source;
 			targetPosition = args.PassiveTarget;
-//			facing = args.Facing;
 			facing = OpenRA.Traits.Util.GetFacing(targetPosition - pos, 0);
 			length = Math.Max((targetPosition - pos).Length / info.Speed.Range, 2);
 
@@ -119,7 +118,6 @@ namespace OpenRA.Mods.TDX.Effects
 
 			if (info.Image != null)
 			{
-//				anim = new Animation(world, info.Image, () => facing);
 				anim = new Animation(world, info.Image, GetEffectiveFacing);
 				anim.PlayRepeating("idle");
 			}
@@ -177,7 +175,7 @@ namespace OpenRA.Mods.TDX.Effects
 			var jammed = false;
 
 			// Only bother checking if missile is Jammable
-			if (jammable) 
+			if (jammable)
 				if (world.ActorsWithTrait<JamsMissiles>().Any(JammedBy))
 					jammed = true;
 
@@ -215,9 +213,9 @@ namespace OpenRA.Mods.TDX.Effects
 			var shouldExplode = (pos.Z < 0) // Hit the ground
 				|| (dist.LengthSquared < info.CloseEnough.Range * info.CloseEnough.Range) // Within range
 				|| (info.RangeLimit != 0 && ticks > info.RangeLimit) // Ran out of fuel
-//				|| (info.Blockable && world.ActorMap.GetUnitsAt(cell).Any(a => a.HasTrait<IBlocksProjectiles>())) // Hit a wall or other blocking obstacle
-				|| !world.Map.Contains(cell); // This also avoids an IndexOutOfRangeException in GetTerrainInfo below.
-//				|| (!string.IsNullOrEmpty(info.BoundToTerrainType) && world.Map.GetTerrainInfo(cell).Type != info.BoundToTerrainType); // Hit incompatible terrain
+				|| (info.Blockable && world.ActorMap.GetUnitsAt(cell).Any(a => a.HasTrait<IBlocksProjectiles>())) // Hit a wall or other blocking obstacle
+				|| !world.Map.Contains(cell) // This also avoids an IndexOutOfRangeException in GetTerrainInfo below.
+				|| (!string.IsNullOrEmpty(info.BoundToTerrainType) && world.Map.GetTerrainInfo(cell).Type != info.BoundToTerrainType); // Hit incompatible terrain
 
 			if (shouldExplode)
 				Explode(world);
