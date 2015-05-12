@@ -48,7 +48,7 @@ else
 if ($command -eq "all")
 {
 	$msBuild = FindMSBuild
-	$msBuildArguments = "/t:Rebuild /nr:false"
+	$msBuildArguments = "/t:Rebuild /nr:false /nologo /tv:4.0 /p:WarningLevel=4 /p:Optimize=true /p:AllowUnsafeBlocks=true"
 	if ($msBuild -eq $null)
 	{
 		echo "Unable to locate an appropriate version of MSBuild."
