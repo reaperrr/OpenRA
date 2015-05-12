@@ -177,7 +177,7 @@ MEDI:
 		PipType: Blue
 	-AutoTarget:
 	TakeCover:
-	WithInfantryBodyTDX:
+	WithInfantryBody:
 		AttackSequence: heal
 	-GainsExperience:
 
@@ -210,7 +210,7 @@ RMBO:
 		Weapon: Sniper
 	AttackFrontal:
 	TakeCover:
-	WithInfantryBodyTDX:
+	WithInfantryBody:
 		IdleSequences: idle1,idle2,idle3
 	AnnounceOnBuild:
 	AnnounceOnKill:

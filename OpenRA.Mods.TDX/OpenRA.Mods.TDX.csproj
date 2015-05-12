@@ -72,10 +72,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Effects\BallisticMissile.cs" />
+    <Compile Include="Traits\RenderInfantryEditor.cs" />
     <Compile Include="Traits\RenderUnitFlying.cs" />
     <Compile Include="Traits\WithTurretReload.cs" />
     <Compile Include="Traits\WithIdleOverlayTDX.cs" />
-    <Compile Include="Traits\WithInfantryBodyTDX.cs" />
     <Compile Include="Traits\WorldPaletteEffect.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

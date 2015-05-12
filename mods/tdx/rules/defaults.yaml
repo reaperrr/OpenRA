@@ -161,7 +161,8 @@
 	TakeCover:
 		SpeedModifier: 60
 	RenderSprites:
-	WithInfantryBodyTDX:
+	RenderInfantryEditor:
+	WithInfantryBody:
 		MinIdleWaitTicks: 80
 		MaxIdleWaitTicks: 240
 		IdleSequences: idle1, idle2
@@ -247,7 +248,7 @@
 		Notification: CivilianKilled
 		NotifyAll: true
 	ScaredyCat:
-	WithInfantryBodyTDX:
+	WithInfantryBody:
 		IdleSequences: idle1, beg-for-mercy, idle1, idle1, idle1 #otherwise beg-for-mercy would be played too often
 	Crushable:
 		CrushSound: squish2.aud
@@ -281,11 +282,6 @@
 		TargetTypes: Ground, Infantry
 	HiddenUnderFog:
 	GivesExperience:
-	WithInfantryBodyTDX:
-	WithDeathAnimation:
-		UseDeathTypeSuffix: false
-	EditorAppearance:
-		UseTerrainPalette: true
 	BodyOrientation:
 	DrawLineToTarget:
 	AutoTarget:
@@ -296,8 +292,14 @@
 	Huntable:
 	ScriptTriggers:
 	DeathSounds:
+	EditorAppearance:
+		UseTerrainPalette: true
+	RenderInfantryEditor:
 	RenderSprites:
 		Palette: terrain
+	WithInfantryBody:
+	WithDeathAnimation:
+		UseDeathTypeSuffix: false
 
 ^Plane:
 	AppearsOnRadar:
