@@ -176,6 +176,7 @@ Container@PLAYER_WIDGETS:
 					Height: 22
 					Align: Center
 					Font: TinyBold
+					TextColor: 250,250,250
 				LabelWithTooltip@CASH:
 					Logic: IngameCashCounterLogic
 					X: 35
