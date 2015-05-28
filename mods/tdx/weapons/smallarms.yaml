@@ -9,8 +9,8 @@ Sniper:
 		Spread: 43
 		Falloff: 100, 50, 0
 		Damage: 100
-		DeathType: 2
 		ValidTargets: Infantry
+		DamageTypes: DeathType2
 
 HighV:
 	ReloadDelay: 50
@@ -22,13 +22,13 @@ HighV:
 		Spread: 512
 		Falloff: 100, 50, 0
 		Damage: 30
-		DeathType: 2
 		Versus:
 			None: 100
 			Wood: 40
 			Light: 75
 			Heavy: 35
 			Concrete: 40
+		DamageTypes: DeathType2
 	Warhead@2Eff: CreateEffect
 		Explosion: piffs
 	Warhead@3Eff: CreateEffect
@@ -50,7 +50,6 @@ HeliAGGun:
 		Spread: 256
 		Falloff: 100, 50, 25, 0
 		Damage: 20
-		DeathType: 2
 		ValidTargets: Ground
 		Versus:
 			None: 100
@@ -58,6 +57,7 @@ HeliAGGun:
 			Light: 75
 			Heavy: 25
 			Concrete: 30
+		DamageTypes: DeathType2
 	Warhead@2Eff: CreateEffect
 		Explosion: piffs
 
@@ -76,7 +76,6 @@ HeliAAGun:
 		Spread: 128
 		Falloff: 100, 50, 25, 0
 		Damage: 20
-		DeathType: 2
 		ValidTargets: Air
 		Versus:
 			None: 100
@@ -85,6 +84,7 @@ HeliAAGun:
 			Heavy: 25
 			AirLight: 75
 			AirHeavy: 50
+		DamageTypes: DeathType2
 	Warhead@2Eff: CreateEffect
 		Explosion: piffs
 
@@ -99,7 +99,6 @@ Pistol:
 		Spread: 128
 		Falloff: 100, 50, 0
 		Damage: 1
-		DeathType: 2
 		InvalidTargets: Wall
 		Versus:
 			None: 100
@@ -109,6 +108,7 @@ Pistol:
 			Concrete: 5
 			AirLight: 5
 			AirHeavy: 5
+		DamageTypes: DeathType2
 	Warhead@2Eff: CreateEffect
 		Explosion: piff
 
@@ -123,7 +123,6 @@ M16:
 		Spread: 128
 		Falloff: 100, 50, 0
 		Damage: 15
-		DeathType: 2
 		InvalidTargets: Wall
 		Versus:
 			None: 100
@@ -131,6 +130,7 @@ M16:
 			Light: 40
 			Heavy: 20
 			Concrete: 10
+		DamageTypes: DeathType2
 	Warhead@2Eff: CreateEffect
 		Explosion: piff
 
@@ -146,7 +146,6 @@ MachineGun:
 		Spread: 128
 		Falloff: 100, 50, 25, 0
 		Damage: 10
-		DeathType: 2
 		InvalidTargets: Wall
 		Versus:
 			None: 100
@@ -154,6 +153,7 @@ MachineGun:
 			Light: 50
 			Heavy: 20
 			Concrete: 10
+		DamageTypes: DeathType2
 	Warhead@2Eff: CreateEffect
 		Explosion: piffs
 
@@ -168,7 +168,6 @@ Vulcan:
 		Spread: 341
 		Falloff: 100, 50, 25, 0
 		Damage: 100
-		DeathType: 2
 		ValidTargets: Ground, Water
 		Versus:
 			None: 100
@@ -176,5 +175,7 @@ Vulcan:
 			Light: 100
 			Heavy: 35
 			Concrete: 25
+		DamageTypes: DeathType2
 	Warhead@2Eff: CreateEffect
 		Explosion: piffs
+

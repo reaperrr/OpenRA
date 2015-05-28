@@ -12,13 +12,13 @@ Grenade:
 		Spread: 256
 		Falloff: 100, 60, 30, 15, 0
 		Damage: 50
-		DeathType: 3
 		Versus:
 			None: 75
 			Wood: 50
 			Light: 75
 			Heavy: 35
 			AirHeavy: 45
+		DamageTypes: DeathType3
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -51,7 +51,6 @@ RPGLauncher:
 		Spread: 256
 		Falloff: 100, 60, 30, 15, 0
 		Damage: 35
-		DeathType: 4
 		ValidTargets: Ground, Water
 		Versus:
 			None: 50
@@ -59,8 +58,8 @@ RPGLauncher:
 			Light: 75
 			Heavy: 50
 			Concrete: 100
-#			AirLight: 100
 			AirHeavy: 50
+		DamageTypes: DeathType4
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -86,15 +85,13 @@ RPGLauncher:
 		Spread: 85
 		Falloff: 100, 50, 25, 12, 0
 		Damage: 25
-		DeathType: 4
 		Versus:
 			None: 35
 			Wood: 75
-#			Light: 100
 			Heavy: 75
 			Concrete: 35
-#			AirLight: 100
 			AirHeavy: 75
+		DamageTypes: DeathType4
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -122,15 +119,13 @@ RPGLauncher:
 		Spread: 128
 		Falloff: 100, 40, 20, 10, 0
 		Damage: 30
-		DeathType: 4
 		Versus:
 			None: 25
 			Wood: 50
 			Light: 75
-#			Heavy: 100
 			Concrete: 50
 			AirLight: 75
-#			AirHeavy: 100
+		DamageTypes: DeathType4
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -161,15 +156,13 @@ RPGLauncher:
 		Spread: 128
 		Falloff: 100, 40, 20, 10, 0
 		Damage: 30
-		DeathType: 4
 		Versus:
 			None: 25
 			Wood: 50
 			Light: 75
-#			Heavy: 100
 			Concrete: 50
 			AirLight: 75
-#			AirHeavy: 100
+		DamageTypes: DeathType4
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -200,15 +193,13 @@ RPGLauncher:
 		Spread: 128
 		Falloff: 100, 40, 20, 10, 0
 		Damage: 40
-		DeathType: 4
 		Versus:
 			None: 30
 			Wood: 60
 			Light: 75
-#			Heavy: 100
 			Concrete: 50
 			AirLight: 75
-#			AirHeavy: 100
+		DamageTypes: DeathType4
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -240,15 +231,13 @@ RPGLauncher:
 		Spread: 128
 		Falloff: 100, 40, 20, 10, 0
 		Damage: 40
-		DeathType: 4
 		Versus:
 			None: 25
 			Wood: 50
 			Light: 75
-#			Heavy: 100
 			Concrete: 50
 			AirLight: 75
-#			AirHeavy: 100
+		DamageTypes: DeathType4
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -279,13 +268,11 @@ TurretGun:
 		Spread: 128
 		Falloff: 100, 40, 20, 10, 0
 		Damage: 40
-		DeathType: 4
 		Versus:
 			None: 25
 			Wood: 25
-#			Light: 100
-#			Heavy: 100
 			Concrete: 30
+		DamageTypes: DeathType4
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -313,23 +300,20 @@ TurretGun:
 		Speed: 256
 		Blockable: false
 		Angle: 56
-#		Inaccuracy: 1c256
 		Image: 120MM
 		Palette: flashyeffect
 		Shadow: true
 	Warhead@1Dam: SpreadDamage
 		Spread: 256
 		Falloff: 100, 60, 30, 15, 0
-		Damage: 300#150
-		DeathType: 3
+		Damage: 300
 		Versus:
 			None: 80
 			Wood: 75
 			Light: 90
-#			Heavy: 50
-#			Concrete: 100
 			AirLight: 80
 			AirHeavy: 60
+		DamageTypes: DeathType3
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect

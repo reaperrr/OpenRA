@@ -177,6 +177,9 @@ MEDI:
 		PipType: Blue
 	-AutoTarget:
 	TakeCover:
+		DamageModifiers:
+			Prone50Percent: 50
+		DamageTriggers: TriggerProne
 	WithInfantryBody:
 		AttackSequence: heal
 	-GainsExperience:
@@ -209,6 +212,9 @@ RMBO:
 		Weapon: Sniper
 	AttackFrontal:
 	TakeCover:
+		DamageModifiers:
+			Prone50Percent: 50
+		DamageTriggers: TriggerProne
 	WithInfantryBody:
 		IdleSequences: idle1,idle2,idle3
 	AnnounceOnBuild:

@@ -20,16 +20,13 @@ Bazooka:
 		Spread: 128
 		Falloff: 100, 50, 25, 12, 0
 		Damage: 30
-		DeathType: 4
 		ValidTargets: Ground, Water, Air
 		Versus:
 			None: 30
 			Wood: 65
 			Light: 75
-#			Heavy: 100
 			Concrete: 25
-#			AirLight: 100
-#			AirHeavy: 100
+		DamageTypes: DeathType4
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -72,16 +69,13 @@ BikeRockets:
 		Spread: 128
 		Falloff: 100, 50, 25, 12, 0
 		Damage: 30
-		DeathType: 4
 		ValidTargets: Ground, Water, Air
 		Versus:
 			None: 25
 			Wood: 60
 			Light: 75
-#			Heavy: 100
 			Concrete: 30
-#			AirLight: 100
-#			AirHeavy: 100
+		DamageTypes: DeathType4
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -129,16 +123,12 @@ OrcaAGMissiles:
 		Spread: 128
 		Falloff: 100, 56, 28, 14, 0
 		Damage: 30
-		DeathType: 4
 		ValidTargets: Ground, Water
 		Versus:
 			None: 25
 			Wood: 75
-#			Light: 100
-#			Heavy: 100
 			Concrete: 50
-#			AirLight: 100
-#			AirHeavy: 100
+		DamageTypes: DeathType4
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -176,11 +166,11 @@ OrcaAAMissiles:
 		Spread: 128
 		Falloff: 100, 56, 28, 14, 0
 		Damage: 25
-		DeathType: 4
 		ValidTargets: Air
 		Versus:
 			AirLight: 75
 			AirHeavy: 50
+		DamageTypes: DeathType4
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -212,7 +202,6 @@ MammothTusk:
 		Spread: 256
 		Falloff: 100, 75, 50, 35, 20, 0
 		Damage: 50
-		DeathType: 4
 		ValidTargets: Ground, Water, Air
 		Versus:
 			None: 50
@@ -222,6 +211,7 @@ MammothTusk:
 			Concrete: 30
 			AirLight: 75
 			AirHeavy: 40
+		DamageTypes: DeathType4
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -262,16 +252,15 @@ MammothTusk:
 		Spread: 341
 		Falloff: 100, 80, 60, 40, 20, 0
 		Damage: 75
-		DeathType: 4
 		ValidTargets: Ground, Water
 		Versus:
-#			None: 100
 			Wood: 90
 			Light: 50
 			Heavy: 25
 			Concrete: 30
 			AirLight: 75
 			AirHeavy: 50
+		DamageTypes: DeathType4
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -312,16 +301,13 @@ MammothTusk:
 		Spread: 384
 		Falloff: 100, 75, 50, 25, 0
 		Damage: 75
-		DeathType: 4
 		ValidTargets: Air
 		Versus:
-#			None: 100
 			Wood: 30
 			Light: 30
 			Heavy: 20
-#			AirLight: 100
-#			AirHeavy: 100
 			Concrete: 20
+		DamageTypes: DeathType4
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -364,16 +350,13 @@ Dragon:
 		Spread: 128
 		Falloff: 100, 50, 25, 12, 0
 		Damage: 35
-		DeathType: 4
 		ValidTargets: Ground, Water, Air
 		Versus:
 			None: 25
 			Wood: 75
 			Light: 90
-#			Heavy: 100
 			Concrete: 30
-#			AirLight: 100
-#			AirHeavy: 100
+		DamageTypes: DeathType4
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -410,15 +393,14 @@ BoatMissile:
 		Spread: 384
 		Falloff: 100, 75, 50, 30, 15, 0
 		Damage: 60
-		DeathType: 3
 		Versus:
 			None: 90
 			Wood: 75
 			Light: 60
 			Heavy: 25
-#			Concrete: 100
 			AirLight: 60
 			AirHeavy: 50
+		DamageTypes: DeathType3
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -462,15 +444,14 @@ TowerMissile:
 		Falloff: 100, 80, 60, 40, 20, 0
 		Damage: 60
 		ValidTargets: Ground, Water, Air
-		DeathType: 3
 		Versus:
 			None: 60
 			Wood: 25
-#			Light: 100
 			Heavy: 40
 			Concrete: 20
 			AirLight: 75
 			AirHeavy: 50
+		DamageTypes: DeathType3
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -504,10 +485,9 @@ SAMMissile:
 		Falloff: 100, 100, 60, 30, 0
 		ValidTargets: Air
 		Versus:
-#			AirLight: 100
 			AirHeavy: 75
-		DeathType: 4
 		Damage: 30
+		DamageTypes: DeathType4
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -535,18 +515,18 @@ HonestJohn:
 		Range: 0, 385, 513, 769, 1c1, 1c513, 2c0
 		Falloff: 100, 100, 80, 48, 24, 12, 0
 		Damage: 200
-		DeathType: 5
 		Versus:
-#			None: 100
 			Wood: 110
 			Light: 65
 			Heavy: 25
 			Concrete: 35
 			AirLight: 65
 			AirHeavy: 35
+		DamageTypes: DeathType5
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
 		Explosion: big_ranapalm
 		ImpactSound: flamer2.aud
 		ExplosionPalette: flashyeffectra
+

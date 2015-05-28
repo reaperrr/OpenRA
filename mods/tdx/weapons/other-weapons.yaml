@@ -2,7 +2,6 @@ FlametankExplode:
 	Warhead@1Dam: SpreadDamage
 		Spread: 768
 		Damage: 100
-		DeathType: 5
 		Falloff: 100, 50, 0
 		InvalidTargets: Wall
 		Versus:
@@ -13,6 +12,7 @@ FlametankExplode:
 			Concrete: 30
 			AirLight: 65
 			AirHeavy: 35
+		DamageTypes: DeathType5
 	Warhead@2Eff: CreateEffect
 		Explosion: big_ranapalm
 		ImpactSound: firebl3.aud
@@ -21,7 +21,6 @@ FlametankExplode:
 ChemtankExplode:
 	Warhead@1Dam: SpreadDamage
 		Damage: 150
-		DeathType: 6
 		Spread: 512
 		Falloff: 100, 60, 30, 0
 		Versus:
@@ -32,6 +31,7 @@ ChemtankExplode:
 			Concrete: 100
 			AirLight: 75
 			AirHeavy: 45
+		DamageTypes: DeathType6
 	Warhead@2Eff: CreateEffect
 		Explosion: big_chemexpl
 		ImpactSound: xplobig6.aud
@@ -41,7 +41,7 @@ HeliCrash:
 		Spread: 426
 		Falloff: 100, 50, 0
 		Damage: 40
-		DeathType: 4
+		DamageTypes: DeathType4
 	Warhead@2Eff: CreateEffect
 		Explosion: poof
 		ImpactSound: xplomed2.aud
@@ -55,7 +55,7 @@ HeliCrash:
 
 HeliExplode:
 	Warhead@1Dam: SpreadDamage
-		DeathType: 4
+		DamageTypes: DeathType4
 	Warhead@2Eff: CreateEffect
 		Explosion: small_building
 		ImpactSound: xplomed1.aud
@@ -66,7 +66,6 @@ UnitExplode:
 		Spread: 384
 		Damage: 500
 		Falloff: 100, 40, 16, 6, 2, 0
-		DeathType: 4
 		Versus:
 			None: 90
 			Wood: 75
@@ -74,6 +73,7 @@ UnitExplode:
 			Heavy: 25
 			AirLight: 60
 			AirHeavy: 30
+		DamageTypes: DeathType4
 	Warhead@2Eff: CreateEffect
 		Explosion: big_frag
 		ImpactSound: xplobig3.aud
@@ -84,7 +84,6 @@ UnitExplodeSmall:
 		Spread: 426
 		Falloff: 100, 40, 16, 6, 2, 0
 		Damage: 40
-		DeathType: 4
 		Versus:
 			None: 90
 			Wood: 75
@@ -92,6 +91,7 @@ UnitExplodeSmall:
 			Heavy: 25
 			AirLight: 60
 			AirHeavy: 30
+		DamageTypes: DeathType4
 	Warhead@2Eff: CreateEffect
 		Explosion: med_frag
 		ImpactSound: xplomed3.aud
@@ -101,7 +101,6 @@ GrenadierExplode:
 	Warhead@1Dam: SpreadDamage
 		Spread: 256
 		Damage: 50
-		DeathType: 3
 		Versus:
 			None: 90
 			Wood: 75
@@ -109,6 +108,7 @@ GrenadierExplode:
 			Heavy: 25
 			AirLight: 60
 			AirHeavy: 30
+		DamageTypes: DeathType3
 	Warhead@2Eff: CreateEffect
 		Explosion: poof
 		ImpactSound: xplomed5.aud
@@ -118,7 +118,6 @@ FlamethrowerExplode:
 	Warhead@1Dam: SpreadDamage
 		Spread: 384
 		Damage: 50
-		DeathType: 5
 		Falloff: 100, 50, 0
 		InvalidTargets: Wall
 		Versus:
@@ -129,6 +128,7 @@ FlamethrowerExplode:
 			Concrete: 30
 			AirLight: 65
 			AirHeavy: 25
+		DamageTypes: DeathType5
 	Warhead@2Eff: CreateEffect
 		Explosion: sml_ranapalm
 		ImpactSound: firebl3.aud
@@ -137,7 +137,6 @@ FlamethrowerExplode:
 ChemWarriorExplode:
 	Warhead@1Dam: SpreadDamage
 		Damage: 50
-		DeathType: 6
 		Spread: 256
 		Falloff: 100, 60, 30, 0
 		Versus:
@@ -148,6 +147,7 @@ ChemWarriorExplode:
 			Concrete: 100
 			AirLight: 75
 			AirHeavy: 40
+		DamageTypes: DeathType6
 	Warhead@2Eff: CreateEffect
 		Explosion: sml_chemexpl
 		ImpactSound: flamer2.aud
@@ -163,7 +163,6 @@ Flamethrower:
 		Spread: 299
 		Falloff: 100, 50, 25, 12, 6, 0
 		Damage: 50
-		DeathType: 5
 		InvalidTargets: Wall
 		Versus:
 			None: 100
@@ -173,11 +172,9 @@ Flamethrower:
 			Concrete: 30
 			AirLight: 65
 			AirHeavy: 30
+		DamageTypes: DeathType5
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch
-#	Warhead@3Eff: CreateEffect
-#		Explosion: sml_ranapalm
-#		ExplosionPalette: effectra
 
 BigFlamer:
 	ReloadDelay: 50
@@ -192,7 +189,6 @@ BigFlamer:
 		Spread: 384
 		Falloff: 100, 50, 25, 12, 6, 0
 		Damage: 75
-		DeathType: 5
 		InvalidTargets: Wall
 		Versus:
 			None: 100
@@ -202,11 +198,9 @@ BigFlamer:
 			Concrete: 30
 			AirLight: 65
 			AirHeavy: 35
+		DamageTypes: DeathType5
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch
-#	Warhead@3Eff: CreateEffect
-#		Explosion: med_ranapalm
-#		ExplosionPalette: effectra
 
 Chemspray:
 	ReloadDelay: 70
@@ -218,7 +212,6 @@ Chemspray:
 		Spread: 341
 		Falloff: 100, 60, 30, 15, 0
 		Damage: 80
-		DeathType: 6
 		Versus:
 			None: 100
 			Wood: 75
@@ -227,10 +220,9 @@ Chemspray:
 			Concrete: 100
 			AirLight: 75
 			AirHeavy: 45
+		DamageTypes: DeathType6
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch
-#	Warhead@3Eff: CreateEffect
-#		Explosion: sml_chemexpl
 
 BigChemspray:
 	ReloadDelay: 75
@@ -244,7 +236,6 @@ BigChemspray:
 		Spread: 426
 		Falloff: 100, 60, 30, 15, 0
 		Damage: 100
-		DeathType: 6
 		Versus:
 			None: 100
 			Wood: 90
@@ -253,10 +244,9 @@ BigChemspray:
 			Concrete: 100
 			AirLight: 75
 			AirHeavy: 45
+		DamageTypes: DeathType6
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch
-#	Warhead@3Eff: CreateEffect
-#		Explosion: med_chemexpl
 
 Napalm:
 	ValidTargets: Ground, Water
@@ -270,7 +260,6 @@ Napalm:
 		Spread: 384
 		Damage: 30
 		Falloff: 100, 50, 25, 12, 0
-		DeathType: 5
 		ValidTargets: Ground, Water
 		Versus:
 			None: 100
@@ -280,6 +269,7 @@ Napalm:
 			Concrete: 25
 			AirLight: 90
 			AirHeavy: 45
+		DamageTypes: DeathType5
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch
 	Warhead@3Eff: CreateEffect
@@ -292,12 +282,12 @@ Napalm.Crate:
 		Spread: 170
 		Damage: 50
 		Falloff: 1000, 368, 135, 50, 18, 7, 0
-		DeathType: 5
 		Versus:
 			None: 90
 			Wood: 100
 			Light: 60
 			Heavy: 25
+		DamageTypes: DeathType5
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch
 	Warhead@3Eff: CreateEffect
@@ -316,9 +306,9 @@ Laser:
 	Warhead@1Dam: SpreadDamage
 		Spread: 42
 		Damage: 360
-		DeathType: 5
 		Versus:
 			Wood: 50
+		DamageTypes: DeathType5
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch
 
@@ -327,19 +317,19 @@ Tiberium:
 	Warhead@1Dam: SpreadDamage
 		Spread: 42
 		Damage: 2
-		DeathType: 6
 		PreventProne: yes
+		DamageTypes: DeathType6
 
 TiberiumExplosion:
 	Warhead@1Dam: SpreadDamage
 		Spread: 9
 		Damage: 10
-		DeathType: 3
 		Versus:
 			None: 90
 			Wood: 75
 			Light: 60
 			Heavy: 25
+		DamageTypes: DeathType3
 	Warhead@2Res: CreateResource
 		AddsResourceType: Tiberium
 		Size: 1,1
@@ -353,6 +343,7 @@ Heal:
 		Spread: 42
 		Damage: -1
 		PreventProne: yes
+		DamageTypes: DeathType1
 
 MedicHeal:
 	ReloadDelay: 50
@@ -364,12 +355,12 @@ MedicHeal:
 		Spread: 213
 		Falloff: 100, 0
 		Damage: -80
-		DeathType: 1
 		Versus:
 			Wood: 0
 			Light: 0
 			Heavy: 0
 			Concrete: 0
+		DamageTypes: DeathType1
 	Warhead@3Eff: CreateEffect
 		ImpactSound: heal2.aud
 
@@ -381,13 +372,13 @@ Tail:
 	Warhead@1Dam: SpreadDamage
 		Spread: 213
 		Damage: 180
-		DeathType: 1
 		Versus:
 			None: 90
 			Wood: 10
 			Light: 30
 			Heavy: 10
 			Concrete: 10
+		DamageTypes: DeathType1
 
 Horn:
 	ReloadDelay: 20
@@ -397,13 +388,13 @@ Horn:
 	Warhead@1Dam: SpreadDamage
 		Spread: 213
 		Damage: 120
-		DeathType: 1
 		Versus:
 			None: 90
 			Wood: 10
 			Light: 30
 			Heavy: 10
 			Concrete: 10
+		DamageTypes: DeathType1
 
 Teeth:
 	ReloadDelay: 30
@@ -413,13 +404,13 @@ Teeth:
 	Warhead@1Dam: SpreadDamage
 		Spread: 213
 		Damage: 180
-		DeathType: 1
 		Versus:
 			None: 90
 			Wood: 10
 			Light: 30
 			Heavy: 10
 			Concrete: 10
+		DamageTypes: DeathType1
 
 Claw:
 	ReloadDelay: 10
@@ -429,16 +420,17 @@ Claw:
 	Warhead@1Dam: SpreadDamage
 		Spread: 213
 		Damage: 60
-		DeathType: 1
 		Versus:
 			None: 90
 			Wood: 10
 			Light: 30
 			Heavy: 10
 			Concrete: 10
+		DamageTypes: DeathType1
 
 Demolish:
 	Warhead@1Dam: SpreadDamage
+		DamageTypes: DeathType1
 	Warhead@2Eff: CreateEffect
 		Explosion: building
 		ImpactSound: xplobig6.aud

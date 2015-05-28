@@ -162,6 +162,9 @@
 		TargetTypes: Ground, Infantry
 	TakeCover:
 		SpeedModifier: 60
+		DamageModifiers:
+			Prone50Percent: 50
+		DamageTriggers: TriggerProne
 	RenderSprites:
 	WithInfantryBody:
 		MinIdleWaitTicks: 80
@@ -213,13 +216,13 @@
 		Range: 1
 	ScriptTriggers:
 	DeathSounds@NORMAL:
-		DeathTypes: 1, 2, 3, 4
+		DeathTypes: DeathType1, DeathType2, DeathType3, DeathType4
 	DeathSounds@BURNED:
 		DeathSound: Burned
-		DeathTypes: 5
+		DeathTypes: DeathType5
 	DeathSounds@POISONED:
 		DeathSound: Poisoned
-		DeathTypes: 6
+		DeathTypes: DeathType6
 	GainsStatUpgrades:
 	MustBeDestroyed:
 	Voiced:

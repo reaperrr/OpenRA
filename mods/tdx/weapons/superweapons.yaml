@@ -2,27 +2,24 @@ Atomic:
 	ValidTargets: Ground, Air
 	Report: nukemisl.aud
 	Warhead@1Dam_impact: SpreadDamage
-#		Spread: 1c0
 		Range: 0, 1c1, 2c1, 3c1, 4c1, 5c1, 5c512
 		Damage: 150
 		Falloff: 1000, 1000, 480, 240, 120, 60, 0
-		DeathType: 5
 		ValidTargets: Ground, Air
 		Versus:
 			None: 100
 			Wood: 100
 			Light: 60
 			Heavy: 50
+		DamageTypes: DeathType5
 	Warhead@2Eff_impact: CreateEffect
 		Explosion: nuke_explosion
 		ImpactSound: nukexplo.aud
 		ExplosionPalette: flashyeffect
 	Warhead@3Dam_areanukea: SpreadDamage
-#		Spread: 2c512
 		Range: 1c0, 2c1, 3c1, 4c1, 5c1, 6c0
 		Damage: 50
 		Falloff: 1000, 480, 240, 120, 60, 0
-		DeathType: 5
 		Delay: 3
 		ValidTargets: Ground, Air
 		Versus:
@@ -30,6 +27,7 @@ Atomic:
 			Wood: 100
 			Light: 60
 			Heavy: 40
+		DamageTypes: DeathType5
 	Warhead@4Res_areanukea: DestroyResource
 		Size: 3
 		Delay: 3
@@ -41,11 +39,9 @@ Atomic:
 		ImpactSound: xplobig4.aud
 		Delay: 3
 	Warhead@7Dam_areanukeb: SpreadDamage
-#		Spread: 3c768
 		Range: 2c0, 3c1, 4c1, 5c1, 6c0
 		Damage: 30
 		Falloff: 1000, 480, 240, 120, 60
-		DeathType: 5
 		Delay: 6
 		ValidTargets: Ground, Air
 		Versus:
@@ -53,6 +49,7 @@ Atomic:
 			Wood: 100
 			Light: 60
 			Heavy: 30
+		DamageTypes: DeathType5
 	Warhead@8Res_areanukeb: DestroyResource
 		Size: 4
 		Delay: 6
@@ -61,11 +58,9 @@ Atomic:
 		Size: 4
 		Delay: 6
 	Warhead@10Dam_areanukec: SpreadDamage
-#		Spread: 5c0
 		Range: 3c0, 4c1, 5c1, 6c0
 		Damage: 20
 		Falloff: 1000, 480, 240, 120
-		DeathType: 5
 		Delay: 9
 		ValidTargets: Ground, Air
 		Versus:
@@ -73,6 +68,7 @@ Atomic:
 			Wood: 100
 			Light: 60
 			Heavy: 20
+		DamageTypes: DeathType5
 	Warhead@11Res_areanukec: DestroyResource
 		Size: 5
 		Delay: 9
@@ -87,8 +83,8 @@ IonCannon:
 		Range: 0, 1c1, 2c1, 2c512
 		Damage: 100
 		Falloff: 1000, 1000, 250, 100
-		DeathType: 5
 		ValidTargets: Ground, Air
+		DamageTypes: DeathType5
 	Warhead@2Smu_impact: LeaveSmudge
 		SmudgeType: Scorch
 	Warhead@3Smu_area: LeaveSmudge
@@ -102,3 +98,4 @@ IonCannon:
 		SmudgeType: Scorch
 		Size: 2,1
 		Delay: 6
+
