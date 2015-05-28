@@ -1,7 +1,7 @@
 Metadata:
 	Title: Tiberian Dawn Xtended
 	Description: What might C&C1 have been like with a large, RA2-YR-like expansion\nthat adds new units, new features and gives the game balance\nan overhaul?\n\nTiberian Dawn Xtended is my attempt to answer that question while trying\nto stay closer to the overall "feel" of the original than OpenRA's\ninterpretation of Tiberian Dawn. 
-	Version: beta 0.104 (20150514)
+	Version: beta 0.200 (20150528)
 	Author: Reaperrr
 
 Folders:
@@ -35,6 +35,7 @@ Packages:
 	~movies.mix
 
 Rules:
+	./mods/tdx/rules/palettes.yaml
 	./mods/tdx/rules/world.yaml
 	./mods/tdx/rules/ai.yaml
 	./mods/tdx/rules/player.yaml
@@ -193,6 +194,8 @@ ChromeLayout:
 	./mods/ra/chrome/assetbrowser.yaml
 	./mods/ra/chrome/missionbrowser.yaml
 	./mods/ra/chrome/confirmation-dialogs.yaml
+	./mods/ra/chrome/ingame-perf.yaml
+	./mods/ra/chrome/editor.yaml
 
 ContentInstaller:
 	MenuWidget: INSTALL_PANEL
