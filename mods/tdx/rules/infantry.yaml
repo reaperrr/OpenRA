@@ -193,7 +193,6 @@ RMBO:
 		Prerequisites: eye, ~infantry.gdi, ~techlevel.high
 		Queue: Infantry
 	Selectable:
-		Voice: CommandoVoice
 	Mobile:
 		Speed: 71
 	Health:
@@ -214,6 +213,8 @@ RMBO:
 		IdleSequences: idle1,idle2,idle3
 	AnnounceOnBuild:
 	AnnounceOnKill:
+	Voiced:
+		VoiceSet: CommandoVoice
 
 PVICE:
 	Inherits: VICE
