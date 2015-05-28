@@ -161,7 +161,6 @@
 	TakeCover:
 		SpeedModifier: 60
 	RenderSprites:
-	RenderInfantryEditor:
 	WithInfantryBody:
 		MinIdleWaitTicks: 80
 		MaxIdleWaitTicks: 240
@@ -294,7 +293,6 @@
 	DeathSounds:
 	EditorAppearance:
 		UseTerrainPalette: true
-	RenderInfantryEditor:
 	RenderSprites:
 		Palette: terrain
 	WithInfantryBody:
