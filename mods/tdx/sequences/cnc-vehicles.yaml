@@ -325,6 +325,9 @@ mlrs:
 	turret0:
 		Start: 96
 		Facings: 32
+	turret:
+		Start: 96
+		Facings: 32
 	icon: mlrsicnh.tem
 		AddExtension: False
 
