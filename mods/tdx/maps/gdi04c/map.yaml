@@ -844,6 +844,7 @@ Weapons:
 				None: 10
 				Light: 66
 				Heavy: 66
+			DamageTypes: DeathType1
 
 Voices:
 

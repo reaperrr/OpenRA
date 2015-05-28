@@ -612,6 +612,7 @@ Weapons:
 	Tiberium:
 		Warhead@1Dam: SpreadDamage
 			Damage: 4
+			DamageTypes: DeathType1
 
 Voices:
 
