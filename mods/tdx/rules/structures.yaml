@@ -26,10 +26,10 @@ FACT:
 	BaseBuilding:
 	Production:
 		Produces: Building, Defense
-	ProvidesCustomPrerequisite@gdi:
+	ProvidesPrerequisite@gdi:
 		Race: gdi
 		Prerequisite: structures.gdi
-	ProvidesCustomPrerequisite@nod:
+	ProvidesPrerequisite@nod:
 		Race: nod
 		Prerequisite: structures.nod
 	ProductionBar@Building:
@@ -42,6 +42,7 @@ FACT:
 	WithBuildingPlacedAnimation:
 	Power:
 		Amount: 0
+	ProvidesPrerequisite@buildingname:
 
 NUKE:
 	Inherits: ^BaseBuilding
@@ -50,7 +51,7 @@ NUKE:
 	Tooltip:
 		Name: Power Plant
 		Description: Generates power
-	ProvidesCustomPrerequisite:
+	ProvidesPrerequisite:
 		Prerequisite: anypower
 	Buildable:
 		BuildPaletteOrder: 10
@@ -67,6 +68,7 @@ NUKE:
 	Power:
 		Amount: 100
 	ScalePowerWithHealth:
+	ProvidesPrerequisite@buildingname:
 
 NUK2:
 	Inherits: ^BaseBuilding
@@ -75,7 +77,7 @@ NUK2:
 	Tooltip:
 		Name: Advanced Power Plant
 		Description: Provides more power, cheaper than the \nstandard Power Plant
-	ProvidesCustomPrerequisite:
+	ProvidesPrerequisite:
 		Prerequisite: anypower
 	Buildable:
 		BuildPaletteOrder: 30
@@ -92,6 +94,7 @@ NUK2:
 	Power:
 		Amount: 200
 	ScalePowerWithHealth:
+	ProvidesPrerequisite@buildingname:
 
 PROC:
 	Inherits: ^BaseBuilding
@@ -135,6 +138,7 @@ PROC:
 	WithResources:
 	Power:
 		Amount: -40
+	ProvidesPrerequisite@buildingname:
 
 SILO:
 	Inherits: ^BaseBuilding
@@ -169,6 +173,7 @@ SILO:
 	Power:
 		Amount: -10
 	-MustBeDestroyed:
+	ProvidesPrerequisite@buildingname:
 
 PYLE:
 	Inherits: ^BaseBuilding
@@ -177,7 +182,7 @@ PYLE:
 	Tooltip:
 		Name: Barracks
 		Description: Trains infantry
-	ProvidesCustomPrerequisite:
+	ProvidesPrerequisite:
 		Prerequisite: barracks
 	Buildable:
 		BuildPaletteOrder: 40
@@ -200,14 +205,15 @@ PYLE:
 		ExitCell: 1,1
 	Production:
 		Produces: Infantry
-	ProvidesCustomPrerequisite@gdi:
+	ProvidesPrerequisite@gdi:
 		Race: gdi
 		Prerequisite: infantry.gdi
-	ProvidesCustomPrerequisite@vehprod:
+	ProvidesPrerequisite@vehprod:
 		Prerequisite: barracks
 	ProductionBar:
 	Power:
 		Amount: -20
+	ProvidesPrerequisite@buildingname:
 
 HAND:
 	Inherits: ^BaseBuilding
@@ -216,7 +222,7 @@ HAND:
 	Tooltip:
 		Name: Hand of Nod
 		Description: Trains infantry
-	ProvidesCustomPrerequisite:
+	ProvidesPrerequisite:
 		Prerequisite: barracks
 	Buildable:
 		BuildPaletteOrder: 40
@@ -236,14 +242,15 @@ HAND:
 		ExitCell: 1,2
 	Production:
 		Produces: Infantry
-	ProvidesCustomPrerequisite@nod:
+	ProvidesPrerequisite@nod:
 		Race: nod
 		Prerequisite: infantry.nod
-	ProvidesCustomPrerequisite@vehprod:
+	ProvidesPrerequisite@vehprod:
 		Prerequisite: barracks
 	ProductionBar:
 	Power:
 		Amount: -20
+	ProvidesPrerequisite@buildingname:
 
 AFLD:
 	Inherits: ^BaseBuilding
@@ -271,10 +278,10 @@ AFLD:
 		ExitCell: 3,1
 	ProductionAirdrop:
 		Produces: Vehicle
-	ProvidesCustomPrerequisite@nod:
+	ProvidesPrerequisite@nod:
 		Race: nod
 		Prerequisite: vehicles.nod
-	ProvidesCustomPrerequisite@vehprod:
+	ProvidesPrerequisite@vehprod:
 		Prerequisite: vehicleproduction
 	WithDeliveryAnimation:
 	WithIdleOverlay@DISH:
@@ -282,6 +289,7 @@ AFLD:
 	ProductionBar:
 	Power:
 		Amount: -30
+	ProvidesPrerequisite@buildingname:
 
 WEAP:
 	Inherits: ^BaseBuilding
@@ -302,8 +310,7 @@ WEAP:
 	RevealsShroud:
 		Range: 4c0
 	Bib:
-	-RenderBuilding:
-	RenderBuildingWarFactory:
+	RenderBuilding:
 	RallyPoint:
 		RallyPoint: 0,3
 	Exit@1:
@@ -311,14 +318,17 @@ WEAP:
 		ExitCell: 0,2
 	Production:
 		Produces: Vehicle
-	ProvidesCustomPrerequisite@gdi:
+	ProvidesPrerequisite@gdi:
 		Race: gdi
 		Prerequisite: vehicles.gdi
-	ProvidesCustomPrerequisite@vehprod:
+	ProvidesPrerequisite@vehprod:
 		Prerequisite: vehicleproduction
 	ProductionBar:
 	Power:
 		Amount: -30
+	WithProductionDoorOverlay:
+		Sequence: build-top
+	ProvidesPrerequisite@buildingname:
 
 HPAD:
 	Inherits: ^BaseBuilding
@@ -342,16 +352,16 @@ HPAD:
 		SpawnOffset: 0,-256,0
 	Production:
 		Produces: Aircraft
-	ProvidesCustomPrerequisite@gdi:
+	ProvidesPrerequisite@gdi:
 		Race: gdi
 		Prerequisite: aircraft.gdi
-	ProvidesCustomPrerequisite@nod:
+	ProvidesPrerequisite@nod:
 		Race: nod
 		Prerequisite: aircraft.nod
-	ProvidesCustomPrerequisite@gdistructure:
+	ProvidesPrerequisite@gdistructure:
 		RequiresPrerequisites: structures.gdi
 		Prerequisite: aircraft.gdi
-	ProvidesCustomPrerequisite@nodstructure:
+	ProvidesPrerequisite@nodstructure:
 		RequiresPrerequisites: structures.nod
 		Prerequisite: aircraft.nod
 	Reservable:
@@ -362,6 +372,7 @@ HPAD:
 		ProductionType: Aircraft
 	Power:
 		Amount: -10
+	ProvidesPrerequisite@buildingname:
 
 HQ:
 	Inherits: ^BaseBuilding
@@ -370,7 +381,7 @@ HQ:
 	Tooltip:
 		Name: Communications Center
 		Description: Provides radar & Air Strike support power. \nUnlocks higher-tech units & buildings.  \nRequires power to operate.
-	ProvidesCustomPrerequisite:
+	ProvidesPrerequisite:
 		Prerequisite: anyhq
 	Buildable:
 		BuildPaletteOrder: 70
@@ -413,6 +424,7 @@ HQ:
 	SupportPowerChargeBar:
 	Power:
 		Amount: -40
+	ProvidesPrerequisite@buildingname:
 
 FIX:
 	Inherits: ^BaseBuilding
@@ -440,6 +452,7 @@ FIX:
 	WithRepairAnimation:
 	Power:
 		Amount: -30
+	ProvidesPrerequisite@buildingname:
 
 EYE:
 	Inherits: ^BaseBuilding
@@ -448,7 +461,7 @@ EYE:
 	Tooltip:
 		Name: Advanced Communications Center
 		Description: Provides radar & Orbital Ion Cannon support power. \nUnlocks Mammoth Tank & Commando.  \nRequires power to operate.
-	ProvidesCustomPrerequisite:
+	ProvidesPrerequisite:
 		Prerequisite: anyhq
 	Buildable:
 		BuildPaletteOrder: 100
@@ -487,6 +500,7 @@ EYE:
 	SupportPowerChargeBar:
 	Power:
 		Amount: -200
+	ProvidesPrerequisite@buildingname:
 
 TMPL:
 	Inherits: ^BaseBuilding
@@ -495,7 +509,7 @@ TMPL:
 	Tooltip:
 		Name: Temple of Nod
 		Description: Provides Nuclear Strike support power. \nUnlocks Stealth Tank, Chem. Warrior & Obelisk of Light.  \nRequires power to operate.
-	ProvidesCustomPrerequisite:
+	ProvidesPrerequisite:
 		Prerequisite: anyhq
 	Buildable:
 		BuildPaletteOrder: 100
@@ -532,6 +546,7 @@ TMPL:
 	SupportPowerChargeBar:
 	Power:
 		Amount: -150
+	ProvidesPrerequisite@buildingname:
 
 biolab.nod:
 	Inherits: ^BaseBuilding
@@ -556,6 +571,7 @@ biolab.nod:
 	Bib:
 	Power:
 		Amount: -40
+	ProvidesPrerequisite@buildingname:
 
 GUN:
 	Inherits: ^BaseBuilding
@@ -600,6 +616,7 @@ GUN:
 	Power:
 		Amount: -20
 	-MustBeDestroyed:
+	ProvidesPrerequisite@buildingname:
 
 SAM:
 	Inherits: ^BaseBuilding
@@ -641,6 +658,7 @@ SAM:
 	Power:
 		Amount: -20
 	-MustBeDestroyed:
+	ProvidesPrerequisite@buildingname:
 
 OBLI:
 	Inherits: ^BaseBuilding
@@ -688,6 +706,7 @@ OBLI:
 	Power:
 		Amount: -150
 	-MustBeDestroyed:
+	ProvidesPrerequisite@buildingname:
 
 GTWR:
 	Inherits: ^BaseBuilding
@@ -730,6 +749,7 @@ GTWR:
 	Power:
 		Amount: -10
 	-MustBeDestroyed:
+	ProvidesPrerequisite@buildingname:
 
 ATWR:
 	Inherits: ^BaseBuilding
@@ -775,6 +795,7 @@ ATWR:
 	Power:
 		Amount: -40
 	-MustBeDestroyed:
+	ProvidesPrerequisite@buildingname:
 
 SBAG:
 	Inherits: ^Wall

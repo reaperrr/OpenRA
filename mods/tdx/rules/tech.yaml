@@ -11,12 +11,15 @@ V19:
 
 V19.Husk:
 	Inherits: ^CivBuildingHusk
-	WithFire:
+	RenderSprites:
 	Building:
 		Footprint: x
 		Dimensions: 1,1
 	Tooltip:
 		Name: Oil Derrick (Destroyed)
+	WithSpriteBody:
+		StartSequence: fire-start
+		Sequence: fire-loop
 
 HOSP:
 	Inherits: ^TechBuilding

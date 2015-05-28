@@ -420,6 +420,7 @@
 	Sellable:
 		SellSounds: cashturn.aud
 	Capturable:
+	ProvidesPrerequisite@buildingname:
 
 ^CivBuilding:
 	Inherits: ^Building
@@ -435,6 +436,7 @@
 		GenericVisibility: None
 	FrozenUnderFog:
 		StartsRevealed: true
+	ProvidesPrerequisite@buildingname:
 
 ^CivBuildingHusk:
 	AppearsOnRadar:
