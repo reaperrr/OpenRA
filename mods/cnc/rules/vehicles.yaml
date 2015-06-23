@@ -76,11 +76,15 @@ HARV:
 	LeavesHusk:
 		HuskActor: HARV.Husk
 	-GainsExperience:
-	RenderHarvester:
+	WithHarvestAnimation:
+	WithDockingAnimation:
 	Explodes:
 		Weapon: TiberiumExplosion
 	SelectionDecorations:
 		VisualBounds: 36,36
+	RenderSprites:
+	WithFacingSpriteBody:
+	AutoSelectionSize:
 
 APC:
 	Inherits: ^Tank
