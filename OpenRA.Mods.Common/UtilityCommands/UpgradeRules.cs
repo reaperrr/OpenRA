@@ -1206,6 +1206,14 @@ namespace OpenRA.Mods.Common.UtilityCommands
 					}
 				}
 
+				// Removed RenderUnit
+				if (engineVersion < 20150630)
+				{
+					// Renamed WithHarvestAnimation to WithHarvestOverlay
+					if (node.Key == "WithHarvestAnimation")
+						node.Key = "WithHarvestOverlay";
+				}
+
 				UpgradeActorRules(engineVersion, ref node.Value.Nodes, node, depth + 1);
 			}
 		}
