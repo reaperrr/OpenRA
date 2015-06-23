@@ -35,7 +35,7 @@ sandworm:
 			Spice: 100
 	TargetableUnit:
 		TargetTypes: Ground
-	RenderUnit:
+	WithFacingSpriteBody:
 	WithAttackOverlay:
 		Sequence: sand
 	BodyOrientation:
@@ -53,6 +53,8 @@ sandworm:
 	AnnounceOnSeen:
 		Notification: WormSign
 		PingRadar: True
+	RenderSprites:
+	AutoSelectionSize:
 
 sietch:
 	Inherits: ^Building

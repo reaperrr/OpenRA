@@ -79,10 +79,6 @@ harvester:
 		EmptyWeapon: UnitExplodeScale
 	LeavesHusk:
 		HuskActor: Harvester.Husk
-	RenderUnit:
-	-RenderSprites:
-	-WithFacingSpriteBody:
-	-AutoSelectionSize:
 	WithHarvestOverlay:
 		Palette: effect50alpha
 	AttractsWorms:
