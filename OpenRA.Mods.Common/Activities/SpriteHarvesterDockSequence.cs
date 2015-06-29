@@ -27,9 +27,8 @@ namespace OpenRA.Mods.Common.Activities
 
 		public override Activity OnStateDock(Actor self)
 		{
-			var wha = self.TraitOrDefault<WithHarvestAnimation>();
-			if (wha != null)
-				wha.IsModifying = true;
+			foreach (var trait in self.TraitsImplementing<INotifyHarvesterAction>())
+				trait.Docked();
 
 			wsb.PlayCustomAnimation(self, wda.Info.DockSequence, () => wsb.PlayCustomAnimationRepeating(self, wda.Info.DockLoopSequence));
 			dockingState = State.Loop;
@@ -38,11 +37,10 @@ namespace OpenRA.Mods.Common.Activities
 
 		public override Activity OnStateUndock(Actor self)
 		{
-			wsb.PlayCustomAnimationBackwards(self, wda.Info.DockSequence, () => dockingState = State.Complete);
-			var wha = self.TraitOrDefault<WithHarvestAnimation>();
-			if (wha != null && dockingState == State.Complete)
-				wha.IsModifying = false;
+			foreach (var trait in self.TraitsImplementing<INotifyHarvesterAction>())
+				trait.Undocked();
 
+			wsb.PlayCustomAnimationBackwards(self, wda.Info.DockSequence, () => dockingState = State.Complete);
 			dockingState = State.Wait;
 			return this;
 		}

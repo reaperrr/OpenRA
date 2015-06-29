@@ -68,6 +68,18 @@ namespace OpenRA.Mods.Common.Traits
 			}
 		}
 
+		// If IsModifying isn't set to true, the docking animation
+		// will be overridden by the WithHarvestAnimation fullness modifier.
+		public void Docked()
+		{
+			IsModifying = true;
+		}
+
+		public void Undocked()
+		{
+			IsModifying = true;
+		}
+
 		public void MovingToResources(Actor self, CPos targetCell, Activity next) { }
 		public void MovingToRefinery(Actor self, CPos targetCell, Activity next) { }
 		public void MovementCancelled(Actor self) { }
