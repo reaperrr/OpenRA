@@ -4,6 +4,7 @@
 	CombatDebugOverlay:
 	DrawLineToTarget:
 	GivesExperience:
+		FriendlyFire: true
 	BodyOrientation:
 	ScriptTriggers:
 	UpgradeManager:
@@ -12,8 +13,8 @@
 ^GainsExperience:
 	GainsExperience:
 		Upgrades:
-			200: firepower, damage, speed, reload, inaccuracy, rank
-			400: firepower, damage, speed, reload, inaccuracy, rank
+			200: firepower, damage, speed, reload, inaccuracy, rank, armor
+			400: firepower, damage, speed, reload, inaccuracy, rank, armor
 			800: firepower, damage, speed, reload, inaccuracy, rank
 			1600: firepower, damage, speed, reload, inaccuracy, rank, eliteweapon, selfheal
 	DamageMultiplier@EXPERIENCE:

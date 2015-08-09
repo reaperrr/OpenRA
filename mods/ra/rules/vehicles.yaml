@@ -329,8 +329,21 @@ JEEP:
 		Description: Fast scout & anti-infantry vehicle.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
 	Health:
 		HP: 150
-	Armor:
+	Armor@default:
 		Type: Light
+		UpgradeTypes: armor
+		UpgradeMaxEnabledLevel: 0
+		UpgradeMaxAcceptedLevel: 1
+	Armor@veteran:
+		Type: Heavy
+		UpgradeTypes: armor
+		UpgradeMinEnabledLevel: 1
+		UpgradeMaxAcceptedLevel: 1
+	Armor@elite:
+		Type: Concrete
+		UpgradeTypes: armor
+		UpgradeMinEnabledLevel: 2
+		UpgradeMaxAcceptedLevel: 2
 	Mobile:
 		ROT: 10
 		Speed: 170
