@@ -34,7 +34,9 @@ if ($args.Length -eq 0)
 	echo "  clean           Removes all built and copied files. Use the 'all' and"
 	echo "                  'dependencies' commands to restore removed files."
 	echo "  test            Tests the default mods for errors."
+	echo "  testtdx         Tests TDX for errors."
 	echo "  check           Checks .cs files for StyleCop violations."
+	echo "  checktdx        Checks TDX .cs files for StyleCop violations."
 	echo "  check-scripts   Checks .lua files for syntax errors."
 	echo "  docs            Generates the trait and Lua API documentation."
 	echo ""
@@ -48,7 +50,7 @@ else
 if ($command -eq "all")
 {
 	$msBuild = FindMSBuild
-	$msBuildArguments = "/t:Rebuild /nr:false /nologo /tv:4.0"
+	$msBuildArguments = "/t:Rebuild /nr:false"
 	if ($msBuild -eq $null)
 	{
 		echo "Unable to locate an appropriate version of MSBuild."
@@ -146,6 +148,18 @@ elseif ($command -eq "test")
 		UtilityNotFound
 	}
 }
+elseif ($command -eq "testtdx")
+{
+	if (Test-Path OpenRA.Utility.exe)
+	{
+		echo "Testing TDX mod MiniYAML..."
+		./OpenRA.Utility.exe tdx --check-yaml
+	}
+	else
+	{
+		UtilityNotFound
+	}
+}
 elseif ($command -eq "check")
 {
 	if (Test-Path OpenRA.Utility.exe)
@@ -196,6 +210,18 @@ elseif ($command -eq "check-scripts")
 	else
 	{
 		echo "luac.exe could not be found. Please install Lua."
+	}
+}
+elseif ($command -eq "checktdx")
+{
+	if (Test-Path OpenRA.Utility.exe)
+	{
+		echo "Checking for code style violations in OpenRA.Mods.TDX..."
+		./OpenRA.Utility.exe cnc --check-code-style OpenRA.Mods.TDX
+	}
+	else
+	{
+		UtilityNotFound
 	}
 }
 elseif ($command -eq "docs")
