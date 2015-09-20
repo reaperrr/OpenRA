@@ -27,8 +27,8 @@ namespace OpenRA.Mods.TDX.Effects
 		public readonly string Image = null;
 		public readonly string Palette = "effect";
 		public readonly bool Shadow = false;
-		[Desc("Projectile speed in WRange / tick")]
-		public readonly WRange Speed = new WRange(8);
+		[Desc("Projectile speed in WDist / tick")]
+		public readonly WDist Speed = new WDist(8);
 		[Desc("Maximum vertical pitch when changing altitude.")]
 		public readonly WAngle MaximumPitch = WAngle.FromDegrees(30);
 		[Desc("Maximum vertical pitch when changing altitude.")]
@@ -38,7 +38,7 @@ namespace OpenRA.Mods.TDX.Effects
 		[Desc("Is the missile blocked by actors with BlocksProjectiles: trait.")]
 		public readonly bool Blockable = true;
 		[Desc("Maximum offset at the maximum range")]
-		public readonly WRange Inaccuracy = WRange.Zero;
+		public readonly WDist Inaccuracy = WDist.Zero;
 		[Desc("Probability of locking onto and following target.")]
 		public readonly int LockOnProbability = 100;
 		[Desc("In n/256 per tick.")]
@@ -46,7 +46,9 @@ namespace OpenRA.Mods.TDX.Effects
 		[Desc("Explode when following the target longer than this many ticks.")]
 		public readonly int RangeLimit = 0;
 		[Desc("Trail animation.")]
-		public readonly string Trail = null;
+		public readonly string TrailImage = null;
+		[Desc("Smoke sequence name.")]
+		[SequenceReference("TrailImage")] public readonly string TrailSequence = "idle";
 		[Desc("Interval in ticks between each spawned Trail animation.")]
 		public readonly int TrailInterval = 2;
 		public readonly string TrailPalette = "effect";
@@ -62,7 +64,7 @@ namespace OpenRA.Mods.TDX.Effects
 		[Desc("Explodes when inside this proximity radius to target.",
 			"Note: If this value is lower than the missile speed, this check might",
 			"not trigger fast enough, causing the missile to fly past the target.")]
-		public readonly WRange CloseEnough = new WRange(298);
+		public readonly WDist CloseEnough = new WDist(298);
 
 		public IEffect Create(ProjectileArgs args) { return new BallisticMissile(this, args); }
 	}
@@ -103,16 +105,16 @@ namespace OpenRA.Mods.TDX.Effects
 			pos = args.Source;
 			targetPosition = args.PassiveTarget;
 			facing = OpenRA.Traits.Util.GetFacing(targetPosition - pos, 0);
-			length = Math.Max((targetPosition - pos).Length / info.Speed.Range, 2);
+			length = Math.Max((targetPosition - pos).Length / info.Speed.Length, 2);
 
 			var world = args.SourceActor.World;
 
 			if (world.SharedRandom.Next(100) <= info.LockOnProbability)
 				lockOn = true;
 
-			if (info.Inaccuracy.Range > 0)
+			if (info.Inaccuracy.Length > 0)
 			{
-				var inaccuracy = OpenRA.Traits.Util.ApplyPercentageModifiers(info.Inaccuracy.Range, args.InaccuracyModifiers);
+				var inaccuracy = OpenRA.Traits.Util.ApplyPercentageModifiers(info.Inaccuracy.Length, args.InaccuracyModifiers);
 				offset = WVec.FromPDF(world.SharedRandom, 2) * inaccuracy / 1024;
 			}
 
@@ -148,7 +150,7 @@ namespace OpenRA.Mods.TDX.Effects
 
 		bool JammedBy(TraitPair<JamsMissiles> tp)
 		{
-			if ((tp.Actor.CenterPosition - pos).HorizontalLengthSquared > tp.Trait.Range * tp.Trait.Range)
+			if ((tp.Actor.CenterPosition - pos).HorizontalLengthSquared > tp.Trait.Range.LengthSquared)
 				return false;
 
 			if (tp.Actor.Owner.Stances[args.SourceActor.Owner] == Stance.Ally && !tp.Trait.AlliedMissiles)
@@ -188,7 +190,7 @@ namespace OpenRA.Mods.TDX.Effects
 				desiredFacing = facing;
 
 			facing = OpenRA.Traits.Util.TickFacing(facing, desiredFacing, info.RateOfTurn);
-			var move = new WVec(0, -1024, 0).Rotate(WRot.FromFacing(facing)) * info.Speed.Range / 1024;
+			var move = new WVec(0, -1024, 0).Rotate(WRot.FromFacing(facing)) * info.Speed.Length / 1024;
 
 			if (pos.Z != desiredAltitude)
 			{
@@ -199,9 +201,9 @@ namespace OpenRA.Mods.TDX.Effects
 
 			pos += move;
 
-			if (info.Trail != null && --ticksToNextSmoke < 0)
+			if (info.TrailImage != null && --ticksToNextSmoke < 0)
 			{
-				world.AddFrameEndTask(w => w.Add(new Smoke(w, pos - 3 * move / 2, info.Trail, trailPalette)));
+				world.AddFrameEndTask(w => w.Add(new Smoke(w, pos - 3 * move / 2, info.TrailImage, trailPalette, info.TrailSequence)));
 				ticksToNextSmoke = info.TrailInterval;
 			}
 
@@ -211,9 +213,9 @@ namespace OpenRA.Mods.TDX.Effects
 			var cell = world.Map.CellContaining(pos);
 
 			var shouldExplode = (pos.Z < 0) // Hit the ground
-				|| (dist.LengthSquared < info.CloseEnough.Range * info.CloseEnough.Range) // Within range
+				|| (dist.LengthSquared < info.CloseEnough.Length * info.CloseEnough.Length) // Within range
 				|| (info.RangeLimit != 0 && ticks > info.RangeLimit) // Ran out of fuel
-				|| (info.Blockable && world.ActorMap.GetUnitsAt(cell).Any(a => a.HasTrait<IBlocksProjectiles>())) // Hit a wall or other blocking obstacle
+				|| (info.Blockable && world.ActorMap.GetUnitsAt(cell).Any(a => a.Info.HasTraitInfo<IBlocksProjectilesInfo>())) // Hit a wall or other blocking obstacle
 				|| !world.Map.Contains(cell) // This also avoids an IndexOutOfRangeException in GetTerrainInfo below.
 				|| (!string.IsNullOrEmpty(info.BoundToTerrainType) && world.Map.GetTerrainInfo(cell).Type != info.BoundToTerrainType); // Hit incompatible terrain
 
