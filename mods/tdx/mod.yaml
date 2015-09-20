@@ -163,17 +163,17 @@ ChromeLayout:
 	./mods/ra/chrome/ingame-chat.yaml
 	./mods/ra/chrome/ingame-diplomacy.yaml
 	./mods/ra/chrome/ingame-fmvplayer.yaml
-	./mods/ra/chrome/ingame-menu.yaml
 	./mods/ra/chrome/ingame-info.yaml
 	./mods/ra/chrome/ingame-infoscripterror.yaml
 	./mods/ra/chrome/ingame-infobriefing.yaml
 	./mods/ra/chrome/ingame-infoobjectives.yaml
 	./mods/ra/chrome/ingame-infostats.yaml
+	./mods/ra/chrome/ingame-menu.yaml
 	./mods/ra/chrome/ingame-observer.yaml
 	./mods/ra/chrome/ingame-observerstats.yaml
 	./mods/tdx/ui/chrome/ingame-player.yaml
+	./mods/ra/chrome/ingame-perf.yaml
 	./mods/ra/chrome/ingame-debug.yaml
-	./mods/ra/chrome/ingame-leavemap.yaml
 	./mods/tdx/ui/chrome/mainmenu.yaml
 	./mods/ra/chrome/settings.yaml
 	./mods/ra/chrome/credits.yaml
@@ -194,8 +194,8 @@ ChromeLayout:
 	./mods/ra/chrome/assetbrowser.yaml
 	./mods/ra/chrome/missionbrowser.yaml
 	./mods/ra/chrome/confirmation-dialogs.yaml
-	./mods/ra/chrome/ingame-perf.yaml
 	./mods/ra/chrome/editor.yaml
+	./mods/ra/chrome/irc.yaml
 
 ContentInstaller:
 	MenuWidget: INSTALL_PANEL
@@ -226,3 +226,25 @@ LobbyDefaults:
 	Shroud: true
 	Fog: true
 	TechLevel: Unrestricted
+
+GameSpeeds:
+	slowest:
+		Name: Slowest
+		Timestep: 60
+		OrderLatency: 2
+	slower:
+		Name: Slower
+		Timestep: 50
+		OrderLatency: 3
+	default:
+		Name: Default
+		Timestep: 40
+		OrderLatency: 3
+	faster:
+		Name: Faster
+		Timestep: 30
+		OrderLatency: 4
+	fastest:
+		Name: Fastest
+		Timestep: 20
+		OrderLatency: 6
