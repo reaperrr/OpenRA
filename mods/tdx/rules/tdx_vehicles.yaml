@@ -27,7 +27,7 @@ NAPC:
 	AttackFrontal:
 	WithMuzzleFlash:
 		SplitFacings: true
-	RenderUnit:
+	WithFacingSpriteBody:
 	AutoTarget:
 	Cargo:
 		Types: Infantry
@@ -37,6 +37,9 @@ NAPC:
 		Bounds: 26,26,0,0
 #	LeavesHusk:
 #		HuskActor: APC.Husk
+	RenderSprites:
+	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 MRPG:
 	Inherits: ^Tank
@@ -65,7 +68,7 @@ MRPG:
 		MuzzlePalette: flashyeffect
 	AttackFrontal:
 	WithMuzzleFlash:
-	RenderUnit:
+	WithFacingSpriteBody:
 	Explodes:
 		Weapon: UnitExplode
 		EmptyWeapon: UnitExplodeSmall
@@ -75,6 +78,9 @@ MRPG:
 		Bounds: 26,26,0,0
 #	LeavesHusk:
 #		HuskActor: ARTY.Husk
+	RenderSprites:
+	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 CTNK:
 	Inherits: ^Tank
@@ -103,7 +109,7 @@ CTNK:
 		MuzzleSequence: muzzle
 		MuzzleSplitFacings: 32
 	AttackFrontal:
-	RenderUnit:
+	WithFacingSpriteBody:
 	AutoTarget:
 	WithMuzzleFlash:
 		SplitFacings: true
@@ -114,6 +120,9 @@ CTNK:
 		Bounds: 30,30,0,-1
 #	LeavesHusk:
 #		HuskActor: FTNK.Husk
+	RenderSprites:
+	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 T55H:
 	Inherits: ^Tank
@@ -150,7 +159,7 @@ T55H:
 	WithMuzzleFlash:
 		SplitFacings: true
 	AttackTurreted:
-	RenderUnit:
+	WithFacingSpriteBody:
 	WithTurret:
 	AutoTarget:
 #	LeavesHusk:
@@ -160,4 +169,7 @@ T55H:
 		EmptyWeapon: UnitExplodeSmall
 	Selectable:
 		Bounds: 28,28,0,-1
+	RenderSprites:
+	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 

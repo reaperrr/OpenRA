@@ -21,6 +21,11 @@
 	GainsExperience:
 		ChevronPalette: flashyeffectra
 		LevelUpPalette: flashyeffectra
+		Upgrades:
+			200: firepower, damage, speed, reload, inaccuracy, rank
+			400: firepower, damage, speed, reload, inaccuracy, rank
+			800: firepower, damage, speed, reload, inaccuracy, rank
+			1600: firepower, damage, speed, reload, inaccuracy, rank, eliteweapon, selfheal
 	GivesExperience:
 	DrawLineToTarget:
 	ActorLostNotification:
@@ -40,11 +45,25 @@
 		UncloakSound: trans1.aud
 	Huntable:
 	ScriptTriggers:
-	GainsStatUpgrades:
 	MustBeDestroyed:
 	UpgradeManager:
 	Voiced:
 		VoiceSet: VehicleVoice
+	FirepowerMultiplier@EXPERIENCE:
+		Modifier: 110, 115, 120, 130
+		UpgradeTypes: firepower
+	DamageMultiplier@EXPERIENCE:
+		Modifier: 91, 87, 83, 65
+		UpgradeTypes: damage
+	SpeedMultiplier@EXPERIENCE:
+		Modifier: 110, 115, 120, 150
+		UpgradeTypes: speed
+	ReloadDelayMultiplier@EXPERIENCE:
+		Modifier: 95, 90, 85, 75
+		UpgradeTypes: reload
+	InaccuracyMultiplier@EXPERIENCE:
+		Modifier: 90, 80, 70, 50
+		UpgradeTypes: inaccuracy
 
 ^Tank:
 	AppearsOnRadar:
@@ -69,6 +88,11 @@
 	GainsExperience:
 		ChevronPalette: flashyeffectra
 		LevelUpPalette: flashyeffectra
+		Upgrades:
+			200: firepower, damage, speed, reload, inaccuracy, rank
+			400: firepower, damage, speed, reload, inaccuracy, rank
+			800: firepower, damage, speed, reload, inaccuracy, rank
+			1600: firepower, damage, speed, reload, inaccuracy, rank, eliteweapon, selfheal
 	GivesExperience:
 	DrawLineToTarget:
 	ActorLostNotification:
@@ -91,11 +115,25 @@
 		UncloakSound: trans1.aud
 	Huntable:
 	ScriptTriggers:
-	GainsStatUpgrades:
 	MustBeDestroyed:
 	UpgradeManager:
 	Voiced:
 		VoiceSet: VehicleVoice
+	FirepowerMultiplier@EXPERIENCE:
+		Modifier: 110, 115, 120, 130
+		UpgradeTypes: firepower
+	DamageMultiplier@EXPERIENCE:
+		Modifier: 91, 87, 83, 65
+		UpgradeTypes: damage
+	SpeedMultiplier@EXPERIENCE:
+		Modifier: 110, 115, 120, 150
+		UpgradeTypes: speed
+	ReloadDelayMultiplier@EXPERIENCE:
+		Modifier: 95, 90, 85, 75
+		UpgradeTypes: reload
+	InaccuracyMultiplier@EXPERIENCE:
+		Modifier: 90, 80, 70, 50
+		UpgradeTypes: inaccuracy
 
 ^Helicopter:
 	AppearsOnRadar:
@@ -112,9 +150,15 @@
 		LandWhenIdle: false
 		AirborneUpgrades: airborne
 	HiddenUnderFog:
+		Type: CenterPosition
 	GainsExperience:
 		ChevronPalette: flashyeffectra
 		LevelUpPalette: flashyeffectra
+		Upgrades:
+			200: firepower, damage, speed, reload, inaccuracy, rank
+			400: firepower, damage, speed, reload, inaccuracy, rank
+			800: firepower, damage, speed, reload, inaccuracy, rank
+			1600: firepower, damage, speed, reload, inaccuracy, rank, eliteweapon, selfheal
 	GivesExperience:
 	DrawLineToTarget:
 	ActorLostNotification:
@@ -129,7 +173,6 @@
 	UpdatesPlayerStatistics:
 	Huntable:
 	ScriptTriggers:
-	GainsStatUpgrades:
 	MustBeDestroyed:
 	UpgradeManager:
 	Voiced:
@@ -138,6 +181,21 @@
 		TargetTypes: Ground
 		UpgradeTypes: airborne
 		UpgradeMaxEnabledLevel: 0
+	FirepowerMultiplier@EXPERIENCE:
+		Modifier: 110, 115, 120, 130
+		UpgradeTypes: firepower
+	DamageMultiplier@EXPERIENCE:
+		Modifier: 91, 87, 83, 65
+		UpgradeTypes: damage
+	SpeedMultiplier@EXPERIENCE:
+		Modifier: 110, 115, 120, 150
+		UpgradeTypes: speed
+	ReloadDelayMultiplier@EXPERIENCE:
+		Modifier: 95, 90, 85, 75
+		UpgradeTypes: reload
+	InaccuracyMultiplier@EXPERIENCE:
+		Modifier: 90, 80, 70, 50
+		UpgradeTypes: inaccuracy
 
 ^Infantry:
 	AppearsOnRadar:
@@ -186,6 +244,11 @@
 	GainsExperience:
 		ChevronPalette: flashyeffectra
 		LevelUpPalette: flashyeffectra
+		Upgrades:
+			200: firepower, damage, speed, reload, inaccuracy, rank
+			400: firepower, damage, speed, reload, inaccuracy, rank
+			800: firepower, damage, speed, reload, inaccuracy, rank
+			1600: firepower, damage, speed, reload, inaccuracy, rank, eliteweapon, selfheal
 	GivesExperience:
 	DrawLineToTarget:
 	ActorLostNotification:
@@ -234,10 +297,26 @@
 	DeathSounds@POISONED:
 		DeathSound: Poisoned
 		DeathTypes: DeathType6
-	GainsStatUpgrades:
 	MustBeDestroyed:
 	Voiced:
 		VoiceSet: GenericVoice
+	QuantizeFacingsFromSequence:
+		Sequence: stand
+	FirepowerMultiplier@EXPERIENCE:
+		Modifier: 110, 115, 120, 130
+		UpgradeTypes: firepower
+	DamageMultiplier@EXPERIENCE:
+		Modifier: 91, 87, 83, 65
+		UpgradeTypes: damage
+	SpeedMultiplier@EXPERIENCE:
+		Modifier: 110, 115, 120, 150
+		UpgradeTypes: speed
+	ReloadDelayMultiplier@EXPERIENCE:
+		Modifier: 95, 90, 85, 75
+		UpgradeTypes: reload
+	InaccuracyMultiplier@EXPERIENCE:
+		Modifier: 90, 80, 70, 50
+		UpgradeTypes: inaccuracy
 	QuantizeFacingsFromSequence:
 		Sequence: stand
 
@@ -336,6 +415,11 @@
 	GainsExperience:
 		ChevronPalette: flashyeffectra
 		LevelUpPalette: flashyeffectra
+		Upgrades:
+			200: firepower, damage, speed, reload, inaccuracy, rank
+			400: firepower, damage, speed, reload, inaccuracy, rank
+			800: firepower, damage, speed, reload, inaccuracy, rank
+			1600: firepower, damage, speed, reload, inaccuracy, rank, eliteweapon, selfheal
 	GivesExperience:
 	DrawLineToTarget:
 	ActorLostNotification:
@@ -344,9 +428,23 @@
 	Huntable:
 	AttackMove:
 	ScriptTriggers:
-	GainsStatUpgrades:
 	Voiced:
 		VoiceSet: GenericVoice
+	FirepowerMultiplier@EXPERIENCE:
+		Modifier: 110, 115, 120, 130
+		UpgradeTypes: firepower
+	DamageMultiplier@EXPERIENCE:
+		Modifier: 91, 87, 83, 65
+		UpgradeTypes: damage
+	SpeedMultiplier@EXPERIENCE:
+		Modifier: 110, 115, 120, 150
+		UpgradeTypes: speed
+	ReloadDelayMultiplier@EXPERIENCE:
+		Modifier: 95, 90, 85, 75
+		UpgradeTypes: reload
+	InaccuracyMultiplier@EXPERIENCE:
+		Modifier: 90, 80, 70, 50
+		UpgradeTypes: inaccuracy
 
 ^Ship:
 	AppearsOnRadar:
@@ -362,6 +460,11 @@
 	GainsExperience:
 		ChevronPalette: flashyeffectra
 		LevelUpPalette: flashyeffectra
+		Upgrades:
+			200: firepower, damage, speed, reload, inaccuracy, rank
+			400: firepower, damage, speed, reload, inaccuracy, rank
+			800: firepower, damage, speed, reload, inaccuracy, rank
+			1600: firepower, damage, speed, reload, inaccuracy, rank, eliteweapon, selfheal
 	GivesExperience:
 	DrawLineToTarget:
 	ActorLostNotification:
@@ -373,9 +476,23 @@
 	UpdatesPlayerStatistics:
 	Huntable:
 	ScriptTriggers:
-	GainsStatUpgrades:
 	Voiced:
 		VoiceSet: VehicleVoice
+	FirepowerMultiplier@EXPERIENCE:
+		Modifier: 110, 115, 120, 130
+		UpgradeTypes: firepower
+	DamageMultiplier@EXPERIENCE:
+		Modifier: 91, 87, 83, 65
+		UpgradeTypes: damage
+	SpeedMultiplier@EXPERIENCE:
+		Modifier: 110, 115, 120, 150
+		UpgradeTypes: speed
+	ReloadDelayMultiplier@EXPERIENCE:
+		Modifier: 95, 90, 85, 75
+		UpgradeTypes: reload
+	InaccuracyMultiplier@EXPERIENCE:
+		Modifier: 90, 80, 70, 50
+		UpgradeTypes: inaccuracy
 
 ^Building:
 	AppearsOnRadar:
@@ -460,6 +577,7 @@
 	RenderSprites:
 		Palette: terrain
 	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 ^CivBuildingHusk:
 	AppearsOnRadar:
@@ -481,6 +599,7 @@
 	RenderSprites:
 		Palette: terrain
 	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 ^TechBuilding:
 	Inherits: ^CivBuilding
@@ -510,6 +629,7 @@
 	RenderSprites:
 		Palette: terrain
 	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 ^CivFieldHusk:
 	AppearsOnRadar:
@@ -531,6 +651,7 @@
 	RenderSprites:
 		Palette: terrain
 	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 ^Wall:
 	AppearsOnRadar:
@@ -596,6 +717,7 @@
 	RenderSprites:
 		Palette: staticterrain
 	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 ^TibTree:
 	Tooltip:
@@ -616,6 +738,7 @@
 	RenderSprites:
 		Palette: staticterrain
 	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 ^Rock:
 	Tooltip:
@@ -638,6 +761,7 @@
 	RenderSprites:
 		Palette: staticterrain
 	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 ^Husk:
 	Health:

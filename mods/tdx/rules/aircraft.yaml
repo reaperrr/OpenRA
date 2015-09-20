@@ -25,7 +25,8 @@ TRAN:
 		Type: AirLight
 	RevealsShroud:
 		Range: 10c0
-	RenderUnit:
+		Type: CenterPosition
+	WithFacingSpriteBody:
 	WithRotor@PRIMARY:
 		Offset: -597,0,171
 		Sequence: rotor2
@@ -42,6 +43,9 @@ TRAN:
 	Explodes:
 		Weapon: HeliExplode
 		EmptyWeapon: HeliExplode
+	RenderSprites:
+	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 HELI:
 	Inherits: ^Helicopter
@@ -67,6 +71,7 @@ HELI:
 		Type: AirLight
 	RevealsShroud:
 		Range: 10c0
+		Type: CenterPosition
 	Armament@PRIMARY:
 		Weapon: HeliAGGun
 		LocalOffset: 128,-213,-85, 128,213,-85
@@ -89,7 +94,7 @@ HELI:
 		ReloadCount: 10
 		SelfReloadTicks: 200
 		ResetOnFire: False
-	RenderUnit:
+	WithFacingSpriteBody:
 	WithRotor:
 		Offset: 0,0,85
 	WithMuzzleFlash:
@@ -101,6 +106,9 @@ HELI:
 	Explodes:
 		Weapon: HeliExplode
 		EmptyWeapon: HeliExplode
+	RenderSprites:
+	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 ORCA:
 	Inherits: ^Helicopter
@@ -126,6 +134,7 @@ ORCA:
 		Type: AirHeavy
 	RevealsShroud:
 		Range: 7c0
+		Type: CenterPosition
 	Armament@PRIMARY:
 		Weapon: OrcaAGMissiles
 		LocalOffset: 427,-171,-213, 427,171,-213
@@ -141,7 +150,7 @@ ORCA:
 		ReloadCount: 2
 		SelfReloadTicks: 100
 		ResetOnFire: False
-	RenderUnitFlying:
+	WithFacingSpriteBody:
 	Hovers:
 	WithShadow:
 #	LeavesHusk:
@@ -150,6 +159,9 @@ ORCA:
 	Explodes:
 		Weapon: HeliExplode
 		EmptyWeapon: HeliExplode
+	RenderSprites:
+	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 C17:
 	ParaDrop:
@@ -169,12 +181,13 @@ C17:
 		HP: 25
 	Armor:
 		Type: AirHeavy
-	RenderUnit:
+	WithFacingSpriteBody:
 	WithShadow:
 	Cargo:
 		MaxWeight: 10
 		PipCount: 10
-	Invulnerable:
+	DamageMultiplier@INVULNERABLE:
+		Modifier: 0
 	-Selectable:
 	-Targetable:
 	-GainsExperience:
@@ -192,6 +205,9 @@ C17:
 	Contrail@4:
 		Offset: -261,650,0
 		TrailLength: 15
+	RenderSprites:
+	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 A10:
 	Inherits: ^Plane
@@ -209,7 +225,7 @@ A10:
 		HP: 150
 	Armor:
 		Type: AirHeavy
-	RenderUnit:
+	WithFacingSpriteBody:
 	WithShadow:
 	AttackBomber:
 		Armaments: gun, bombs
@@ -235,6 +251,9 @@ A10:
 	Contrail@2:
 		Offset: -640,-171,0
 		TrailLength: 15
+	RenderSprites:
+	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 TRAN.Husk:
 	Inherits: ^HelicopterHusk
@@ -246,13 +265,17 @@ TRAN.Husk:
 		AirborneUpgrades: airborne
 	RevealsShroud:
 		Range: 8c0
+		Type: CenterPosition
 	WithRotor@PRIMARY:
 		Offset: -597,0,171
 	WithRotor@SECONDARY:
 		Offset: 597,0,85
-	RenderUnit:
-		Image: tran
+	WithFacingSpriteBody:
 	WithShadow:
+	RenderSprites:
+		Image: tran
+	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 HELI.Husk:
 	Inherits: ^HelicopterHusk
@@ -264,11 +287,15 @@ HELI.Husk:
 		AirborneUpgrades: airborne
 	RevealsShroud:
 		Range: 10c0
+		Type: CenterPosition
 	WithRotor:
 		Offset: 0,0,85
-	RenderUnit:
-		Image: heli
+	WithFacingSpriteBody:
 	WithShadow:
+	RenderSprites:
+		Image: heli
+	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 ORCA.Husk:
 	Inherits: ^HelicopterHusk
@@ -280,7 +307,11 @@ ORCA.Husk:
 		AirborneUpgrades: airborne
 	RevealsShroud:
 		Range: 10c0
-	RenderUnit:
-		Image: orca
+		Type: CenterPosition
+	WithFacingSpriteBody:
 	WithShadow:
+	RenderSprites:
+		Image: orca
+	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 

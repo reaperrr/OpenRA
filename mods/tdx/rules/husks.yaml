@@ -3,148 +3,190 @@ MCV.Husk:
 	Tooltip:
 		Name: Mobile Construction Vehicle (Destroyed)
 		Icon: mcvicnh
-	RenderUnit:
-		Image: mcv.destroyed
+	WithFacingSpriteBody:
 	TransformOnCapture:
 		IntoActor: mcv
+	RenderSprites:
+		Image: mcv.destroyed
+	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 HARV.Husk:
 	Inherits: ^Husk
 	Tooltip:
 		Name: Harvester (Destroyed)
 		Icon: harvicnh
-	RenderUnit:
-		Image: harv.destroyed
+	WithFacingSpriteBody:
 	TransformOnCapture:
 		IntoActor: harv
+	RenderSprites:
+		Image: harv.destroyed
+	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 APC.Husk:
 	Inherits: ^Husk
 	Tooltip:
 		Name: APC (Destroyed)
 		Icon: apcicnh
-	RenderUnit:
-		Image: apc.destroyed
+	WithFacingSpriteBody:
 	TransformOnCapture:
 		IntoActor: apc
+	RenderSprites:
+		Image: apc.destroyed
+	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 FTNK.Husk:
 	Inherits: ^Husk
 	Tooltip:
 		Name: Flame Tank (Destroyed)
 		Icon: ftnkicnh
-	RenderUnit:
-		Image: ftnk.destroyed
+	WithFacingSpriteBody:
 	TransformOnCapture:
 		IntoActor: ftnk
+	RenderSprites:
+		Image: ftnk.destroyed
+	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 ARTY.Husk:
 	Inherits: ^Husk
 	Tooltip:
 		Name: Artillery (Destroyed)
 		Icon: artyicnh
-	RenderUnit:
-		Image: arty.destroyed
+	WithFacingSpriteBody:
 	TransformOnCapture:
 		IntoActor: arty
+	RenderSprites:
+		Image: arty.destroyed
+	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 BGGY.Husk:
 	Inherits: ^Husk
 	Tooltip:
 		Name: Nod Buggy (Destroyed)
 		Icon: bggyicnh
-	RenderUnit:
-		Image: bggy.destroyed
+	WithFacingSpriteBody:
 	TransformOnCapture:
 		IntoActor: bggy
+	RenderSprites:
+		Image: bggy.destroyed
+	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 BIKE.Husk:
 	Inherits: ^Husk
 	Tooltip:
 		Name: Recon Bike (Destroyed)
 		Icon: bikeicnh
-	RenderUnit:
-		Image: bike.destroyed
+	WithFacingSpriteBody:
 	TransformOnCapture:
 		IntoActor: bike
+	RenderSprites:
+		Image: bike.destroyed
+	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 JEEP.Husk:
 	Inherits: ^Husk
 	Tooltip:
 		Name: Hum-Vee (Destroyed)
 		Icon: jeepicnh
-	RenderUnit:
-		Image: jeep.destroyed
+	WithFacingSpriteBody:
 	TransformOnCapture:
 		IntoActor: jeep
+	RenderSprites:
+		Image: jeep.destroyed
+	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 LTNK.Husk:
 	Inherits: ^Husk
 	Tooltip:
 		Name: Light Tank (Destroyed)
 		Icon: ltnkicnh
-	RenderUnit:
-		Image: ltnk.destroyed
+	WithFacingSpriteBody:
 	ThrowsParticle@turret:
 		Anim: turret
 	TransformOnCapture:
 		IntoActor: ltnk
+	RenderSprites:
+		Image: ltnk.destroyed
+	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 MTNK.Husk:
 	Inherits: ^Husk
 	Tooltip:
 		Name: Medium Tank (Destroyed)
 		Icon: mtnkicnh
-	RenderUnit:
-		Image: mtnk.destroyed
+	WithFacingSpriteBody:
 	ThrowsParticle@turret:
 		Anim: turret
 	TransformOnCapture:
 		IntoActor: mtnk
+	RenderSprites:
+		Image: mtnk.destroyed
+	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 HTNK.Husk:
 	Inherits: ^Husk
 	Tooltip:
 		Name: Mammoth Tank (Destroyed)
 		Icon: htnkicnh
-	RenderUnit:
-		Image: htnk.destroyed
+	WithFacingSpriteBody:
 	ThrowsParticle@turret:
 		Anim: turret
 	TransformOnCapture:
 		IntoActor: htnk
+	RenderSprites:
+		Image: htnk.destroyed
+	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 MSAM.Husk:
 	Inherits: ^Husk
 	Tooltip:
 		Name: Rocket Launcher (Destroyed)
 		Icon: msamicnh
-	RenderUnit:
-		Image: msam.destroyed
+	WithFacingSpriteBody:
 	ThrowsParticle@turret:
 		Anim: turret
 	TransformOnCapture:
 		IntoActor: msam
+	RenderSprites:
+		Image: msam.destroyed
+	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 MLRS.Husk:
 	Inherits: ^Husk
 	Tooltip:
 		Name: Mobile S.A.M. (Destroyed)
 		Icon: mlrsicnh
-	RenderUnit:
-		Image: mlrs.destroyed
+	WithFacingSpriteBody:
 	ThrowsParticle@turret:
 		Anim: turret
 	TransformOnCapture:
 		IntoActor: mlrs
+	RenderSprites:
+		Image: mlrs.destroyed
+	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 STNK.Husk:
 	Inherits: ^Husk
 	Tooltip:
 		Name: Stealth Tank (Destroyed)
 		Icon: stnkicnh
-	RenderUnit:
-		Image: stnk.destroyed
+	WithFacingSpriteBody:
 	TransformOnCapture:
 		IntoActor: stnk
+	RenderSprites:
+		Image: stnk.destroyed
+	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 

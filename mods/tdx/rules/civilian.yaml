@@ -274,6 +274,7 @@ piraship:
 	RenderSprites:
 		Palette: terrain
 	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 ARCO:
 	Inherits: ^CivBuilding
@@ -487,7 +488,7 @@ VICE:
 		MuzzleSplitFacings: 32
 	AttackFrontal:
 	AttackWander:
-	RenderUnit:
+	WithFacingSpriteBody:
 	WithMuzzleFlash:
 		SplitFacings: true
 	CombatDebugOverlay:
@@ -500,4 +501,7 @@ VICE:
 		Weapon: Heal
 	Voiced:
 		VoiceSet: DinoVoice
+	RenderSprites:
+	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 

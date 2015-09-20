@@ -27,10 +27,10 @@ FACT:
 	Production:
 		Produces: Building, Defense
 	ProvidesPrerequisite@gdi:
-		Race: gdi
+		Factions: gdi
 		Prerequisite: structures.gdi
 	ProvidesPrerequisite@nod:
-		Race: nod
+		Factions: nod
 		Prerequisite: structures.nod
 	ProductionBar@Building:
 		ProductionType: Building
@@ -132,7 +132,6 @@ PROC:
 		Value: 500
 	FreeActor:
 		Actor: HARV
-		InitialActivity: FindResources
 		SpawnOffset: 1,2
 		Facing: 64
 	WithResources:
@@ -177,6 +176,7 @@ SILO:
 	RenderSprites:
 	WithSpriteBody:
 	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 PYLE:
 	Inherits: ^BaseBuilding
@@ -209,7 +209,7 @@ PYLE:
 	Production:
 		Produces: Infantry
 	ProvidesPrerequisite@gdi:
-		Race: gdi
+		Factions: gdi
 		Prerequisite: infantry.gdi
 	ProvidesPrerequisite@vehprod:
 		Prerequisite: barracks
@@ -246,7 +246,7 @@ HAND:
 	Production:
 		Produces: Infantry
 	ProvidesPrerequisite@nod:
-		Race: nod
+		Factions: nod
 		Prerequisite: infantry.nod
 	ProvidesPrerequisite@vehprod:
 		Prerequisite: barracks
@@ -282,7 +282,7 @@ AFLD:
 	ProductionAirdrop:
 		Produces: Vehicle
 	ProvidesPrerequisite@nod:
-		Race: nod
+		Factions: nod
 		Prerequisite: vehicles.nod
 	ProvidesPrerequisite@vehprod:
 		Prerequisite: vehicleproduction
@@ -322,7 +322,7 @@ WEAP:
 	Production:
 		Produces: Vehicle
 	ProvidesPrerequisite@gdi:
-		Race: gdi
+		Factions: gdi
 		Prerequisite: vehicles.gdi
 	ProvidesPrerequisite@vehprod:
 		Prerequisite: vehicleproduction
@@ -359,10 +359,10 @@ HPAD:
 	Production:
 		Produces: Aircraft
 	ProvidesPrerequisite@gdi:
-		Race: gdi
+		Factions: gdi
 		Prerequisite: aircraft.gdi
 	ProvidesPrerequisite@nod:
-		Race: nod
+		Factions: nod
 		Prerequisite: aircraft.nod
 	ProvidesPrerequisite@gdistructure:
 		RequiresPrerequisites: structures.gdi

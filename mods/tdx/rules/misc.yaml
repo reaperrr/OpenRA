@@ -33,14 +33,18 @@ CRATE:
 mpspawn:
 	Immobile:
 		OccupiesSpace: false
-	RenderEditorOnly:
+	RenderSpritesEditorOnly:
 	BodyOrientation:
+	WithSpriteBody:
+	QuantizeFacingsFromSequence:
 
 waypoint:
 	Immobile:
 		OccupiesSpace: false
-	RenderEditorOnly:
+	RenderSpritesEditorOnly:
 	BodyOrientation:
+	WithSpriteBody:
+	QuantizeFacingsFromSequence:
 
 ^fact.colorpicker:
 	Inherits: FACT
@@ -50,6 +54,7 @@ waypoint:
 		Image: fact
 		Palette: colorpicker
 	AutoSelectionSize:
+	QuantizeFacingsFromSequence:
 
 CAMERA:
 	Immobile:
@@ -58,6 +63,7 @@ CAMERA:
 		HP: 1000
 	RevealsShroud:
 		Range: 10c0
+		Type: CenterPosition
 	BodyOrientation:
 
 CAMERA.small:
@@ -67,5 +73,6 @@ CAMERA.small:
 		HP: 1000
 	RevealsShroud:
 		Range: 6c0
+		Type: CenterPosition
 	BodyOrientation:
 
