@@ -172,11 +172,6 @@ SILO:
 		Amount: -10
 	-MustBeDestroyed:
 	ProvidesPrerequisite@buildingname:
-	QuantizeFacingsFromSequence:
-	RenderSprites:
-	WithSpriteBody:
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 PYLE:
 	Inherits: ^BaseBuilding
@@ -313,7 +308,6 @@ WEAP:
 	RevealsShroud:
 		Range: 4c0
 	Bib:
-	WithSpriteBody:
 	RallyPoint:
 		Offset: 0,3
 	Exit@1:
@@ -332,9 +326,6 @@ WEAP:
 	WithProductionDoorOverlay:
 		Sequence: build-top
 	ProvidesPrerequisite@buildingname:
-	QuantizeFacingsFromSequence:
-	RenderSprites:
-	AutoSelectionSize:
 
 HPAD:
 	Inherits: ^BaseBuilding
@@ -400,7 +391,7 @@ HQ:
 	CanPowerDown:
 	DisabledOverlay:
 	WithSpriteBody:
-		PauseOnLowPower: yes
+		PauseAnimationWhenDisabled: true
 	Health:
 		HP: 700
 	RevealsShroud:
@@ -431,9 +422,6 @@ HQ:
 	Power:
 		Amount: -40
 	ProvidesPrerequisite@buildingname:
-	QuantizeFacingsFromSequence:
-	RenderSprites:
-	AutoSelectionSize:
 
 FIX:
 	Inherits: ^BaseBuilding
@@ -483,7 +471,7 @@ EYE:
 	CanPowerDown:
 	DisabledOverlay:
 	WithSpriteBody:
-		PauseOnLowPower: yes
+		PauseAnimationWhenDisabled: true
 	Health:
 		HP: 1000
 	RevealsShroud:
@@ -510,9 +498,6 @@ EYE:
 	Power:
 		Amount: -200
 	ProvidesPrerequisite@buildingname:
-	QuantizeFacingsFromSequence:
-	RenderSprites:
-	AutoSelectionSize:
 
 TMPL:
 	Inherits: ^BaseBuilding
@@ -620,7 +605,7 @@ GUN:
 	WithMuzzleFlash:
 	AutoTarget:
 	-WithSpriteBody:
-	-WithDeathAnimation:
+#	-WithDeathAnimation:
 	RenderRangeCircle:
 	RenderDetectionCircle:
 	DetectCloaked:
@@ -629,9 +614,6 @@ GUN:
 		Amount: -20
 	-MustBeDestroyed:
 	ProvidesPrerequisite@buildingname:
-	QuantizeFacingsFromSequence:
-	RenderSprites:
-	AutoSelectionSize:
 
 SAM:
 	Inherits: ^BaseBuilding
@@ -674,9 +656,6 @@ SAM:
 		Amount: -20
 	-MustBeDestroyed:
 	ProvidesPrerequisite@buildingname:
-	QuantizeFacingsFromSequence:
-	RenderSprites:
-	AutoSelectionSize:
 
 OBLI:
 	Inherits: ^BaseBuilding
@@ -713,6 +692,7 @@ OBLI:
 	AttackCharge:
 		ReloadTime: 40
 		InitialChargeDelay: 50
+		ChargeAudio: obelpowr.aud
 	AutoTarget:
 	-WithSpriteBody:
 	RenderRangeCircle:
@@ -724,10 +704,7 @@ OBLI:
 		Amount: -150
 	-MustBeDestroyed:
 	ProvidesPrerequisite@buildingname:
-	QuantizeFacingsFromSequence:
-	RenderSprites:
-		ChargeAudio: obelpowr.aud
-	AutoSelectionSize:
+		
 
 GTWR:
 	Inherits: ^BaseBuilding
@@ -775,7 +752,7 @@ GTWR:
 ATWR:
 	Inherits: ^BaseBuilding
 	Valued:
-		Cost: 1200
+		Cost: 1000
 	CustomBuildTimeValue:
 		Value: 1800
 	Tooltip:
@@ -844,9 +821,6 @@ SBAG:
 		Types: sandbag
 	WithWallSpriteBody:
 		Type: sandbag
-	QuantizeFacingsFromSequence:
-	RenderSprites:
-	AutoSelectionSize:
 
 CYCL:
 	Inherits: ^Wall
@@ -874,12 +848,10 @@ CYCL:
 		Types: chain
 	WithWallSpriteBody:
 		Type: chain
-	QuantizeFacingsFromSequence:
-	RenderSprites:
-	AutoSelectionSize:
 
 BRIK:
 	Inherits: ^Wall
+	BlocksProjectiles:
 	Valued:
 		Cost: 100
 	CustomSellValue:
@@ -907,26 +879,27 @@ BRIK:
 		Types: concrete
 	WithWallSpriteBody:
 		Type: concrete
-	QuantizeFacingsFromSequence:
-	RenderSprites:
-	AutoSelectionSize:
 
 BARRACKS:
+	AlwaysVisible:
 	Tooltip:
 		Name: Infantry Production
 		Description: Infantry Production
 
 VEHICLEPRODUCTION:
+	AlwaysVisible:
 	Tooltip:
 		Name: Vehicle Production
 		Description: Vehicle Production
 
 ANYPOWER:
+	AlwaysVisible:
 	Tooltip:
 		Name: Power Plant
 		Description: Power Plant
 
 ANYHQ:
+	AlwaysVisible:
 	Tooltip:
 		Name: a communications center
 		Description: a communications center

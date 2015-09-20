@@ -183,8 +183,6 @@ MEDI:
 	WithInfantryBody:
 		AttackSequence: heal
 	-GainsExperience:
-	QuantizeFacingsFromSequence:
-		Sequence: stand
 
 RMBO:
 	Inherits: ^Infantry
@@ -223,8 +221,6 @@ RMBO:
 	AnnounceOnKill:
 	Voiced:
 		VoiceSet: CommandoVoice
-	QuantizeFacingsFromSequence:
-		Sequence: stand
 
 PVICE:
 	Inherits: VICE

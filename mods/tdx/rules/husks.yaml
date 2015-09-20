@@ -3,190 +3,148 @@ MCV.Husk:
 	Tooltip:
 		Name: Mobile Construction Vehicle (Destroyed)
 		Icon: mcvicnh
-	WithFacingSpriteBody:
 	TransformOnCapture:
 		IntoActor: mcv
 	RenderSprites:
 		Image: mcv.destroyed
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 HARV.Husk:
 	Inherits: ^Husk
 	Tooltip:
 		Name: Harvester (Destroyed)
 		Icon: harvicnh
-	WithFacingSpriteBody:
 	TransformOnCapture:
 		IntoActor: harv
 	RenderSprites:
 		Image: harv.destroyed
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 APC.Husk:
 	Inherits: ^Husk
 	Tooltip:
 		Name: APC (Destroyed)
 		Icon: apcicnh
-	WithFacingSpriteBody:
 	TransformOnCapture:
 		IntoActor: apc
 	RenderSprites:
 		Image: apc.destroyed
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 FTNK.Husk:
 	Inherits: ^Husk
 	Tooltip:
 		Name: Flame Tank (Destroyed)
 		Icon: ftnkicnh
-	WithFacingSpriteBody:
 	TransformOnCapture:
 		IntoActor: ftnk
 	RenderSprites:
 		Image: ftnk.destroyed
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 ARTY.Husk:
 	Inherits: ^Husk
 	Tooltip:
 		Name: Artillery (Destroyed)
 		Icon: artyicnh
-	WithFacingSpriteBody:
 	TransformOnCapture:
 		IntoActor: arty
 	RenderSprites:
 		Image: arty.destroyed
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 BGGY.Husk:
 	Inherits: ^Husk
 	Tooltip:
 		Name: Nod Buggy (Destroyed)
 		Icon: bggyicnh
-	WithFacingSpriteBody:
 	TransformOnCapture:
 		IntoActor: bggy
 	RenderSprites:
 		Image: bggy.destroyed
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 BIKE.Husk:
 	Inherits: ^Husk
 	Tooltip:
 		Name: Recon Bike (Destroyed)
 		Icon: bikeicnh
-	WithFacingSpriteBody:
 	TransformOnCapture:
 		IntoActor: bike
 	RenderSprites:
 		Image: bike.destroyed
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 JEEP.Husk:
 	Inherits: ^Husk
 	Tooltip:
 		Name: Hum-Vee (Destroyed)
 		Icon: jeepicnh
-	WithFacingSpriteBody:
 	TransformOnCapture:
 		IntoActor: jeep
 	RenderSprites:
 		Image: jeep.destroyed
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 LTNK.Husk:
 	Inherits: ^Husk
 	Tooltip:
 		Name: Light Tank (Destroyed)
 		Icon: ltnkicnh
-	WithFacingSpriteBody:
 	ThrowsParticle@turret:
 		Anim: turret
 	TransformOnCapture:
 		IntoActor: ltnk
 	RenderSprites:
 		Image: ltnk.destroyed
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 MTNK.Husk:
 	Inherits: ^Husk
 	Tooltip:
 		Name: Medium Tank (Destroyed)
 		Icon: mtnkicnh
-	WithFacingSpriteBody:
 	ThrowsParticle@turret:
 		Anim: turret
 	TransformOnCapture:
 		IntoActor: mtnk
 	RenderSprites:
 		Image: mtnk.destroyed
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 HTNK.Husk:
 	Inherits: ^Husk
 	Tooltip:
 		Name: Mammoth Tank (Destroyed)
 		Icon: htnkicnh
-	WithFacingSpriteBody:
 	ThrowsParticle@turret:
 		Anim: turret
 	TransformOnCapture:
 		IntoActor: htnk
 	RenderSprites:
 		Image: htnk.destroyed
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 MSAM.Husk:
 	Inherits: ^Husk
 	Tooltip:
 		Name: Rocket Launcher (Destroyed)
 		Icon: msamicnh
-	WithFacingSpriteBody:
 	ThrowsParticle@turret:
 		Anim: turret
 	TransformOnCapture:
 		IntoActor: msam
 	RenderSprites:
 		Image: msam.destroyed
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 MLRS.Husk:
 	Inherits: ^Husk
 	Tooltip:
 		Name: Mobile S.A.M. (Destroyed)
 		Icon: mlrsicnh
-	WithFacingSpriteBody:
 	ThrowsParticle@turret:
 		Anim: turret
 	TransformOnCapture:
 		IntoActor: mlrs
 	RenderSprites:
 		Image: mlrs.destroyed
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 STNK.Husk:
 	Inherits: ^Husk
 	Tooltip:
 		Name: Stealth Tank (Destroyed)
 		Icon: stnkicnh
-	WithFacingSpriteBody:
 	TransformOnCapture:
 		IntoActor: stnk
 	RenderSprites:
 		Image: stnk.destroyed
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 

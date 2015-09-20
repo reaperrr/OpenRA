@@ -27,7 +27,6 @@ MCV:
 		Facing: 108
 		TransformSounds: constru2.aud, hvydoor1.aud
 		NoTransformSounds: deploy1.aud
-	WithFacingSpriteBody:
 	MustBeDestroyed:
 		RequiredForShortGame: true
 	BaseBuilding:
@@ -38,9 +37,6 @@ MCV:
 	Explodes:
 		Weapon: UnitExplodeSmall
 		EmptyWeapon: UnitExplodeSmall
-	RenderSprites:
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 HARV:
 	Inherits: ^Tank
@@ -79,11 +75,8 @@ HARV:
 	WithHarvestAnimation:
 	Explodes:
 		Weapon: TiberiumExplosion
-	RenderSprites:
-	WithFacingSpriteBody:
-	AutoSelectionSize:
+		EmptyWeapon: UnitExplodeSmall
 	WithDockingAnimation:
-	QuantizeFacingsFromSequence:
 
 APC:
 	Inherits: ^Tank
@@ -115,7 +108,6 @@ APC:
 	WithMuzzleFlash:
 		SplitFacings: true
 	AttackFrontal:
-	WithFacingSpriteBody:
 	AutoTarget:
 	Cargo:
 		Types: Infantry
@@ -126,9 +118,6 @@ APC:
 		EmptyWeapon: UnitExplodeSmall
 #	LeavesHusk:
 #		HuskActor: APC.Husk
-	RenderSprites:
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 ARTY:
 	Inherits: ^Tank
@@ -158,7 +147,6 @@ ARTY:
 		MuzzlePalette: flashyeffect
 	AttackFrontal:
 	WithMuzzleFlash:
-	WithFacingSpriteBody:
 	Explodes:
 		Weapon: UnitExplode
 		EmptyWeapon: UnitExplode
@@ -166,9 +154,6 @@ ARTY:
 		InitialStance: Defend
 #	LeavesHusk:
 #		HuskActor: ARTY.Husk
-	RenderSprites:
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 FTNK:
 	Inherits: ^Tank
@@ -198,7 +183,6 @@ FTNK:
 		MuzzleSplitFacings: 32
 		MuzzlePalette: flashyeffect
 	AttackFrontal:
-	WithFacingSpriteBody:
 	AutoTarget:
 	WithMuzzleFlash:
 		SplitFacings: true
@@ -207,9 +191,6 @@ FTNK:
 		EmptyWeapon: FlametankExplode
 #	LeavesHusk:
 #		HuskActor: FTNK.Husk
-	RenderSprites:
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 BGGY:
 	Inherits: ^Vehicle
@@ -244,7 +225,6 @@ BGGY:
 	AttackTurreted:
 	WithMuzzleFlash:
 		SplitFacings: true
-	WithFacingSpriteBody:
 	WithTurret:
 	AutoTarget:
 	Explodes:
@@ -252,9 +232,6 @@ BGGY:
 		EmptyWeapon: UnitExplodeSmall
 #	LeavesHusk:
 #		HuskActor: BGGY.Husk
-	RenderSprites:
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 BIKE:
 	Inherits: ^Vehicle
@@ -270,13 +247,6 @@ BIKE:
 	Mobile:
 		ROT: 10
 		Speed: 200
-		TerrainSpeeds:
-			Clear: 80
-			Rough: 50
-			Road: 100
-			Tiberium: 50
-			BlueTiberium: 50
-			Beach: 80
 	Health:
 		HP: 160
 		Radius: 256
@@ -288,7 +258,6 @@ BIKE:
 		Weapon: BikeRockets
 		LocalOffset: -128,-171,171, -128,171,171
 	AttackFrontal:
-	WithFacingSpriteBody:
 	AutoTarget:
 	Explodes:
 		Weapon: UnitExplodeSmall
@@ -297,8 +266,6 @@ BIKE:
 #		HuskActor: BIKE.Husk
 	RenderSprites:
 		Scale: 0.75
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 JEEP:
 	Inherits: ^Vehicle
@@ -333,7 +300,6 @@ JEEP:
 	AttackTurreted:
 	WithMuzzleFlash:
 		SplitFacings: true
-	WithFacingSpriteBody:
 	WithTurret:
 	AutoTarget:
 	Explodes:
@@ -341,9 +307,6 @@ JEEP:
 		EmptyWeapon: UnitExplodeSmall
 #	LeavesHusk:
 #		HuskActor: JEEP.Husk
-	RenderSprites:
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 LTNK:
 	Inherits: ^Tank
@@ -377,7 +340,6 @@ LTNK:
 		MuzzlePalette: flashyeffect
 	AttackTurreted:
 	WithMuzzleFlash:
-	WithFacingSpriteBody:
 	WithTurret:
 	AutoTarget:
 #	LeavesHusk:
@@ -385,9 +347,6 @@ LTNK:
 	Explodes:
 		Weapon: UnitExplodeSmall
 		EmptyWeapon: UnitExplodeSmall
-	RenderSprites:
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 MTNK:
 	Inherits: ^Tank
@@ -421,7 +380,6 @@ MTNK:
 	AttackTurreted:
 	WithMuzzleFlash:
 		SplitFacings: true
-	WithFacingSpriteBody:
 	WithTurret:
 	AutoTarget:
 #	LeavesHusk:
@@ -433,8 +391,6 @@ MTNK:
 		Bounds: 28,28
 	RenderSprites:
 		Image: mtnk2
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 HTNK:
 	Inherits: ^Tank
@@ -477,7 +433,6 @@ HTNK:
 	AttackTurreted:
 	WithMuzzleFlash:
 		SplitFacings: true
-	WithFacingSpriteBody:
 	WithTurret:
 	AutoTarget:
 	SelfHealing:
@@ -493,8 +448,6 @@ HTNK:
 		Bounds: 34,34,0,-3
 	RenderSprites:
 		Image: htnk2
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 MSAM:
 	Inherits: ^Tank
@@ -526,7 +479,6 @@ MSAM:
 		Weapon: 227mmAA
 		LocalOffset: 213,-128,171, 213,128,171
 	AttackFrontal:
-	WithFacingSpriteBody:
 	WithTurret:
 		Sequence: turret-3
 	AutoTarget:
@@ -535,9 +487,6 @@ MSAM:
 		EmptyWeapon: UnitExplode
 #	LeavesHusk:
 #		HuskActor: MSAM.Husk
-	RenderSprites:
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 MLRS:
 	Inherits: ^Tank
@@ -559,26 +508,22 @@ MLRS:
 		Type: Light
 	RevealsShroud:
 		Range: 8c0
+	AttackTurreted:
 	Turreted:
 		ROT: 5
 		Offset: -128,0,128
 		AlignWhenIdle: true
 	Armament:
 		Weapon: HonestJohn
-		AmmoPoolName: ammo
 		LocalOffset: 0,171,0, 0,-171,0
 	AmmoPool:
-		Name: ammo
 		Ammo: 2
 		ReloadCount: 1
 		PipCount: 0
 		SelfReloads: true
 		SelfReloadTicks: 200
-	AttackTurreted:
-	WithFacingSpriteBody:
-	WithTurretReload:
-		ReloadStages: 2
-		AmmoPoolName: ammo
+	WithReloadingTurret:
+		AmmoPoolName: primary
 	AutoTarget:
 		InitialStance: Defend
 	Explodes:
@@ -587,9 +532,6 @@ MLRS:
 	RenderRangeCircle:
 #	LeavesHusk:
 #		HuskActor: MLRS.Husk
-	RenderSprites:
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 STNK:
 	Inherits: ^Vehicle
@@ -623,7 +565,6 @@ STNK:
 		Weapon: Dragon
 		LocalOffset: 213,43,171, 213,-43,171
 	AttackFrontal:
-	WithFacingSpriteBody:
 	AutoTarget:
 		InitialStance: HoldFire
 	Targetable:
@@ -632,9 +573,6 @@ STNK:
 		EmptyWeapon: UnitExplodeSmall
 #	LeavesHusk:
 #		HuskActor: STNK.Husk
-	RenderSprites:
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 MHQ:
 	Inherits: ^Vehicle
@@ -651,14 +589,10 @@ MHQ:
 		Speed: 90
 	RevealsShroud:
 		Range: 6c0
-	WithFacingSpriteBody:
 	WithIdleOverlay@SPINNER:
 		Sequence: spinner
 		Offset: -256,0,256
 	Explodes:
 		Weapon: UnitExplodeSmall
 		EmptyWeapon: UnitExplodeSmall
-	RenderSprites:
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 

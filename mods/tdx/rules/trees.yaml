@@ -7,19 +7,15 @@ SPLIT2:
 
 SPLIT3:
 	Inherits: ^TibTree
-	WithSpriteBody:
 	SeedsResource:
 		ResourceType: Tiberium
 		Interval: 55
 	WithActiveAnimation:
-	QuantizeFacingsFromSequence:
 	RenderSprites:
 		Image: split2
-	AutoSelectionSize:
 
 SPLITBLUE:
 	Inherits: ^TibTree
-	WithSpriteBody:
 	SeedsResource:
 		ResourceType: BlueTiberium
 		Interval: 110
@@ -28,10 +24,8 @@ SPLITBLUE:
 		Name: Blossom Tree (blue)
 	RadarColorFromTerrain:
 		Terrain: BlueTiberium
-	QuantizeFacingsFromSequence:
 	RenderSprites:
 		Image: split3
-	AutoSelectionSize:
 
 ROCK1:
 	Inherits: ^Rock
@@ -75,13 +69,13 @@ T01:
 	Inherits: ^Tree
 	EditorTilesetFilter:
 		ExcludeTilesets: DESERT
-	-WithDeathAnimation:
+#	-WithDeathAnimation:
 
 T02:
 	Inherits: ^Tree
 	EditorTilesetFilter:
 		ExcludeTilesets: DESERT
-	-WithDeathAnimation:
+#	-WithDeathAnimation:
 
 T03:
 	Inherits: ^Tree
@@ -90,25 +84,25 @@ T03:
 
 T04:
 	Inherits: ^Tree
-	-WithDeathAnimation:
+#	-WithDeathAnimation:
 
 T05:
 	Inherits: ^Tree
 	EditorTilesetFilter:
 		ExcludeTilesets: DESERT
-	-WithDeathAnimation:
+#	-WithDeathAnimation:
 
 T06:
 	Inherits: ^Tree
 	EditorTilesetFilter:
 		ExcludeTilesets: DESERT
-	-WithDeathAnimation:
+#	-WithDeathAnimation:
 
 T07:
 	Inherits: ^Tree
 	EditorTilesetFilter:
 		ExcludeTilesets: DESERT
-	-WithDeathAnimation:
+#	-WithDeathAnimation:
 
 T08:
 	Inherits: ^Tree
@@ -163,7 +157,7 @@ T16:
 	Inherits: ^Tree
 	EditorTilesetFilter:
 		ExcludeTilesets: DESERT
-	-WithDeathAnimation:
+#	-WithDeathAnimation:
 
 T17:
 	Inherits: ^Tree

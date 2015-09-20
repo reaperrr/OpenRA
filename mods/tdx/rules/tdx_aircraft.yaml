@@ -45,7 +45,6 @@ HIND:
 		ReloadCount: 10
 		SelfReloadTicks: 200
 		ResetOnFire: False
-	WithFacingSpriteBody:
 	WithRotor:
 		Offset: 0,0,85
 	WithMuzzleFlash:
@@ -57,9 +56,6 @@ HIND:
 	Explodes:
 		Weapon: HeliExplode
 		EmptyWeapon: HeliExplode
-	RenderSprites:
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 HIND.Husk:
 	Inherits: ^HelicopterHusk
@@ -74,10 +70,6 @@ HIND.Husk:
 		Type: CenterPosition
 	WithRotor:
 		Offset: 0,0,85
-	WithFacingSpriteBody:
-	WithShadow:
 	RenderSprites:
 		Image: hind
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 

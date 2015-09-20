@@ -267,14 +267,10 @@ piraship:
 		Dimensions: 2,1
 	Tooltip:
 		Name: Broken Pirate Ship
-	WithSpriteBody:
 	EditorTilesetFilter:
 		RequireTilesets: CARIBIC
-	QuantizeFacingsFromSequence:
 	RenderSprites:
 		Palette: terrain
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 ARCO:
 	Inherits: ^CivBuilding
@@ -305,9 +301,6 @@ BARB:
 		Types: barbwire
 	WithWallSpriteBody:
 		Type: barbwire
-	QuantizeFacingsFromSequence:
-	RenderSprites:
-	AutoSelectionSize:
 
 WOOD:
 	Inherits: ^Wall
@@ -324,9 +317,6 @@ WOOD:
 		Types: woodfence
 	WithWallSpriteBody:
 		Type: woodfence
-	QuantizeFacingsFromSequence:
-	RenderSprites:
-	AutoSelectionSize:
 
 BRIDGE1:
 	Inherits: ^Bridge
@@ -389,6 +379,7 @@ BRIDGE4:
 		SpawnOffset: 3,2
 
 BRIDGEHUT:
+	AlwaysVisible:
 	Building:
 		Footprint: __ __
 		Dimensions: 2,2

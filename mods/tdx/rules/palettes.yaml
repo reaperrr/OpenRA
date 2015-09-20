@@ -1,16 +1,4 @@
 ^Palettes:
-	MenuPaletteEffect:
-		MenuEffect: Desaturated
-	WorldPaletteEffect:
-		ExcludePalettes: flashyeffectra, flashyeffect, raeffect50alpha, raeffect25alpha, tdeffect50alpha, tdeffect25alpha, cursor, chrome, colorpicker, fog, shroud, shadow
-		DayNightCycle: true
-		InitialEffect: Day
-		DayLength: 1500
-		NightLength: 1500
-	CloakPaletteEffect:
-	NukePaletteEffect:
-	RotationPaletteEffect:
-		ExcludePalettes: flashyeffectra, flashyeffect, effect, effectra, raplayer, staticplayer
 	PaletteFromCurrentTileset@terrain:
 		Name: terrain
 		ShadowIndex: 4
@@ -102,6 +90,7 @@
 		B: 0
 		A: 180
 	ShroudPalette@shroud:
+		Name: shroud
 		Type: Shroud
 	ShroudPalette@fog:
 		Name: fog
@@ -122,4 +111,17 @@
 #		BaseName: raplayer
 #		RemapIndex: 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95
 	PlayerHighlightPalette:
+	MenuPaletteEffect:
+		MenuEffect: Desaturated
+	WorldPaletteEffect:
+		ExcludePalettes: flashyeffectra, flashyeffect, raeffect50alpha, raeffect25alpha, tdeffect50alpha, tdeffect25alpha, cursor, chrome, colorpicker, fog, shroud, shadow
+		DayNightCycle: true
+		InitialEffect: Day
+		DayLength: 1500
+		NightLength: 1500
+	CloakPaletteEffect:
+	FlashPaletteEffect:
+	RotationPaletteEffect:
+		ExcludePalettes: flashyeffectra, flashyeffect, effect, effectra, raplayer, staticplayer, chrome
+		RotationBase: 32
 

@@ -26,7 +26,6 @@ TRAN:
 	RevealsShroud:
 		Range: 10c0
 		Type: CenterPosition
-	WithFacingSpriteBody:
 	WithRotor@PRIMARY:
 		Offset: -597,0,171
 		Sequence: rotor2
@@ -43,9 +42,6 @@ TRAN:
 	Explodes:
 		Weapon: HeliExplode
 		EmptyWeapon: HeliExplode
-	RenderSprites:
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 HELI:
 	Inherits: ^Helicopter
@@ -94,7 +90,6 @@ HELI:
 		ReloadCount: 10
 		SelfReloadTicks: 200
 		ResetOnFire: False
-	WithFacingSpriteBody:
 	WithRotor:
 		Offset: 0,0,85
 	WithMuzzleFlash:
@@ -106,9 +101,6 @@ HELI:
 	Explodes:
 		Weapon: HeliExplode
 		EmptyWeapon: HeliExplode
-	RenderSprites:
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 ORCA:
 	Inherits: ^Helicopter
@@ -150,7 +142,6 @@ ORCA:
 		ReloadCount: 2
 		SelfReloadTicks: 100
 		ResetOnFire: False
-	WithFacingSpriteBody:
 	Hovers:
 	WithShadow:
 #	LeavesHusk:
@@ -159,9 +150,6 @@ ORCA:
 	Explodes:
 		Weapon: HeliExplode
 		EmptyWeapon: HeliExplode
-	RenderSprites:
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 C17:
 	ParaDrop:
@@ -181,7 +169,6 @@ C17:
 		HP: 25
 	Armor:
 		Type: AirHeavy
-	WithFacingSpriteBody:
 	WithShadow:
 	Cargo:
 		MaxWeight: 10
@@ -190,7 +177,6 @@ C17:
 		Modifier: 0
 	-Selectable:
 	-Targetable:
-	-GainsExperience:
 	FlyAwayOnIdle:
 	RejectsOrders:
 	Contrail@1:
@@ -205,9 +191,6 @@ C17:
 	Contrail@4:
 		Offset: -261,650,0
 		TrailLength: 15
-	RenderSprites:
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 A10:
 	Inherits: ^Plane
@@ -225,7 +208,6 @@ A10:
 		HP: 150
 	Armor:
 		Type: AirHeavy
-	WithFacingSpriteBody:
 	WithShadow:
 	AttackBomber:
 		Armaments: gun, bombs
@@ -242,7 +224,6 @@ A10:
 		LocalOffset: 0,-256,-43, 0,256,-43
 	-Selectable:
 	-Targetable:
-	-GainsExperience:
 	FlyAwayOnIdle:
 	RejectsOrders:
 	Contrail@1:
@@ -251,9 +232,6 @@ A10:
 	Contrail@2:
 		Offset: -640,-171,0
 		TrailLength: 15
-	RenderSprites:
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 TRAN.Husk:
 	Inherits: ^HelicopterHusk
@@ -270,12 +248,8 @@ TRAN.Husk:
 		Offset: -597,0,171
 	WithRotor@SECONDARY:
 		Offset: 597,0,85
-	WithFacingSpriteBody:
-	WithShadow:
 	RenderSprites:
 		Image: tran
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 HELI.Husk:
 	Inherits: ^HelicopterHusk
@@ -290,12 +264,8 @@ HELI.Husk:
 		Type: CenterPosition
 	WithRotor:
 		Offset: 0,0,85
-	WithFacingSpriteBody:
-	WithShadow:
 	RenderSprites:
 		Image: heli
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 ORCA.Husk:
 	Inherits: ^HelicopterHusk
@@ -308,10 +278,6 @@ ORCA.Husk:
 	RevealsShroud:
 		Range: 10c0
 		Type: CenterPosition
-	WithFacingSpriteBody:
-	WithShadow:
 	RenderSprites:
 		Image: orca
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 

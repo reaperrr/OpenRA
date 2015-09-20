@@ -1,5 +1,62 @@
-^Vehicle:
+^ExistsInWorld:
 	AppearsOnRadar:
+	UpdatesPlayerStatistics:
+	CombatDebugOverlay:
+	GivesExperience:
+	ScriptTriggers:
+	UpgradeManager:
+	Huntable:
+
+^SpriteActor:
+	BodyOrientation:
+	QuantizeFacingsFromSequence:
+	AutoSelectionSize:
+	RenderSprites:
+
+^GainsExperience:
+	GainsExperience:
+		Upgrades:
+			200: firepower, damage, speed, reload, inaccuracy, rank
+			400: firepower, damage, speed, reload, inaccuracy, rank
+			800: firepower, damage, speed, reload, inaccuracy, rank
+			1600: firepower, damage, speed, reload, inaccuracy, rank, eliteweapon, selfheal
+	FirepowerMultiplier@EXPERIENCE:
+		UpgradeTypes: firepower
+		Modifier: 105, 110, 120, 130
+	DamageMultiplier@EXPERIENCE:
+		UpgradeTypes: damage
+		Modifier: 95, 90, 85, 75
+	SpeedMultiplier@EXPERIENCE:
+		UpgradeTypes: speed
+		Modifier: 105, 110, 120, 140
+	ReloadDelayMultiplier@EXPERIENCE:
+		UpgradeTypes: reload
+		Modifier: 95, 90, 85, 75
+	InaccuracyMultiplier@EXPERIENCE:
+		UpgradeTypes: inaccuracy
+		Modifier: 90, 80, 70, 50
+	SelfHealing@ELITE:
+		Step: 2
+		Ticks: 100
+		HealIfBelow: 1
+		DamageCooldown: 125
+		UpgradeTypes: selfheal
+		UpgradeMinEnabledLevel: 1
+	WithRankDecoration:
+		Image: rank
+		Sequence: rank
+		Palette: effect
+		ReferencePoint: Bottom, Right
+		Offset: 2, 2
+		UpgradeTypes: rank
+		ZOffset: 256
+		UpgradeMinEnabledLevel: 1
+		UpgradeMaxAcceptedLevel: 4
+
+^Vehicle:
+	Inherits@1: ^ExistsInWorld
+	Inherits@2: ^GainsExperience
+	Inherits@3: ^SpriteActor
 	Mobile:
 		Crushes: crate
 		TerrainSpeeds:
@@ -18,24 +75,14 @@
 	Passenger:
 		CargoType: Vehicle
 	HiddenUnderFog:
-	GainsExperience:
-		ChevronPalette: flashyeffectra
-		LevelUpPalette: flashyeffectra
-		Upgrades:
-			200: firepower, damage, speed, reload, inaccuracy, rank
-			400: firepower, damage, speed, reload, inaccuracy, rank
-			800: firepower, damage, speed, reload, inaccuracy, rank
-			1600: firepower, damage, speed, reload, inaccuracy, rank, eliteweapon, selfheal
 	GivesExperience:
 	DrawLineToTarget:
 	ActorLostNotification:
 	AttackMove:
+	WithFacingSpriteBody:
 	WithSmoke:
-	CombatDebugOverlay:
 	Guard:
 	Guardable:
-	BodyOrientation:
-	UpdatesPlayerStatistics:
 	Cloak:
 		UpgradeTypes: cloak
 		UpgradeMinEnabledLevel: 1
@@ -43,30 +90,12 @@
 		CloakDelay: 90
 		CloakSound: trans1.aud
 		UncloakSound: trans1.aud
-	Huntable:
-	ScriptTriggers:
 	MustBeDestroyed:
-	UpgradeManager:
 	Voiced:
 		VoiceSet: VehicleVoice
-	FirepowerMultiplier@EXPERIENCE:
-		Modifier: 110, 115, 120, 130
-		UpgradeTypes: firepower
-	DamageMultiplier@EXPERIENCE:
-		Modifier: 91, 87, 83, 65
-		UpgradeTypes: damage
-	SpeedMultiplier@EXPERIENCE:
-		Modifier: 110, 115, 120, 150
-		UpgradeTypes: speed
-	ReloadDelayMultiplier@EXPERIENCE:
-		Modifier: 95, 90, 85, 75
-		UpgradeTypes: reload
-	InaccuracyMultiplier@EXPERIENCE:
-		Modifier: 90, 80, 70, 50
-		UpgradeTypes: inaccuracy
 
 ^Tank:
-	AppearsOnRadar:
+	Inherits@1: ^Vehicle
 	Mobile:
 		Crushes: wall, crate, infantry
 		TerrainSpeeds:
@@ -77,65 +106,11 @@
 			BlueTiberium: 70
 			Beach: 70
 		ROT: 5
-	SelectionDecorations:
-	Selectable:
-	Targetable:
-		TargetTypes: Ground, Vehicle
-	Repairable:
-	Passenger:
-		CargoType: Vehicle
-	HiddenUnderFog:
-	GainsExperience:
-		ChevronPalette: flashyeffectra
-		LevelUpPalette: flashyeffectra
-		Upgrades:
-			200: firepower, damage, speed, reload, inaccuracy, rank
-			400: firepower, damage, speed, reload, inaccuracy, rank
-			800: firepower, damage, speed, reload, inaccuracy, rank
-			1600: firepower, damage, speed, reload, inaccuracy, rank, eliteweapon, selfheal
-	GivesExperience:
-	DrawLineToTarget:
-	ActorLostNotification:
-	AttackMove:
-	WithSmoke:
-	Explodes:
-		Weapon: UnitExplodeSmall
-		EmptyWeapon: UnitExplodeSmall
-	CombatDebugOverlay:
-	Guard:
-	Guardable:
-	BodyOrientation:
-	UpdatesPlayerStatistics:
-	Cloak:
-		UpgradeTypes: cloak
-		UpgradeMinEnabledLevel: 1
-		InitialDelay: 15
-		CloakDelay: 90
-		CloakSound: trans1.aud
-		UncloakSound: trans1.aud
-	Huntable:
-	ScriptTriggers:
-	MustBeDestroyed:
-	UpgradeManager:
-	Voiced:
-		VoiceSet: VehicleVoice
-	FirepowerMultiplier@EXPERIENCE:
-		Modifier: 110, 115, 120, 130
-		UpgradeTypes: firepower
-	DamageMultiplier@EXPERIENCE:
-		Modifier: 91, 87, 83, 65
-		UpgradeTypes: damage
-	SpeedMultiplier@EXPERIENCE:
-		Modifier: 110, 115, 120, 150
-		UpgradeTypes: speed
-	ReloadDelayMultiplier@EXPERIENCE:
-		Modifier: 95, 90, 85, 75
-		UpgradeTypes: reload
-	InaccuracyMultiplier@EXPERIENCE:
-		Modifier: 90, 80, 70, 50
-		UpgradeTypes: inaccuracy
 
 ^Helicopter:
+	Inherits@1: ^ExistsInWorld
+	Inherits@2: ^GainsExperience
+	Inherits@3: ^SpriteActor
 	AppearsOnRadar:
 		UseLocation: yes
 	Targetable@AIRBORNE:
@@ -151,54 +126,28 @@
 		AirborneUpgrades: airborne
 	HiddenUnderFog:
 		Type: CenterPosition
-	GainsExperience:
-		ChevronPalette: flashyeffectra
-		LevelUpPalette: flashyeffectra
-		Upgrades:
-			200: firepower, damage, speed, reload, inaccuracy, rank
-			400: firepower, damage, speed, reload, inaccuracy, rank
-			800: firepower, damage, speed, reload, inaccuracy, rank
-			1600: firepower, damage, speed, reload, inaccuracy, rank, eliteweapon, selfheal
 	GivesExperience:
 	DrawLineToTarget:
 	ActorLostNotification:
 	Explodes:
 		Weapon: HeliExplode
 		EmptyWeapon: HeliExplode
-	CombatDebugOverlay:
 	AttackMove:
 	Guard:
 	Guardable:
-	BodyOrientation:
-	UpdatesPlayerStatistics:
-	Huntable:
-	ScriptTriggers:
 	MustBeDestroyed:
-	UpgradeManager:
+	WithFacingSpriteBody:
 	Voiced:
 		VoiceSet: VehicleVoice
 	Targetable@GROUND:
 		TargetTypes: Ground
 		UpgradeTypes: airborne
 		UpgradeMaxEnabledLevel: 0
-	FirepowerMultiplier@EXPERIENCE:
-		Modifier: 110, 115, 120, 130
-		UpgradeTypes: firepower
-	DamageMultiplier@EXPERIENCE:
-		Modifier: 91, 87, 83, 65
-		UpgradeTypes: damage
-	SpeedMultiplier@EXPERIENCE:
-		Modifier: 110, 115, 120, 150
-		UpgradeTypes: speed
-	ReloadDelayMultiplier@EXPERIENCE:
-		Modifier: 95, 90, 85, 75
-		UpgradeTypes: reload
-	InaccuracyMultiplier@EXPERIENCE:
-		Modifier: 90, 80, 70, 50
-		UpgradeTypes: inaccuracy
 
 ^Infantry:
-	AppearsOnRadar:
+	Inherits@1: ^ExistsInWorld
+	Inherits@2: ^GainsExperience
+	Inherits@3: ^SpriteActor
 	Health:
 		Radius: 128
 	Armor:
@@ -241,14 +190,6 @@
 		CargoType: Infantry
 	HiddenUnderFog:
 	PoisonedByTiberium:
-	GainsExperience:
-		ChevronPalette: flashyeffectra
-		LevelUpPalette: flashyeffectra
-		Upgrades:
-			200: firepower, damage, speed, reload, inaccuracy, rank
-			400: firepower, damage, speed, reload, inaccuracy, rank
-			800: firepower, damage, speed, reload, inaccuracy, rank
-			1600: firepower, damage, speed, reload, inaccuracy, rank, eliteweapon, selfheal
 	GivesExperience:
 	DrawLineToTarget:
 	ActorLostNotification:
@@ -262,10 +203,8 @@
 	Crushable:
 		WarnProbability: 50
 		CrushSound: squish2.aud
-	CombatDebugOverlay:
 	Guard:
 	Guardable:
-	BodyOrientation:
 	SelfHealing@HOSPITAL:
 		Step: 5
 		Ticks: 100
@@ -283,12 +222,8 @@
 		DamageCooldown: 25
 		UpgradeTypes: medicheal
 		UpgradeMinEnabledLevel: 1
-	UpgradeManager:
-	UpdatesPlayerStatistics:
-	Huntable:
 	DetectCloaked:
 		Range: 1c0
-	ScriptTriggers:
 	DeathSounds@NORMAL:
 		DeathTypes: DeathType1, DeathType2, DeathType3, DeathType4
 	DeathSounds@BURNED:
@@ -302,29 +237,11 @@
 		VoiceSet: GenericVoice
 	QuantizeFacingsFromSequence:
 		Sequence: stand
-	FirepowerMultiplier@EXPERIENCE:
-		Modifier: 110, 115, 120, 130
-		UpgradeTypes: firepower
-	DamageMultiplier@EXPERIENCE:
-		Modifier: 91, 87, 83, 65
-		UpgradeTypes: damage
-	SpeedMultiplier@EXPERIENCE:
-		Modifier: 110, 115, 120, 150
-		UpgradeTypes: speed
-	ReloadDelayMultiplier@EXPERIENCE:
-		Modifier: 95, 90, 85, 75
-		UpgradeTypes: reload
-	InaccuracyMultiplier@EXPERIENCE:
-		Modifier: 90, 80, 70, 50
-		UpgradeTypes: inaccuracy
-	QuantizeFacingsFromSequence:
-		Sequence: stand
 
 ^CivInfantry:
 	Inherits: ^Infantry
 	-AutoTarget:
 	-TakeCover:
-	AppearsOnRadar:
 	SelectionDecorations:
 	Selectable:
 		Bounds: 12,17,0,-9
@@ -351,11 +268,10 @@
 		CrushSound: squish2.aud
 	Voiced:
 		VoiceSet: CivilianMaleVoice
-	QuantizeFacingsFromSequence:
-		Sequence: stand
 
 ^DINO:
-	AppearsOnRadar:
+	Inherits@1: ^ExistsInWorld
+	Inherits@2: ^SpriteActor
 	Health:
 		Radius: 128
 		HP: 1000
@@ -382,18 +298,12 @@
 		TargetTypes: Ground, Infantry
 	HiddenUnderFog:
 	GivesExperience:
-	BodyOrientation:
 	DrawLineToTarget:
 	AutoTarget:
 		ScanRadius: 4
 	AttackMove:
 	AttackFrontal:
-	UpdatesPlayerStatistics:
-	Huntable:
-	ScriptTriggers:
 	DeathSounds:
-	EditorAppearance:
-		UseTerrainPalette: true
 	RenderSprites:
 		Palette: terrain
 	WithInfantryBody:
@@ -405,6 +315,9 @@
 		Sequence: stand
 
 ^Plane:
+	Inherits@1: ^ExistsInWorld
+	Inherits@2: ^SpriteActor
+	WithFacingSpriteBody:
 	AppearsOnRadar:
 		UseLocation: yes
 	SelectionDecorations:
@@ -412,42 +325,16 @@
 	Targetable:
 		TargetTypes: Air
 	HiddenUnderFog:
-	GainsExperience:
-		ChevronPalette: flashyeffectra
-		LevelUpPalette: flashyeffectra
-		Upgrades:
-			200: firepower, damage, speed, reload, inaccuracy, rank
-			400: firepower, damage, speed, reload, inaccuracy, rank
-			800: firepower, damage, speed, reload, inaccuracy, rank
-			1600: firepower, damage, speed, reload, inaccuracy, rank, eliteweapon, selfheal
 	GivesExperience:
 	DrawLineToTarget:
 	ActorLostNotification:
-	CombatDebugOverlay:
-	BodyOrientation:
-	Huntable:
 	AttackMove:
-	ScriptTriggers:
 	Voiced:
 		VoiceSet: GenericVoice
-	FirepowerMultiplier@EXPERIENCE:
-		Modifier: 110, 115, 120, 130
-		UpgradeTypes: firepower
-	DamageMultiplier@EXPERIENCE:
-		Modifier: 91, 87, 83, 65
-		UpgradeTypes: damage
-	SpeedMultiplier@EXPERIENCE:
-		Modifier: 110, 115, 120, 150
-		UpgradeTypes: speed
-	ReloadDelayMultiplier@EXPERIENCE:
-		Modifier: 95, 90, 85, 75
-		UpgradeTypes: reload
-	InaccuracyMultiplier@EXPERIENCE:
-		Modifier: 90, 80, 70, 50
-		UpgradeTypes: inaccuracy
 
 ^Ship:
-	AppearsOnRadar:
+	Inherits@1: ^ExistsInWorld
+	Inherits@2: ^GainsExperience
 	Mobile:
 		Crushes: crate
 		TerrainSpeeds:
@@ -457,45 +344,21 @@
 	Targetable:
 		TargetTypes: Ground, Water
 	HiddenUnderFog:
-	GainsExperience:
-		ChevronPalette: flashyeffectra
-		LevelUpPalette: flashyeffectra
-		Upgrades:
-			200: firepower, damage, speed, reload, inaccuracy, rank
-			400: firepower, damage, speed, reload, inaccuracy, rank
-			800: firepower, damage, speed, reload, inaccuracy, rank
-			1600: firepower, damage, speed, reload, inaccuracy, rank, eliteweapon, selfheal
 	GivesExperience:
 	DrawLineToTarget:
 	ActorLostNotification:
 	AttackMove:
-	CombatDebugOverlay:
 	Guard:
 	Guardable:
 	BodyOrientation:
-	UpdatesPlayerStatistics:
-	Huntable:
-	ScriptTriggers:
+	RenderSprites:
+	AutoSelectionSize:
 	Voiced:
 		VoiceSet: VehicleVoice
-	FirepowerMultiplier@EXPERIENCE:
-		Modifier: 110, 115, 120, 130
-		UpgradeTypes: firepower
-	DamageMultiplier@EXPERIENCE:
-		Modifier: 91, 87, 83, 65
-		UpgradeTypes: damage
-	SpeedMultiplier@EXPERIENCE:
-		Modifier: 110, 115, 120, 150
-		UpgradeTypes: speed
-	ReloadDelayMultiplier@EXPERIENCE:
-		Modifier: 95, 90, 85, 75
-		UpgradeTypes: reload
-	InaccuracyMultiplier@EXPERIENCE:
-		Modifier: 90, 80, 70, 50
-		UpgradeTypes: inaccuracy
 
 ^Building:
-	AppearsOnRadar:
+	Inherits@1: ^ExistsInWorld
+	Inherits@2: ^SpriteActor
 	SelectionDecorations:
 	Selectable:
 		Priority: 3
@@ -518,29 +381,19 @@
 		Delay: 1
 		Palette: flashyeffect
 	EmitInfantryOnSell:
-		ActorTypes: e6,e1
+		ActorTypes: e1
 	GivesExperience:
 	CaptureNotification:
 		Notification: BuildingCaptured
 		NewOwnerVoice: no
 	ActorLostNotification:
 		Notification: BuildingLost
-	EditorAppearance:
-		RelativeToTopLeft: yes
 	ShakeOnDeath:
-	CombatDebugOverlay:
 	Guardable:
 		Range: 3c0
-	BodyOrientation:
 	FrozenUnderFog:
-	UpdatesPlayerStatistics:
-	Huntable:
 	Demolishable:
-	ScriptTriggers:
 	WithMakeAnimation:
-	QuantizeFacingsFromSequence:
-	RenderSprites:
-	AutoSelectionSize:
 
 ^BaseBuilding:
 	Inherits: ^Building
@@ -566,18 +419,14 @@
 	Armor:
 		Type: Wood
 	Building:
-	WithSpriteBody:
 	Tooltip:
 		Name: Civilian Building
 		GenericVisibility: None
 	FrozenUnderFog:
 		StartsRevealed: true
 	ProvidesPrerequisite@buildingname:
-	QuantizeFacingsFromSequence:
 	RenderSprites:
 		Palette: terrain
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 ^CivBuildingHusk:
 	AppearsOnRadar:
@@ -585,8 +434,6 @@
 		Dimensions: 1,1
 		Footprint: x
 	WithSpriteBody:
-	EditorAppearance:
-		RelativeToTopLeft: yes
 	Tooltip:
 		Name: Civilian Building (Destroyed)
 		GenericVisibility: None
@@ -595,7 +442,6 @@
 		StartsRevealed: true
 	ScriptTriggers:
 	WithMakeAnimation:
-	QuantizeFacingsFromSequence:
 	RenderSprites:
 		Palette: terrain
 	AutoSelectionSize:
@@ -621,39 +467,32 @@
 	-WithBuildingExplosion:
 	-Targetable:
 	-Demolishable:
-	WithSpriteBody:
-	EditorAppearance:
-		UseTerrainPalette: true
 	WithMakeAnimation:
 	QuantizeFacingsFromSequence:
 	RenderSprites:
 		Palette: terrain
 	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 ^CivFieldHusk:
 	AppearsOnRadar:
 	Building:
 		Dimensions: 1,1
 		Footprint: _
-	EditorAppearance:
-		RelativeToTopLeft: yes
 	Tooltip:
 		Name: Field (Destroyed)
 		GenericVisibility: None
 	BodyOrientation:
 	WithSpriteBody:
-	FrozenUnderFog:
-		StartsRevealed: true
+	HiddenUnderShroud:
 	ScriptTriggers:
 	WithMakeAnimation:
 	QuantizeFacingsFromSequence:
 	RenderSprites:
 		Palette: terrain
 	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 ^Wall:
+	Inherits@1: ^SpriteActor
 	AppearsOnRadar:
 	Building:
 		Dimensions: 1,1
@@ -666,7 +505,6 @@
 	Crushable:
 		CrushClasses: wall
 		CrushedByFriendlies: true
-	BlocksProjectiles:
 	LineBuild:
 		Range: 8
 		NodeTypes: wall
@@ -674,21 +512,17 @@
 		Types: wall
 	WithWallSpriteBody:
 	GivesExperience:
-	EditorAppearance:
-		RelativeToTopLeft: yes
 	AutoTargetIgnore:
 	Sellable:
 		SellSounds: cashturn.aud
 	Guardable:
-	BodyOrientation:
 	FrozenUnderFog:
 	ScriptTriggers:
-	QuantizeFacingsFromSequence:
 	RenderSprites:
 		Palette: staticterrain
-	AutoSelectionSize:
 
 ^Tree:
+	Inherits@3: ^SpriteActor
 	Tooltip:
 		Name: Tree
 	WithSpriteBody:
@@ -698,28 +532,22 @@
 	AppearsOnRadar:
 	RadarColorFromTerrain:
 		Terrain: Tree
-	EditorAppearance:
-		RelativeToTopLeft: yes
-	Health:
-		HP: 500
-	WithDeathAnimation:
-		DeathSequence: dead
-		UseDeathTypeSuffix: false
-	Armor:
-		Type: Wood
+#	Health:
+#		HP: 500
+#	WithDeathAnimation:
+#		DeathSequence: dead
+#		UseDeathTypeSuffix: false
+#	Armor:
+#		Type: Wood
 	AutoTargetIgnore:
-	BodyOrientation:
-	FrozenUnderFog:
-		StartsRevealed: true
+	HiddenUnderShroud:
 	ScriptTriggers:
 	WithMakeAnimation:
-	QuantizeFacingsFromSequence:
 	RenderSprites:
 		Palette: staticterrain
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 ^TibTree:
+	Inherits@1: ^SpriteActor
 	Tooltip:
 		Name: Blossom Tree
 	WithSpriteBody:
@@ -729,18 +557,13 @@
 	AppearsOnRadar:
 	RadarColorFromTerrain:
 		Terrain: Tiberium
-	EditorAppearance:
-	BodyOrientation:
-	FrozenUnderFog:
-		StartsRevealed: true
+	HiddenUnderShroud:
 	WithMakeAnimation:
-	QuantizeFacingsFromSequence:
 	RenderSprites:
 		Palette: staticterrain
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
 ^Rock:
+	Inherits@1: ^SpriteActor
 	Tooltip:
 		Name: Rock
 	WithSpriteBody:
@@ -750,56 +573,58 @@
 	AppearsOnRadar:
 	RadarColorFromTerrain:
 		Terrain: Tree
-	EditorAppearance:
-		RelativeToTopLeft: yes
-	BodyOrientation:
-	FrozenUnderFog:
-		StartsRevealed: true
+	HiddenUnderShroud:
 	ScriptTriggers:
 	WithMakeAnimation:
-	QuantizeFacingsFromSequence:
 	RenderSprites:
 		Palette: staticterrain
-	AutoSelectionSize:
-	QuantizeFacingsFromSequence:
 
-^Husk:
+^CommonHuskDefaults:
+	Inherits@1: ^SpriteActor
 	Health:
 		HP: 140
 	Armor:
 		Type: Light
+	HiddenUnderFog:
+		Type: CenterPosition
+	AutoTargetIgnore:
+	WithFacingSpriteBody:
+
+^Husk:
+	Inherits: ^CommonHuskDefaults
 	Husk:
 		AllowedTerrain: Clear, Rough, Road, Tiberium, BlueTiberium, Beach
-	HiddenUnderFog:
 	Burns:
 		Interval: 2
 	Targetable:
 		RequiresForceFire: yes
-		TargetTypes: Ground
-	AutoTargetIgnore:
+		TargetTypes: Ground, Husk
 	Capturable:
 		Type: husk
 		AllowAllies: yes
 		CaptureThreshold: 1.0
 	TransformOnCapture:
 		ForceHealthPercentage: 25
-	BodyOrientation:
+	Tooltip:
+		GenericName: Destroyed Vehicle
 	DisabledOverlay:
 	ScriptTriggers:
+	Explodes:
+		Weapon: UnitExplodeSmall
+		EmptyWeapon: UnitExplodeSmall
 
 ^HelicopterHusk:
-	Inherits: ^Husk
-	-Husk:
-	-Burns:
+	Inherits: ^CommonHuskDefaults
+	WithShadow:
 	FallsToEarth:
 		Spins: True
 		Moves: False
 		Explosion: HeliCrash
-	-Capturable:
-	-TransformOnCapture:
-	-Targetable:
+	Tooltip:
+		GenericName: Destroyed Helicopter
 
 ^Bridge:
+	AlwaysVisible:
 	Tooltip:
 		Name: Bridge
 	Targetable:
@@ -810,10 +635,11 @@
 	SoundOnDamageTransition:
 		DamagedSounds: xplomed1.aud
 		DestroyedSounds: crmble2.aud
-	BodyOrientation:
 	ScriptTriggers:
 
 ^Crate:
+	Inherits@1: ^SpriteActor
+	HiddenUnderShroud:
 	Tooltip:
 		Name: Crate
 		GenericName: Crate
@@ -826,6 +652,4 @@
 	Selectable:
 		Selectable: false
 		Bounds: 15,15,-1,-1
-	BodyOrientation:
-	QuantizeFacingsFromSequence:
 
