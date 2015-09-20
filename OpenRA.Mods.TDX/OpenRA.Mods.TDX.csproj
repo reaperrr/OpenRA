@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Effects\BallisticMissile.cs" />
+    <Compile Include="Effects\MissileEX.cs" />
     <Compile Include="Traits\WorldPaletteEffect.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
