@@ -38,7 +38,7 @@ FACT:
 		ProductionType: Defense
 	BaseProvider:
 		Cooldown: 75
-		Range: 14
+		Range: 14c0
 	WithBuildingPlacedAnimation:
 	Power:
 		Amount: 0
@@ -403,7 +403,7 @@ HQ:
 	ProvidesRadar:
 	RenderDetectionCircle:
 	DetectCloaked:
-		Range: 3
+		Range: 3c0
 	AirstrikePower:
 		Prerequisites: ~techlevel.superweapons
 		Icon: airstrike
@@ -483,7 +483,7 @@ EYE:
 	ProvidesRadar:
 	RenderDetectionCircle:
 	DetectCloaked:
-		Range: 5
+		Range: 5c0
 	IonCannonPower:
 		Prerequisites: ~techlevel.superweapons
 		Icon: ioncannon
@@ -612,7 +612,7 @@ GUN:
 	RenderRangeCircle:
 	RenderDetectionCircle:
 	DetectCloaked:
-		Range: 2
+		Range: 2c0
 	Power:
 		Amount: -20
 	-MustBeDestroyed:
@@ -702,7 +702,7 @@ OBLI:
 	-EmitInfantryOnSell:
 	RenderDetectionCircle:
 	DetectCloaked:
-		Range: 2
+		Range: 2c0
 	Power:
 		Amount: -150
 	-MustBeDestroyed:
@@ -739,7 +739,7 @@ GTWR:
 		QuantizedFacings: 16
 	AutoTarget:
 	DetectCloaked:
-		Range: 2
+		Range: 2c0
 	RenderDetectionCircle:
 	RenderRangeCircle:
 	WithMuzzleFlash:
@@ -790,7 +790,7 @@ ATWR:
 		QuantizedFacings: 8
 	RenderDetectionCircle:
 	DetectCloaked:
-		Range: 5
+		Range: 5c0
 	RenderRangeCircle:
 	Power:
 		Amount: -40
