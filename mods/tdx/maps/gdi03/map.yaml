@@ -832,8 +832,11 @@ Rules:
 		Tooltip:
 			Description: Provides an overview of the battlefield.\n  Requires power to operate.
 		-AirstrikePower:
-		RenderBuilding:
+		WithSpriteBody:
+		QuantizeFacingsFromSequence:
+		RenderSprites:
 			Image: hq
+		AutoSelectionSize:
 	airstrike.proxy:
 		AirstrikePower:
 			Icon: airstrike

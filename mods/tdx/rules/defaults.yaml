@@ -189,8 +189,13 @@
 	GivesExperience:
 	DrawLineToTarget:
 	ActorLostNotification:
-	SpawnViceroid:
+	SpawnActorOnDeath:
 		Probability: 10
+		Actor: vice
+		OwnerType: InternalName
+		InternalOwner: Creeps
+		DeathType: TiberiumDeath
+		RequiresLobbyCreeps: true
 	Crushable:
 		WarnProbability: 50
 		CrushSound: squish2.aud
@@ -233,6 +238,8 @@
 	MustBeDestroyed:
 	Voiced:
 		VoiceSet: GenericVoice
+	QuantizeFacingsFromSequence:
+		Sequence: stand
 
 ^CivInfantry:
 	Inherits: ^Infantry
@@ -265,6 +272,8 @@
 		CrushSound: squish2.aud
 	Voiced:
 		VoiceSet: CivilianMaleVoice
+	QuantizeFacingsFromSequence:
+		Sequence: stand
 
 ^DINO:
 	AppearsOnRadar:
@@ -313,6 +322,8 @@
 		UseDeathTypeSuffix: false
 	Voiced:
 		VoiceSet: DinoVoice
+	QuantizeFacingsFromSequence:
+		Sequence: stand
 
 ^Plane:
 	AppearsOnRadar:
@@ -385,7 +396,7 @@
 	SoundOnDamageTransition:
 		DamagedSounds: xplos.aud
 		DestroyedSounds: crumble.aud
-	RenderBuilding:
+	WithSpriteBody:
 	WithBuildingExplosion:
 		Delay: 1
 		Palette: flashyeffect
@@ -410,6 +421,9 @@
 	Demolishable:
 	ScriptTriggers:
 	WithMakeAnimation:
+	QuantizeFacingsFromSequence:
+	RenderSprites:
+	AutoSelectionSize:
 
 ^BaseBuilding:
 	Inherits: ^Building
@@ -435,22 +449,24 @@
 	Armor:
 		Type: Wood
 	Building:
-	RenderBuilding:
-		Palette: terrain
+	WithSpriteBody:
 	Tooltip:
 		Name: Civilian Building
 		GenericVisibility: None
 	FrozenUnderFog:
 		StartsRevealed: true
 	ProvidesPrerequisite@buildingname:
+	QuantizeFacingsFromSequence:
+	RenderSprites:
+		Palette: terrain
+	AutoSelectionSize:
 
 ^CivBuildingHusk:
 	AppearsOnRadar:
 	Building:
 		Dimensions: 1,1
 		Footprint: x
-	RenderBuilding:
-		Palette: terrain
+	WithSpriteBody:
 	EditorAppearance:
 		RelativeToTopLeft: yes
 	Tooltip:
@@ -461,6 +477,10 @@
 		StartsRevealed: true
 	ScriptTriggers:
 	WithMakeAnimation:
+	QuantizeFacingsFromSequence:
+	RenderSprites:
+		Palette: terrain
+	AutoSelectionSize:
 
 ^TechBuilding:
 	Inherits: ^CivBuilding
@@ -482,11 +502,14 @@
 	-WithBuildingExplosion:
 	-Targetable:
 	-Demolishable:
-	RenderBuilding:
-		Palette: terrain
+	WithSpriteBody:
 	EditorAppearance:
 		UseTerrainPalette: true
 	WithMakeAnimation:
+	QuantizeFacingsFromSequence:
+	RenderSprites:
+		Palette: terrain
+	AutoSelectionSize:
 
 ^CivFieldHusk:
 	AppearsOnRadar:
@@ -499,12 +522,15 @@
 		Name: Field (Destroyed)
 		GenericVisibility: None
 	BodyOrientation:
-	RenderBuilding:
-		Palette: terrain
+	WithSpriteBody:
 	FrozenUnderFog:
 		StartsRevealed: true
 	ScriptTriggers:
 	WithMakeAnimation:
+	QuantizeFacingsFromSequence:
+	RenderSprites:
+		Palette: terrain
+	AutoSelectionSize:
 
 ^Wall:
 	AppearsOnRadar:
@@ -525,8 +551,7 @@
 		NodeTypes: wall
 	LineBuildNode:
 		Types: wall
-	RenderBuildingWall:
-		Palette: staticterrain
+	WithWallSpriteBody:
 	GivesExperience:
 	EditorAppearance:
 		RelativeToTopLeft: yes
@@ -537,12 +562,15 @@
 	BodyOrientation:
 	FrozenUnderFog:
 	ScriptTriggers:
+	QuantizeFacingsFromSequence:
+	RenderSprites:
+		Palette: staticterrain
+	AutoSelectionSize:
 
 ^Tree:
 	Tooltip:
 		Name: Tree
-	RenderBuilding:
-		Palette: staticterrain
+	WithSpriteBody:
 	Building:
 		Footprint: __ x_
 		Dimensions: 2,2
@@ -564,12 +592,15 @@
 		StartsRevealed: true
 	ScriptTriggers:
 	WithMakeAnimation:
+	QuantizeFacingsFromSequence:
+	RenderSprites:
+		Palette: staticterrain
+	AutoSelectionSize:
 
 ^TibTree:
 	Tooltip:
 		Name: Blossom Tree
-	RenderBuilding:
-		Palette: staticterrain
+	WithSpriteBody:
 	Building:
 		Footprint: x
 		Dimensions: 1,1
@@ -581,12 +612,15 @@
 	FrozenUnderFog:
 		StartsRevealed: true
 	WithMakeAnimation:
+	QuantizeFacingsFromSequence:
+	RenderSprites:
+		Palette: staticterrain
+	AutoSelectionSize:
 
 ^Rock:
 	Tooltip:
 		Name: Rock
-	RenderBuilding:
-		Palette: staticterrain
+	WithSpriteBody:
 	Building:
 		Footprint: __ x_
 		Dimensions: 2,2
@@ -600,6 +634,10 @@
 		StartsRevealed: true
 	ScriptTriggers:
 	WithMakeAnimation:
+	QuantizeFacingsFromSequence:
+	RenderSprites:
+		Palette: staticterrain
+	AutoSelectionSize:
 
 ^Husk:
 	Health:
@@ -665,4 +703,5 @@
 		Selectable: false
 		Bounds: 15,15,-1,-1
 	BodyOrientation:
+	QuantizeFacingsFromSequence:
 

@@ -161,19 +161,22 @@ SILO:
 		Range: 3c0
 	Bib:
 		HasMinibib: Yes
-	RenderBuildingSilo:
+	WithSiloAnimation:
 	StoresResources:
 		PipCount: 10
 		PipColor: Green
 		Capacity: 3000
 	Selectable:
 		Bounds: 49,30
-	-RenderBuilding:
 	-EmitInfantryOnSell:
 	Power:
 		Amount: -10
 	-MustBeDestroyed:
 	ProvidesPrerequisite@buildingname:
+	QuantizeFacingsFromSequence:
+	RenderSprites:
+	WithSpriteBody:
+	AutoSelectionSize:
 
 PYLE:
 	Inherits: ^BaseBuilding
@@ -272,7 +275,7 @@ AFLD:
 		Range: 7c0
 	Bib:
 	RallyPoint:
-		RallyPoint: 4,2
+		Offset: 4,2
 	Exit@1:
 		SpawnOffset: -1024,0,0
 		ExitCell: 3,1
@@ -310,9 +313,9 @@ WEAP:
 	RevealsShroud:
 		Range: 4c0
 	Bib:
-	RenderBuilding:
+	WithSpriteBody:
 	RallyPoint:
-		RallyPoint: 0,3
+		Offset: 0,3
 	Exit@1:
 		SpawnOffset: -341,-341,0
 		ExitCell: 0,2
@@ -329,6 +332,9 @@ WEAP:
 	WithProductionDoorOverlay:
 		Sequence: build-top
 	ProvidesPrerequisite@buildingname:
+	QuantizeFacingsFromSequence:
+	RenderSprites:
+	AutoSelectionSize:
 
 HPAD:
 	Inherits: ^BaseBuilding
@@ -393,7 +399,7 @@ HQ:
 	RequiresPower:
 	CanPowerDown:
 	DisabledOverlay:
-	RenderBuilding:
+	WithSpriteBody:
 		PauseOnLowPower: yes
 	Health:
 		HP: 700
@@ -425,6 +431,9 @@ HQ:
 	Power:
 		Amount: -40
 	ProvidesPrerequisite@buildingname:
+	QuantizeFacingsFromSequence:
+	RenderSprites:
+	AutoSelectionSize:
 
 FIX:
 	Inherits: ^BaseBuilding
@@ -473,7 +482,7 @@ EYE:
 	RequiresPower:
 	CanPowerDown:
 	DisabledOverlay:
-	RenderBuilding:
+	WithSpriteBody:
 		PauseOnLowPower: yes
 	Health:
 		HP: 1000
@@ -501,6 +510,9 @@ EYE:
 	Power:
 		Amount: -200
 	ProvidesPrerequisite@buildingname:
+	QuantizeFacingsFromSequence:
+	RenderSprites:
+	AutoSelectionSize:
 
 TMPL:
 	Inherits: ^BaseBuilding
@@ -599,7 +611,7 @@ GUN:
 	Turreted:
 		ROT: 12
 		InitialFacing: 50
-	RenderBuildingTurreted:
+	WithTurretedSpriteBody:
 	Armament:
 		Weapon: TurretGun
 		LocalOffset: 512,0,112
@@ -607,7 +619,7 @@ GUN:
 	AttackTurreted:
 	WithMuzzleFlash:
 	AutoTarget:
-	-RenderBuilding:
+	-WithSpriteBody:
 	-WithDeathAnimation:
 	RenderRangeCircle:
 	RenderDetectionCircle:
@@ -617,6 +629,9 @@ GUN:
 		Amount: -20
 	-MustBeDestroyed:
 	ProvidesPrerequisite@buildingname:
+	QuantizeFacingsFromSequence:
+	RenderSprites:
+	AutoSelectionSize:
 
 SAM:
 	Inherits: ^BaseBuilding
@@ -646,19 +661,22 @@ SAM:
 	Turreted:
 		ROT: 10
 		InitialFacing: 0
-	RenderBuildingTurreted:
+	WithTurretedSpriteBody:
 	Armament:
 		Weapon: SAMMissile
 		MuzzleSequence: muzzle
 	AttackPopupTurreted:
 	WithMuzzleFlash:
 	AutoTarget:
-	-RenderBuilding:
+	-WithSpriteBody:
 	RenderRangeCircle:
 	Power:
 		Amount: -20
 	-MustBeDestroyed:
 	ProvidesPrerequisite@buildingname:
+	QuantizeFacingsFromSequence:
+	RenderSprites:
+	AutoSelectionSize:
 
 OBLI:
 	Inherits: ^BaseBuilding
@@ -687,8 +705,7 @@ OBLI:
 		Range: 8c0
 	Bib:
 		HasMinibib: Yes
-	RenderBuildingCharge:
-		ChargeAudio: obelpowr.aud
+	WithChargeAnimation:
 	Armament:
 		Weapon: Laser
 		LocalOffset: 0,0,725
@@ -697,7 +714,7 @@ OBLI:
 		ReloadTime: 40
 		InitialChargeDelay: 50
 	AutoTarget:
-	-RenderBuilding:
+	-WithSpriteBody:
 	RenderRangeCircle:
 	-EmitInfantryOnSell:
 	RenderDetectionCircle:
@@ -707,6 +724,10 @@ OBLI:
 		Amount: -150
 	-MustBeDestroyed:
 	ProvidesPrerequisite@buildingname:
+	QuantizeFacingsFromSequence:
+	RenderSprites:
+		ChargeAudio: obelpowr.aud
+	AutoSelectionSize:
 
 GTWR:
 	Inherits: ^BaseBuilding
@@ -821,8 +842,11 @@ SBAG:
 		NodeTypes: sandbag
 	LineBuildNode:
 		Types: sandbag
-	RenderBuildingWall:
+	WithWallSpriteBody:
 		Type: sandbag
+	QuantizeFacingsFromSequence:
+	RenderSprites:
+	AutoSelectionSize:
 
 CYCL:
 	Inherits: ^Wall
@@ -848,8 +872,11 @@ CYCL:
 		NodeTypes: chain
 	LineBuildNode:
 		Types: chain
-	RenderBuildingWall:
+	WithWallSpriteBody:
 		Type: chain
+	QuantizeFacingsFromSequence:
+	RenderSprites:
+	AutoSelectionSize:
 
 BRIK:
 	Inherits: ^Wall
@@ -878,8 +905,11 @@ BRIK:
 		NodeTypes: concrete
 	LineBuildNode:
 		Types: concrete
-	RenderBuildingWall:
+	WithWallSpriteBody:
 		Type: concrete
+	QuantizeFacingsFromSequence:
+	RenderSprites:
+	AutoSelectionSize:
 
 BARRACKS:
 	Tooltip:

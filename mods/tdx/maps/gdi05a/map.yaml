@@ -815,8 +815,13 @@ Rules:
 			GenericVisibility: Enemy
 			ShowOwnerRow: false
 	^Infantry:
-		SpawnViceroid:
+		SpawnActorOnDeath:
 			Probability: 0
+			Actor: vice
+			OwnerType: InternalName
+			InternalOwner: Creeps
+			DeathType: TiberiumDeath
+			RequiresLobbyCreeps: true
 		Tooltip:
 			GenericVisibility: Enemy
 			ShowOwnerRow: false

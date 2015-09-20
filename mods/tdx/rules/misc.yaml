@@ -44,9 +44,12 @@ waypoint:
 
 ^fact.colorpicker:
 	Inherits: FACT
-	RenderBuilding:
+	WithSpriteBody:
+	QuantizeFacingsFromSequence:
+	RenderSprites:
 		Image: fact
 		Palette: colorpicker
+	AutoSelectionSize:
 
 CAMERA:
 	Immobile:

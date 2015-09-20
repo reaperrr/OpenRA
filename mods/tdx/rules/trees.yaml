@@ -7,17 +7,19 @@ SPLIT2:
 
 SPLIT3:
 	Inherits: ^TibTree
-	RenderBuilding:
-		Image: split2
+	WithSpriteBody:
 	SeedsResource:
 		ResourceType: Tiberium
 		Interval: 55
 	WithActiveAnimation:
+	QuantizeFacingsFromSequence:
+	RenderSprites:
+		Image: split2
+	AutoSelectionSize:
 
 SPLITBLUE:
 	Inherits: ^TibTree
-	RenderBuilding:
-		Image: split3
+	WithSpriteBody:
 	SeedsResource:
 		ResourceType: BlueTiberium
 		Interval: 110
@@ -26,6 +28,10 @@ SPLITBLUE:
 		Name: Blossom Tree (blue)
 	RadarColorFromTerrain:
 		Terrain: BlueTiberium
+	QuantizeFacingsFromSequence:
+	RenderSprites:
+		Image: split3
+	AutoSelectionSize:
 
 ROCK1:
 	Inherits: ^Rock
