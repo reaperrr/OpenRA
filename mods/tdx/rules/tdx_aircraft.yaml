@@ -15,6 +15,7 @@ HIND:
 		RearmBuildings: hpad
 		ROT: 4
 		Speed: 171
+		AirborneUpgrades: airborne
 	Health:
 		HP: 225
 	Armor:
@@ -63,6 +64,7 @@ HIND.Husk:
 	Helicopter:
 		ROT: 4
 		Speed: 171
+		AirborneUpgrades: airborne
 	RevealsShroud:
 		Range: 10c0
 	WithRotor:

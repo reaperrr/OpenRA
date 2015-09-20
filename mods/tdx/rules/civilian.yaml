@@ -387,7 +387,7 @@ BRIDGEHUT:
 		Bounds: 48,48
 		Priority: 2
 	BridgeHut:
-	TargetableBuilding:
+	Targetable:
 		TargetTypes: BridgeHut, C4
 
 C1:
@@ -460,7 +460,7 @@ VICE:
 			BlueTiberium: 100
 			Beach: 60
 	Selectable:
-	TargetableUnit:
+	Targetable:
 		TargetTypes: Ground
 	AutoTarget:
 		ScanRadius: 5

@@ -9,7 +9,7 @@
 		NightLength: 1500
 	CloakPaletteEffect:
 	NukePaletteEffect:
-	WaterPaletteRotation:
+	RotationPaletteEffect:
 		ExcludePalettes: flashyeffectra, flashyeffect, effect, effectra, raplayer, staticplayer
 	PaletteFromCurrentTileset@terrain:
 		Name: terrain

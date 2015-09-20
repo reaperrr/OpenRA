@@ -585,7 +585,7 @@ STNK:
 	RenderUnit:
 	AutoTarget:
 		InitialStance: HoldFire
-	TargetableUnit:
+	Targetable:
 	Explodes:
 		Weapon: UnitExplodeSmall
 		EmptyWeapon: UnitExplodeSmall

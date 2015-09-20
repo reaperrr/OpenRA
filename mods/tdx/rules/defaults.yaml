@@ -12,7 +12,7 @@
 		ROT: 5
 	SelectionDecorations:
 	Selectable:
-	TargetableUnit:
+	Targetable:
 		TargetTypes: Ground, Vehicle
 	Repairable:
 	Passenger:
@@ -60,7 +60,7 @@
 		ROT: 5
 	SelectionDecorations:
 	Selectable:
-	TargetableUnit:
+	Targetable:
 		TargetTypes: Ground, Vehicle
 	Repairable:
 	Passenger:
@@ -100,15 +100,17 @@
 ^Helicopter:
 	AppearsOnRadar:
 		UseLocation: yes
-	TargetableAircraft:
+	Targetable@AIRBORNE:
 		TargetTypes: Air
-		GroundedTargetTypes: Ground
+		UpgradeTypes: airborne
+		UpgradeMinEnabledLevel: 1
 	SelectionDecorations:
 	Selectable:
 	Helicopter:
 		RepairBuildings: fix
 		RearmBuildings: hpad
 		LandWhenIdle: false
+		AirborneUpgrades: airborne
 	HiddenUnderFog:
 	GainsExperience:
 		ChevronPalette: flashyeffectra
@@ -132,6 +134,10 @@
 	UpgradeManager:
 	Voiced:
 		VoiceSet: VehicleVoice
+	Targetable@GROUND:
+		TargetTypes: Ground
+		UpgradeTypes: airborne
+		UpgradeMaxEnabledLevel: 0
 
 ^Infantry:
 	AppearsOnRadar:
@@ -158,7 +164,7 @@
 	SelectionDecorations:
 	Selectable:
 		Bounds: 12,17,0,-6
-	TargetableUnit:
+	Targetable:
 		TargetTypes: Ground, Infantry
 	TakeCover:
 		SpeedModifier: 60
@@ -284,7 +290,7 @@
 			BlueTiberium: 70
 			Beach: 80
 	Selectable:
-	TargetableUnit:
+	Targetable:
 		TargetTypes: Ground, Infantry
 	HiddenUnderFog:
 	GivesExperience:
@@ -313,7 +319,7 @@
 		UseLocation: yes
 	SelectionDecorations:
 	Selectable:
-	TargetableUnit:
+	Targetable:
 		TargetTypes: Air
 	HiddenUnderFog:
 	GainsExperience:
@@ -339,7 +345,7 @@
 			Water: 100
 	SelectionDecorations:
 	Selectable:
-	TargetableUnit:
+	Targetable:
 		TargetTypes: Ground, Water
 	HiddenUnderFog:
 	GainsExperience:
@@ -365,7 +371,7 @@
 	SelectionDecorations:
 	Selectable:
 		Priority: 3
-	TargetableBuilding:
+	Targetable:
 		TargetTypes: Ground, C4, Structure
 	Armor:
 		Type: Wood
@@ -474,7 +480,7 @@
 	Tooltip:
 		Name: Field
 	-WithBuildingExplosion:
-	-TargetableBuilding:
+	-Targetable:
 	-Demolishable:
 	RenderBuilding:
 		Palette: terrain
@@ -508,7 +514,7 @@
 		BuildSounds: hvydoor1.aud
 		Adjacent: 7
 		TerrainTypes: Clear,Road
-	TargetableBuilding:
+	Targetable:
 		TargetTypes: Ground, Wall
 	Crushable:
 		CrushClasses: wall
@@ -605,7 +611,7 @@
 	HiddenUnderFog:
 	Burns:
 		Interval: 2
-	TargetableUnit:
+	Targetable:
 		RequiresForceFire: yes
 		TargetTypes: Ground
 	AutoTargetIgnore:
@@ -629,12 +635,12 @@
 		Explosion: HeliCrash
 	-Capturable:
 	-TransformOnCapture:
-	-TargetableUnit:
+	-Targetable:
 
 ^Bridge:
 	Tooltip:
 		Name: Bridge
-	TargetableBuilding:
+	Targetable:
 		RequiresForceFire: yes
 		TargetTypes: Ground, Water
 	Health:
