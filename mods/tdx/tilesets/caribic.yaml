@@ -2,7 +2,6 @@ General:
 	Name: Caribic
 	Id: CARIBIC
 	Palette: caribic.pal
-	WaterPaletteRotationBase: 32
 	EditorTemplateOrder: Terrain, Debris, Road, Cliffs, Beach, River, Bridge
 
 Terrain:

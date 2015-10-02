@@ -7,11 +7,6 @@ Container@MAINMENU:
 			Y: 0 - 15
 			Width: WINDOW_RIGHT + 30
 			Height: WINDOW_BOTTOM + 30
-#		Image@LOGO:
-#			X: WINDOW_RIGHT - 296
-#			Y: 30
-#			ImageCollection: logos
-#			ImageName: logo
 		Image@LOGO:
 			X: ((WINDOW_RIGHT - 512) / 2) - 240
 			Y: 0 - 64
