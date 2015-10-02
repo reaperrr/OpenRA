@@ -40,8 +40,8 @@ Players:
 		Playable: True
 		AllowBots: False
 		Required: True
-		LockRace: True
-		Race: gdi
+		LockFaction: True
+		Faction: gdi
 		LockColor: True
 		ColorRamp: 31,222,183
 		LockSpawn: True
@@ -50,7 +50,7 @@ Players:
 		Enemies: Nod
 	PlayerReference@Nod:
 		Name: Nod
-		Race: nod
+		Faction: nod
 		ColorRamp: 3,255,127
 		Allies: Nod
 		Enemies: GDI
@@ -58,12 +58,7 @@ Players:
 		Name: Neutral
 		OwnsWorld: True
 		NonCombatant: True
-		Race: gdi
-	PlayerReference@Creeps:
-		Name: Creeps
-		NonCombatant: True
-		Race: Random
-		Enemies: Nod, GDI
+		Faction: gdi
 
 Actors:
 	Actor0: sbag
@@ -313,7 +308,7 @@ Actors:
 	Actor83: nuke
 		Location: 53,52
 		Owner: GDI
-		Health: 3
+		Health: 2
 	Actor85: bggy
 		Location: 52,39
 		Owner: Nod
@@ -655,6 +650,8 @@ Rules:
 			Scripts: gdi02.lua
 		ObjectivesPanel:
 			PanelName: MISSION_OBJECTIVES
+		MusicPlaylist:
+			StartingMusic: befeared
 	Player:
 		-ConquestVictoryConditions:
 		MissionObjectives:
@@ -779,6 +776,8 @@ Sequences:
 			Start: 0
 			Facings: 1
 			ZOffset: -1024
+		icon: lsticnh.tem
+			AddExtension: False
 
 VoxelSequences:
 

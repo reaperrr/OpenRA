@@ -27,6 +27,7 @@ Videos:
 
 Options:
 	Crates: False
+	Creeps: False
 	Fog: True
 	Shroud: True
 	AllyBuildRadius: False
@@ -39,7 +40,7 @@ Options:
 Players:
 	PlayerReference@Nod:
 		Name: Nod
-		Race: nod
+		Faction: nod
 		ColorRamp: 3,255,127
 		Allies: Nod
 		Enemies: GDI
@@ -48,8 +49,8 @@ Players:
 		Playable: True
 		AllowBots: False
 		Required: True
-		LockRace: True
-		Race: gdi
+		LockFaction: True
+		Faction: gdi
 		LockColor: True
 		ColorRamp: 31,222,183
 		LockSpawn: True
@@ -60,17 +61,12 @@ Players:
 		Name: AbandonedBase
 		NonCombatant: True
 		ColorRamp: 31,222,183
-		Race: gdi
+		Faction: gdi
 	PlayerReference@Neutral:
 		Name: Neutral
 		OwnsWorld: True
 		NonCombatant: True
-		Race: gdi
-	PlayerReference@Creeps:
-		Name: Creeps
-		NonCombatant: True
-		Race: Random
-		Enemies: Nod, GDI
+		Faction: gdi
 
 Actors:
 	Actor0: sbag
@@ -797,6 +793,8 @@ Rules:
 			Scripts: gdi05a.lua
 		ObjectivesPanel:
 			PanelName: MISSION_OBJECTIVES
+		MusicPlaylist:
+			StartingMusic: rain
 	Player:
 		-ConquestVictoryConditions:
 		MissionObjectives:
@@ -815,13 +813,6 @@ Rules:
 			GenericVisibility: Enemy
 			ShowOwnerRow: false
 	^Infantry:
-		SpawnActorOnDeath:
-			Probability: 0
-			Actor: vice
-			OwnerType: InternalName
-			InternalOwner: Creeps
-			DeathType: TiberiumDeath
-			RequiresLobbyCreeps: true
 		Tooltip:
 			GenericVisibility: Enemy
 			ShowOwnerRow: false
@@ -926,6 +917,7 @@ Rules:
 			Amount: 500
 			UseCashTick: yes
 	airstrike.proxy:
+		AlwaysVisible:
 		AirstrikePower:
 			Icon: airstrike
 			StartFullyCharged: True
@@ -952,7 +944,6 @@ Weapons:
 	Tiberium:
 		Warhead@1Dam: SpreadDamage
 			Damage: 4
-			DamageTypes: DeathType1
 
 Voices:
 

@@ -59,9 +59,9 @@ WorldLoaded = function()
 		Media.DisplayMessage(p.GetObjectiveDescription(id), "Objective failed")
 	end)
 
-	nodObjective = enemy.AddPrimaryObjective("Destroy all GDI troops")
-	gdiMainObjective = player.AddPrimaryObjective("Eliminate all Nod forces in the area")
-	gdiAirSupportObjective = player.AddSecondaryObjective("Destroy the SAM sites to receive air support")
+	nodObjective = enemy.AddPrimaryObjective("Destroy all GDI troops.")
+	gdiMainObjective = player.AddPrimaryObjective("Eliminate all Nod forces in the area.")
+	gdiAirSupportObjective = player.AddSecondaryObjective("Destroy the SAM sites to receive air support.")
 
 	Trigger.OnPlayerLost(player, function()
 		Media.PlaySpeechNotification(player, "Lose")

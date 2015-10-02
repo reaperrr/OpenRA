@@ -39,14 +39,14 @@ Players:
 		Name: Neutral
 		OwnsWorld: True
 		NonCombatant: True
-		Race: gdi
+		Faction: gdi
 	PlayerReference@Villagers:
 		Name: Villagers
 		NonCombatant: True
-		Race: gdi
+		Faction: gdi
 	PlayerReference@GDI:
 		Name: GDI
-		Race: gdi
+		Faction: gdi
 		ColorRamp: 31,222,183
 		Allies: Villagers
 		Enemies: Nod
@@ -55,18 +55,13 @@ Players:
 		Playable: True
 		AllowBots: False
 		Required: True
-		LockRace: True
-		Race: nod
+		LockFaction: True
+		Faction: nod
 		LockColor: True
 		ColorRamp: 3,255,127
 		LockSpawn: True
 		LockTeam: True
 		Enemies: GDI, Villagers
-	PlayerReference@Creeps:
-		Name: Creeps
-		NonCombatant: True
-		Race: Random
-		Enemies: Nod, GDI
 
 Actors:
 	Actor46: e1
@@ -289,11 +284,15 @@ Rules:
 			Scripts: nod01.lua
 		ObjectivesPanel:
 			PanelName: MISSION_OBJECTIVES
+		MusicPlaylist:
+			StartingMusic: nomercy
+			VictoryMusic: nod_win1
 	C10:
 		Tooltip:
 			Name: Nikoomba
 	^Bridge:
-		Invulnerable:
+		DamageMultiplier@INVULNERABLE:
+			Modifier: 0
 	^CivBuilding:
 		MustBeDestroyed:
 	^CivInfantry:

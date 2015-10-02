@@ -41,11 +41,10 @@ Players:
 		Name: Neutral
 		OwnsWorld: True
 		NonCombatant: True
-		Race: gdi
-		Enemies: Nod, GDI
+		Faction: gdi
 	PlayerReference@Nod:
 		Name: Nod
-		Race: nod
+		Faction: nod
 		ColorRamp: 3,255,127
 		Allies: Nod
 		Enemies: GDI, Civillians
@@ -54,8 +53,8 @@ Players:
 		Playable: True
 		AllowBots: False
 		Required: True
-		LockRace: True
-		Race: gdi
+		LockFaction: True
+		Faction: gdi
 		LockColor: True
 		ColorRamp: 31,222,183
 		LockSpawn: True
@@ -65,13 +64,8 @@ Players:
 	PlayerReference@Civillians:
 		Name: Civillians
 		NonCombatant: True
-		Race: gdi
+		Faction: gdi
 		Enemies: Nod
-	PlayerReference@Creeps:
-		Name: Creeps
-		NonCombatant: True
-		Race: Random
-		Enemies: Nod, GDI
 
 Actors:
 	Actor0: v17
@@ -786,6 +780,8 @@ Rules:
 			Scripts: gdi04c.lua
 		ObjectivesPanel:
 			PanelName: MISSION_OBJECTIVES
+		MusicPlaylist:
+			StartingMusic: ind
 	Player:
 		-ConquestVictoryConditions:
 		MissionObjectives:
@@ -830,7 +826,8 @@ Rules:
 		Health:
 			HP: 125
 	^Bridge:
-		Invulnerable:
+		DamageMultiplier@INVULNERABLE:
+			Modifier: 0
 
 Sequences:
 
@@ -844,7 +841,6 @@ Weapons:
 				None: 10
 				Light: 66
 				Heavy: 66
-			DamageTypes: DeathType1
 
 Voices:
 

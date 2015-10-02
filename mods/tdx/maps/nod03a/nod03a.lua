@@ -9,6 +9,7 @@ SendAttackWave = function(units, spawnPoint)
 end
 
 InsertNodUnits = function()
+	Media.PlaySpeechNotification(player, "Reinforce")
 	Reinforcements.Reinforce(player, NodUnits, { NodEntry.Location, NodRallyPoint.Location })
 	Trigger.AfterDelay(DateTime.Seconds(9), function()
 		Reinforcements.Reinforce(player, { "mcv" }, { NodEntry.Location, PlayerBase.Location })
@@ -37,9 +38,9 @@ WorldLoaded = function()
 		Media.PlaySpeechNotification(player, "Lose")
 	end)
 
-	gdiObjective = enemy.AddPrimaryObjective("Eliminate all Nod forces in the area")
-	nodObjective1 = player.AddPrimaryObjective("Capture the prison")
-	nodObjective2 = player.AddSecondaryObjective("Destroy all GDI forces")
+	gdiObjective = enemy.AddPrimaryObjective("Eliminate all Nod forces in the area.")
+	nodObjective1 = player.AddPrimaryObjective("Capture the prison.")
+	nodObjective2 = player.AddSecondaryObjective("Destroy all GDI forces.")
 
 	Trigger.OnCapture(TechCenter, function()
 		Trigger.AfterDelay(DateTime.Seconds(2), function()
