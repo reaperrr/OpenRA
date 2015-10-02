@@ -64,10 +64,6 @@ namespace OpenRA.Mods.Common.Effects
 		[Desc("Vertical rate of turn.")]
 		public readonly int VerticalRateOfTurn = 5;
 
-		[Desc("Distance in the current direction of movement over which to probe terrain heights",
-			"so as to evade crashing into terrain.")]
-		public readonly WDist Lookahead = WDist.FromCells(5);
-
 		[Desc("Run out of fuel after being activated this many ticks. Zero for unlimited fuel.")]
 		public readonly int RangeLimit = 0;
 
@@ -90,7 +86,7 @@ namespace OpenRA.Mods.Common.Effects
 		[SequenceReference("TrailImage")] public readonly string TrailSequence = "idle";
 
 		[Desc("Palette used to render the smoke sequence.")]
-		[PaletteReference] public readonly string TrailPalette = "effect";
+		[PaletteReference("TrailUsePlayerPalette")] public readonly string TrailPalette = "effect";
 
 		[Desc("Use the Player Palette to render the smoke sequence.")]
 		public readonly bool TrailUsePlayerPalette = false;
@@ -248,55 +244,47 @@ namespace OpenRA.Mods.Common.Effects
 			WVec move;
 			if (activated)
 			{
+				// If target is within range, keep speed constant and aim for the target.
+				// The speed needs to be kept constant to keep range computation relatively simple.
+
+				// If target is not within range, accelerate the projectile. If cruise altitudes
+				// are not used, aim for the target. If the cruise altitudes are used, aim for the
+				// target horizontally and for cruise altitude vertically.
+
 				// Target is considered in range if after an additional tick of accelerated motion
-				// the horizontal distance hLenNext from the target would be less than
-				// the radius loopRadius of the circle that the missile travels along when
+				// the horizontal distance from the target would be less than
+				// the diameter of the circle that the missile travels along when
 				// turning vertically at the maximum possible rate.
-				// This should work in most cases because the missile will have to make
-				// a 1/4 of a loop before hitting the target.
-				var loopRadius = 128L * 100 * speed / info.VerticalRateOfTurn / 314;
+				// This should work because in the worst case, the missile will have to make
+				// a semi-loop before hitting the target.
 
 				// Get underestimate of distance from target in next tick, so that inRange would
 				// become true a little sooner than the theoretical "in range" condition is met.
 				var hLenNext = (long)(hLenCurr - speed - info.Acceleration.Length).Clamp(0, hLenCurr);
 
 				// Check if target in range
-				bool inRange = hLenNext <= loopRadius;
-
-				// Assume constant velocity for lookahead
-				var predictedHeight = terrainHeight; // Predicted terrain height
-				var cellTick = WDist.FromCells(1).Length / speed; // Number of ticks required to traverse one cell
-				var lastTick = info.Lookahead.Length / speed; // Number of ticks required to traverse the lookahead distance
-				for (var tick = lastTick; tick >= 0; tick -= cellTick)
-					predictedHeight = System.Math.Max(predictedHeight,
-						world.Map.MapHeight.Value[world.Map.CellContaining(pos + tick * velocity)] * 512);
+				bool inRange = hLenNext * hLenNext * info.VerticalRateOfTurn * info.VerticalRateOfTurn * 314 * 314
+					<= 2L * 2 * speed * speed * 128 * 128 * 100 * 100;
 
 				// Basically vDist is the representation in the x-y plane
-				// of dist in the z-hDist plane,
+				// of the projection of dist in the z-hDist plane,
 				// where hDist is the projection of dist in the x-y plane.
-				// This allows applying the vertical rate of turn in the same way as the
+
+				// This allows applying vertical rate of turn in the same way as the
 				// horizontal rate of turn is applied.
 				WVec vDist;
-
-				// If target is within range, keep speed constant and aim for the target.
-				// The speed needs to be kept constant to keep range computation relatively simple.
-				// If target is not within range, accelerate the projectile. If cruise altitudes
-				// are not used, aim for the target. If cruise altitudes are used, aim for the
-				// target horizontally and for cruise altitude vertically.
 				if (inRange || info.CruiseAltitude.Length == 0)
 					vDist = new WVec(-dist.Z, -hLenCurr, 0);
 				else
-				{
-					vDist = new WVec(-(dist.Z - targetPosition.Z + info.CruiseAltitude.Length + predictedHeight), -speed, 0);
-					speed = (speed + info.Acceleration.Length).Clamp(0, info.MaximumSpeed.Length);
-				}
+					vDist = new WVec(-(dist.Z - targetPosition.Z + info.CruiseAltitude.Length + terrainHeight), -speed, 0);
 
-				var targetingAltitude = System.Math.Abs(vDist.X) > loopRadius * 2 / 3;
+				// Accelerate if out of range
+				if (!inRange)
+					speed = (speed + info.Acceleration.Length).Clamp(0, info.MaximumSpeed.Length);
 
 				// Compute which direction the projectile should be facing
 				var desiredHFacing = OpenRA.Traits.Util.GetFacing(dist, hFacing);
-				var desiredVFacing = inRange ? OpenRA.Traits.Util.GetFacing(vDist, vFacing) :
-					targetingAltitude ? -64 * System.Math.Sign(vDist.X) : 0;
+				var desiredVFacing = OpenRA.Traits.Util.GetFacing(vDist, vFacing);
 
 				// Check whether the homing mechanism is jammed
 				var jammed = info.Jammable && world.ActorsWithTrait<JamsMissiles>().Any(JammedBy);
@@ -358,7 +346,7 @@ namespace OpenRA.Mods.Common.Effects
 			var shouldExplode = (height.Length <= 0) // Hit the ground
 				|| (len < info.CloseEnough.Length) // Within range
 				|| (info.ExplodeWhenEmpty && info.RangeLimit != 0 && ticks > info.RangeLimit) // Ran out of fuel
-				|| (info.Blockable && world.ActorMap.GetUnitsAt(cell).Any(a => a.Info.HasTraitInfo<IBlocksProjectilesInfo>())) // Hit a wall or other blocking obstacle
+				|| (info.Blockable && BlocksProjectiles.AnyBlockingActorAt(world, pos)) // Hit a wall or other blocking obstacle
 				|| !world.Map.Contains(cell) // This also avoids an IndexOutOfRangeException in GetTerrainInfo below.
 				|| (!string.IsNullOrEmpty(info.BoundToTerrainType) && world.Map.GetTerrainInfo(cell).Type != info.BoundToTerrainType) // Hit incompatible terrain
 				|| (height.Length < info.AirburstAltitude.Length && hLenCurr < info.CloseEnough.Length); // Airburst
