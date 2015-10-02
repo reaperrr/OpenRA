@@ -1009,6 +1009,8 @@ Rules:
 		-CrateSpawner:
 		LuaScript:
 			Scripts: shellmap.lua
+		MusicPlaylist:
+			BackgroundMusic: map1
 		WorldPaletteEffect:
 			DayNightCycle: true
 			InitialEffect: Evening
