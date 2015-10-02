@@ -18,7 +18,7 @@ Grenade:
 			Light: 75
 			Heavy: 35
 			AirHeavy: 45
-		DamageTypes: DeathType3
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -59,7 +59,7 @@ RPGLauncher:
 			Heavy: 50
 			Concrete: 100
 			AirHeavy: 50
-		DamageTypes: DeathType4
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -91,7 +91,7 @@ RPGLauncher:
 			Heavy: 75
 			Concrete: 35
 			AirHeavy: 75
-		DamageTypes: DeathType4
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -125,7 +125,7 @@ RPGLauncher:
 			Light: 75
 			Concrete: 50
 			AirLight: 75
-		DamageTypes: DeathType4
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -162,7 +162,7 @@ RPGLauncher:
 			Light: 75
 			Concrete: 50
 			AirLight: 75
-		DamageTypes: DeathType4
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -199,7 +199,7 @@ RPGLauncher:
 			Light: 75
 			Concrete: 50
 			AirLight: 75
-		DamageTypes: DeathType4
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -237,7 +237,7 @@ RPGLauncher:
 			Light: 75
 			Concrete: 50
 			AirLight: 75
-		DamageTypes: DeathType4
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -272,7 +272,7 @@ TurretGun:
 			None: 25
 			Wood: 25
 			Concrete: 30
-		DamageTypes: DeathType4
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect
@@ -313,7 +313,7 @@ TurretGun:
 			Light: 90
 			AirLight: 80
 			AirHeavy: 60
-		DamageTypes: DeathType3
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@3Eff: CreateEffect

@@ -184,6 +184,14 @@
 		IdleSequences: idle1, idle2
 		StandSequences: stand
 	WithDeathAnimation:
+		DeathTypes:
+			DefaultDeath: 1
+			BulletDeath: 2
+			SmallExplosionDeath: 3
+			ExplosionDeath: 4
+			FireDeath: 5
+			TiberiumDeath: 6
+		CrushedSequence: die-crushed
 	AttackMove:
 	Passenger:
 		CargoType: Infantry

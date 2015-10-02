@@ -10,7 +10,7 @@ Sniper:
 		Falloff: 100, 50, 0
 		Damage: 100
 		ValidTargets: Infantry
-		DamageTypes: DeathType2
+		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
 
 HighV:
 	ReloadDelay: 50
@@ -28,7 +28,7 @@ HighV:
 			Light: 75
 			Heavy: 35
 			Concrete: 40
-		DamageTypes: DeathType2
+		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
 	Warhead@2Eff: CreateEffect
 		Explosion: piffs
 	Warhead@3Eff: CreateEffect
@@ -41,7 +41,6 @@ HeliAGGun:
 	BurstDelay: 0
 	MinRange: 0c640
 	Range: 4c0
-	ValidTargets: Ground
 	Report: mgunhvy2.aud
 	Projectile: Bullet
 		Speed: 1c682
@@ -50,14 +49,13 @@ HeliAGGun:
 		Spread: 256
 		Falloff: 100, 50, 25, 0
 		Damage: 20
-		ValidTargets: Ground
 		Versus:
 			None: 100
 			Wood: 50
 			Light: 75
 			Heavy: 25
 			Concrete: 30
-		DamageTypes: DeathType2
+		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
 	Warhead@2Eff: CreateEffect
 		Explosion: piffs
 
@@ -84,7 +82,7 @@ HeliAAGun:
 			Heavy: 25
 			AirLight: 75
 			AirHeavy: 50
-		DamageTypes: DeathType2
+		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
 	Warhead@2Eff: CreateEffect
 		Explosion: piffs
 
@@ -108,7 +106,7 @@ Pistol:
 			Concrete: 5
 			AirLight: 5
 			AirHeavy: 5
-		DamageTypes: DeathType2
+		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
 	Warhead@2Eff: CreateEffect
 		Explosion: piff
 
@@ -130,7 +128,7 @@ M16:
 			Light: 40
 			Heavy: 20
 			Concrete: 10
-		DamageTypes: DeathType2
+		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
 	Warhead@2Eff: CreateEffect
 		Explosion: piff
 
@@ -153,7 +151,7 @@ MachineGun:
 			Light: 50
 			Heavy: 20
 			Concrete: 10
-		DamageTypes: DeathType2
+		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
 	Warhead@2Eff: CreateEffect
 		Explosion: piffs
 
@@ -175,7 +173,7 @@ Vulcan:
 			Light: 100
 			Heavy: 35
 			Concrete: 25
-		DamageTypes: DeathType2
+		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
 	Warhead@2Eff: CreateEffect
 		Explosion: piffs
 

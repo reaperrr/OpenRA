@@ -12,7 +12,7 @@ FlametankExplode:
 			Concrete: 30
 			AirLight: 65
 			AirHeavy: 35
-		DamageTypes: DeathType5
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath
 	Warhead@2Eff: CreateEffect
 		Explosion: big_ranapalm
 		ImpactSound: firebl3.aud
@@ -20,7 +20,7 @@ FlametankExplode:
 
 ChemtankExplode:
 	Warhead@1Dam: SpreadDamage
-		Damage: 150
+		Damage: 200
 		Spread: 512
 		Falloff: 100, 60, 30, 0
 		Versus:
@@ -29,9 +29,9 @@ ChemtankExplode:
 			Light: 75
 			Heavy: 40
 			Concrete: 100
-			AirLight: 75
+			AirLight: 80
 			AirHeavy: 45
-		DamageTypes: DeathType6
+		DamageTypes: Prone50Percent, TriggerProne, TiberiumDeath
 	Warhead@2Eff: CreateEffect
 		Explosion: big_chemexpl
 		ImpactSound: xplobig6.aud
@@ -41,7 +41,7 @@ HeliCrash:
 		Spread: 426
 		Falloff: 100, 50, 0
 		Damage: 40
-		DamageTypes: DeathType4
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 	Warhead@2Eff: CreateEffect
 		Explosion: poof
 		ImpactSound: xplomed2.aud
@@ -55,7 +55,7 @@ HeliCrash:
 
 HeliExplode:
 	Warhead@1Dam: SpreadDamage
-		DamageTypes: DeathType4
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 	Warhead@2Eff: CreateEffect
 		Explosion: small_building
 		ImpactSound: xplomed1.aud
@@ -73,7 +73,7 @@ UnitExplode:
 			Heavy: 25
 			AirLight: 60
 			AirHeavy: 30
-		DamageTypes: DeathType4
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 	Warhead@2Eff: CreateEffect
 		Explosion: big_frag
 		ImpactSound: xplobig3.aud
@@ -91,7 +91,7 @@ UnitExplodeSmall:
 			Heavy: 25
 			AirLight: 60
 			AirHeavy: 30
-		DamageTypes: DeathType4
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 	Warhead@2Eff: CreateEffect
 		Explosion: med_frag
 		ImpactSound: xplomed3.aud
@@ -106,9 +106,9 @@ GrenadierExplode:
 			Wood: 75
 			Light: 60
 			Heavy: 25
-			AirLight: 60
+			AirLight: 65
 			AirHeavy: 30
-		DamageTypes: DeathType3
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
 	Warhead@2Eff: CreateEffect
 		Explosion: poof
 		ImpactSound: xplomed5.aud
@@ -128,7 +128,7 @@ FlamethrowerExplode:
 			Concrete: 30
 			AirLight: 65
 			AirHeavy: 25
-		DamageTypes: DeathType5
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath
 	Warhead@2Eff: CreateEffect
 		Explosion: sml_ranapalm
 		ImpactSound: firebl3.aud
@@ -147,7 +147,7 @@ ChemWarriorExplode:
 			Concrete: 100
 			AirLight: 75
 			AirHeavy: 40
-		DamageTypes: DeathType6
+		DamageTypes: Prone50Percent, TriggerProne, TiberiumDeath
 	Warhead@2Eff: CreateEffect
 		Explosion: sml_chemexpl
 		ImpactSound: flamer2.aud
@@ -172,7 +172,7 @@ Flamethrower:
 			Concrete: 30
 			AirLight: 65
 			AirHeavy: 30
-		DamageTypes: DeathType5
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch
 
@@ -196,9 +196,9 @@ BigFlamer:
 			Light: 65
 			Heavy: 25
 			Concrete: 30
-			AirLight: 65
+			AirLight: 70
 			AirHeavy: 35
-		DamageTypes: DeathType5
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch
 
@@ -220,7 +220,7 @@ Chemspray:
 			Concrete: 100
 			AirLight: 75
 			AirHeavy: 45
-		DamageTypes: DeathType6
+		DamageTypes: Prone50Percent, TriggerProne, TiberiumDeath
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch
 
@@ -244,7 +244,7 @@ BigChemspray:
 			Concrete: 100
 			AirLight: 75
 			AirHeavy: 45
-		DamageTypes: DeathType6
+		DamageTypes: Prone50Percent, TriggerProne, TiberiumDeath
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch
 
@@ -269,7 +269,7 @@ Napalm:
 			Concrete: 25
 			AirLight: 90
 			AirHeavy: 45
-		DamageTypes: DeathType5
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch
 	Warhead@3Eff: CreateEffect
@@ -287,7 +287,7 @@ Napalm.Crate:
 			Wood: 100
 			Light: 60
 			Heavy: 25
-		DamageTypes: DeathType5
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch
 	Warhead@3Eff: CreateEffect
@@ -304,21 +304,18 @@ Laser:
 		BeamWidth: 2
 		HitAnim: laserfire
 	Warhead@1Dam: SpreadDamage
-		Spread: 42
-		Damage: 360
-		Versus:
-			Wood: 50
-		DamageTypes: DeathType5
+		Spread: 43
+		Damage: 200
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch
 
 Tiberium:
 	ReloadDelay: 16
 	Warhead@1Dam: SpreadDamage
-		Spread: 42
+		Spread: 43
 		Damage: 2
-		PreventProne: yes
-		DamageTypes: DeathType6
+		DamageTypes: TiberiumDeath
 
 TiberiumExplosion:
 	Warhead@1Dam: SpreadDamage
@@ -329,7 +326,7 @@ TiberiumExplosion:
 			Wood: 75
 			Light: 60
 			Heavy: 25
-		DamageTypes: DeathType3
+		DamageTypes: Prone50Percent, TriggerProne, TiberiumDeath
 	Warhead@2Res: CreateResource
 		AddsResourceType: Tiberium
 		Size: 1,1
@@ -342,25 +339,19 @@ Heal:
 	Warhead@1Dam: SpreadDamage
 		Spread: 42
 		Damage: -1
-		PreventProne: yes
-		DamageTypes: DeathType1
 
 MedicHeal:
 	ReloadDelay: 50
 	Range: 4c0
 	Report: heal2.aud
+	ValidTargets: Infantry
 	Projectile: Bullet
 		Speed: 1c682
 	Warhead@1Dam: SpreadDamage
 		Spread: 213
 		Falloff: 100, 0
 		Damage: -80
-		Versus:
-			Wood: 0
-			Light: 0
-			Heavy: 0
-			Concrete: 0
-		DamageTypes: DeathType1
+		ValidTargets: Infantry
 	Warhead@3Eff: CreateEffect
 		ImpactSound: heal2.aud
 
@@ -378,7 +369,7 @@ Tail:
 			Light: 30
 			Heavy: 10
 			Concrete: 10
-		DamageTypes: DeathType1
+		DamageTypes: DefaultDeath
 
 Horn:
 	ReloadDelay: 20
@@ -394,7 +385,7 @@ Horn:
 			Light: 30
 			Heavy: 10
 			Concrete: 10
-		DamageTypes: DeathType1
+		DamageTypes: DefaultDeath
 
 Teeth:
 	ReloadDelay: 30
@@ -410,7 +401,7 @@ Teeth:
 			Light: 30
 			Heavy: 10
 			Concrete: 10
-		DamageTypes: DeathType1
+		DamageTypes: DefaultDeath
 
 Claw:
 	ReloadDelay: 10
@@ -426,11 +417,11 @@ Claw:
 			Light: 30
 			Heavy: 10
 			Concrete: 10
-		DamageTypes: DeathType1
+		DamageTypes: DefaultDeath
 
 Demolish:
 	Warhead@1Dam: SpreadDamage
-		DamageTypes: DeathType1
+		DamageTypes: DefaultDeath
 	Warhead@2Eff: CreateEffect
 		Explosion: building
 		ImpactSound: xplobig6.aud
