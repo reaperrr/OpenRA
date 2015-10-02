@@ -198,18 +198,19 @@ ChromeLayout:
 	./mods/ra/chrome/irc.yaml
 
 ContentInstaller:
-	MenuWidget: INSTALL_PANEL
-	MusicMenuWidget: INSTALL_MUSIC_PANEL
-	TestFiles: conquer.mix, desert.mix, sounds.mix, speech.mix, temperat.mix, tempicnh.mix, winter.mix
-	FilesToCopy: CONQUER.MIX, DESERT.MIX, SOUNDS.MIX, TEMPERAT.MIX, WINTER.MIX
+	TestFiles: ^Content/cnc/conquer.mix, ^Content/cnc/desert.mix, ^Content/cnc/sounds.mix, ^Content/cnc/speech.mix, ^Content/cnc/temperat.mix, ^Content/cnc/tempicnh.mix, ^Content/cnc/winter.mix
+	FilesToCopy: CONQUER.MIX, DESERT.MIX, SCORES.MIX, SOUNDS.MIX, TEMPERAT.MIX, WINTER.MIX
 	FilesToExtract: speech.mix, tempicnh.mix, transit.mix
 	PackageMirrorList: http://www.openra.net/packages/cnc-mirrors.txt
 	DiskTestFiles: conquer.mix, desert.mix, install/setup.z
 	PackageToExtractFromCD: install/setup.z
-	ExtractFilesFromCD: speech.mix, tempicnh.mix, transit.mix
-	CopyFilesFromCD: conquer.mix, desert.mix, general.mix, sounds.mix, temperat.mix, winter.mix
+	ExtractFilesFromCD:
+		.: speech.mix, tempicnh.mix, transit.mix
+	CopyFilesFromCD:
+		.: conquer.mix, desert.mix, general.mix, scores.mix, sounds.mix, temperat.mix, winter.mix
 	ShippedSoundtracks: 1
 	MusicPackageMirrorList: http://tdx.ppmsite.com/tdx-music-mirrors.txt
+	InstallShieldCABFileIds: 66, 45, 42, 65, 68, 67, 71, 47, 49, 60, 75, 73, 53
 
 ServerTraits:
 	LobbyCommands
