@@ -60,12 +60,12 @@
 	Mobile:
 		Crushes: crate
 		TerrainSpeeds:
-			Clear: 80
-			Rough: 50
+			Clear: 90
+			Rough: 65
 			Road: 100
-			Tiberium: 50
-			BlueTiberium: 50
-			Beach: 50
+			Tiberium: 75
+			BlueTiberium: 75
+			Beach: 90
 		ROT: 5
 	SelectionDecorations:
 	Selectable:
@@ -99,13 +99,12 @@
 	Mobile:
 		Crushes: wall, crate, infantry
 		TerrainSpeeds:
-			Clear: 80
-			Rough: 70
+			Clear: 90
+			Rough: 80
 			Road: 100
-			Tiberium: 70
-			BlueTiberium: 70
+			Tiberium: 75
+			BlueTiberium: 75
 			Beach: 70
-		ROT: 5
 
 ^Helicopter:
 	Inherits@1: ^ExistsInWorld
@@ -174,7 +173,7 @@
 	Targetable:
 		TargetTypes: Ground, Infantry
 	TakeCover:
-		SpeedModifier: 60
+		SpeedModifier: 50
 		DamageModifiers:
 			Prone50Percent: 50
 		DamageTriggers: TriggerProne
