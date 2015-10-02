@@ -34,12 +34,11 @@ Grenade:
 
 RPGLauncher:
 	ReloadDelay: 120
-	Range: 12c0
-	MinRange: 2c0
+	Range: 10c0
+	MinRange: 1c384
 	Burst: 6
 	BurstDelay: 10
 	Report: grenlnch.aud
-	ValidTargets: Ground, Water
 	Projectile: Bullet
 		Blockable: false
 		Shadow: true
@@ -51,7 +50,6 @@ RPGLauncher:
 		Spread: 256
 		Falloff: 100, 60, 30, 15, 0
 		Damage: 35
-		ValidTargets: Ground, Water
 		Versus:
 			None: 50
 			Wood: 65
