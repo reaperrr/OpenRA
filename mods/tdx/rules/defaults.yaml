@@ -169,7 +169,7 @@
 			Beach: 80
 	SelectionDecorations:
 	Selectable:
-		Bounds: 12,17,0,-6
+		Bounds: 12,18,0,-6
 	Targetable:
 		TargetTypes: Ground, Infantry
 	TakeCover:
