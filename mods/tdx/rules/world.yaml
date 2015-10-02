@@ -48,6 +48,7 @@
 		AllowedTerrainTypes: Clear,Road
 		AllowUnderActors: true
 	LoadWidgetAtGameStart:
+		ShellmapRoot: MENU_BACKGROUND
 
 World:
 	Inherits: ^BaseWorld
