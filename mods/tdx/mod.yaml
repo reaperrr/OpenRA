@@ -108,6 +108,10 @@ TileSets:
 	./mods/tdx/tilesets/jungle.yaml
 	./mods/tdx/tilesets/caribic.yaml
 
+MapGrid:
+	Tilesize: 32,32
+	Type: Rectangle
+
 SupportsMapsFrom: cnc, tdx
 
 SpriteFormats: ShpTD, TmpTD, ShpTS, TmpRA
