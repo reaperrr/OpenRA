@@ -162,7 +162,7 @@ Chrome:
 	./mods/tdx/ui/chrome.yaml
 
 ChromeLayout:
-#	./mods/tdx/ui/chrome/install.yaml
+	./mods/tdx/ui/chrome/install.yaml
 	./mods/ra/chrome/ingame.yaml
 	./mods/ra/chrome/ingame-chat.yaml
 	./mods/ra/chrome/ingame-diplomacy.yaml
@@ -175,12 +175,10 @@ ChromeLayout:
 	./mods/ra/chrome/ingame-menu.yaml
 	./mods/ra/chrome/ingame-observer.yaml
 	./mods/ra/chrome/ingame-observerstats.yaml
-#	./mods/tdx/ui/chrome/ingame-player.yaml
-	./mods/ra/chrome/ingame-player.yaml
+	./mods/tdx/ui/chrome/ingame-player.yaml
 	./mods/ra/chrome/ingame-perf.yaml
 	./mods/ra/chrome/ingame-debug.yaml
-#	./mods/tdx/ui/chrome/mainmenu.yaml
-	./mods/ra/chrome/mainmenu.yaml
+	./mods/tdx/ui/chrome/mainmenu.yaml
 	./mods/ra/chrome/settings.yaml
 	./mods/ra/chrome/credits.yaml
 	./mods/ra/chrome/lobby.yaml
