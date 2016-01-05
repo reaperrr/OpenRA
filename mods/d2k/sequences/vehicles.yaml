@@ -1,7 +1,8 @@
 mcv:
-	idle: DATA.R8
-		Start: 1795
-		Facings: -32
+	#idle: DATA.R8
+	#	Start: 1795
+	#	Facings: -32
+	idle: vult.shp
 	icon: DATA.R8
 		Start: 4023
 		Offset: -30,-24

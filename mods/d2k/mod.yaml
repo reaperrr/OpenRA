@@ -18,6 +18,7 @@ Folders:
 	~^Content/d2k/GAMESFX
 	~^Content/d2k/Movies
 	~^Content/d2k/Music
+	~^Content/mc
 
 MapFolders:
 	./mods/d2k/maps@System
@@ -197,7 +198,7 @@ SupportsMapsFrom: d2k
 
 SoundFormats: Aud, Wav
 
-SpriteFormats: R8, ShpTD, TmpRA
+SpriteFormats: R8, ShpTD, TmpRA, ShpSSI
 
 SpriteSequenceFormat: DefaultSpriteSequence
 
