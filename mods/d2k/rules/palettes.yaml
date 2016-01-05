@@ -5,6 +5,10 @@
 		Name: d2k
 		Filename: PALETTE.BIN
 		ShadowIndex: 1
+	PaletteFromFile@mc:
+		Name: mc
+		Filename: mechcom.pal
+		ShadowIndex: 1
 	PaletteFromFile@chrome:
 		Name: chrome
 		Filename: PALETTE.BIN
