@@ -17,6 +17,10 @@ namespace OpenRA.Mods.Common.SpriteLoaders
 {
 	public class ShpSSILoader : ISpriteLoader
 	{
+		bool isMechCommanderSSI = false;
+		int additionalByteOffset;
+		uint[] frameOffsets;
+
 		bool IsShpSSI(Stream s)
 		{
 			var start = s.Position;
@@ -31,9 +35,11 @@ namespace OpenRA.Mods.Common.SpriteLoaders
 					s.Position = start;
 					return false;
 				}
+
+				isMechCommanderSSI = true;
 			}
 
-			// First 4 bytes after string is the image count
+			// First 4 bytes after string is the image count.
 			var imageCount = s.ReadInt16();
 			if (imageCount == 0)
 			{
@@ -53,6 +59,7 @@ namespace OpenRA.Mods.Common.SpriteLoaders
 				return false;
 			}
 
+			additionalByteOffset = isMechCommanderSSI ? 6 : 0;
 			frames = ParseFrames(s);
 			return true;
 		}
@@ -60,15 +67,28 @@ namespace OpenRA.Mods.Common.SpriteLoaders
 		ShpSSIFrame[] ParseFrames(Stream s)
 		{
 			var start = s.Position;
+			s.Position = 4 + additionalByteOffset;
 
+			// Read frame count and offsets in the file.
+			var frameCount = s.ReadUInt32();
+			frameOffsets = new uint[frameCount];
+			for (var i = 0; i < frameCount; i++)
+			{
+				frameOffsets[i] = s.ReadUInt32();
+				/*framePalette[i] =*/ s.ReadUInt32();
+			}
+
+			// Current stream position should be 152 + additionalByteOffset
 			var width = s.ReadUInt16();
 			var height = s.ReadUInt16();
 			var size = new Size(width, height);
-			var frameCount = s.ReadUInt16();
 
 			var frames = new ShpSSIFrame[frameCount];
 			for (var i = 0; i < frames.Length; i++)
+			{
+				s.Position = frameOffsets[i] + additionalByteOffset;
 				frames[i] = new ShpSSIFrame(s, size);
+			}
 
 			s.Position = start;
 			return frames;
