@@ -8,6 +8,7 @@
  */
 #endregion
 
+using System;
 using System.Drawing;
 using System.IO;
 using OpenRA.FileFormats;
@@ -96,6 +97,9 @@ namespace OpenRA.Mods.Common.SpriteLoaders
 
 		class ShpSSIFrame : ISpriteFrame
 		{
+			const int HeaderSize = 24;
+			const byte BackColor = 255;
+
 			public Size Size { get; private set; }
 			public Size FrameSize { get; private set; }
 			public float2 Offset { get; private set; }
@@ -103,6 +107,8 @@ namespace OpenRA.Mods.Common.SpriteLoaders
 			public bool DisableExportPadding { get { return false; } }
 
 			public readonly uint FileOffset;
+
+			int pix_pos = 0;
 
 			public ShpSSIFrame(Stream s, Size frameSize)
 			{
@@ -119,32 +125,64 @@ namespace OpenRA.Mods.Common.SpriteLoaders
 				var width = right - left;
 				var height = bottom - top;
 
-				// Pad the dimensions to an even number to avoid issues with half-integer offsets
-				var dataWidth = width;
-				var dataHeight = height;
-				if (dataWidth % 2 == 1)
-					dataWidth += 1;
 
-				if (dataHeight % 2 == 1)
-					dataHeight += 1;
-
-				Offset = new int2(0 + (dataWidth) / 2, 0 + (dataHeight) / 2);
-				Size = new Size(dataWidth, dataHeight);
+				Size = new Size(width, height);
 				FrameSize = frameSize;
+				Offset = new float2(left, top);
 
-				s.Position += 11;
-				FileOffset = s.ReadUInt32();
 
-				if (FileOffset == 0)
-					return;
+				int l; // first line the counter
+				int lf; // last line
 
-				// Parse the frame data as we go (but remember to jump back to the header before returning!)
-				var start = s.Position;
-				s.Position = FileOffset;
+				var position = 0;
+				Data = new byte[width*height];
 
-				Data = new byte[dataWidth * dataHeight];
+				if (top < 0)
+				{
+					l = 0;
+					lf = bottom + Math.Abs(top);
+				}
+				else
+				{
+					l = top;
+					lf = bottom;
+				}
 
-				s.Position = start;
+				pix_pos = left < 0 ? 0 : left;
+
+				do
+				{
+					var ch = s.ReadUInt8();
+					var r = ch%2;
+					var b = ch/2;
+
+					if (b == 0 && r == 1) // a skip over
+					{
+						ch = s.ReadUInt8();
+						for (var i = 0; i < ch; ++i)
+							Data[position++] = BackColor; //put_pix(l, BACK_COLOR);
+					}
+					else if (b == 0)   // end of line
+					{
+						++l;
+						pix_pos = left < 0 ? 0 : left;
+					}
+					else if (r == 0) // a run of bytes
+					{
+						ch = s.ReadUInt8(); // the color #
+						for (var i = 0; i < b; ++i)
+							Data[position++] = ch; //put_pix(l, ch);
+					}
+					else // b!0 and r==1 ... read the next b bytes as color #'s
+					{
+						for (var i = 0; i < b; ++i)
+						{
+							ch = s.ReadUInt8();
+							Data[position++] = ch; //put_pix(l, ch);
+						}
+					}
+				}
+				while (l <= lf);
 			}
 		}
 	}
