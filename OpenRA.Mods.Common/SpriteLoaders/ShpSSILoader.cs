@@ -27,7 +27,10 @@ namespace OpenRA.Mods.Common.SpriteLoaders
 				// otherwise they're identical so we can ignore those 6 bytes
 				s.Position = 6;
 				if (s.ReadASCII(4) != "1.10")
+				{
+					s.Position = start;
 					return false;
+				}
 			}
 
 			// First 4 bytes after string is the image count
@@ -37,6 +40,9 @@ namespace OpenRA.Mods.Common.SpriteLoaders
 				s.Position = start;
 				return false;
 			}
+
+			s.Position = start;
+			return true;
 		}
 
 		public bool TryParseSprite(Stream s, out ISpriteFrame[] frames)
@@ -47,7 +53,7 @@ namespace OpenRA.Mods.Common.SpriteLoaders
 				return false;
 			}
 
-			frames = new ShpSSIFrame(s).Frames.ToArray();
+			frames = ParseFrames(s);
 			return true;
 		}
 
