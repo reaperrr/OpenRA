@@ -11,7 +11,6 @@
 using System;
 using System.Drawing;
 using System.IO;
-using OpenRA.FileFormats;
 using OpenRA.Graphics;
 
 namespace OpenRA.Mods.Common.SpriteLoaders
@@ -25,6 +24,7 @@ namespace OpenRA.Mods.Common.SpriteLoaders
 		bool IsShpSSI(Stream s)
 		{
 			var start = s.Position;
+			isMechCommanderSSI = false;
 
 			if (s.ReadASCII(4) != "1.10")
 			{
@@ -122,19 +122,21 @@ namespace OpenRA.Mods.Common.SpriteLoaders
 				var right = s.ReadInt32();
 				var bottom = s.ReadInt32();
 
-				var width = right - left;
-				var height = bottom - top;
-
+				// These are apparently not dimentions, but maximum indices.
+				// We add 1 so we can use them as dimentions.
+				var width = right - left + 1;
+				var height = bottom - top + 1;
 
 				Size = new Size(width, height);
 				FrameSize = frameSize;
 				Offset = new float2(left, top);
 
-
 				int l; // first line the counter
 				int lf; // last line
 
 				var pixelIndex = 0;
+
+				// TODO: Waste less memory for this. It can be much less!
 				Data = new byte[frameSize.Width*frameSize.Height];
 				//Data = new byte[width*height];
 
@@ -166,7 +168,7 @@ namespace OpenRA.Mods.Common.SpriteLoaders
 					else if (b == 0)   // end of line
 					{
 						++l;
-						while ((pixelIndex + 1)%width != 0)
+						while ((pixelIndex % width) != 0)
 							Data[pixelIndex++] = BackColor;
 
 						pix_pos = left < 0 ? 0 : left;
