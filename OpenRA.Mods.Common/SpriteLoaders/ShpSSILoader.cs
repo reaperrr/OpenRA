@@ -134,8 +134,9 @@ namespace OpenRA.Mods.Common.SpriteLoaders
 				int l; // first line the counter
 				int lf; // last line
 
-				var position = 0;
-				Data = new byte[width*height];
+				var pixelIndex = 0;
+				Data = new byte[frameSize.Width*frameSize.Height];
+				//Data = new byte[width*height];
 
 				if (top < 0)
 				{
@@ -160,25 +161,28 @@ namespace OpenRA.Mods.Common.SpriteLoaders
 					{
 						ch = s.ReadUInt8();
 						for (var i = 0; i < ch; ++i)
-							Data[position++] = BackColor; //put_pix(l, BACK_COLOR);
+							Data[pixelIndex++] = BackColor; //put_pix(l, BACK_COLOR);
 					}
 					else if (b == 0)   // end of line
 					{
 						++l;
+						while ((pixelIndex + 1)%width != 0)
+							Data[pixelIndex++] = BackColor;
+
 						pix_pos = left < 0 ? 0 : left;
 					}
 					else if (r == 0) // a run of bytes
 					{
 						ch = s.ReadUInt8(); // the color #
 						for (var i = 0; i < b; ++i)
-							Data[position++] = ch; //put_pix(l, ch);
+							Data[pixelIndex++] = ch; //put_pix(l, ch);
 					}
-					else // b!0 and r==1 ... read the next b bytes as color #'s
+					else // b==0 and r==1 ... read the next b bytes as color #'s
 					{
 						for (var i = 0; i < b; ++i)
 						{
 							ch = s.ReadUInt8();
-							Data[position++] = ch; //put_pix(l, ch);
+							Data[pixelIndex++] = ch; //put_pix(l, ch);
 						}
 					}
 				}
