@@ -155,6 +155,7 @@ namespace OpenRA.Mods.Common.Graphics
 						var subOffset = LoadField(sd, "Offset", float2.Zero);
 						var subFlipX = LoadField(sd, "FlipX", false);
 						var subFlipY = LoadField(sd, "FlipY", false);
+						var subFrames = LoadField<int[]>(sd, "Frames", null);
 
 						var subSrc = GetSpriteSrc(modData, tileSet, sequence, animation, sub.Key, sd);
 						var subSprites = cache[subSrc].Select(
@@ -165,12 +166,15 @@ namespace OpenRA.Mods.Common.Graphics
 
 						var subLength = 0;
 						MiniYaml subLengthYaml;
-						if (sd.TryGetValue("Length", out subLengthYaml) && subLengthYaml.Value == "*")
+						if (subFrames == null && sd.TryGetValue("Length", out subLengthYaml) && subLengthYaml.Value == "*")
 							subLength = subSprites.Count() - subStart;
 						else
 							subLength = LoadField(sd, "Length", 1);
 
-						combined = combined.Concat(subSprites.Skip(subStart).Take(subLength));
+						if (subFrames != null)
+							combined = combined.Concat(subSprites.Take(subFrames.Length));
+						else
+							combined = combined.Concat(subSprites.Skip(subStart).Take(subLength));
 					}
 
 					sprites = combined.ToArray();
