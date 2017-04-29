@@ -343,7 +343,8 @@ JUGG:
 		RealignDelay: -1
 	WithVoxelBarrel:
 		Armament: deployed
-		LocalOffset: 363,0,-180
+		LocalOffset: 363,0,256
+		LocalOrientation: 0, 128, 0
 		RequiresCondition: deployed
 	WithSpriteTurret@deployed:
 		Turret: deployed
