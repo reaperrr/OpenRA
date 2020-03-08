@@ -21,6 +21,15 @@ namespace OpenRA.Mods.Common.FileFormats
 		public readonly ushort Width;
 		public readonly ushort Height;
 
+		public byte[] AudioData { get { return audioData; } }
+		public int CurrentFrame { get { return currentFrame; } }
+		public int SampleRate { get { return sampleRate; } }
+		public int SampleBits { get { return sampleBits; } }
+		public int AudioChannels { get { return audioChannels; } }
+		public bool HasAudio { get { return hasAudio; } }
+
+		bool IsHqVqa { get { return (videoFlags & 0x10) == 16; } }
+
 		Stream stream;
 		int currentFrame;
 		ushort numColors;
@@ -56,13 +65,6 @@ namespace OpenRA.Mods.Common.FileFormats
 		uint[,] frameData;
 		byte[] audioData;		// audio for this frame: 22050Hz 16bit mono pcm, uncompressed.
 		bool hasAudio;
-
-		public byte[] AudioData { get { return audioData; } }
-		public int CurrentFrame { get { return currentFrame; } }
-		public int SampleRate { get { return sampleRate; } }
-		public int SampleBits { get { return sampleBits; } }
-		public int AudioChannels { get { return audioChannels; } }
-		public bool HasAudio { get { return hasAudio; } }
 
 		public VqaReader(Stream stream)
 		{
@@ -501,8 +503,6 @@ namespace OpenRA.Mods.Common.FileFormats
 				return frameData;
 			}
 		}
-
-		bool IsHqVqa { get { return (videoFlags & 0x10) == 16; } }
 
 		void WriteBlock(int blockNumber, int count, ref int x, ref int y)
 		{
