@@ -14,21 +14,26 @@ using System.IO;
 
 namespace OpenRA.Mods.Common.FileFormats
 {
-	public class VqaReader
+	public class VqaReader : IVideoStream
 	{
-		public readonly ushort Frames;
-		public readonly byte Framerate;
-		public readonly ushort Width;
-		public readonly ushort Height;
+		ushort IVideoStream.Frames { get { return frames; } }
+		byte IVideoStream.Framerate { get { return framerate; } }
+		int IVideoStream.CurrentFrame { get { return currentFrame; } }
+		ushort IVideoStream.Width { get { return width; } }
+		ushort IVideoStream.Height { get { return height; } }
 
-		public byte[] AudioData { get { return audioData; } }
-		public int CurrentFrame { get { return currentFrame; } }
-		public int SampleRate { get { return sampleRate; } }
-		public int SampleBits { get { return sampleBits; } }
-		public int AudioChannels { get { return audioChannels; } }
-		public bool HasAudio { get { return hasAudio; } }
+		bool IVideoStream.HasAudio { get { return hasAudio; } }
+		byte[] IVideoStream.AudioData { get { return audioData; } }
+		int IVideoStream.SampleRate { get { return sampleRate; } }
+		int IVideoStream.SampleBits { get { return sampleBits; } }
+		int IVideoStream.AudioChannels { get { return audioChannels; } }
 
 		bool IsHqVqa { get { return (videoFlags & 0x10) == 16; } }
+
+		readonly ushort frames;
+		readonly byte framerate;
+		readonly ushort width;
+		readonly ushort height;
 
 		Stream stream;
 		int currentFrame;
@@ -81,15 +86,15 @@ namespace OpenRA.Mods.Common.FileFormats
 
 			/*var version = */stream.ReadUInt16();
 			videoFlags = stream.ReadUInt16();
-			Frames = stream.ReadUInt16();
-			Width = stream.ReadUInt16();
-			Height = stream.ReadUInt16();
+			frames = stream.ReadUInt16();
+			width = stream.ReadUInt16();
+			height = stream.ReadUInt16();
 
 			blockWidth = stream.ReadUInt8();
 			blockHeight = stream.ReadUInt8();
-			Framerate = stream.ReadUInt8();
+			framerate = stream.ReadUInt8();
 			chunkBufferParts = stream.ReadUInt8();
-			blocks = new int2(Width / blockWidth, Height / blockHeight);
+			blocks = new int2(width / blockWidth, height / blockHeight);
 
 			numColors = stream.ReadUInt16();
 			/*var maxBlocks = */stream.ReadUInt16();
@@ -107,7 +112,7 @@ namespace OpenRA.Mods.Common.FileFormats
 
 			/*var unknown5 =*/stream.ReadUInt32();
 
-			var frameSize = Exts.NextPowerOf2(Math.Max(Width, Height));
+			var frameSize = Exts.NextPowerOf2(Math.Max(width, height));
 
 			if (IsHqVqa)
 			{
@@ -117,9 +122,9 @@ namespace OpenRA.Mods.Common.FileFormats
 			}
 			else
 			{
-				cbfBuffer = new byte[Width * Height];
-				cbf = new byte[Width * Height];
-				cbp = new byte[Width * Height];
+				cbfBuffer = new byte[width * height];
+				cbf = new byte[width * height];
+				cbp = new byte[width * height];
 				origData = new byte[2 * blocks.X * blocks.Y];
 			}
 
@@ -143,8 +148,8 @@ namespace OpenRA.Mods.Common.FileFormats
 			/*var unknown4 = */stream.ReadUInt16();
 
 			// Frame offsets
-			offsets = new uint[Frames];
-			for (var i = 0; i < Frames; i++)
+			offsets = new uint[frames];
+			for (var i = 0; i < frames; i++)
 			{
 				offsets[i] = stream.ReadUInt32();
 				if (offsets[i] > 0x40000000)
@@ -157,7 +162,12 @@ namespace OpenRA.Mods.Common.FileFormats
 			Reset();
 		}
 
-		public void Reset()
+		void IVideoStream.Reset()
+		{
+			Reset();
+		}
+
+		void Reset()
 		{
 			currentFrame = chunkBufferOffset = currentChunkBuffer = 0;
 			LoadFrame();
@@ -169,10 +179,10 @@ namespace OpenRA.Mods.Common.FileFormats
 			var audio2 = new MemoryStream(); // right channel
 			var adpcmIndex = 0;
 			var compressed = false;
-			for (var i = 0; i < Frames; i++)
+			for (var i = 0; i < frames; i++)
 			{
 				stream.Seek(offsets[i], SeekOrigin.Begin);
-				var end = (i < Frames - 1) ? offsets[i + 1] : stream.Length;
+				var end = (i < frames - 1) ? offsets[i + 1] : stream.Length;
 
 				while (stream.Position < end)
 				{
@@ -254,7 +264,7 @@ namespace OpenRA.Mods.Common.FileFormats
 			hasAudio = audioData.Length > 0;
 		}
 
-		public void AdvanceFrame()
+		void IVideoStream.AdvanceFrame()
 		{
 			currentFrame++;
 			LoadFrame();
@@ -262,12 +272,12 @@ namespace OpenRA.Mods.Common.FileFormats
 
 		void LoadFrame()
 		{
-			if (currentFrame >= Frames)
+			if (currentFrame >= frames)
 				return;
 
 			// Seek to the start of the frame
 			stream.Seek(offsets[currentFrame], SeekOrigin.Begin);
-			var end = (currentFrame < Frames - 1) ? offsets[currentFrame + 1] : stream.Length;
+			var end = (currentFrame < frames - 1) ? offsets[currentFrame + 1] : stream.Length;
 
 			while (stream.Position < end)
 			{
@@ -493,7 +503,7 @@ namespace OpenRA.Mods.Common.FileFormats
 			}
 		}
 
-		public uint[,] FrameData
+		uint[,] IVideoStream.FrameData
 		{
 			get
 			{

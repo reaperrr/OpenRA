@@ -25,10 +25,10 @@ namespace OpenRA.Mods.Common.Widgets
 		public bool Skippable = true;
 
 		public bool Paused { get { return paused; } }
-		public VqaReader Video { get { return video; } }
+		public IVideoStream Video { get { return video; } }
 
 		Sprite videoSprite, overlaySprite;
-		VqaReader video = null;
+		IVideoStream video = null;
 		string cachedVideo;
 		float invLength;
 		float2 videoOrigin, videoSize;
@@ -42,13 +42,14 @@ namespace OpenRA.Mods.Common.Widgets
 		{
 			if (filename == cachedVideo)
 				return;
-			var video = new VqaReader(Game.ModData.DefaultFileSystem.Open(filename));
+
+			var video = new IVideoStream(Game.ModData.DefaultFileSystem.Open(filename));
 
 			cachedVideo = filename;
 			Open(video);
 		}
 
-		public void Open(VqaReader video)
+		public void Open(IVideoStream video)
 		{
 			this.video = video;
 
