@@ -31,9 +31,11 @@ namespace OpenRA
 {
 	public static class Game
 	{
-		public const int NetTickScale = 3; // 120 ms net tick for 40 ms local tick
-		public const int Timestep = 40;
+		public const int NetTickScale = 2; // 160 ms net tick for 40 ms local tick
+		public const int Timestep = 80;
 		public const int TimestepJankThreshold = 250; // Don't catch up for delays larger than 250ms
+
+		public const int UiTimestep = 40;
 
 		public static InstalledMods Mods { get; private set; }
 		public static ExternalMods ExternalMods { get; private set; }
@@ -585,11 +587,11 @@ namespace OpenRA
 			var world = orderManager.World;
 
 			var uiTickDelta = tick - Ui.LastTickTime;
-			if (uiTickDelta >= Timestep)
+			if (uiTickDelta >= UiTimestep)
 			{
 				// Explained below for the world tick calculation
-				var integralTickTimestep = (uiTickDelta / Timestep) * Timestep;
-				Ui.LastTickTime += integralTickTimestep >= TimestepJankThreshold ? integralTickTimestep : Timestep;
+				var integralTickTimestep = (uiTickDelta / UiTimestep) * UiTimestep;
+				Ui.LastTickTime += integralTickTimestep >= TimestepJankThreshold ? integralTickTimestep : UiTimestep;
 
 				Sync.RunUnsynced(Settings.Debug.SyncCheckUnsyncedCode, world, Ui.Tick);
 				Cursor.Tick();

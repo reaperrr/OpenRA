@@ -237,28 +237,28 @@ AssetBrowser:
 GameSpeeds:
 	slowest:
 		Name: Slowest
-		Timestep: 80
-		OrderLatency: 2
+		Timestep: 160
+		OrderLatency: 1
 	slower:
 		Name: Slower
-		Timestep: 50
-		OrderLatency: 3
+		Timestep: 100
+		OrderLatency: 1
 	default:
 		Name: Normal
-		Timestep: 40
-		OrderLatency: 3
+		Timestep: 80
+		OrderLatency: 2
 	fast:
 		Name: Fast
-		Timestep: 35
-		OrderLatency: 4
+		Timestep: 65
+		OrderLatency: 2
 	faster:
 		Name: Faster
-		Timestep: 30
-		OrderLatency: 4
+		Timestep: 50
+		OrderLatency: 3
 	fastest:
 		Name: Fastest
-		Timestep: 20
-		OrderLatency: 6
+		Timestep: 40
+		OrderLatency: 3
 
 ColorValidator:
 	TeamColorPresets: f7b3b3, f50606, 98331f, f57606, f7bb06, f861a4, da06f3, ddb8ff, 06f739, cef7b2, 200738, 280df6, 2f86f2, 76d2f8, 34ba93, 391d1d
