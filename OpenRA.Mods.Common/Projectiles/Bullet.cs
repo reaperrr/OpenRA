@@ -109,6 +109,9 @@ namespace OpenRA.Mods.Common.Projectiles
 		public readonly int ContrailDelay = 1;
 		public readonly WDist ContrailWidth = new WDist(64);
 
+		[Desc("Up to how often is the visual position of the projectile updated per world tick (if framerate is high enough).")]
+		public readonly int InterpolationSteps = 9;
+
 		public IProjectile Create(ProjectileArgs args) { return new Bullet(this, args); }
 	}
 
@@ -121,11 +124,13 @@ namespace OpenRA.Mods.Common.Projectiles
 		readonly WAngle angle;
 		readonly WDist speed;
 		readonly string trailPalette;
+		readonly bool invisible;
+		readonly int interpolationTimestep;
 
 		ContrailRenderable contrail;
 
 		[Sync]
-		WPos pos, lastPos, target, source;
+		WPos pos, lastPos, nextPos, target, source;
 
 		int length;
 		int ticks, smokeTicks;
@@ -181,6 +186,9 @@ namespace OpenRA.Mods.Common.Projectiles
 
 			smokeTicks = info.TrailDelay;
 			remainingBounces = info.BounceCount;
+			nextPos = WPos.LerpQuadratic(source, target, angle, ticks, length);
+			invisible = anim == null && info.ContrailLength < 1;
+			interpolationTimestep = 20; // Game.Timestep / info.InterpolationSteps;
 		}
 
 		WAngle GetEffectiveFacing()
@@ -203,7 +211,10 @@ namespace OpenRA.Mods.Common.Projectiles
 			anim?.Tick();
 
 			lastPos = pos;
-			pos = WPos.LerpQuadratic(source, target, angle, ticks, length);
+			pos = nextPos;
+
+			// Pre-computing nextPos for use in interpolation
+			nextPos = WPos.LerpQuadratic(source, target, angle, ticks + 1, length);
 
 			if (ShouldExplode(world))
 				Explode(world);
@@ -273,25 +284,40 @@ namespace OpenRA.Mods.Common.Projectiles
 
 		public IEnumerable<IRenderable> Render(WorldRenderer wr)
 		{
-			if (info.ContrailLength > 0)
-				yield return contrail;
-
-			if (anim == null || ticks >= length)
+			if (invisible)
 				yield break;
 
 			var world = args.SourceActor.World;
-			if (!world.FogObscures(pos))
+			var renderPos = pos;
+
+			if (info.InterpolationSteps > 0 && ticks < length)
+			{
+				var elapsedMs = (int)(Game.RunTime - Game.LastWorldTickRunTime);
+				var interpolationStep = elapsedMs / interpolationTimestep;
+				if (interpolationStep > 0)
+					renderPos = WPos.Lerp(pos, nextPos, interpolationStep, info.InterpolationSteps);
+			}
+
+			if (info.ContrailLength > 0)
+			{
+				if (renderPos != pos)
+					contrail.Update(renderPos);
+
+				yield return contrail;
+			}
+
+			if (anim != null && !world.FogObscures(renderPos))
 			{
 				if (info.Shadow)
 				{
-					var dat = world.Map.DistanceAboveTerrain(pos);
-					var shadowPos = pos - new WVec(0, 0, dat.Length);
+					var dat = world.Map.DistanceAboveTerrain(renderPos);
+					var shadowPos = renderPos - new WVec(0, 0, dat.Length);
 					foreach (var r in anim.Render(shadowPos, wr.Palette(info.ShadowPalette)))
 						yield return r;
 				}
 
 				var palette = wr.Palette(info.Palette + (info.IsPlayerPalette ? args.SourceActor.Owner.InternalName : ""));
-				foreach (var r in anim.Render(pos, palette))
+				foreach (var r in anim.Render(renderPos, palette))
 					yield return r;
 			}
 		}
