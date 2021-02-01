@@ -46,6 +46,9 @@ namespace OpenRA.Mods.Common.Projectiles
 		[Desc("Value added to Velocity every tick.")]
 		public readonly WVec Acceleration = new WVec(0, 0, -15);
 
+		[Desc("Up to how often is the visual position of the projectile updated per world tick (if framerate is high enough).")]
+		public readonly int InterpolationSteps = 1;
+
 		public IProjectile Create(ProjectileArgs args) { return new GravityBomb(this, args); }
 	}
 
@@ -55,10 +58,11 @@ namespace OpenRA.Mods.Common.Projectiles
 		readonly Animation anim;
 		readonly ProjectileArgs args;
 		readonly WVec acceleration;
+		readonly int interpolationTimestep;
 		WVec velocity;
 
 		[Sync]
-		WPos pos, lastPos;
+		WPos pos, lastPos, nextPos;
 
 		public GravityBomb(GravityBombInfo info, ProjectileArgs args)
 		{
@@ -78,13 +82,19 @@ namespace OpenRA.Mods.Common.Projectiles
 				else
 					anim.PlayRepeating(info.Sequences.Random(args.SourceActor.World.SharedRandom));
 			}
+
+			nextPos = pos + velocity;
+			interpolationTimestep = Game.Timestep / info.InterpolationSteps;
 		}
 
 		public void Tick(World world)
 		{
 			lastPos = pos;
-			pos += velocity;
+			pos = nextPos;
 			velocity += acceleration;
+
+			// Pre-computing nextPos for use in interpolation
+			nextPos += velocity;
 
 			if (pos.Z <= args.PassiveTarget.Z)
 			{
@@ -109,18 +119,28 @@ namespace OpenRA.Mods.Common.Projectiles
 				yield break;
 
 			var world = args.SourceActor.World;
-			if (!world.FogObscures(pos))
+			var renderPos = pos;
+
+			if (info.InterpolationSteps > 0)
+			{
+				var elapsedMs = (int)(Game.RunTime - Game.LastWorldTickRunTime);
+				var interpolationStep = elapsedMs / interpolationTimestep;
+				if (interpolationStep > 0)
+					renderPos = WPos.Lerp(pos, nextPos, interpolationStep, info.InterpolationSteps);
+			}
+
+			if (!world.FogObscures(renderPos))
 			{
 				if (info.Shadow)
 				{
-					var dat = world.Map.DistanceAboveTerrain(pos);
-					var shadowPos = pos - new WVec(0, 0, dat.Length);
+					var dat = world.Map.DistanceAboveTerrain(renderPos);
+					var shadowPos = renderPos - new WVec(0, 0, dat.Length);
 					foreach (var r in anim.Render(shadowPos, wr.Palette(info.ShadowPalette)))
 						yield return r;
 				}
 
 				var palette = wr.Palette(info.Palette + (info.IsPlayerPalette ? args.SourceActor.Owner.InternalName : ""));
-				foreach (var r in anim.Render(pos, palette))
+				foreach (var r in anim.Render(renderPos, palette))
 					yield return r;
 			}
 		}
