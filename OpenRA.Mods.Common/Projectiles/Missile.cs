@@ -156,6 +156,9 @@ namespace OpenRA.Mods.Common.Projectiles
 			"not trigger fast enough, causing the missile to fly past the target.")]
 		public readonly WDist CloseEnough = new WDist(298);
 
+		[Desc("Up to how often is the visual position of the projectile updated per world tick (if framerate is high enough).")]
+		public readonly int InterpolationSteps = 1;
+
 		public IProjectile Create(ProjectileArgs args) { return new Missile(this, args); }
 	}
 
@@ -173,12 +176,16 @@ namespace OpenRA.Mods.Common.Projectiles
 		readonly ProjectileArgs args;
 		readonly Animation anim;
 
+		readonly bool invisible;
+
 		readonly WVec gravity;
 		readonly int minLaunchSpeed;
 		readonly int maxLaunchSpeed;
 		readonly int maxSpeed;
 		readonly WAngle minLaunchAngle;
 		readonly WAngle maxLaunchAngle;
+
+		readonly int interpolationTimestep;
 
 		int ticks;
 
@@ -198,7 +205,7 @@ namespace OpenRA.Mods.Common.Projectiles
 		WVec predVel;
 
 		[Sync]
-		WPos pos;
+		WPos pos, nextPos;
 
 		WVec velocity;
 		int speed;
@@ -219,7 +226,10 @@ namespace OpenRA.Mods.Common.Projectiles
 			this.info = info;
 			this.args = args;
 
+			interpolationTimestep = Game.Timestep / info.InterpolationSteps;
+
 			pos = args.Source;
+			nextPos = pos;
 			hFacing = args.Facing.Facing;
 			gravity = new WVec(0, 0, -info.Gravity);
 			targetPosition = args.PassiveTarget;
@@ -260,6 +270,8 @@ namespace OpenRA.Mods.Common.Projectiles
 				var color = info.ContrailUsePlayerColor ? ContrailRenderable.ChooseColor(args.SourceActor) : info.ContrailColor;
 				contrail = new ContrailRenderable(world, color, info.ContrailWidth, info.ContrailLength, info.ContrailDelay, info.ContrailZOffset);
 			}
+
+			invisible = anim == null && info.ContrailLength < 1;
 
 			trailPalette = info.TrailPalette;
 			if (info.TrailUsePlayerPalette)
@@ -845,7 +857,10 @@ namespace OpenRA.Mods.Common.Projectiles
 			if (info.AllowSnapping && state != States.Freefall && relTarDist < move.Length)
 				pos = targetPosition + offset;
 			else
+			{
 				pos += move;
+				nextPos = pos + move;
+			}
 
 			// Check for walls or other blocking obstacles
 			var shouldExplode = false;
@@ -903,14 +918,29 @@ namespace OpenRA.Mods.Common.Projectiles
 
 		public IEnumerable<IRenderable> Render(WorldRenderer wr)
 		{
-			if (info.ContrailLength > 0)
-				yield return contrail;
-
-			if (anim == null)
+			if (invisible)
 				yield break;
 
 			var world = args.SourceActor.World;
-			if (!world.FogObscures(pos))
+			var renderPos = pos;
+
+			if (info.InterpolationSteps > 0)
+			{
+				var elapsedMs = (int)(Game.RunTime - Game.LastWorldTickRunTime);
+				var interpolationStep = elapsedMs / interpolationTimestep;
+				if (interpolationStep > 0)
+					renderPos = WPos.Lerp(pos, nextPos, interpolationStep, info.InterpolationSteps);
+			}
+			
+			if (info.ContrailLength > 0)
+			{
+				if (renderPos != pos)
+					contrail.Update(renderPos);
+
+				yield return contrail;
+			}
+
+			if (anim != null && !world.FogObscures(pos))
 			{
 				if (info.Shadow)
 				{
