@@ -41,7 +41,10 @@ namespace OpenRA.Mods.Common.Effects
 		readonly int trailInterval;
 		readonly int trailDelay;
 
-		WPos pos;
+		readonly int interpolationTimestep;
+		readonly int maxInterpolationSteps;
+
+		WPos pos, nextPos;
 		int ticks, trailTicks;
 		int launchDelay;
 		bool isLaunched;
@@ -78,9 +81,19 @@ namespace OpenRA.Mods.Common.Effects
 			this.detonationAltitude = detonationAltitude;
 			this.removeOnDetonation = removeOnDetonation;
 
-			anim = new Animation(firedBy.World, name);
+			var world = firedBy.World;
+			anim = new Animation(world, name);
 
 			pos = skipAscent ? descendSource : ascendSource;
+			if (!skipAscent)
+				nextPos = WPos.LerpQuadratic(ascendSource, ascendTarget, WAngle.Zero, ticks + 1, turn);
+			else
+				nextPos = WPos.LerpQuadratic(descendSource, descendTarget, WAngle.Zero, (ticks + 1) - turn, impactDelay - turn);
+
+			interpolationTimestep = 20;
+
+			// Only interpolate if the delta between world timestep and interpolation timestep is high enough (i.e. interpolation fps >= 2x world fps)
+			maxInterpolationSteps = interpolationTimestep > 0 && world.Timestep / 2 >= interpolationTimestep ? world.Timestep / interpolationTimestep - 1 : 0;
 		}
 
 		public void Tick(World world)
@@ -94,7 +107,6 @@ namespace OpenRA.Mods.Common.Effects
 				if (weapon.Report != null && weapon.Report.Any())
 					Game.Sound.Play(SoundType.World, weapon.Report, world, pos);
 
-				world.ScreenMap.Add(this, pos, anim.Image);
 				isLaunched = true;
 			}
 
@@ -124,15 +136,22 @@ namespace OpenRA.Mods.Common.Effects
 			if (ticks == impactDelay || (isDescending && dat <= detonationAltitude))
 				Explode(world, ticks == impactDelay || removeOnDetonation);
 
-			world.ScreenMap.Update(this, pos, anim.Image);
-
 			ticks++;
+
+			// Only update nextPos if we didn't detonate this tick, to prevent interpolation from visually overshooting
+			if (detonated)
+				return;
+
+			if (!isDescending)
+				nextPos = WPos.LerpQuadratic(ascendSource, ascendTarget, WAngle.Zero, ticks + 1, turn);
+			else
+				nextPos = WPos.LerpQuadratic(descendSource, descendTarget, WAngle.Zero, (ticks + 1) - turn, impactDelay - turn);
 		}
 
 		void Explode(World world, bool removeProjectile)
 		{
 			if (removeProjectile)
-				world.AddFrameEndTask(w => { w.Remove(this); w.ScreenMap.Remove(this); });
+				world.AddFrameEndTask(w => { w.Remove(this); });
 
 			if (detonated)
 				return;
@@ -156,7 +175,16 @@ namespace OpenRA.Mods.Common.Effects
 			if (!isLaunched)
 				return Enumerable.Empty<IRenderable>();
 
-			return anim.Render(pos, wr.Palette(weaponPalette));
+			var renderPos = pos;
+			if (maxInterpolationSteps > 0)
+			{
+				var elapsedMs = (int)(Game.RunTime - Game.LastWorldTickRunTime);
+				var interpolationStep = elapsedMs / interpolationTimestep;
+				if (interpolationStep > 0)
+					renderPos = WPos.Lerp(pos, nextPos, interpolationStep, maxInterpolationSteps);
+			}
+
+			return anim.Render(renderPos, wr.Palette(weaponPalette));
 		}
 
 		public float FractionComplete { get { return ticks * 1f / impactDelay; } }
