@@ -127,6 +127,13 @@ namespace OpenRA.Mods.Common.Traits
 				.OptionOrDefault("gamespeed", info.GameSpeed);
 
 			GameSpeed = Game.ModData.Manifest.Get<GameSpeeds>().Speeds[speed];
+
+			// The world timestep and order latency for regular games is hacked in as a
+			// side-effect on top of the regular lobby options plumbing.
+			// The Shellmap and map editor bypass that plumbing, so we must manually fix
+			// the game speed here. The order latency is not relevant for these so is ignored.
+			if (self.World.Type != WorldType.Regular)
+				self.World.Timestep = GameSpeed.Timestep;
 		}
 	}
 }
