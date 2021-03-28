@@ -20,11 +20,20 @@ namespace OpenRA.Mods.Common.Scripting
 	public class DateGlobal : ScriptGlobal
 	{
 		readonly TimeLimitManager tlm;
+		readonly int ticksPerSecond;
 
 		public DateGlobal(ScriptContext context)
 			: base(context)
 		{
 			tlm = context.World.WorldActor.TraitOrDefault<TimeLimitManager>();
+			var gameSpeed = context.World.WorldActor.Info.TraitInfoOrDefault<MapOptionsInfo>()?.GameSpeed;
+			if (gameSpeed == null)
+				throw new LuaException("Unable to determine the default game speed.");
+
+			if (!Game.ModData.Manifest.Get<GameSpeeds>().Speeds.TryGetValue(gameSpeed, out var speedInfo))
+				throw new LuaException("Game speed '{0}' not defined.");
+
+			ticksPerSecond = 1000 / speedInfo.Timestep;
 		}
 
 		[Desc("True on the 31st of October.")]
@@ -36,7 +45,7 @@ namespace OpenRA.Mods.Common.Scripting
 		[Desc("Converts the number of seconds into game time (ticks).")]
 		public int Seconds(int seconds)
 		{
-			return seconds * 25;
+			return seconds * ticksPerSecond;
 		}
 
 		[Desc("Converts the number of minutes into game time (ticks).")]
