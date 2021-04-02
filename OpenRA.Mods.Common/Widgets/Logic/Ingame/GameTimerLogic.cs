@@ -26,7 +26,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			var tlm = world.WorldActor.TraitOrDefault<TimeLimitManager>();
 			var startTick = Ui.LastTickTime;
 
-			Func<bool> shouldShowStatus = () => (world.Paused || world.Timestep != world.LobbyInfo.GlobalSettings.Timestep)
+			Func<bool> shouldShowStatus = () => (world.Paused || world.Timestep != world.OriginalTimestep)
 				&& (Ui.LastTickTime - startTick) / 1000 % 2 == 0;
 
 			Func<string> statusText = () =>
@@ -37,7 +37,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 				if (world.Timestep == 1)
 					return "Max Speed";
 
-				return "{0}% Speed".F(world.LobbyInfo.GlobalSettings.Timestep * 100 / world.Timestep);
+				return "{0}% Speed".F(world.OriginalTimestep * 100 / world.Timestep);
 			};
 
 			if (timer != null)
@@ -45,7 +45,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 				// Timers in replays should be synced to the effective game time, not the playback time.
 				var timestep = world.Timestep;
 				if (world.IsReplay)
-					timestep = world.WorldActor.Trait<MapOptions>().GameSpeed.Timestep;
+					timestep = world.OriginalTimestep;
 
 				timer.GetText = () =>
 				{

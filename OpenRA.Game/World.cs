@@ -36,6 +36,8 @@ namespace OpenRA
 
 		readonly Queue<Action<World>> frameEndActions = new Queue<Action<World>>();
 
+		public readonly int OriginalTimestep;
+		public readonly int OrderLatency;
 		public int Timestep;
 
 		internal readonly OrderManager OrderManager;
@@ -180,7 +182,21 @@ namespace OpenRA
 			OrderManager = orderManager;
 			orderGenerator = new UnitOrderGenerator();
 			Map = map;
-			Timestep = orderManager.LobbyInfo.GlobalSettings.Timestep;
+
+			var gameSpeeds = modData.Manifest.Get<GameSpeeds>();
+			var gameSpeedName = orderManager.LobbyInfo.GlobalSettings.OptionOrDefault("gamespeed", gameSpeeds.DefaultSpeed);
+			var gameSpeed = gameSpeeds.Speeds[gameSpeedName];
+
+			OriginalTimestep = Timestep = gameSpeed.Timestep;
+			OrderLatency = gameSpeed.OrderLatency;
+
+			// HACK: Turn down the latency if there is only one real player (or only bots)
+			if (orderManager.LobbyInfo.NonBotClients.Count() < 2)
+				OrderLatency = 1;
+
+			// Needed for replays
+			orderManager.LobbyInfo.GlobalSettings.OrderLatency = OrderLatency;
+
 			SharedRandom = new MersenneTwister(orderManager.LobbyInfo.GlobalSettings.RandomSeed);
 			LocalRandom = new MersenneTwister();
 

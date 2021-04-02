@@ -254,7 +254,7 @@ namespace OpenRA.Network
 				case "SyncInfo":
 					{
 						orderManager.LobbyInfo = Session.Deserialize(order.TargetString);
-						SetOrderLag(orderManager);
+						SetOrderLag(orderManager, world);
 						Game.SyncLobbyInfo();
 						break;
 					}
@@ -304,7 +304,7 @@ namespace OpenRA.Network
 								orderManager.LobbyInfo.GlobalSettings = Session.Global.Deserialize(node.Value);
 						}
 
-						SetOrderLag(orderManager);
+						SetOrderLag(orderManager, world);
 						Game.SyncLobbyInfo();
 						break;
 					}
@@ -355,9 +355,9 @@ namespace OpenRA.Network
 				order.Subject.ResolveOrder(order);
 		}
 
-		static void SetOrderLag(OrderManager o)
+		static void SetOrderLag(OrderManager o, World world)
 		{
-			if (o.FramesAhead != o.LobbyInfo.GlobalSettings.OrderLatency && !o.GameStarted)
+			if (o.FramesAhead != world.OrderLatency && !o.GameStarted)
 			{
 				o.FramesAhead = o.LobbyInfo.GlobalSettings.OrderLatency;
 				Log.Write("server", "Order lag is now {0} frames.", o.LobbyInfo.GlobalSettings.OrderLatency);

@@ -26,14 +26,7 @@ namespace OpenRA.Mods.Common.Scripting
 			: base(context)
 		{
 			tlm = context.World.WorldActor.TraitOrDefault<TimeLimitManager>();
-			var gameSpeed = context.World.WorldActor.Info.TraitInfoOrDefault<MapOptionsInfo>()?.GameSpeed;
-			if (gameSpeed == null)
-				throw new LuaException("Unable to determine the default game speed.");
-
-			if (!Game.ModData.Manifest.Get<GameSpeeds>().Speeds.TryGetValue(gameSpeed, out var speedInfo))
-				throw new LuaException("Game speed '{0}' not defined.");
-
-			ticksPerSecond = 1000 / speedInfo.Timestep;
+			ticksPerSecond = 1000 / context.World.OriginalTimestep;
 		}
 
 		[Desc("True on the 31st of October.")]

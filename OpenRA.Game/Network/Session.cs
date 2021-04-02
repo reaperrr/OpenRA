@@ -222,8 +222,11 @@ namespace OpenRA.Network
 		{
 			public string ServerName;
 			public string Map;
-			public int Timestep = 100;
+
+			// Only set for and used by replays now.
+			// TODO: Get rid of this entirely, if possible.
 			public int OrderLatency = 3;
+
 			public int RandomSeed = 0;
 			public bool AllowSpectators = true;
 			public string GameUid;

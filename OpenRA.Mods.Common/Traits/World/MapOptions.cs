@@ -60,8 +60,8 @@ namespace OpenRA.Mods.Common.Traits
 		[Desc("Description of the game speed option in the lobby.")]
 		public readonly string GameSpeedDropdownDescription = "Change the rate at which time passes";
 
-		[Desc("Default game speed.")]
-		public readonly string GameSpeed = "default";
+		[Desc("Default game speed (leave empty to use the default defined in mod.yaml).")]
+		public readonly string GameSpeed = null;
 
 		[Desc("Prevent the game speed from being changed in the lobby.")]
 		public readonly bool GameSpeedDropdownLocked = false;
@@ -127,13 +127,6 @@ namespace OpenRA.Mods.Common.Traits
 				.OptionOrDefault("gamespeed", info.GameSpeed);
 
 			GameSpeed = Game.ModData.Manifest.Get<GameSpeeds>().Speeds[speed];
-
-			// The world timestep and order latency for regular games is hacked in as a
-			// side-effect on top of the regular lobby options plumbing.
-			// The Shellmap and map editor bypass that plumbing, so we must manually fix
-			// the game speed here. The order latency is not relevant for these so is ignored.
-			if (self.World.Type != WorldType.Regular)
-				self.World.Timestep = GameSpeed.Timestep;
 		}
 	}
 }

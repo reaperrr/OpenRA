@@ -10,6 +10,7 @@
 #endregion
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace OpenRA
 {
@@ -22,14 +23,20 @@ namespace OpenRA
 
 	public class GameSpeeds : IGlobalModData
 	{
+		[FieldLoader.Require]
+		public readonly string DefaultSpeed;
+
 		[FieldLoader.LoadUsing(nameof(LoadSpeeds))]
 		public readonly Dictionary<string, GameSpeed> Speeds;
 
 		static object LoadSpeeds(MiniYaml y)
 		{
 			var ret = new Dictionary<string, GameSpeed>();
-			var defaultExists = false;
-			foreach (var node in y.Nodes)
+			var speedsNode = y.Nodes.FirstOrDefault(n => n.Key == "Speeds");
+			if (speedsNode == null)
+				throw new YamlException("mod.yaml: GameSpeeds must define gamespeeds under Speeds node!");
+
+			foreach (var node in speedsNode.Value.Nodes)
 			{
 				var gs = FieldLoader.Load<GameSpeed>(node.Value);
 				if (string.IsNullOrEmpty(gs.Name))
@@ -39,14 +46,8 @@ namespace OpenRA
 				else if (gs.OrderLatency < 1)
 					throw new YamlException("Gamespeed {0} doesn't define a valid OrderLatency!".F(gs.Name));
 
-				if (node.Key == "default")
-					defaultExists = true;
-
 				ret.Add(node.Key, gs);
 			}
-
-			if (!defaultExists)
-				throw new YamlException("Mod doesn't define a 'default:' gamespeed! (Note: Name can still be anything).");
 
 			return ret;
 		}
