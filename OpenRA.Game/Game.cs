@@ -100,6 +100,11 @@ namespace OpenRA
 		public static long RunTime => stopwatch.ElapsedMilliseconds;
 
 		public static int RenderFrame = 0;
+
+		// Needed for interpolation
+		public static long LastWorldTickRunTime = 0;
+		public static int MsSinceLastWorldTick = 0;
+
 		public static int NetFrameNumber => OrderManager.NetFrameNumber;
 		public static int LocalTick => OrderManager.LocalFrameNumber;
 
@@ -623,6 +628,8 @@ namespace OpenRA
 						});
 
 						world.Tick();
+						LastWorldTickRunTime = RunTime;
+						MsSinceLastWorldTick = 0;
 
 						PerfHistory.Tick();
 					}
@@ -839,6 +846,12 @@ namespace OpenRA
 						// in this interval.
 						var maxRenderInterval = Math.Max(1000 / MinReplayFps, renderInterval);
 						forcedNextRender = now + maxRenderInterval;
+
+						if (logicWorld != null && logicInterval > 1)
+						{
+							var tickTimeDelta = now - LastWorldTickRunTime;
+							MsSinceLastWorldTick = (int)tickTimeDelta.Clamp(1, logicInterval);
+						}
 
 						RenderTick();
 						renderBeforeNextTick = false;
